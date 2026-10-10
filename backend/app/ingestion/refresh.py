@@ -42,6 +42,7 @@ from app.adapters.morpho_api import MorphoAPIError
 from app.adapters.pendle_api import PendleAPIError
 from app.ingestion.backfill import PENDLE_SOURCE, run_backfill
 from app.ingestion.join import find_candidate_strategies
+from app.ingestion.prices import enrich_market_prices
 from app.ingestion.normalize import (
     NormalizationError,
     SourceRef,
@@ -51,10 +52,11 @@ from app.ingestion.normalize import (
     normalize_morpho_market,
     normalize_pendle_market,
     pendle_market_key,
+    price_from_pendle_prices,
 )
 from app.ingestion.verify import RawItems, find_listing_item, load_morpho, load_pendle, verify_and_promote
 from app.models.evidence import DataMode, EvidenceDTO, normalize_address, normalize_bytes32
-from app.models.market import MarketDTO, PricingMethod, TokenRef
+from app.models.market import MarketDTO, PricingMethod, TokenRef, QuoteUnit
 from app.models.strategy import StrategyDTO, StrategyStatus, make_strategy_id
 from app.models.timeseries import SeriesUnit, TimeseriesMetric
 from app.storage.parquet_store import (
@@ -321,6 +323,17 @@ class Refresher:
         except (PendleAPIError, NormalizationError, LookupError, ValueError) as exc:
             errors.append(f"pendle: {_err(exc)}")
 
+        # Prices are USD spot values, distinct from the pinned loan-token oracle.
+        price_raws = []
+        try:
+            markets, price_raws, price_errors = enrich_market_prices(markets, self.pendle)
+            api_raws.extend(price_raws)
+            errors.extend(price_errors)
+            morpho_dto = next((m for m in markets if m.morpho), None)
+            pendle_dto = next((m for m in markets if m.pendle), None)
+        except (PendleAPIError, ValueError) as exc:
+            errors.append(f"USD prices: {_err(exc)}")
+
         # 4. Persist what was obtained.
         self._save_api_evidence(api_raws, written)
         self._flush_rpc_evidence(written)
@@ -360,6 +373,22 @@ class Refresher:
             ):
                 series.append([_snapshot(entity, metric, pendle_raw.retrieved_at, value, unit,
                                          pendle_raw.source_id, pendle_raw.retrieved_at)])
+        for market in markets:
+            prices = (market.morpho.collateral_price, market.morpho.loan_price) if market.morpho else (market.pendle.pt_price,)
+            for price in prices:
+                if price is not None:
+                    series.append([_snapshot(f"asset:1:{price.base_asset.address}",
+                        TimeseriesMetric.MARKET_PRICE, price.observed_at, price.value,
+                        SeriesUnit.USD, price.source_id, price.observed_at, method=price.pricing_method)])
+        if pendle_dto and pendle_dto.pendle.underlying_asset:
+            underlying = pendle_dto.pendle.underlying_asset
+            for raw in price_raws:
+                price = price_from_pendle_prices(raw.payload["prices"], underlying,
+                    quote_unit=QuoteUnit.USD, ref=SourceRef.from_response(raw))
+                if price is not None:
+                    series.append([_snapshot(f"asset:1:{underlying.address}", TimeseriesMetric.MARKET_PRICE,
+                        price.observed_at, price.value, SeriesUnit.USD, price.source_id,
+                        price.observed_at, method=price.pricing_method)])
         points = 0
         for rows in series:
             try:

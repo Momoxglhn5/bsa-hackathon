@@ -17,6 +17,7 @@ from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.api.routes_data import router
+from app.api.routes_delivery import router as delivery_router
 from app.analytics.dataset import AnalyticsSnapshot, load_snapshot
 from app.analytics.service import AnalyticsService
 from app.analytics.provider import StoreAnalyticsProvider
@@ -49,6 +50,7 @@ def create_app(
 
     app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS, allow_methods=["GET", "POST"], allow_headers=["*"])
     app.include_router(router)
+    app.include_router(delivery_router)
     app.state.analytics = AnalyticsService(snapshot, replay=replay, clock=app.state.clock) if snapshot else None
     provider = StoreAnalyticsProvider(app.state.db_path, app.state.timeseries_root, app.state.clock, replay=replay, inputs_path=os.environ.get("ANALYTICS_INPUTS"))
     app.include_router(create_router(app.state.analytics, provider=provider))

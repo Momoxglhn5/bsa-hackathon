@@ -1,0 +1,25 @@
+{
+  "status": "DEMO_VERIFIED_NOT_MODEL_VALIDATED",
+  "assets": 4,
+  "real_observations": 562,
+  "browser_views_checked": 12,
+  "future_forecast_points_per_asset": 7,
+  "test_forecast_points_per_week": [
+    1,
+    3,
+    7
+  ],
+  "browser_console_errors": 0,
+  "data_snapshot_at": "2026-10-10T00:00:00+00:00",
+  "checks": [
+    "Input snapshot hashes and RPC identity/expiry proofs checked by load_dataset",
+    "Report snapshot matches input data; dates and quantiles checked",
+    "Comparison MAE matches TimesFM run",
+    "Asset/view/horizon/interval/table interactions checked in browser",
+    "No configured API key in standalone HTML"
+  ],
+  "limitations": [
+    "Snapshot demonstration, not live inference",
+    "Previously consulted test; no independent model validation"
+  ]
+}

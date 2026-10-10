@@ -56,6 +56,10 @@ backend/.venv/bin/python backend/scripts/export_analytics_snapshot.py --data-mod
 
 Voir [CORE_ENGINES_INTEGRATION.md](CORE_ENGINES_INTEGRATION.md) pour les contrats, exemples de requêtes, calculs, limites et entrées attendues du développeur Data. Ne jamais committer de clés API, de clés privées de wallet ou de fichiers `.env`.
 
+## Collecte Data réelle
+
+La collecte complète se lance avec `.venv/bin/python backend/scripts/finish_data.py --days 180`. Elle produit des prix sourcés, des historiques, des devis pour les fonds simulés de 1/2/5 M USD et un snapshot rejouable. Les quotes disponibles n'attestent pas de la faisabilité de clôture. Voir [la livraison Data](docs/data/DATA_DELIVERY.md) pour les API, le résultat vérifié et les limites.
+
 ## CI Checks
 
 Le workflow `.github/workflows/ci.yml` s’exécute à chaque push, sur les pull requests et à la demande depuis GitHub Actions.

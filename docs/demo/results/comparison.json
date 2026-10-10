@@ -1,0 +1,218 @@
+{
+  "status": "RESEARCH_ONLY",
+  "comparison_status": "EXPLORATORY_PREVIOUSLY_CONSULTED_TEST",
+  "models": [
+    {
+      "model_id": "amazon/chronos-2",
+      "revision": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+      "total_seconds": 5.844640208000783,
+      "development": [
+        {
+          "horizon_days": 1,
+          "n_evaluations": 45,
+          "mae_model": "0.002676317359076606666666666667",
+          "mae_naive": "0.001986666666666666666666666667",
+          "coverage_q10_q90": "0.8444444444444444444444444444",
+          "gain_vs_naive_percent": "-34.71396102734597315436241610"
+        },
+        {
+          "horizon_days": 3,
+          "n_evaluations": 45,
+          "mae_model": "0.0040937272728814000000000000",
+          "mae_naive": "0.005055555555555555555555555556",
+          "coverage_q10_q90": "0.8666666666666666666666666667",
+          "gain_vs_naive_percent": "19.02517482212615384615384616"
+        },
+        {
+          "horizon_days": 7,
+          "n_evaluations": 45,
+          "mae_model": "0.006010925335354282222222222222",
+          "mae_naive": "0.006535555555555555555555555556",
+          "coverage_q10_q90": "0.8444444444444444444444444444",
+          "gain_vs_naive_percent": "8.027324008519993199591975530"
+        }
+      ],
+      "test": [
+        {
+          "horizon_days": 1,
+          "n_evaluations": 8,
+          "mae_model": "0.0004618450284004375",
+          "mae_naive": "0.000725",
+          "mae_rolling_mean": "0.001037499999999999999999999988",
+          "rmse_model": "0.0007496584904241186333484203945",
+          "coverage_q10_q90": "1",
+          "beats_naive": true,
+          "beats_rolling_mean": true,
+          "gain_vs_naive_percent": "36.29723746200862068965517241"
+        },
+        {
+          "horizon_days": 3,
+          "n_evaluations": 8,
+          "mae_model": "0.003940812814235675",
+          "mae_naive": "0.0039",
+          "mae_rolling_mean": "0.004858928571428571428571428562",
+          "rmse_model": "0.006967178350550518326158545967",
+          "coverage_q10_q90": "0.625",
+          "beats_naive": false,
+          "beats_rolling_mean": true,
+          "gain_vs_naive_percent": "-1.046482416299358974358974400"
+        },
+        {
+          "horizon_days": 7,
+          "n_evaluations": 8,
+          "mae_model": "0.00344195160865785",
+          "mae_naive": "0.0031375",
+          "mae_rolling_mean": "0.004124999999999999999999999988",
+          "rmse_model": "0.005889893722041703350203783008",
+          "coverage_q10_q90": "0.375",
+          "beats_naive": false,
+          "beats_rolling_mean": true,
+          "gain_vs_naive_percent": "-9.703636929333864541832669300"
+        }
+      ]
+    },
+    {
+      "model_id": "google/timesfm-2.5-200m-pytorch",
+      "revision": "1d952420fba87f3c6dee4f240de0f1a0fbc790e3",
+      "total_seconds": 91.07182212499902,
+      "development": [
+        {
+          "horizon_days": 1,
+          "n_evaluations": 45,
+          "mae_model": "0.002495351539187962222222222222",
+          "mae_naive": "0.001986666666666666666666666667",
+          "coverage_q10_q90": "0.8444444444444444444444444444",
+          "gain_vs_naive_percent": "-25.60494324771621923937360180"
+        },
+        {
+          "horizon_days": 3,
+          "n_evaluations": 45,
+          "mae_model": "0.004747813513014046666666666667",
+          "mae_naive": "0.005055555555555555555555555556",
+          "coverage_q10_q90": "0.8444444444444444444444444444",
+          "gain_vs_naive_percent": "6.087205237084791208791208790"
+        },
+        {
+          "horizon_days": 7,
+          "n_evaluations": 45,
+          "mae_model": "0.005612535326215957777777777778",
+          "mae_naive": "0.006535555555555555555555555556",
+          "coverage_q10_q90": "0.7555555555555555555555555556",
+          "gain_vs_naive_percent": "14.12305689230938456307378443"
+        }
+      ],
+      "test": [
+        {
+          "horizon_days": 1,
+          "n_evaluations": 8,
+          "mae_model": "0.00091338596343995",
+          "mae_naive": "0.000725",
+          "mae_rolling_mean": "0.001037499999999999999999999988",
+          "rmse_model": "0.001305786770788089671845298331",
+          "coverage_q10_q90": "1",
+          "beats_naive": false,
+          "beats_rolling_mean": true,
+          "gain_vs_naive_percent": "-25.98427081930344827586206900"
+        },
+        {
+          "horizon_days": 3,
+          "n_evaluations": 8,
+          "mae_model": "0.0038446034669876125",
+          "mae_naive": "0.0039",
+          "mae_rolling_mean": "0.004858928571428571428571428562",
+          "rmse_model": "0.006685907205864568957663531851",
+          "coverage_q10_q90": "0.75",
+          "beats_naive": true,
+          "beats_rolling_mean": true,
+          "gain_vs_naive_percent": "1.420423923394551282051282050"
+        },
+        {
+          "horizon_days": 7,
+          "n_evaluations": 8,
+          "mae_model": "0.002989060616493225",
+          "mae_naive": "0.0031375",
+          "mae_rolling_mean": "0.004124999999999999999999999988",
+          "rmse_model": "0.005263428610186850169036155494",
+          "coverage_q10_q90": "0.5",
+          "beats_naive": true,
+          "beats_rolling_mean": true,
+          "gain_vs_naive_percent": "4.731135729299601593625498010"
+        }
+      ]
+    },
+    {
+      "model_id": "amazon/chronos-bolt-base",
+      "revision": "5d9f166d69f47aef3401367a7b842e78fe97b121",
+      "total_seconds": 5.631172082998091,
+      "development": [
+        {
+          "horizon_days": 1,
+          "n_evaluations": 45,
+          "mae_model": "0.002714662297566737777777777778",
+          "mae_naive": "0.001986666666666666666666666667",
+          "coverage_q10_q90": "0.9333333333333333333333333333",
+          "gain_vs_naive_percent": "-36.64407538087606263982102910"
+        },
+        {
+          "horizon_days": 3,
+          "n_evaluations": 45,
+          "mae_model": "0.0049002453507317400000000000",
+          "mae_naive": "0.005055555555555555555555555556",
+          "coverage_q10_q90": "0.9333333333333333333333333333",
+          "gain_vs_naive_percent": "3.072069985526021978021978030"
+        },
+        {
+          "horizon_days": 7,
+          "n_evaluations": 45,
+          "mae_model": "0.006632416689130988888888888889",
+          "mae_naive": "0.006535555555555555555555555556",
+          "coverage_q10_q90": "0.8444444444444444444444444444",
+          "gain_vs_naive_percent": "-1.482064267560183611016661000"
+        }
+      ],
+      "test": [
+        {
+          "horizon_days": 1,
+          "n_evaluations": 8,
+          "mae_model": "0.001381333398818975",
+          "mae_naive": "0.000725",
+          "mae_rolling_mean": "0.001037499999999999999999999988",
+          "rmse_model": "0.002652603583775238285452644258",
+          "coverage_q10_q90": "1",
+          "beats_naive": false,
+          "beats_rolling_mean": false,
+          "gain_vs_naive_percent": "-90.52874466468620689655172410"
+        },
+        {
+          "horizon_days": 3,
+          "n_evaluations": 8,
+          "mae_model": "0.0039480740427970875",
+          "mae_naive": "0.0039",
+          "mae_rolling_mean": "0.004858928571428571428571428562",
+          "rmse_model": "0.007259861791651801978987076379",
+          "coverage_q10_q90": "0.75",
+          "beats_naive": false,
+          "beats_rolling_mean": true,
+          "gain_vs_naive_percent": "-1.232667764027884615384615400"
+        },
+        {
+          "horizon_days": 7,
+          "n_evaluations": 8,
+          "mae_model": "0.004267731928825375",
+          "mae_naive": "0.0031375",
+          "mae_rolling_mean": "0.004124999999999999999999999988",
+          "rmse_model": "0.008219396385507289879658013718",
+          "coverage_q10_q90": "0.875",
+          "beats_naive": false,
+          "beats_rolling_mean": false,
+          "gain_vs_naive_percent": "-36.02332840877689243027888450"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Model comparison reuses previously consulted test data",
+    "Only two test weeks per asset; same calendar dates, correlated errors",
+    "No independent validation, original PT-siUSD validation or runtime model replacement"
+  ]
+}
