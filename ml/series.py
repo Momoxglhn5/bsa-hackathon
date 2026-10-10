@@ -36,6 +36,7 @@ def prepare_pt_series(
     source_as_of: datetime,
     retrieved_at: datetime,
     min_observations: int = 45,
+    exploratory: bool = False,
 ) -> DailySeries:
     """Reject gaps rather than invent/interpolate observations.
 
@@ -45,7 +46,7 @@ def prepare_pt_series(
     Collection timestamps describe this export, not historical availability;
     point-in-time backtest eligibility must be checked on the real dataset.
     """
-    if min_observations < 45:
+    if min_observations < (14 if exploratory else 45):
         raise ValueError("minimum history cannot be below 45 daily observations")
     if not source_snapshot_ref.strip():
         raise SeriesUnavailable("MISSING_SNAPSHOT_REFERENCE")

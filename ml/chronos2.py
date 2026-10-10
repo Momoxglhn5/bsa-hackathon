@@ -27,14 +27,15 @@ class Prediction:
 
 
 class Chronos2Forecaster:
-    def __init__(self, pipeline: Any, *, model_version: str):
+    def __init__(self, pipeline: Any, *, model_version: str, model_id: str = MODEL_ID):
         """Pipeline injection allows protocol tests without torch or weights."""
         self.pipeline = pipeline
         self.model_version = model_version
+        self.model_id = model_id
 
     @classmethod
     def load(cls, *, revision: str, device: str = "auto", seed: int = 42):
-        """Explicit Colab-only load; pin an immutable Hugging Face model commit."""
+        """Explicit offline research load; pin a Hugging Face model commit."""
         import re
         if not re.fullmatch(r"[0-9a-f]{40}", revision):
             raise ValueError("revision must be a 40-character model commit SHA")
@@ -54,12 +55,13 @@ class Chronos2Forecaster:
             MODEL_ID, revision=revision, device_map=device)
         return cls(pipeline, model_version=f"chronos-forecasting={version('chronos-forecasting')};model={revision}")
 
-    def predict(self, series: DailySeries, *, context_length: int | None = None) -> Prediction:
+    def predict(self, series: DailySeries, *, context_length: int | None = None,
+                exploratory: bool = False) -> Prediction:
         """Forecast seven daily quantile points from a past-only prefix."""
         import pandas as pd
 
         n = len(series.values) if context_length is None else context_length
-        if n < 45 or n > len(series.values):
+        if n < (14 if exploratory else 45) or n > len(series.values):
             raise SeriesUnavailable("INVALID_CONTEXT_LENGTH")
         timestamps = series.timestamps[:n]
         values = series.values[:n]
@@ -103,7 +105,8 @@ class Chronos2Forecaster:
         return Prediction(tuple(days), elapsed)
 
 
-def evaluate(series: DailySeries, model: Chronos2Forecaster) -> dict:
+def evaluate(series: DailySeries, model: Chronos2Forecaster, *,
+             exploratory: bool = False, min_context: int = 17) -> dict:
     """Research report only. Never assigns VALIDATED or writes the runtime cache.
 
     Source availability/revision audit and human review of per-horizon scores
@@ -112,12 +115,15 @@ def evaluate(series: DailySeries, model: Chronos2Forecaster) -> dict:
     from .benchmark import HORIZONS, backtest, persistence, rolling_mean
 
     n = len(series.values)
-    origins = tuple(range(45, n - 6, 7))
-    if len(origins) < 3:
+    context = min_context if exploratory else 45
+    if context < (14 if exploratory else 45):
+        raise ValueError("invalid minimum context")
+    origins = tuple(range(context, n - 6, 7))
+    if len(origins) < (1 if exploratory else 3):
         raise SeriesUnavailable("NEED_3_BACKTEST_WINDOWS")
     records = []
     for origin in origins:
-        prediction = model.predict(series, context_length=origin)
+        prediction = model.predict(series, context_length=origin, exploratory=exploratory)
         for h in HORIZONS:
             point = prediction.days[h-1]
             actual = series.values[origin+h-1]
@@ -138,8 +144,8 @@ def evaluate(series: DailySeries, model: Chronos2Forecaster) -> dict:
                 direction_correct=sign(point.q50-last) == sign(actual-last),
                 inference_seconds=prediction.inference_seconds,
             ))
-    naive = backtest(series, persistence)
-    mean = backtest(series, rolling_mean)
+    naive = backtest(series, persistence, min_context=context, exploratory=exploratory)
+    mean = backtest(series, rolling_mean, min_context=context, exploratory=exploratory)
     summaries = []
     for h, baseline, moving in zip(HORIZONS, naive, mean):
         rows = [r for r in records if r["horizon_days"] == h]
@@ -154,13 +160,14 @@ def evaluate(series: DailySeries, model: Chronos2Forecaster) -> dict:
             directional_accuracy=str(Decimal(sum(r["direction_correct"] for r in rows))/count),
             beats_naive=mae < baseline.mae,
         ))
-    latest = model.predict(series)
+    latest = model.predict(series, exploratory=exploratory)
     for row in records:
         row["error"] = str(row["error"])
         row["pinball"] = str(row["pinball"])
     return dict(
         report_type="marilou-research-report-v1", status="RESEARCH_ONLY",
-        model_id=MODEL_ID, model_version=model.model_version, zero_shot=True,
+        model_id=model.model_id, model_version=model.model_version, zero_shot=True,
+        exploratory=exploratory, minimum_context=context, n_observations=n,
         data_mode=series.data_mode.value, strategy_id=series.strategy_id,
         entity_id=series.entity_id, source_snapshot_ref=series.source_snapshot_ref,
         source_as_of=series.source_as_of.isoformat(), retrieved_at=series.retrieved_at.isoformat(),
@@ -173,5 +180,7 @@ def evaluate(series: DailySeries, model: Chronos2Forecaster) -> dict:
         final_inference_seconds=latest.inference_seconds,
         limitations=["Research report, not an accepted ForecastBundle",
                      "Historical availability/revisions require audit",
-                     "No hack probabilities or Morpho oracle predictions"],
+                     "No hack probabilities or Morpho oracle predictions"] +
+                    (["Short history: too few independent windows for model validation"]
+                     if exploratory else []),
     )

@@ -28,7 +28,8 @@ class HorizonErrors:
 
 
 def backtest(
-    series: DailySeries, predictor: Predictor = persistence, *, min_context: int = 45
+    series: DailySeries, predictor: Predictor = persistence, *, min_context: int = 45,
+    exploratory: bool = False,
 ) -> tuple[HorizonErrors, ...]:
     """Non-overlapping seven-day test windows with expanding past-only context.
 
@@ -37,10 +38,10 @@ def backtest(
     auditing before model validation; a retrospective API export alone cannot
     establish absence of revisions to past prices.
     """
-    if min_context < 45:
+    if min_context < (14 if exploratory else 45):
         raise ValueError("minimum context cannot be below 45 days")
     origins = tuple(range(min_context, len(series.values) - 6, 7))
-    if len(origins) < 3:
+    if len(origins) < (1 if exploratory else 3):
         raise SeriesUnavailable("NEED_3_BACKTEST_WINDOWS: at least 66 daily observations")
     errors = {h: [] for h in HORIZONS}
     directions = {h: [] for h in HORIZONS}

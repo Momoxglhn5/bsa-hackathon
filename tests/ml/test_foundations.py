@@ -92,6 +92,19 @@ def test_mapping_exact_pt_and_provenance():
     assert data.data_mode.value == "DEMO"
 
 
+def test_short_history_requires_explicit_research_and_preserves_evidence_checks():
+    short = series_payload(31)
+    with pytest.raises(SeriesUnavailable, match="INSUFFICIENT_HISTORY"):
+        prepared(short)
+    kwargs = dict(source_snapshot_ref="SYNTHETIC_TEST_ONLY", source_as_of=NOW,
+                  retrieved_at=NOW, min_observations=14, exploratory=True)
+    result = prepare_pt_series(TimeseriesDTO.model_validate(short), strategy(), **kwargs)
+    assert len(result.values) == 31
+    short['points'][0]['evidence_ids'] = []
+    with pytest.raises(SeriesUnavailable, match="MISSING_POINT_EVIDENCE"):
+        prepare_pt_series(TimeseriesDTO.model_validate(short), strategy(), **kwargs)
+
+
 @pytest.mark.parametrize("mutation", ["short", "gap", "wrong_pt", "hourly", "missing_evidence", "nonpositive"])
 def test_unusable_series(mutation):
     payload = series_payload(44 if mutation == "short" else 66)

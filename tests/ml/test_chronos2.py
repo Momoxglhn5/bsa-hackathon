@@ -86,3 +86,23 @@ def test_research_report_cannot_validate_a_model():
 def test_model_revision_checked_before_optional_imports():
     with pytest.raises(ValueError, match="commit SHA"):
         Chronos2Forecaster.load(revision="main")
+
+
+def test_short_research_keeps_default_gate_and_past_only_windows():
+    from dataclasses import replace
+    from ml.series import SeriesUnavailable
+    full = prepared()
+    short = replace(full, timestamps=full.timestamps[:31], values=full.values[:31])
+    pipeline = SyntheticPipeline()
+    model = Chronos2Forecaster(pipeline, model_version="SYNTHETIC")
+    with pytest.raises(SeriesUnavailable):
+        model.predict(short)
+    with pytest.raises(SeriesUnavailable):
+        evaluate(short, model)
+    report = evaluate(short, model, exploratory=True)
+    assert [len(frame) for frame, _ in pipeline.calls] == [17, 24, 31]
+    assert report['status'] == 'RESEARCH_ONLY'
+    assert report['exploratory'] is True
+    assert report['n_origins'] == 2
+    for row in report['windows']:
+        assert row['cutoff_at'] < row['timestamp']

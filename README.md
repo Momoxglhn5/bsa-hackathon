@@ -90,7 +90,15 @@ Les tests analytiques utilisent `backend/requirements-analytics.txt` sous Python
 
 Les bases du forecast P1 sont disponibles sur la branche `marilou` : adaptation
 des séries Data V1, benchmark chronologique, contrat JSON et garde-fous du cache.
-Le modèle n'a pas encore été exécuté ; aucune donnée réelle n'a été utilisée.
+Un premier run Chronos-2 a été exécuté localement sur 31 clôtures Pendle réelles.
+Ce run exploratoire utilise les poids préentraînés sans les modifier. Sur deux
+fenêtres de test, il ne bat pas la prévision prix inchangé à 1, 3 et 7 jours ;
+aucune prédiction n'est validée ni publiée dans le cache applicatif.
+
+TimesFM 2.5 et Chronos-Bolt sont également intégrés pour la recherche. Sur quatre
+historiques PT distincts, TimesFM réduit la MAE à J7 de 13,2 % face à Chronos-2
+sur le test réutilisé. La comparaison reste exploratoire ; les intervalles
+ne sont pas suffisamment calibrés et le PT-siUSD initial n'est pas validé.
 
 Voir [le contexte conservé, les tests et les données attendues](docs/implementation/marilou_ml.md).
 
