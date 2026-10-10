@@ -20,6 +20,7 @@ from app.models.evidence import (
     SCHEMA_VERSION,
     DataMode,
     DataStatus,
+    RelationDTO,
     missing_fields,
     normalize_address,
     normalize_bytes32,
@@ -139,9 +140,13 @@ def _key(dto: Any) -> str:
 # ---------------------------------------------------------------------------
 
 def get_store(request: Request) -> Iterator[SqliteStore]:
-    """One connection per request (sqlite3 connections are thread-bound)."""
+    """One connection per request, never shared between requests.
+
+    FastAPI may run this dependency's setup, the handler and the teardown on different
+    threadpool threads, so the connection must not be bound to its creating thread.
+    """
     try:
-        store = SqliteStore(request.app.state.db_path)
+        store = SqliteStore(request.app.state.db_path, check_same_thread=False)
     except Exception as exc:  # sqlite3.Error, OSError: storage itself unusable
         raise HTTPException(503, f"storage unavailable: {type(exc).__name__}") from None
     try:
@@ -269,6 +274,35 @@ def list_strategies(
     return _list_envelope(strategies, [_strategy_view(s, now) for s in strategies], data_mode)
 
 
+_MAX_CLOSURE_DEPTH = 6
+_MAX_CLOSURE_RELATIONS = 200
+
+
+def _dependency_closure(store: SqliteStore, roots: list[str], data_mode: DataMode) -> dict[str, RelationDTO]:
+    """Relations touching the strategy's markets, plus everything they depend on.
+
+    Follows "depends on" arrows (source -> target) out of the roots, so the chain
+    SY -> underlying -> economic backing is served with the strategy. Bounded in depth
+    and size; nodes that merely depend on a shared asset are not pulled in.
+    """
+    relations = {r.relation_id: r for n in roots for r in store.list_relations(n, data_mode=data_mode)}
+    seen = set(roots)
+    frontier = [r.target_node_id for r in relations.values() if r.source_node_id in seen]
+    for _ in range(_MAX_CLOSURE_DEPTH):
+        frontier = [n for n in dict.fromkeys(frontier) if n not in seen]
+        if not frontier or len(relations) >= _MAX_CLOSURE_RELATIONS:
+            break
+        seen.update(frontier)
+        next_frontier = []
+        for node in frontier:
+            for r in store.list_relations(node, data_mode=data_mode):
+                if r.source_node_id == node and len(relations) < _MAX_CLOSURE_RELATIONS:
+                    relations.setdefault(r.relation_id, r)
+                    next_frontier.append(r.target_node_id)
+        frontier = next_frontier
+    return relations
+
+
 @router.get("/strategies/{strategy_id}", response_model=Envelope)
 def get_strategy(
     strategy_id: str, data_mode: DataMode = Mode,
@@ -281,7 +315,7 @@ def get_strategy(
     nodes = [f"morpho:1:{s.morpho_market_id}"]
     if s.pendle_market_address:
         nodes.append(f"pendle:1:{s.pendle_market_address}")
-    relations = {r.relation_id: r for n in nodes for r in store.list_relations(n, data_mode=data_mode)}
+    relations = _dependency_closure(store, nodes, data_mode)
     status, missing, warnings = _strategy_view(s, now)
     return _envelope(
         status=status, as_of=s.as_of, data_mode=data_mode,

@@ -153,6 +153,25 @@ def test_strategy_includes_relations_and_block(client):
     assert RPC_EV in body["provenance"]["evidence_ids"]
 
 
+def test_strategy_relations_follow_dependencies_transitively(client, paths):
+    sy, backing, other_market = "asset:1:0x" + "44" * 20, "asset:1:0x" + "55" * 20, "morpho:1:0x" + "ef" * 32
+    curated = dict(verification_status=RelationStatus.CURATED, evidence=[], observed_at=NOW, note="test")
+    with SqliteStore(paths[0]) as s:
+        s.save_relations([
+            make_relation(source_node_id=f"asset:1:{PT}", target_node_id=sy,
+                          relation_type=RelationType.SY_YIELD_TOKEN, **curated),
+            make_relation(source_node_id=sy, target_node_id=backing,
+                          relation_type=RelationType.ECONOMIC_BACKING, **curated),
+            # Another market sharing the PT depends on it: not a dependency of this strategy.
+            make_relation(source_node_id=other_market, target_node_id=f"asset:1:{PT}",
+                          relation_type=RelationType.MARKET_COLLATERAL_ASSET, **curated),
+        ])
+    relations = client.get(f"/api/v1/strategies/{STRAT_ID}").json()["data"]["relations"]
+    assert [r["relation_type"] for r in relations] == [
+        "MARKET_COLLATERAL_ASSET", "SY_YIELD_TOKEN", "ECONOMIC_BACKING"]
+    assert all(r["source_node_id"] != other_market for r in relations)
+
+
 def test_evidence_snapshot_has_block_hash(client):
     assert client.get(f"/api/v1/evidence/{RPC_EV}").json()["snapshot"]["block_hash"] == "0x" + "ee" * 32
 
@@ -216,3 +235,19 @@ def test_demo_only_on_request(client):
     assert client.get("/api/v1/positions/pos_demo_1").status_code == 404  # DEMO not served as REAL
     assert [s["data_mode"] for s in client.get("/api/v1/strategies").json()["data"]] == ["REAL"]
     assert client.get("/api/v1/markets?data_mode=DEMO").status_code == 503  # no DEMO markets stored
+
+
+def test_request_store_survives_thread_hops(paths):
+    """get_store's setup, the handler and the teardown can run on three pool threads."""
+    from concurrent.futures import ThreadPoolExecutor
+    from types import SimpleNamespace
+
+    from app.api.routes_data import get_store
+
+    request = SimpleNamespace(app=SimpleNamespace(state=SimpleNamespace(db_path=paths[0])))
+    deps = get_store(request)
+    with ThreadPoolExecutor(max_workers=1) as a, ThreadPoolExecutor(max_workers=1) as b:
+        store = a.submit(next, deps).result()
+        assert b.submit(store.counts).result()["markets"] == 0
+        with pytest.raises(StopIteration):
+            b.submit(next, deps).result()
