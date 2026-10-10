@@ -1,0 +1,17 @@
+{
+  "globs": ["**/*.md"],
+  "ignores": [
+    "node_modules/**",
+    ".venv/**",
+    "venv/**",
+    "dist/**",
+    "build/**",
+    "coverage/**",
+    "target/**",
+    ".next/**"
+  ],
+  "config": {
+    "default": true,
+    "MD013": false
+  }
+}
