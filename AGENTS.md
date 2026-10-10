@@ -232,6 +232,8 @@ Ne pas inventer de commandes de test. Les rechercher dans les manifestes, script
 - Workflows : `go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.12 -color`.
 - Secrets des commits : `go run github.com/zricethezav/gitleaks/v8@v8.30.1 git --redact --no-banner --log-opts='--all'`.
 - Secrets du dossier de travail : `go run github.com/zricethezav/gitleaks/v8@v8.30.1 dir . --redact --no-banner`.
+- Frontend (`frontend/`, npm) : `npm ci`, `npm run typecheck`, `npm test`, `npm run build`.
+- Backend : `python -m pytest -q app/tests` depuis `backend/` (pas encore en CI).
 - Versions et prérequis : consulter la section CI du `README.md`.
 - Ajouter les contrôles applicatifs réels lors du choix de la stack ; ne pas les remplacer par des commandes qui réussissent sans rien vérifier.
 - Conserver les actions épinglées par SHA, les permissions minimales et le masquage des secrets dans les logs.

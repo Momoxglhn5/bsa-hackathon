@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+@import '@xyflow/react/dist/style.css';
+
+/* Tokens from the "Design system & components" board of the DeFi Risk Radar canvas. */
+@theme {
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --color-canvas: #0b1120;
+  --color-bar: #0e1526;
+  --color-control: #141c2e;
+  --color-card: #172033;
+  --color-line: #263149;
+  --color-line-soft: #1b2438;
+  --color-hover: #1e293b;
+  --color-ink: #f3f4f6;
+  --color-ink-2: #cbd5e1;
+  --color-ink-3: #94a3b8;
+  --color-ink-4: #64748b;
+  --color-accent: #6366f1;
+  --color-accent-2: #818cf8;
+  --color-accent-soft: #272f5c;
+  --color-ok: #34d399;
+  --color-warn: #fbbf24;
+  --color-bad: #f87171;
+  --color-warn-line: #4b3b12;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-2);
+  outline-offset: 2px;
+}
+
+input[type='range'] {
+  width: 100%;
+  accent-color: var(--color-accent);
+}
+
+/* React Flow: dark, minimal chrome. Node visuals live in RadarNode. */
+.react-flow {
+  --xy-background-color: transparent;
+  --xy-edge-stroke: rgba(148, 163, 184, 0.34);
+  --xy-attribution-background-color: transparent;
+}
+.react-flow__node {
+  cursor: pointer;
+}
+.react-flow__attribution a {
+  color: var(--color-ink-4);
+}
+.react-flow__edge {
+  cursor: pointer;
+}
+
+.radar-node {
+  transition:
+    transform 180ms ease-out,
+    box-shadow 180ms ease-out,
+    opacity 220ms ease-out;
+}
+.radar-fade {
+  transition: opacity 220ms ease-out;
+}
+
+.edge-flow {
+  stroke-dasharray: 7 4;
+  animation: edge-flow 0.7s linear infinite;
+}
+@keyframes edge-flow {
+  to {
+    stroke-dashoffset: -11;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation: none !important;
+  }
+}
