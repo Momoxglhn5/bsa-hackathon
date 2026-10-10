@@ -1,3 +1,4 @@
+from decimal import localcontext
 from typing import Generic, TypeVar
 
 from fastapi import APIRouter, Depends, Query
@@ -12,6 +13,12 @@ from app.models.evidence import ContractModel, EvidenceDTO, UtcDatetime
 from app.risk.scoring import RiskResult, current_risk
 from app.stress.schemas import SimulationRequest, SimulationResult
 from app.decision.schemas import DecisionRequest, DecisionResult
+
+from app.stress.monte_carlo.adapter import (
+    MonteCarloDataRequest, MonteCarloDataUnavailable, build_monte_carlo_request, unavailable_result,
+)
+from app.stress.monte_carlo.models import MonteCarloResult
+from app.stress.monte_carlo import run_monte_carlo
 
 T = TypeVar("T")
 
@@ -95,6 +102,30 @@ def create_router(service=None, *, provider=None):
     def simulations(request: SimulationRequest, service=Depends(resolve)):
         result = service.simulate(request)
         return envelope(service, result, result.scenario_status)
+
+    @router.post("/monte-carlo", response_model=Envelope[MonteCarloResult],
+                 summary="Oracle-price Monte Carlo on Data inputs; volatility assumed or calibrated on the oracle series")
+    def monte_carlo(request: MonteCarloDataRequest, service=Depends(resolve)):
+        snapshot = service.snapshot
+        strategy = snapshot.strategy(request.strategy_id)
+        position = snapshot.position(request.strategy_id, request.position_id)
+        now = service.now()
+        try:
+            with localcontext() as ctx:
+                ctx.prec = 60
+                mapped = build_monte_carlo_request(
+                    position, snapshot.market(position), strategy, settings=request,
+                    as_of=now, evidence=snapshot.evidence, series=snapshot.series,
+                    replay=service.replay,
+                )
+        except MonteCarloDataUnavailable as exc:
+            # Business status, not a transport error: nothing is simulated or substituted.
+            result = unavailable_result(request, now, exc.missing_fields)
+        else:
+            result = run_monte_carlo(mapped)
+        response = envelope(service, result, result.status.value)
+        response.missing_fields = tuple(result.missing_fields)
+        return response
 
     @router.get("/incident-frequencies", response_model=Envelope[IncidentFrequencies])
     def incidents(service=Depends(resolve_catalog)):

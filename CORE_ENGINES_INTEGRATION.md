@@ -145,6 +145,7 @@ Bundle absent, périmé/futur ou non validé : repli Normal avec `FORECAST_UNAVA
 | GET | `/api/v1/risk/{strategy_id}` | Facteurs, score si publiable, couverture, confiance et santé des positions |
 | GET | `/api/v1/scenarios` | Catalogue statique, disponible sans stockage initialisé |
 | POST | `/api/v1/simulations` | Impacts, expositions, effets par position et hypothèses |
+| POST | `/api/v1/monte-carlo` | Monte Carlo du prix oracle sur les entrées Data ; volatilité supposée ou calibrée sur la série oracle ([PR2](docs/implementation/monte_carlo_pr2.md)) |
 | GET | `/api/v1/incident-frequencies` | `INSUFFICIENT_DATA` tant qu'aucun historique calibré n'est fourni |
 | POST | `/api/v1/decisions` | Valeurs conditionnelles, verdict et seuil de bascule |
 

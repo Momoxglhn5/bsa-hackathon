@@ -266,6 +266,22 @@ class SqliteStore:
         return self._one(EvidenceDTO, "SELECT payload FROM evidence WHERE evidence_id = ? AND data_mode = ?",
                          (evidence_id, data_mode.value))
 
+    def find_rpc_evidence(
+        self, target_address: str, block_numbers: Iterable[int], data_mode: DataMode = DataMode.REAL
+    ) -> list[EvidenceDTO]:
+        """RPC evidence read on `target_address` at any of `block_numbers` (Parquet keeps no ids)."""
+        blocks = sorted(set(block_numbers))
+        found: list[EvidenceDTO] = []
+        for i in range(0, len(blocks), 500):  # stay below SQLite's bound-parameter limit
+            chunk = blocks[i:i + 500]
+            found += self._many(
+                EvidenceDTO,
+                "SELECT payload FROM evidence WHERE data_mode = ? AND source_kind = 'RPC' "
+                f"AND block_number IN ({', '.join('?' * len(chunk))}) ORDER BY evidence_id",
+                (data_mode.value, *chunk),
+            )
+        return [e for e in found if e.target_address == target_address]
+
     def get_market(self, market_key: str, data_mode: DataMode = DataMode.REAL) -> MarketDTO | None:
         return self._one(MarketDTO, "SELECT payload FROM markets WHERE market_key = ? AND data_mode = ?",
                          (market_key, data_mode.value))

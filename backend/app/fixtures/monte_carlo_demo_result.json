@@ -29,7 +29,8 @@
           "annual_volatility": "0.80",
           "annual_drift": "0",
           "debt_model": "FROZEN_DEBT",
-          "borrow_apr": null
+          "borrow_apr": null,
+          "calibration": null
         },
         "evidence_ids": [],
         "warnings": [
@@ -80,7 +81,8 @@
         },
         "provenance": {
           "calibration": "USER_ASSUMPTION",
-          "evidence_ids": []
+          "evidence_ids": [],
+          "oracle_calibration": null
         },
         "missing_fields": [],
         "warnings": [
@@ -115,7 +117,8 @@
           "annual_volatility": "0.80",
           "annual_drift": "0",
           "debt_model": "FROZEN_DEBT",
-          "borrow_apr": null
+          "borrow_apr": null,
+          "calibration": null
         },
         "evidence_ids": [],
         "warnings": [
@@ -166,7 +169,8 @@
         },
         "provenance": {
           "calibration": "USER_ASSUMPTION",
-          "evidence_ids": []
+          "evidence_ids": [],
+          "oracle_calibration": null
         },
         "missing_fields": [],
         "warnings": [
@@ -201,7 +205,8 @@
           "annual_volatility": "0.80",
           "annual_drift": "0",
           "debt_model": "FROZEN_DEBT",
-          "borrow_apr": null
+          "borrow_apr": null,
+          "calibration": null
         },
         "evidence_ids": [],
         "warnings": [
@@ -252,7 +257,8 @@
         },
         "provenance": {
           "calibration": "USER_ASSUMPTION",
-          "evidence_ids": []
+          "evidence_ids": [],
+          "oracle_calibration": null
         },
         "missing_fields": [],
         "warnings": [

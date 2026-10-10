@@ -6,6 +6,7 @@ service, so an older simulation cannot silently enter a newer decision.
 import hashlib
 import sqlite3
 from collections import OrderedDict
+from datetime import timedelta
 from threading import RLock
 from pathlib import Path
 
@@ -13,10 +14,60 @@ from fastapi import HTTPException
 
 from app.analytics.dataset import AnalyticsSnapshot, AnalyticsInputs
 from app.analytics.service import AnalyticsService
-from app.models.evidence import DataMode
-from app.models.timeseries import TimeseriesMetric
+from app.models.evidence import DataMode, DataStatus
+from app.models.market import PricingMethod
+from app.models.timeseries import SeriesUnit, SubjectKind, TimeseriesDTO, TimeseriesMetric, TimeseriesPointDTO
+from app.stress.monte_carlo.calibration import ORACLE_PRICE_METHOD, RPC_SOURCE_ID, is_sampling_candidate
 from app.storage.parquet_store import ParquetStore, ObservationError
 from app.storage.sqlite_store import SqliteStore
+
+# Calibration needs 30 days; a little margin keeps late midnight samples.
+_ORACLE_HISTORY_DAYS = 40
+_FLAG_STATUSES = {s.value for s in DataStatus} - {DataStatus.OK.value}
+
+
+def _oracle_series(store, parquet, market, data_mode):
+    """RPC oracle history of one Morpho market, reduced to calibration sampling candidates.
+
+    Parquet rows carry no evidence ids; each point is linked to the RPC reads of the
+    market oracle at its block. The calibration re-checks every proof.
+    """
+    try:
+        rows = parquet.read_observations(market.market_key, TimeseriesMetric.ORACLE_PRICE.value,
+                                         data_mode, source_id=RPC_SOURCE_ID)
+    except ObservationError:
+        return None, ()  # unusable history stays absent; Monte Carlo reports it missing
+    rows = [r for r in rows if is_sampling_candidate(r.ts_utc)]
+    if rows:
+        rows = [r for r in rows if r.ts_utc >= rows[-1].ts_utc - timedelta(days=_ORACLE_HISTORY_DAYS)]
+    if not rows:
+        return None, ()
+    oracle = market.morpho.oracle_address
+    proofs = {}
+    for e in store.find_rpc_evidence(oracle, {r.block_number for r in rows if r.block_number is not None}, data_mode):
+        if e.method == ORACLE_PRICE_METHOD:
+            proofs.setdefault(e.block_number, []).append(e)
+    points = [TimeseriesPointDTO(
+        timestamp=r.ts_utc, value=r.value_decimal,
+        status=next((DataStatus(f) for f in r.quality_flags if f in _FLAG_STATUSES), DataStatus.OK),
+        block_number=r.block_number,
+        evidence_ids=tuple(e.evidence_id for e in proofs.get(r.block_number, ())),
+    ) for r in rows]
+    statuses = {p.status for p in points}
+    try:
+        dto = TimeseriesDTO(
+            chain_id=market.chain_id, data_mode=data_mode,
+            series_id="ts_oracle_price_" + hashlib.sha256(market.market_key.encode()).hexdigest()[:24],
+            metric=TimeseriesMetric.ORACLE_PRICE, subject_kind=SubjectKind.MARKET, subject_id=market.market_id,
+            unit=SeriesUnit(rows[0].unit), quote_asset=market.morpho.loan_token,
+            pricing_method=PricingMethod.MORPHO_ORACLE, source_id=RPC_SOURCE_ID,
+            status=DataStatus.OK if statuses == {DataStatus.OK} else
+            DataStatus.PARTIAL if any(p.value is not None for p in points) else DataStatus.MISSING,
+            points=tuple(points),
+        )
+    except ValueError:
+        return None, ()
+    return dto, tuple(e for es in proofs.values() for e in es)
 
 
 def snapshot_from_store(store, parquet, data_mode=DataMode.REAL, *, inputs=None):
@@ -36,6 +87,13 @@ def snapshot_from_store(store, parquet, data_mode=DataMode.REAL, *, inputs=None)
             dto = parquet.read_series(market.market_key, metric, data_mode, source_id=source)
             if dto:
                 series.append(dto)
+    oracle_evidence = []
+    for market in markets:
+        if market.morpho is not None:
+            dto, proofs = _oracle_series(store, parquet, market, data_mode)
+            if dto is not None:
+                series.append(dto)
+                oracle_evidence += proofs
     ids = {i for x in (*markets, *strategies, *positions, *relations) for i in x.evidence_ids}
     ids.update(i for m in markets for c in m.verification for i in c.evidence_ids)
     ids.update(i for m in markets for fields in (m.morpho, m.pendle) if fields
@@ -44,7 +102,10 @@ def snapshot_from_store(store, parquet, data_mode=DataMode.REAL, *, inputs=None)
     ids.update(i for q in inputs.quotes for i in (*q.evidence_ids, *q.quote.evidence_ids,
         *(q.output_usd_price.evidence_ids if q.output_usd_price else ())))
     ids.update(i for observation in (*inputs.risk_observations, *inputs.forecasts) for i in observation.evidence_ids)
+    ids -= {e.evidence_id for e in oracle_evidence}
     evidence = [e for i in sorted(ids) if (e := store.get_evidence(i, data_mode)) is not None]
+    evidence = sorted([*evidence, *{e.evidence_id: e for e in oracle_evidence}.values()],
+                      key=lambda e: e.evidence_id)
     timestamps = [x.as_of for x in (*markets, *strategies, *positions)]
     timestamps += [r.observed_at for r in relations] + [e.fetched_at for e in evidence]
     snapshot = AnalyticsSnapshot(snapshot_id="pending", as_of=max(timestamps),

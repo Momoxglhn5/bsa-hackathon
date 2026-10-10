@@ -131,14 +131,20 @@ def run_monte_carlo(request: MonteCarloRequest) -> MonteCarloResult:
         "DAILY_STEPS_MAY_MISS_INTRADAY_BREACH",
     ]
     if request.input_scope == InputScope.HYPOTHETICAL:
-        warnings.append("SYNTHETIC_FIXTURE_NOT_LIVE")
+        # Evidence-backed Data inputs remain hypothetical but are not a fixture.
+        warnings.append("HYPOTHETICAL_INPUT_SCOPE" if request.evidence_ids
+                        else "SYNTHETIC_FIXTURE_NOT_LIVE")
     if request.simulation.debt_model == DebtModel.FROZEN_DEBT:
         warnings.append("FROZEN_DEBT")
+    if request.simulation.calibration is not None:
+        warnings.append("HISTORICAL_CALIBRATION_NOT_A_FORECAST")
+        warnings.append("ZERO_DRIFT_ASSUMPTION")
     warnings.extend(request.warnings)
     missing: list[str] = []
     provenance = MonteCarloProvenance(
         calibration=request.simulation.source_mode,
         evidence_ids=list(request.evidence_ids),
+        oracle_calibration=request.simulation.calibration,
     )
 
     def result(status: McStatus, data: MonteCarloData | None) -> MonteCarloResult:
@@ -173,7 +179,9 @@ def run_monte_carlo(request: MonteCarloRequest) -> MonteCarloResult:
         model_version=MODEL_VERSION, horizon_days=request.horizon_days,
         assumptions=[
             "Oracle price follows GBM in debt-token-per-PT units",
-            "Annual volatility and drift are assumptions in PR1",
+            ("Volatility calibrated on 30 daily oracle log returns; drift fixed at zero, not estimated"
+             if request.simulation.calibration is not None
+             else "Annual volatility and drift are assumptions in PR1"),
             "PT collateral quantity held constant",
             f"Debt model: {request.simulation.debt_model.value}",
             "CONSTANT_APR, when selected, uses D0 * exp(apr * t / 365)",

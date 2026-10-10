@@ -1,4 +1,4 @@
-"""Internal Monte Carlo PR1 contracts; no simulation calculations."""
+"""Internal Monte Carlo contracts (PR1 hypothetical, PR2 oracle calibration); no calculations."""
 from __future__ import annotations
 
 from datetime import datetime
@@ -74,6 +74,92 @@ PreciseDecimal = Annotated[
 ]
 
 
+CALIBRATION_METHOD = "ORACLE_DAILY_LOG_RETURNS_30D_V1"
+CALIBRATION_RETURNS = 30
+CALIBRATION_SAMPLING_SECONDS = 86400
+CALIBRATION_TOLERANCE_SECONDS = 3600
+CALIBRATION_ANNUALIZATION_DAYS = 365
+
+
+class CalibrationPoint(BaseModel):
+    """One sampled Morpho oracle observation and the RPC read proving it."""
+    model_config = ConfigDict(extra="forbid", validate_default=True)
+    target_time: datetime
+    observed_at: datetime
+    block_number: int = Field(strict=True, ge=0)
+    oracle_price_loan_per_pt: PreciseDecimal = Field(gt=0)
+    evidence_id: str
+
+    @field_validator("target_time", "observed_at")
+    @classmethod
+    def aware_times(cls, value: datetime) -> datetime:
+        return _require_timezone(value)
+
+    @model_validator(mode="after")
+    def observed_within_tolerance(self) -> CalibrationPoint:
+        lag = (self.target_time - self.observed_at).total_seconds()
+        if not 0 <= lag <= CALIBRATION_TOLERANCE_SECONDS:
+            raise ValueError("Sample must be observed at most one tolerance before its target time")
+        return self
+
+
+class OracleCalibration(BaseModel):
+    """Auditable PR2 calibration from one Morpho oracle series.
+
+    31 daily samples give 30 log returns; volatility is annualized over 365 days.
+    Drift is a fixed policy (zero), never estimated from 30 noisy returns.
+    """
+    model_config = ConfigDict(extra="forbid", validate_default=True)
+    method: Literal["ORACLE_DAILY_LOG_RETURNS_30D_V1"] = CALIBRATION_METHOD
+    series_id: str
+    source_id: Literal["ethereum_rpc"] = "ethereum_rpc"
+    chain_id: Literal[1] = 1
+    market_id: str
+    oracle_address: str
+    collateral_token_address: str
+    loan_token_address: str
+    sampling_interval_seconds: Literal[86400] = CALIBRATION_SAMPLING_SECONDS
+    sample_tolerance_seconds: Literal[3600] = CALIBRATION_TOLERANCE_SECONDS
+    annualization_days: Literal[365] = CALIBRATION_ANNUALIZATION_DAYS
+    window_start: datetime
+    window_end: datetime
+    observation_count: Literal[31] = CALIBRATION_RETURNS + 1
+    return_count: Literal[30] = CALIBRATION_RETURNS
+    daily_log_return_mean: PreciseDecimal
+    daily_log_return_stdev: PreciseDecimal = Field(ge=0)
+    annual_volatility: PreciseDecimal = Field(ge=0, le=5)
+    annual_drift: PreciseDecimal = Decimal("0")
+    drift_policy: Literal["FIXED_ZERO_NOT_ESTIMATED"] = "FIXED_ZERO_NOT_ESTIMATED"
+    skipped_candidate_points: int = Field(default=0, strict=True, ge=0)
+    ignored_future_points: int = Field(default=0, strict=True, ge=0)
+    points: list[CalibrationPoint] = Field(min_length=31, max_length=31)
+    evidence_ids: list[str] = Field(min_length=1)
+
+    @field_validator("window_start", "window_end")
+    @classmethod
+    def aware_window(cls, value):
+        return _require_timezone(value)
+
+    @model_validator(mode="after")
+    def ordered_window(self):
+        if self.annual_drift != 0:
+            raise ValueError("Calibration drift policy is fixed at zero")
+        span = (self.window_end - self.window_start).total_seconds()
+        if span != CALIBRATION_RETURNS * CALIBRATION_SAMPLING_SECONDS:
+            raise ValueError("Calibration window must span exactly 30 sampling intervals")
+        targets = [p.target_time for p in self.points]
+        if targets[0] != self.window_start or targets[-1] != self.window_end or any(
+            (b - a).total_seconds() != CALIBRATION_SAMPLING_SECONDS for a, b in zip(targets, targets[1:])
+        ):
+            raise ValueError("Calibration points must sit on the daily sampling grid")
+        blocks = [p.block_number for p in self.points]
+        if any(b <= a for a, b in zip(blocks, blocks[1:])):
+            raise ValueError("Calibration blocks must be strictly increasing")
+        if sorted(self.evidence_ids) != sorted({p.evidence_id for p in self.points}):
+            raise ValueError("Calibration evidence_ids must be exactly the sampled points' proofs")
+        return self
+
+
 class SimulationParams(BaseModel):
     model_config = ConfigDict(extra="forbid", validate_default=True)
 
@@ -84,15 +170,18 @@ class SimulationParams(BaseModel):
     debt_model: DebtModel
     borrow_apr: PreciseDecimal | None = None
 
-    @field_validator("source_mode")
-    @classmethod
-    def validate_source_mode(cls, value: SourceMode) -> SourceMode:
-        if value == SourceMode.OBSERVED_ORACLE_SERIES:
-            raise ValueError("OBSERVED_ORACLE_SERIES is planned for PR2")
-        return value
+    calibration: OracleCalibration | None = None
 
     @model_validator(mode="after")
     def validate_debt_model(self) -> SimulationParams:
+        if self.source_mode == SourceMode.OBSERVED_ORACLE_SERIES:
+            if self.calibration is None:
+                raise ValueError("PR2 requires verified oracle calibration for OBSERVED_ORACLE_SERIES")
+            if (self.annual_volatility != self.calibration.annual_volatility
+                    or self.annual_drift != self.calibration.annual_drift):
+                raise ValueError("Simulation parameters must match oracle calibration")
+        elif self.calibration is not None:
+            raise ValueError("USER_ASSUMPTION cannot carry observed calibration")
         if self.debt_model == DebtModel.CONSTANT_APR and self.borrow_apr is None:
             raise ValueError("borrow_apr is required for CONSTANT_APR")
         return self
@@ -106,7 +195,8 @@ class MonteCarloRequest(BaseModel):
     position_side: PositionSide = PositionSide.BORROW
     snapshot_as_of: datetime
     input_scope: InputScope
-    loan_token_symbol: str
+    # Display label only; the address is the identity. Data may not know the symbol.
+    loan_token_symbol: str | None = None
     loan_token_address: str | None = None
     collateral_quantity_pt: PreciseDecimal = Field(gt=0)
     initial_oracle_price_loan_per_pt: PreciseDecimal = Field(gt=0)
@@ -139,14 +229,24 @@ class MonteCarloRequest(BaseModel):
 
     @model_validator(mode="after")
     def validate_real_data_requirements(self) -> MonteCarloRequest:
+        if not self.loan_token_symbol and not self.loan_token_address:
+            raise ValueError("loan token requires a symbol or an address")
+        if self.simulation.calibration is not None:
+            c = self.simulation.calibration
+            if c.window_end > self.snapshot_as_of:
+                raise ValueError("Calibration cannot use future observations")
+            if not set(c.evidence_ids).issubset(self.evidence_ids):
+                raise ValueError("Request must include calibration evidence_ids")
         if self.input_scope == InputScope.REAL_DATA:
             if not self.evidence_ids:
                 raise ValueError("REAL_DATA requires non-empty evidence_ids")
             if self.simulation.source_mode != SourceMode.OBSERVED_ORACLE_SERIES:
                 raise ValueError(
                     "REAL_DATA requires OBSERVED_ORACLE_SERIES; "
-                    "OBSERVED_ORACLE_SERIES is planned for PR2"
+                    "PR2 requires observed oracle calibration"
                 )
+            if not self.loan_token_address:
+                raise ValueError("REAL_DATA requires loan_token_address")
         return self
 
 
@@ -209,12 +309,7 @@ class MonteCarloProvenance(BaseModel):
     calibration: SourceMode
     evidence_ids: list[str]
 
-    @field_validator("calibration")
-    @classmethod
-    def validate_calibration(cls, value: SourceMode) -> SourceMode:
-        if value == SourceMode.OBSERVED_ORACLE_SERIES:
-            raise ValueError("OBSERVED_ORACLE_SERIES is planned for PR2")
-        return value
+    oracle_calibration: OracleCalibration | None = None
 
 
 class MonteCarloResult(BaseModel):
