@@ -49,7 +49,7 @@ def main():
         'Le test a déjà été consulté : ces scores servent à explorer, pas à valider.', '',
         'Gain = réduction de MAE par rapport à la persistance. Positif = meilleur.', '',
         '| Modèle | Phase | J1 | J3 | J7 | Couverture J7 q10–q90 |',
-        '|---|---|---:|---:|---:|---:|']
+        '| --- | --- | ---: | ---: | ---: | ---: |']
     for model in result['models']:
         for phase,label in [('development','Développement (45 fenêtres)'),('test','Test réutilisé (8 fenêtres)')]:
             metrics = model[phase]
