@@ -44,8 +44,38 @@ def decide(snapshot, request: DecisionRequest, simulations, now, risk_context=No
     if request.mode == "predictive":
         forecast, fallback, bundle_id = forecast_carry(snapshot, request, now)
         if fallback is None:
-            carry, effective_mode = forecast, "predictive"
-            warnings.append("FORECAST_CARRY_CONDITIONAL_NOT_GUARANTEED")
+            bundle = next(b for b in snapshot.forecasts if b.bundle_id == bundle_id)
+            mapped = {}
+            if bundle.scenario_loss_basis == "FORECAST_NO_INCIDENT_VALUE":
+                for ref, (probability, loss) in losses.items():
+                    result = simulations[ref]
+                    effect = result.position_effects[request.position_id]
+                    before, after = effect.before, effect.after
+                    # Only the explicit proportional collateral haircut has a known mapping.
+                    if loss == 0:
+                        mapped[ref] = (probability, loss)
+                    elif (result.scenario_type in {"UNAUTHORIZED_MINTING", "CROSS_CHAIN_FAILURE"}
+                          and any(a.startswith("assumed_token_haircut_ratio=") for a in result.assumptions)
+                          and before.collateral_value_usd is not None and before.collateral_value_usd > 0
+                          and after.collateral_value_usd is not None
+                          and before.debt_value_usd == after.debt_value_usd
+                          and loss == before.collateral_value_usd-after.collateral_value_usd):
+                        with localcontext() as ctx:
+                            ctx.prec = 60
+                            mapped[ref] = (probability, loss / before.collateral_value_usd
+                                          * bundle.projected_collateral_value_usd)
+                    else:
+                        fallback = "FORECAST_LOSS_MAPPING_UNAVAILABLE"
+                        break
+            if fallback is None:
+                if bundle.scenario_loss_basis == "FORECAST_NO_INCIDENT_VALUE":
+                    losses = mapped
+                    expected = None if incomplete else sum((p*l for p, l in losses.values()), Decimal(0))
+                    warnings.append("SCENARIO_HAIRCUT_APPLIED_TO_FORECAST_COLLATERAL")
+                carry, effective_mode = forecast, "predictive"
+                warnings.append("FORECAST_CARRY_CONDITIONAL_NOT_GUARANTEED")
+            else:
+                bundle_id = None
     stay = equity + carry - expected if all(v is not None for v in (equity, carry, expected)) else None
     exit_value = equity - cost if equity is not None and cost is not None else None
     status = quote_status if quote_status != "OK" else "CONDITIONAL"

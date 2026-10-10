@@ -107,6 +107,11 @@ ne sont pas suffisamment calibrés et le PT-siUSD initial n'est pas validé.
 
 Voir [le contexte conservé, les tests et les données attendues](docs/implementation/marilou_ml.md).
 
+Le parcours de validation prospective et l'export vers le moteur de décision
+sont implémentés dans `ml.predictive` : [commandes et politique d'acceptation](docs/implementation/marilou_predictive.md).
+Les résultats exploratoires existants restent non validés ; aucun verdict
+financier n'est forcé par cette intégration.
+
 ```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -r ml/requirements-dev.txt
