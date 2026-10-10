@@ -15,7 +15,8 @@ from app.stress.schemas import SimulationRequest, SimulationResult
 from app.decision.schemas import DecisionRequest, DecisionResult
 
 from app.stress.monte_carlo.adapter import (
-    MonteCarloDataRequest, MonteCarloDataUnavailable, build_monte_carlo_request, unavailable_result,
+    MonteCarloDataRequest, MonteCarloDataUnavailable, MonteCarloNotApplicable,
+    build_monte_carlo_request, unavailable_result,
 )
 from app.stress.monte_carlo.models import MonteCarloResult
 from app.stress.monte_carlo import run_monte_carlo
@@ -118,6 +119,8 @@ def create_router(service=None, *, provider=None):
                     as_of=now, evidence=snapshot.evidence, series=snapshot.series,
                     replay=service.replay,
                 )
+        except MonteCarloNotApplicable as exc:
+            result = exc.result
         except MonteCarloDataUnavailable as exc:
             # Business status, not a transport error: nothing is simulated or substituted.
             result = unavailable_result(request, now, exc.missing_fields)

@@ -51,6 +51,12 @@ Limites : la calibration décrit la variabilité passée de l'oracle, pas une pr
 Deux voies réutilisent l'adaptateur RPC, SQLite et Parquet :
 
 1. Prospective : `python -m app.ingestion.refresh --task refresh_current` écrit un point oracle prouvé à chaque exécution. Seules les exécutions tombées dans l'heure précédant minuit UTC servent d'échantillons ; il faut donc 31 jours d'exécutions régulières.
-2. Rétrospective : `scripts/backfill_oracle_history.py` lit `price()` au dernier bloc ≤ chaque minuit (31 par défaut, 60 au maximum) par `eth_call` historique. Il ne fait ni transaction ni signature. Il s'arrête après trois échecs consécutifs. Les lectures à des blocs anciens exigent en général un RPC **archive** configuré dans `ETHEREUM_RPC_URL` (environnement ou `backend/.env`, jamais commité) ; le RPC public par défaut peut refuser ces blocs.
+2. Rétrospective : `scripts/backfill_oracle_history.py` lit `price()` au dernier bloc ≤ chaque minuit (31 par défaut, 60 au maximum) par `eth_call` historique, du plus récent au plus ancien. Il ne fait ni transaction ni signature. Il s'arrête après trois échecs consécutifs tout en conservant les points récents déjà obtenus ; les observations sont stockées dans l'ordre chronologique. Les lectures à des blocs anciens exigent en général un RPC **archive** configuré dans `ETHEREUM_RPC_URL` (environnement ou `backend/.env`, jamais commité) ; le RPC public par défaut peut refuser ces blocs.
 
 `scripts/check_oracle_calibration.py` vérifie hors ligne si les stores permettent une calibration et liste sinon les champs manquants. Il n'écrit rien et ne crée pas de base vide.
+
+## Corrections issues de la revue
+
+Le prix oracle courant exige désormais une preuve RPC `eth_call price()` de la source `ethereum_rpc`, sur la chaîne, l'oracle et le bloc attendus, avec statut OK, hash de bloc et fraîcheur de cinq minutes. La valeur brute `out0` doit correspondre exactement à `raw_value` et à la valeur normalisée du DTO. Une divergence donne `UNAVAILABLE`, sans simulation.
+
+Une position sans dette, y compris une position vide, donne HTTP 200 avec `NOT_APPLICABLE`, `data: null` et `NO_DEBT`. Les contrôles d'identité, de fraîcheur et de preuve restent appliqués, mais aucune calibration ni simulation n'est requise. Une position obsolète reste `UNAVAILABLE`.

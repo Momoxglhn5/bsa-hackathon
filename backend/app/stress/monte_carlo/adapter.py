@@ -16,11 +16,14 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from ...models.evidence import DataMode, DataStatus, SourceKind
+from ...models.evidence import DataMode, DataStatus, SourceKind, scale_raw, to_raw_uint
 from ...models.market import MarketDTO, PricingMethod, Protocol, QuoteUnit
 from ...models.position import PositionDTO, PositionKind
 from ...models.strategy import StrategyDTO, StrategyStatus
-from .calibration import MonteCarloDataUnavailable, calibrate_oracle_volatility, select_oracle_series
+from .calibration import (
+    ORACLE_PRICE_METHOD, RPC_SOURCE_ID, MonteCarloDataUnavailable,
+    calibrate_oracle_volatility, select_oracle_series,
+)
 from .models import (
     DebtModel,
     InputScope,
@@ -35,11 +38,35 @@ from .models import (
 )
 
 __all__ = ["MonteCarloDataRequest", "MonteCarloDataUnavailable", "build_monte_carlo_request",
-           "unavailable_result"]
+           "MonteCarloNotApplicable", "unavailable_result"]
 
 # Below this, the oracle barely moved: often a deterministic (e.g. linear
 # discount) PT oracle, so low simulated breach counts say little about markets.
 _LOW_OBSERVED_VOLATILITY = Decimal("0.01")
+
+
+class MonteCarloNotApplicable(ValueError):
+    """A validated debt-free position requires no borrower-risk simulation."""
+
+    def __init__(self, result: MonteCarloResult):
+        super().__init__("Position has no debt")
+        self.result = result
+
+
+def _proves_current_oracle(e, op, market, as_of):
+    if (e.source_kind != SourceKind.RPC or e.source_id != RPC_SOURCE_ID
+            or e.status != DataStatus.OK or e.method != ORACLE_PRICE_METHOD
+            or e.chain_id != market.chain_id or e.data_mode != market.data_mode
+            or e.target_address != market.morpho.oracle_address
+            or e.block_number != op.block_number or not e.block_hash
+            or not 0 <= (as_of - e.fetched_at).total_seconds() <= 300
+            or not e.decoded_excerpt):
+        return False
+    try:
+        raw = to_raw_uint(e.decoded_excerpt.get("out0"))
+    except ValueError:
+        return False
+    return raw == op.raw_value and scale_raw(raw, op.scale_exponent) == op.value
 
 
 class MonteCarloDataRequest(BaseModel):
@@ -169,9 +196,7 @@ def build_monte_carlo_request(
             missing.append('strategy.verification')
         if op is not None:
             proofs = [records[eid] for eid in op.evidence_ids if eid in records]
-            if not any(e.source_kind == SourceKind.RPC and e.target_address == m.oracle_address
-                       and e.block_number == op.block_number and e.block_hash
-                       and as_of - e.fetched_at <= timedelta(seconds=300) for e in proofs):
+            if not any(_proves_current_oracle(e, op, market, as_of) for e in proofs):
                 missing.append('oracle.rpc_evidence')
         if position.kind == PositionKind.ONCHAIN:
             if position.status not in (DataStatus.OK, DataStatus.PARTIAL):
@@ -182,6 +207,21 @@ def build_monte_carlo_request(
             if not any(e.source_kind == SourceKind.RPC and e.block_number == position.block_number
                        and e.target_address == m.morpho_address and e.block_hash for e in proofs):
                 missing.append('position.rpc_evidence')
+
+    # Keep identity, freshness and proof checks, but don't require a volatility
+    # history or a positive collateral quantity when there is no borrower debt.
+    if position.borrow_amount == 0 and not missing:
+        warnings = ['NO_DEBT', 'NO_SIMULATION_RUN', 'INPUT_DATA_MODE_' + market.data_mode.value]
+        if position.kind == PositionKind.SIMULATED:
+            warnings.append('HYPOTHETICAL_POSITION_AMOUNTS')
+        if replay:
+            warnings.append('FROZEN_REPLAY_NOT_LIVE')
+        raise MonteCarloNotApplicable(MonteCarloResult(
+            status=McStatus.NOT_APPLICABLE, as_of=as_of, data=None,
+            provenance=MonteCarloProvenance(calibration=settings.volatility_source,
+                                           evidence_ids=sorted(ids)),
+            missing_fields=[], warnings=warnings,
+        ))
 
     calibration = None
     if settings.volatility_source == SourceMode.OBSERVED_ORACLE_SERIES:

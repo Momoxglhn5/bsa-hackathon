@@ -121,7 +121,9 @@ def run_oracle_backfill(
 
     rows: list[Observation] = []
     failures = 0
-    for target in daily_targets(now, days):
+    # Save available recent history before reaching pre-deployment/non-archive
+    # blocks; keep the consecutive-failure limit to bound RPC traffic.
+    for target in reversed(daily_targets(now, days)):
         sample = OracleSample(target_time=target)
         report.samples.append(sample)
         try:
@@ -151,6 +153,7 @@ def run_oracle_backfill(
     if not dry_run:
         report.written_evidence = sqlite.save_evidence(rpc.evidence.values())
         if rows:
+            rows.sort(key=lambda row: row.ts_utc)
             parquet.write_observations(rows, DataMode.REAL)
         report.written_points = len(rows)
     return report

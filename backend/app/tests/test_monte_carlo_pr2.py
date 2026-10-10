@@ -296,6 +296,39 @@ def test_missing_or_mismatched_oracle_proof():
     assert "oracle.rpc_evidence" in missing_of(lambda: build(w, evidence=wrong_target))
 
 
+@pytest.mark.parametrize("changes", [
+    {"method": "eth_call decimals()"},
+    {"source_id": "other_rpc"},
+    {"decoded_excerpt": None},
+    {"decoded_excerpt": {"out0": "-1"}},
+    {"decoded_excerpt": {"out0": "1.5"}},
+    {"decoded_excerpt": {"out0": str(raw(Decimal("0.1")))}},
+])
+def test_current_oracle_requires_matching_method_and_raw_value(changes):
+    w = world()
+    oracle_id = w.market.morpho.oracle_price.evidence_ids[0]
+    evidence = [e.model_copy(update=changes) if e.evidence_id == oracle_id else e
+                for e in w.evidence]
+    assert "oracle.rpc_evidence" in missing_of(lambda: build(w, evidence=evidence))
+
+
+def test_changed_current_oracle_dto_cannot_use_the_original_proof(monkeypatch):
+    w = world()
+    data = w.market.model_dump()
+    data["morpho"]["oracle_price"].update(value=Decimal("0.1"), raw_value=raw(Decimal("0.1")))
+    market = MarketDTO.model_validate(data)
+    snapshot = w.snapshot().model_copy(update={"markets": (market,)})
+    client = TestClient(create_app(snapshot=snapshot, clock=lambda: NOW, replay=False))
+    def no_simulation(*args, **kwargs):
+        raise AssertionError("Unproven current price must not reach simulation")
+    monkeypatch.setattr("app.api.routes_analytics.run_monte_carlo", no_simulation)
+    response = post(client, w.onchain)
+    assert response.status_code == 200
+    assert response.json()["status"] == "UNAVAILABLE"
+    assert "oracle.rpc_evidence" in response.json()["missing_fields"]
+    assert response.json()["data"]["data"] is None
+
+
 def test_unavailable_never_substitutes_fixture():
     w = world(history_days=0)
     missing = missing_of(lambda: build(w))
@@ -505,6 +538,35 @@ def test_api_snapshot_ok_and_unavailable():
     assert client.post("/api/v1/monte-carlo", json=bad).status_code == 422
 
 
+@pytest.mark.parametrize("collateral", [Decimal("0"), Decimal("1000")])
+def test_debt_free_position_is_not_applicable_without_calibration(collateral, monkeypatch):
+    w = world(history_days=0)
+    data = w.onchain.model_dump()
+    data.update(collateral_amount=collateral, borrow_amount=Decimal("0"))
+    position = PositionDTO.model_validate(data)
+    snapshot = w.snapshot().model_copy(update={"positions": (position,)})
+    client = TestClient(create_app(snapshot=snapshot, clock=lambda: NOW, replay=False))
+    def no_simulation(*args, **kwargs):
+        raise AssertionError("Debt-free positions must not run numerical simulation")
+    monkeypatch.setattr("app.api.routes_analytics.run_monte_carlo", no_simulation)
+    response = post(client, position)
+    assert response.status_code == 200
+    body = response.json()
+    assert body["status"] == "NOT_APPLICABLE"
+    assert body["data"]["data"] is None and body["missing_fields"] == []
+    assert {"NO_DEBT", "NO_SIMULATION_RUN"} <= set(body["warnings"])
+
+
+def test_stale_empty_position_does_not_claim_current_debt_free_status():
+    w = world(history_days=0)
+    position = w.onchain.model_copy(update={"collateral_amount": Decimal("0"), "borrow_amount": Decimal("0")})
+    snapshot = w.snapshot().model_copy(update={"positions": (position,)})
+    response = post(TestClient(create_app(snapshot=snapshot, clock=lambda: NOW + timedelta(minutes=6),
+                                         replay=False)), position)
+    assert response.status_code == 200 and response.json()["status"] == "UNAVAILABLE"
+    assert "position.as_of" in response.json()["missing_fields"]
+
+
 def seed_store(w, tmp_path, noise=True):
     """Persist the synthetic world as the Data pipeline would: Parquet rows carry no evidence ids."""
     db, root = tmp_path / "db.sqlite", tmp_path / "series"
@@ -629,6 +691,24 @@ def test_oracle_backfill_without_archive_stops_and_writes_nothing_fake(tmp_path)
     assert report.ok_count == 0 and report.written_points == 0
     assert "archive" in report.stopped_reason and len(report.samples) == 3
     assert ParquetStore(tmp_path / "ts").read_observations(f"morpho:1:{MARKET_ID}", "ORACLE_PRICE", DataMode.REAL) == []
+
+
+def test_oracle_backfill_keeps_accessible_recent_days_before_failure_limit(tmp_path):
+    from app.ingestion.oracle_history import daily_targets
+    chain = FakeChain(NOW)
+    targets = daily_targets(NOW, 10)
+    chain.archive_from = block_at_or_before(chain, targets[0], chain.pin_block()).number
+    parquet = ParquetStore(tmp_path / "ts")
+    with SqliteStore(tmp_path / "db.sqlite") as store:
+        report = run_oracle_backfill(chain, market_id=MARKET_ID, sqlite=store, parquet=parquet,
+                                     now=NOW, days=31)
+    assert report.ok_count == report.written_points == 10
+    assert len(report.samples) == 13 and report.stopped_reason is not None
+    assert report.samples[0].target_time == targets[-1]
+    rows = parquet.read_observations(f"morpho:1:{MARKET_ID}", "ORACLE_PRICE", DataMode.REAL)
+    assert len(rows) == 10 and all(r.value_decimal is not None for r in rows)
+    assert all(a.ts_utc < b.ts_utc for a, b in zip(rows, rows[1:]))
+    assert rows[0].ts_utc <= targets[0] and rows[-1].ts_utc <= targets[-1]
 
 
 def test_oracle_backfill_rejects_unexpected_collateral(tmp_path):
