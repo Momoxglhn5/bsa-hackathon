@@ -2,8 +2,8 @@
   "globs": ["**/*.md"],
   "ignores": [
     "node_modules/**",
-    ".venv/**",
-    "venv/**",
+    "**/.venv/**",
+    "**/venv/**",
     "dist/**",
     "build/**",
     "coverage/**",

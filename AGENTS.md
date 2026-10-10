@@ -18,13 +18,16 @@ Ce fichier définit les conventions de travail pour les assistants qui intervien
 - Page de référence : <https://dorahacks.io/hackathon/bsa-the-hackathon/tracks>.
 - Dépôt GitHub : <https://github.com/Momoxglhn5/bsa-hackathon>.
 - Branche initiale : `main`.
-- Le dépôt contient une base documentaire et un `.gitignore` ; aucune application n’est encore définie.
+- Le dépôt contient le pipeline Data en cours et un backend Core Analytics FastAPI sous `backend/app`.
+- Projet : DeFi Risk Radar ; fixture analytics synthétique, manifeste Data `VERIFIED_ACTIVE` livré sur main. Les stores réels sont ignorés par Git.
+- Stack analytics : Python 3.13, Pydantic v2, NetworkX, Decimal, snapshots JSON ; dépendances dans `backend/requirements-analytics.txt`.
+- Contrats Data existants dans `backend/app/models` à conserver ; interfaces et limites dans `CORE_ENGINES_INTEGRATION.md`.
 
 ### À déterminer
 
 - Le track, ses critères et ses éventuelles contraintes techniques.
-- Le problème utilisateur, le public cible et la proposition de valeur.
-- Le périmètre du MVP, la stack et les intégrations.
+- La disponibilité locale des stores authentiques et des prix USD nécessaires.
+- Les quotes de taille réelle et les preuves de faisabilité du remboursement.
 - Les échéances, les livrables obligatoires, les règles de publication et les conditions d’éligibilité.
 
 Ne pas déduire les règles du hackathon à partir de son nom. Ne pas inventer de sponsors, de prix, de dates, de technologies obligatoires ou de critères d’évaluation. Vérifier ces informations dans les sources officielles avant de s’en servir. Si une source est inaccessible, signaler cette limite et garder les décisions dépendantes ouvertes.
@@ -228,6 +231,9 @@ Ne pas inventer de commandes de test. Les rechercher dans les manifestes, script
 ### Contrôles CI existants
 
 - Workflow : `.github/workflows/ci.yml` ; push, pull request et lancement manuel.
+- Analytics : `backend/.venv/bin/python -m pytest -c backend/pytest.ini backend/app/tests -q` ; fixtures synthétiques, aucun appel réseau.
+- Serveur local : `backend/.venv/bin/python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000`.
+- Démo HTTP : `backend/.venv/bin/python backend/scripts/demo_analytics.py` (serveur lancé au préalable).
 - Markdown : `npx --yes markdownlint-cli2@0.23.3`.
 - Workflows : `go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.12 -color`.
 - Secrets des commits : `go run github.com/zricethezav/gitleaks/v8@v8.30.1 git --redact --no-banner --log-opts='--all'`.

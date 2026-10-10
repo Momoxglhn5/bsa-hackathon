@@ -311,6 +311,10 @@ class SqliteStore:
         return self._one(PositionDTO, "SELECT payload FROM positions WHERE position_id = ? AND data_mode = ?",
                          (position_id, data_mode.value))
 
+    def list_positions(self, data_mode: DataMode = DataMode.REAL) -> list[PositionDTO]:
+        return self._many(PositionDTO, "SELECT payload FROM positions WHERE data_mode = ? ORDER BY position_id",
+                          (data_mode.value,))
+
     def latest_raw_snapshot(self, data_mode: DataMode = DataMode.REAL) -> RawSnapshotMeta | None:
         row = self._conn.execute(
             "SELECT snapshot_id, data_mode, chain_id, path, started_at, finished_at, complete, "
