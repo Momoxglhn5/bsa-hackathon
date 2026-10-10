@@ -14,7 +14,8 @@ from app.analytics.valuation import value_position
 from app.decision.forecast import ForecastBundle
 from app.graph.builder import build_graph
 from app.main import DEFAULT_SNAPSHOT, create_app
-from app.models.evidence import DataMode, RelationStatus, RelationType, make_relation
+from app.models.evidence import DataMode, DataStatus, RelationStatus, RelationType, make_relation
+from app.models.strategy import StrategyDTO, StrategyStatus, make_strategy_id
 from app.models.timeseries import TimeseriesDTO
 from app.risk.scoring import current_risk
 from app.storage.parquet_store import ParquetStore
@@ -38,6 +39,22 @@ def seed(snapshot, db):
         store.save_positions(snapshot.positions)
         store.save_evidence(snapshot.evidence)
         store.save_relations(snapshot.relations)
+
+
+def test_store_snapshot_skips_strategies_without_stored_morpho_market(snapshot, tmp_path):
+    # Regression: metadata refreshes store candidates whose Morpho market is never stored.
+    db = tmp_path / 'db.sqlite'
+    seed(snapshot, db)
+    kept = snapshot.strategies[0]
+    absent_market = '0x' + 'f0' * 32
+    orphan = kept.model_copy(update={
+        'morpho_market_id': absent_market, 'strategy_id': make_strategy_id(1, absent_market, kept.pt.address),
+        'status': StrategyStatus.CANDIDATE, 'data_status': DataStatus.UNVERIFIED, 'status_reason': 'synthetic orphan'})
+    with SqliteStore(db) as store:
+        store.save_strategies([StrategyDTO.model_validate(orphan.model_dump())])
+        assert len(store.list_strategies(data_mode=DataMode.DEMO)) == 2
+        exported = snapshot_from_store(store, ParquetStore(tmp_path / 'series'), DataMode.DEMO)
+    assert [s.strategy_id for s in exported.strategies] == [kept.strategy_id]
 
 
 def test_missing_market_block_never_confirms(snapshot):

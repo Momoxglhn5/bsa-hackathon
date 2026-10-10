@@ -73,7 +73,11 @@ def _oracle_series(store, parquet, market, data_mode):
 def snapshot_from_store(store, parquet, data_mode=DataMode.REAL, *, inputs=None):
     inputs = inputs or AnalyticsInputs()
     markets = store.list_markets(data_mode=data_mode)
-    strategies = store.list_strategies(data_mode=data_mode)
+    # Metadata refreshes store every candidate, but only analysed markets are stored:
+    # keep strategies whose Morpho market is present (joined by chain and market id).
+    morpho_keys = {m.market_key for m in markets if m.morpho is not None}
+    strategies = [s for s in store.list_strategies(data_mode=data_mode)
+                  if f"morpho:{s.chain_id}:{s.morpho_market_id}" in morpho_keys]
     if not markets or not strategies:
         raise HTTPException(503, f"No {data_mode.value} analytics dataset stored; run the Data pipeline or select an explicit offline snapshot")
     positions = store.list_positions(data_mode)
