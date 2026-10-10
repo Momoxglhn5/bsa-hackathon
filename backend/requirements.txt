@@ -1,0 +1,11 @@
+httpx
+pydantic
+fastapi
+uvicorn
+web3
+python-dotenv
+sqlalchemy
+pandas
+pyarrow
+pytest
+tenacity

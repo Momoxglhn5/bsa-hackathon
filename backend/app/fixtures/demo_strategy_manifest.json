@@ -1,0 +1,18 @@
+{
+  "chainId": 1,
+  "morphoMarketId": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+  "pendleMarketAddress": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+  "ptTokenAddress": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+  "loanTokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  "oracleAddress": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+  "expiry": "2027-01-07T00:00:00Z",
+  "verifiedBlock": null,
+  "verifiedAt": null,
+  "sourceUrls": [
+    "https://api.morpho.org/v1/blue/markets?chain_id=1&limit=100",
+    "https://api-v2.pendle.finance/core/v2/markets/all?skip=0&limit=100&chainId=1&isActive=true",
+    "https://api-v2.pendle.finance/core/v3/1/markets/0xd44f2630260ff3805d7cb317d4f6740b0044c408/historical-data?time_frame=day&timestamp_start=2026-09-26T14%3A22%3A12Z&timestamp_end=2026-10-10T14%3A22%3A12Z",
+    "https://api.morpho.org/graphql"
+  ],
+  "status": "CANDIDATE"
+}
