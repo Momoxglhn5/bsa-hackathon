@@ -1,0 +1,2 @@
+# Optional research comparison; install alongside requirements-colab.txt.
+timesfm[torch]==2.0.2

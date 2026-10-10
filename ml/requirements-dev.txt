@@ -1,0 +1,4 @@
+# Lightweight infrastructure tests only; no model/GPU runtime.
+pydantic==2.14.0
+pytest==9.1.1
+pandas==2.3.3

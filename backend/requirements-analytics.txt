@@ -1,0 +1,9 @@
+-r requirements.txt
+requests==2.34.2
+# Isolated analytics runtime; the shared Data dependency list stays unchanged.
+fastapi==0.143.0
+pydantic==2.14.0
+networkx==3.7
+uvicorn==0.54.0
+httpx==0.28.1
+pytest==9.1.1
