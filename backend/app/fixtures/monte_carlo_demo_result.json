@@ -1,0 +1,268 @@
+{
+  "input_scope": "HYPOTHETICAL",
+  "warnings": [
+    "SYNTHETIC_FIXTURE_NOT_LIVE",
+    "NOT_A_REAL_WORLD_LIQUIDATION_PROBABILITY"
+  ],
+  "description": "Synthetic oracle-price GBM demo; no live data or real positions. Frequencies are model-implied. Losses are in loan-token units, not realized liquidation losses.",
+  "runs": [
+    {
+      "request": {
+        "strategy_id": "strat:demo",
+        "position_id": "sim:fund-001",
+        "position_side": "BORROW",
+        "snapshot_as_of": "2026-10-10T12:00:00Z",
+        "input_scope": "HYPOTHETICAL",
+        "loan_token_symbol": "USDC",
+        "loan_token_address": null,
+        "collateral_quantity_pt": "2000000",
+        "initial_oracle_price_loan_per_pt": "1",
+        "debt_loan_units": "1200000",
+        "lltv": "0.915",
+        "horizon_days": 1,
+        "num_paths": 10000,
+        "seed": 42,
+        "pt_expiry": null,
+        "simulation": {
+          "model": "GBM_ORACLE_PRICE_V1",
+          "source_mode": "USER_ASSUMPTION",
+          "annual_volatility": "0.80",
+          "annual_drift": "0",
+          "debt_model": "FROZEN_DEBT",
+          "borrow_apr": null
+        },
+        "evidence_ids": [],
+        "warnings": [
+          "SYNTHETIC_FIXTURE_NOT_LIVE"
+        ]
+      },
+      "result": {
+        "schema_version": "monte-carlo-internal-v1",
+        "status": "OK",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "strategy_id": "strat:demo",
+          "position_id": "sim:fund-001",
+          "model_version": "GBM_ORACLE_PRICE_V1",
+          "horizon_days": 1,
+          "initial_ltv": "0.6",
+          "initial_health_factor": "1.525",
+          "critical_oracle_drop_ratio": "0.3442622950819672131147540984",
+          "breached_paths": 0,
+          "total_paths": 10000,
+          "simulated_threshold_breach_frequency": "0",
+          "terminal_ltv_p50": "0.6008574644622371",
+          "terminal_ltv_p95": "0.6441342801730814",
+          "min_health_factor_p05": "1.4205112632469674",
+          "mc_sampling_ci_95": {
+            "low": "0.0",
+            "high": "0.00038401247776654115"
+          },
+          "oracle_mark_to_model_var95_loan_units": "137034.4088564362",
+          "oracle_mark_to_model_es95_loan_units": "169139.612441047",
+          "realized_liquidation_loss_usd": null,
+          "assumptions": [
+            "Oracle price follows GBM in debt-token-per-PT units",
+            "Annual volatility and drift are assumptions in PR1",
+            "PT collateral quantity held constant",
+            "Debt model: FROZEN_DEBT",
+            "CONSTANT_APR, when selected, uses D0 * exp(apr * t / 365)",
+            "No oracle hack simulated",
+            "No protocol exploit simulated",
+            "No liquidation execution simulated",
+            "PT spot price is not used",
+            "Chronos is not used",
+            "FinBERT is not used",
+            "Threshold breach frequency is a model-implied simulation frequency",
+            "Losses are oracle mark-to-model values in loan-token units, not USD",
+            "Wilson interval describes sampling uncertainty only"
+          ]
+        },
+        "provenance": {
+          "calibration": "USER_ASSUMPTION",
+          "evidence_ids": []
+        },
+        "missing_fields": [],
+        "warnings": [
+          "MODEL_RISK_GBM",
+          "NOT_A_REAL_WORLD_LIQUIDATION_PROBABILITY",
+          "DAILY_STEPS_MAY_MISS_INTRADAY_BREACH",
+          "SYNTHETIC_FIXTURE_NOT_LIVE",
+          "FROZEN_DEBT"
+        ]
+      }
+    },
+    {
+      "request": {
+        "strategy_id": "strat:demo",
+        "position_id": "sim:fund-001",
+        "position_side": "BORROW",
+        "snapshot_as_of": "2026-10-10T12:00:00Z",
+        "input_scope": "HYPOTHETICAL",
+        "loan_token_symbol": "USDC",
+        "loan_token_address": null,
+        "collateral_quantity_pt": "2000000",
+        "initial_oracle_price_loan_per_pt": "1",
+        "debt_loan_units": "1200000",
+        "lltv": "0.915",
+        "horizon_days": 3,
+        "num_paths": 10000,
+        "seed": 42,
+        "pt_expiry": null,
+        "simulation": {
+          "model": "GBM_ORACLE_PRICE_V1",
+          "source_mode": "USER_ASSUMPTION",
+          "annual_volatility": "0.80",
+          "annual_drift": "0",
+          "debt_model": "FROZEN_DEBT",
+          "borrow_apr": null
+        },
+        "evidence_ids": [],
+        "warnings": [
+          "SYNTHETIC_FIXTURE_NOT_LIVE"
+        ]
+      },
+      "result": {
+        "schema_version": "monte-carlo-internal-v1",
+        "status": "OK",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "strategy_id": "strat:demo",
+          "position_id": "sim:fund-001",
+          "model_version": "GBM_ORACLE_PRICE_V1",
+          "horizon_days": 3,
+          "initial_ltv": "0.6",
+          "initial_health_factor": "1.525",
+          "critical_oracle_drop_ratio": "0.3442622950819672131147540984",
+          "breached_paths": 0,
+          "total_paths": 10000,
+          "simulated_threshold_breach_frequency": "0",
+          "terminal_ltv_p50": "0.601175481890709",
+          "terminal_ltv_p95": "0.6780910846521822",
+          "min_health_factor_p05": "1.3445512306279548",
+          "mc_sampling_ci_95": {
+            "low": "0.0",
+            "high": "0.00038401247776654115"
+          },
+          "oracle_mark_to_model_var95_loan_units": "230326.23751311927",
+          "oracle_mark_to_model_es95_loan_units": "281287.07674997917",
+          "realized_liquidation_loss_usd": null,
+          "assumptions": [
+            "Oracle price follows GBM in debt-token-per-PT units",
+            "Annual volatility and drift are assumptions in PR1",
+            "PT collateral quantity held constant",
+            "Debt model: FROZEN_DEBT",
+            "CONSTANT_APR, when selected, uses D0 * exp(apr * t / 365)",
+            "No oracle hack simulated",
+            "No protocol exploit simulated",
+            "No liquidation execution simulated",
+            "PT spot price is not used",
+            "Chronos is not used",
+            "FinBERT is not used",
+            "Threshold breach frequency is a model-implied simulation frequency",
+            "Losses are oracle mark-to-model values in loan-token units, not USD",
+            "Wilson interval describes sampling uncertainty only"
+          ]
+        },
+        "provenance": {
+          "calibration": "USER_ASSUMPTION",
+          "evidence_ids": []
+        },
+        "missing_fields": [],
+        "warnings": [
+          "MODEL_RISK_GBM",
+          "NOT_A_REAL_WORLD_LIQUIDATION_PROBABILITY",
+          "DAILY_STEPS_MAY_MISS_INTRADAY_BREACH",
+          "SYNTHETIC_FIXTURE_NOT_LIVE",
+          "FROZEN_DEBT"
+        ]
+      }
+    },
+    {
+      "request": {
+        "strategy_id": "strat:demo",
+        "position_id": "sim:fund-001",
+        "position_side": "BORROW",
+        "snapshot_as_of": "2026-10-10T12:00:00Z",
+        "input_scope": "HYPOTHETICAL",
+        "loan_token_symbol": "USDC",
+        "loan_token_address": null,
+        "collateral_quantity_pt": "2000000",
+        "initial_oracle_price_loan_per_pt": "1",
+        "debt_loan_units": "1200000",
+        "lltv": "0.915",
+        "horizon_days": 7,
+        "num_paths": 10000,
+        "seed": 42,
+        "pt_expiry": null,
+        "simulation": {
+          "model": "GBM_ORACLE_PRICE_V1",
+          "source_mode": "USER_ASSUMPTION",
+          "annual_volatility": "0.80",
+          "annual_drift": "0",
+          "debt_model": "FROZEN_DEBT",
+          "borrow_apr": null
+        },
+        "evidence_ids": [],
+        "warnings": [
+          "SYNTHETIC_FIXTURE_NOT_LIVE"
+        ]
+      },
+      "result": {
+        "schema_version": "monte-carlo-internal-v1",
+        "status": "OK",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "strategy_id": "strat:demo",
+          "position_id": "sim:fund-001",
+          "model_version": "GBM_ORACLE_PRICE_V1",
+          "horizon_days": 7,
+          "initial_ltv": "0.6",
+          "initial_health_factor": "1.525",
+          "critical_oracle_drop_ratio": "0.3442622950819672131147540984",
+          "breached_paths": 2,
+          "total_paths": 10000,
+          "simulated_threshold_breach_frequency": "0.0002",
+          "terminal_ltv_p50": "0.604825722969423",
+          "terminal_ltv_p95": "0.72441314593716",
+          "min_health_factor_p05": "1.2451477643326319",
+          "mc_sampling_ci_95": {
+            "low": "0.000054847779209068104",
+            "high": "0.0007290110935663664"
+          },
+          "oracle_mark_to_model_var95_loan_units": "343486.699172125",
+          "oracle_mark_to_model_es95_loan_units": "418199.70469982765",
+          "realized_liquidation_loss_usd": null,
+          "assumptions": [
+            "Oracle price follows GBM in debt-token-per-PT units",
+            "Annual volatility and drift are assumptions in PR1",
+            "PT collateral quantity held constant",
+            "Debt model: FROZEN_DEBT",
+            "CONSTANT_APR, when selected, uses D0 * exp(apr * t / 365)",
+            "No oracle hack simulated",
+            "No protocol exploit simulated",
+            "No liquidation execution simulated",
+            "PT spot price is not used",
+            "Chronos is not used",
+            "FinBERT is not used",
+            "Threshold breach frequency is a model-implied simulation frequency",
+            "Losses are oracle mark-to-model values in loan-token units, not USD",
+            "Wilson interval describes sampling uncertainty only"
+          ]
+        },
+        "provenance": {
+          "calibration": "USER_ASSUMPTION",
+          "evidence_ids": []
+        },
+        "missing_fields": [],
+        "warnings": [
+          "MODEL_RISK_GBM",
+          "NOT_A_REAL_WORLD_LIQUIDATION_PROBABILITY",
+          "DAILY_STEPS_MAY_MISS_INTRADAY_BREACH",
+          "SYNTHETIC_FIXTURE_NOT_LIVE",
+          "FROZEN_DEBT"
+        ]
+      }
+    }
+  ]
+}

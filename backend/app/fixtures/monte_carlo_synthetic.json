@@ -1,0 +1,26 @@
+{
+  "strategy_id": "strat:demo",
+  "position_id": "sim:fund-001",
+  "snapshot_as_of": "2026-10-10T12:00:00Z",
+  "input_scope": "HYPOTHETICAL",
+  "loan_token_symbol": "USDC",
+  "loan_token_address": null,
+  "collateral_quantity_pt": "2000000",
+  "initial_oracle_price_loan_per_pt": "1",
+  "debt_loan_units": "1200000",
+  "lltv": "0.915",
+  "horizon_days": 7,
+  "num_paths": 10000,
+  "seed": 42,
+  "pt_expiry": null,
+  "simulation": {
+    "model": "GBM_ORACLE_PRICE_V1",
+    "source_mode": "USER_ASSUMPTION",
+    "annual_volatility": "0.80",
+    "annual_drift": "0",
+    "debt_model": "FROZEN_DEBT",
+    "borrow_apr": null
+  },
+  "evidence_ids": [],
+  "warnings": ["SYNTHETIC_FIXTURE_NOT_LIVE"]
+}
