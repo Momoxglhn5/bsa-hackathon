@@ -111,7 +111,8 @@ def test_incident_catalog_filters_future_and_never_creates_probabilities():
     assert data["probability"] is None
 
 
-def test_cached_quote_api_handles_exact_amount_unknown_amount_and_expiry(tmp_path, monkeypatch):
+@pytest.mark.parametrize("inherit_httpx_post", [False, True])
+def test_cached_quote_api_handles_exact_amount_unknown_amount_and_expiry(tmp_path, monkeypatch, inherit_httpx_post):
     with client_for(route_payload()) as client:
         quote, evidence, details, _ = call_quote(client)
     strategy = "strat_" + "a" * 24
@@ -123,7 +124,11 @@ def test_cached_quote_api_handles_exact_amount_unknown_amount_and_expiry(tmp_pat
         "missing_fields": ["closing_feasible"]}]}))
     def forbid_network(*args, **kwargs):
         raise AssertionError("A cached API must not fetch providers")
-    monkeypatch.setattr(httpx.Client, "post", forbid_network)
+    # Block outbound HTTP without intercepting TestClient's in-process requests.
+    monkeypatch.setattr(httpx.HTTPTransport, "handle_request", forbid_network)
+    if inherit_httpx_post:
+        # Exercise versions where TestClient dispatches through the base method.
+        monkeypatch.setattr(TestClient, "post", TestClient.__mro__[1].post)
     api = TestClient(create_app(tmp_path / "db.sqlite", clock=lambda: quote.observed_at))
     fresh = api.post("/api/v1/exit-quotes", json={"strategy_id": strategy, "input_amount": "1.00"}).json()
     assert fresh["status"] == "PARTIAL"

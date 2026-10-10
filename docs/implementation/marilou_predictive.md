@@ -10,8 +10,9 @@ promus au statut validé.
 
 Le protocole fige la stratégie, le marché Pendle, le modèle et sa révision.
 Le CLI utilise l'heure UTC réelle, sans option pour antidater une prévision.
-Les fichiers sont créés sans écraser les précédents. Les prévisions enregistrent
-les quantiles quotidiens, le dernier prix, la moyenne des sept derniers prix,
+Les fichiers sont créés sans écraser les précédents. L’émission est horodatée après la fin de l’inférence, puis les échéances sont
+revérifiées. Les prévisions enregistrent
+les quantiles quotidiens, le contexte complet, le dernier prix, la moyenne des sept derniers prix,
 les preuves et le hash du protocole. Un changement de modèle ou de protocole
 invalide les anciennes prévisions pour ce test.
 
@@ -78,16 +79,19 @@ PYTHONPATH=backend .venv/bin/python -m ml.predictive freeze \
 
 PYTHONPATH=backend .venv/bin/python -m ml.predictive issue \
   --protocol /tmp/protocol.json --snapshot /tmp/current-snapshot.json \
-  --series /tmp/pt-daily-series.json --output /tmp/issued/week-01.json
+  --series /tmp/pt-daily-series.json --raw-evidence /tmp/raw-archives \
+  --output /tmp/issued/week-01.json
 
 PYTHONPATH=backend .venv/bin/python -m ml.predictive evaluate \
   --protocol /tmp/protocol.json --snapshot /tmp/current-snapshot.json \
   --series /tmp/pt-daily-series.json --forecasts /tmp/issued \
+  --raw-evidence /tmp/raw-archives \
   --output /tmp/validation.json
 
 PYTHONPATH=backend .venv/bin/python -m ml.predictive export \
   --protocol /tmp/protocol.json --snapshot /tmp/current-snapshot.json \
   --series /tmp/pt-daily-series.json --forecasts /tmp/issued \
+  --raw-evidence /tmp/raw-archives \
   --position-id POSITION_ID --annual-borrow-apr 0.05 \
   --output /tmp/predictive-snapshot.json
 ```
@@ -97,6 +101,24 @@ PYTHONPATH=backend .venv/bin/python -m ml.predictive export \
 L'inférence exige 45 observations continues comme les adaptateurs existants.
 Les dépendances TimesFM restent optionnelles dans `ml/requirements-timesfm.txt`.
 Le dossier `issued` ne doit contenir que les prévisions de ce protocole.
+
+Les archives brutes sont obligatoires à l'émission, à l'évaluation et à l'export.
+`--raw-evidence` recherche récursivement les fichiers `<evidence_id>.json`
+des livraisons Data et les couples `evidence.json` / `raw_ohlcv.json` du collecteur
+ML. Le snapshot doit contenir les EvidenceDTO correspondants, y compris ceux
+des anciennes émissions. Une archive absente empêche la validation.
+
+Chaque point est rapproché du contenu brut dont le SHA-256 doit correspondre :
+source Pendle, méthode OHLCV quotidienne USD, adresse exacte du PT, plage de
+requête, date de clôture et valeur Decimal. Les réponses utilisées par un
+contexte doivent avoir été reçues avant son émission. Le dernier prix, la
+moyenne mobile, les preuves et le hash du contexte enregistré sont recalculés.
+Les révisions détectées entre contexte et observations bloquent la validation.
+Les prix spot du PT et du token emprunté sont également vérifiés contre les
+réponses `/v1/prices/assets`, les identifiants demandés et leur date de réception.
+Les preuves USER_INPUT, RPC ou visant un autre actif ne justifient pas des prix.
+Les anciens journaux sans `context_series` sont refusés ; le nouveau format ne
+permet pas de transformer un ancien benchmark en prévision prospective.
 
 L'export recalcule la validation à partir des prévisions et observations ; il
 n'accepte pas un rapport portant manuellement la mention `VALIDATED`. Il conserve

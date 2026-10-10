@@ -20,6 +20,7 @@ from app.models.evidence import (ContractModel, EvidenceDTO, EvidenceId,
                                  PositiveDecimal, UnitRatio, UtcDatetime)
 from app.models.timeseries import TimeseriesDTO
 from .series import prepare_pt_series
+from .price_proofs import verify_series_prices, verify_spot_price
 
 
 class Protocol(ContractModel):
@@ -79,6 +80,7 @@ class IssuedForecast(ContractModel):
     last_price: PositiveDecimal
     rolling_mean: PositiveDecimal
     points: tuple[PricePoint, ...]
+    context_series: TimeseriesDTO
 
     @model_validator(mode='after')
     def chronology(self):
@@ -92,7 +94,12 @@ class IssuedForecast(ContractModel):
         return self
 
 
-def issue(protocol, series, model, now):
+def utc_now():
+    return datetime.now(timezone.utc)
+
+
+def issue(protocol, series, model, *, observations, evidence, raw_evidence, clock=utc_now):
+    now = clock()
     if (series.data_mode.value != 'REAL' or series.strategy_id != protocol.strategy_id
             or series.entity_id != protocol.entity_id or now < protocol.frozen_at):
         raise ValueError('REAL strategy, asset and frozen protocol must match')
@@ -104,30 +111,54 @@ def issue(protocol, series, model, now):
         raise ValueError('model does not match frozen revision')
     if series.retrieved_at > now:
         raise ValueError('source retrieved in the future')
+    verify_series_prices(observations, observations.subject_id, evidence, raw_evidence, now)
+    if (tuple(p.timestamp for p in observations.points) != series.timestamps
+            or tuple(p.value for p in observations.points) != series.values
+            or {i for p in observations.points for i in p.evidence_ids} != set(series.evidence_ids)
+            or 'sha256:'+digest(observations) != series.source_snapshot_ref):
+        raise ValueError('model context differs from proven observations')
     prediction = model.predict(series)
-    return IssuedForecast(protocol_sha256=digest(protocol), issued_at=now,
+    issued_at = clock()
+    if issued_at < now:
+        raise ValueError('issuance clock moved backwards')
+    return IssuedForecast(protocol_sha256=digest(protocol), issued_at=issued_at,
         cutoff_at=series.timestamps[-1], source_snapshot_ref=series.source_snapshot_ref,
         source_evidence_ids=series.evidence_ids, last_price=series.values[-1],
-        rolling_mean=sum(series.values[-7:])/7,
+        rolling_mean=sum(series.values[-7:])/7, context_series=observations,
         points=tuple(PricePoint(timestamp=p.timestamp, q10=p.q10, q50=p.q50, q90=p.q90)
                      for p in prediction.days))
 
 
-def evaluate(protocol, forecasts, observations, strategy, now):
+def evaluate(protocol, forecasts, observations, strategy, now, *, evidence, raw_evidence):
     """No pooling across assets/horizons; only completed non-overlapping origins."""
     prepare_pt_series(observations, strategy, source_snapshot_ref='prospective-evaluation',
                       source_as_of=now, retrieved_at=now, min_observations=14, exploratory=True)
     if (strategy.data_mode.value != 'REAL' or strategy.strategy_id != protocol.strategy_id
             or 'pendle:1:'+strategy.pendle_market_address != protocol.entity_id):
         raise ValueError('validation target mismatch')
+    verify_series_prices(observations, strategy.pt.address, evidence, raw_evidence, now)
     forecasts = sorted(forecasts, key=lambda f: f.cutoff_at)
     actuals = {p.timestamp: p for p in observations.points}
     previous = None
     rows = {h: [] for h in (1, 3, 7)}
     for forecast in forecasts:
+        forecast = IssuedForecast.model_validate(forecast.model_dump())
         if (forecast.protocol_sha256 != digest(protocol) or forecast.issued_at < protocol.frozen_at
                 or forecast.issued_at > now):
             raise ValueError('forecast is outside frozen prospective protocol')
+        context = verify_series_prices(forecast.context_series, strategy.pt.address,
+                                       evidence, raw_evidence, forecast.issued_at)
+        if any(p.timestamp in actuals and actuals[p.timestamp].value != p.value for p in context.points):
+            raise ValueError('source revision detected in forecast context')
+        context_ids = {i for p in context.points for i in p.evidence_ids}
+        if (len(context.points) < 45 or context.points[-1].timestamp != forecast.cutoff_at
+                or context.points[-1].value != forecast.last_price
+                or sum(p.value for p in context.points[-7:])/7 != forecast.rolling_mean
+                or context_ids != set(forecast.source_evidence_ids)
+                or forecast.source_snapshot_ref != 'sha256:'+digest(context)
+                or any(b.timestamp-a.timestamp != timedelta(days=1)
+                       for a,b in zip(context.points,context.points[1:]))):
+            raise ValueError('forecast baselines or context differ from proven prices')
         known_cutoff = actuals.get(forecast.cutoff_at)
         if known_cutoff is not None and known_cutoff.value != forecast.last_price:
             raise ValueError('source revision detected at forecast cutoff')
@@ -174,14 +205,16 @@ def evaluate(protocol, forecasts, observations, strategy, now):
                      'Pretraining overlap remains unknown. No oracle or hack prediction.'])
 
 
-def project(protocol, forecasts, observations, snapshot, position_id, annual_borrow_apr, now):
+def project(protocol, forecasts, observations, snapshot, position_id, annual_borrow_apr, now, *, raw_evidence):
     """Recompute eligibility; never trust a manually marked VALIDATED report.
 
     NET_CARRY is expected PT mark-to-market change minus simple borrowing cost.
     No extra PT yield: that would double count the predicted price appreciation.
     Loan USD price, amounts and APR are frozen conditional assumptions.
     """
-    report = evaluate(protocol, forecasts, observations, snapshot.strategy(protocol.strategy_id), now)
+    evidence_index = {e.evidence_id: e for e in snapshot.evidence}
+    report = evaluate(protocol, forecasts, observations, snapshot.strategy(protocol.strategy_id), now,
+                      evidence=evidence_index, raw_evidence=raw_evidence)
     latest = max(forecasts, key=lambda f: f.issued_at)
     position = snapshot.position(protocol.strategy_id, position_id)
     market = snapshot.market(position)
@@ -196,7 +229,8 @@ def project(protocol, forecasts, observations, snapshot, position_id, annual_bor
     valuation = value_position(snapshot, position, now=now)
     if valuation.equity_usd is None:
         raise ValueError('fresh proven USD prices and amounts required')
-    evidence_index = {e.evidence_id: e for e in snapshot.evidence}
+    verify_spot_price(market.morpho.collateral_price, position.collateral_asset, evidence_index, raw_evidence, now)
+    verify_spot_price(market.morpho.loan_price, position.loan_asset, evidence_index, raw_evidence, now)
     ids = tuple(sorted({i for f in forecasts for i in f.source_evidence_ids} |
                        {i for p in observations.points for i in p.evidence_ids} |
                        set(market.morpho.collateral_price.evidence_ids) |
@@ -244,6 +278,23 @@ def write_new(path, obj):
                      else json.dumps(obj, indent=2)+'\n')
 
 
+def load_raw_evidence(root):
+    """Accept Data delivery raw/ev files and original ML collector directories."""
+    archives = {}
+    def add(identity, body):
+        if identity in archives and archives[identity] != body:
+            raise ValueError('conflicting raw bodies for one evidence ID')
+        archives[identity] = body
+    for path in root.rglob('ev_*.json'):
+        add(path.stem, path.read_bytes())
+    for path in root.rglob('evidence.json'):
+        body = path.with_name('raw_ohlcv.json')
+        if body.is_file():
+            proof = EvidenceDTO.model_validate_json(path.read_text())
+            add(proof.evidence_id, body.read_bytes())
+    return archives
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
@@ -259,6 +310,8 @@ def main():
         p.add_argument('--snapshot', type=Path, required=True)
         p.add_argument('--series', type=Path, required=True)
         p.add_argument('--output', type=Path, required=True)
+        p.add_argument('--raw-evidence', type=Path, required=True,
+                       help='directory of raw responses named <evidence_id>.json')
         if name != 'issue':
             p.add_argument('--forecasts', type=Path, required=True)
         if name == 'export':
@@ -276,6 +329,8 @@ def main():
     snapshot = load_snapshot(args.snapshot)
     series = TimeseriesDTO.model_validate_json(args.series.read_text())
     strategy = snapshot.strategy(protocol.strategy_id)
+    raw_evidence = load_raw_evidence(args.raw_evidence)
+    evidence = {e.evidence_id:e for e in snapshot.evidence}
     if args.command == 'issue':
         from .pretrained_candidates import load_candidate
         data = prepare_pt_series(series, strategy, source_snapshot_ref='sha256:'+digest(series),
@@ -286,16 +341,17 @@ def main():
                for i in data.evidence_ids):
             raise ValueError('issuing requires the REAL source proofs in the snapshot')
         model = load_candidate(protocol.model, revision=protocol.revision)
-        # Stamp after inference, so a forecast that crosses a target deadline is rejected.
-        forecast = issue(protocol, data, model, datetime.now(timezone.utc))
+        forecast = issue(protocol, data, model, observations=series,
+                         evidence=evidence, raw_evidence=raw_evidence)
         write_new(args.output, forecast)
         return
     forecasts = [IssuedForecast.model_validate_json(p.read_text()) for p in sorted(args.forecasts.glob('*.json'))]
     if args.command == 'evaluate':
-        write_new(args.output, evaluate(protocol, forecasts, series, strategy, now))
+        write_new(args.output, evaluate(protocol, forecasts, series, strategy, now,
+                                        evidence=evidence, raw_evidence=raw_evidence))
     else:
         report, bundles, proof = project(protocol, forecasts, series, snapshot,
-                                         args.position_id, args.annual_borrow_apr, now)
+                                         args.position_id, args.annual_borrow_apr, now, raw_evidence=raw_evidence)
         # Export a new snapshot with proofs, preserving quotes and all other inputs.
         merged = tuple(f for f in snapshot.forecasts if not
                        (f.strategy_id == protocol.strategy_id and f.position_id == args.position_id)) + bundles
