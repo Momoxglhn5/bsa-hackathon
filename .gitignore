@@ -1,0 +1,35 @@
+# macOS
+.DS_Store
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+
+# JavaScript / TypeScript
+node_modules/
+.next/
+.nuxt/
+.turbo/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Rust
+target/
+
+# Logs
+*.log
