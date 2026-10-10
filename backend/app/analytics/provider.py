@@ -4,6 +4,7 @@ A content hash pins simulations to one immutable dataset. A refresh creates a ne
 service, so an older simulation cannot silently enter a newer decision.
 """
 import hashlib
+import json
 import sqlite3
 from collections import OrderedDict
 from threading import RLock
@@ -66,12 +67,21 @@ class StoreAnalyticsProvider:
 
     def get(self, data_mode):
         try:
-            inputs = AnalyticsInputs.model_validate_json(Path(self.inputs_path).read_text()) if self.inputs_path else AnalyticsInputs()
+            inputs_path = Path(self.inputs_path) if self.inputs_path else None
+            if inputs_path is None and data_mode == DataMode.REAL:
+                delivery = Path(self.db_path).parent / "delivery"
+                pointer = delivery / "current.json"
+                if pointer.exists():
+                    bundle = json.loads(pointer.read_text())["bundle"]
+                    if not isinstance(bundle, str) or Path(bundle).name != bundle or bundle in (".", ".."):
+                        raise ValueError("Invalid Data delivery pointer")
+                    inputs_path = delivery / bundle / "analytics_inputs.json"
+            inputs = AnalyticsInputs.model_validate_json(inputs_path.read_text()) if inputs_path else AnalyticsInputs()
             with SqliteStore(self.db_path) as store:
                 # Keep the multi-table read coherent while refresh writes in parallel.
                 store._conn.execute("BEGIN")
                 snapshot = snapshot_from_store(store, ParquetStore(self.timeseries_root), data_mode, inputs=inputs)
-        except (sqlite3.Error, OSError, ObservationError) as exc:
+        except (sqlite3.Error, OSError, ObservationError, ValueError, KeyError) as exc:
             raise HTTPException(503, f"Analytics storage unavailable: {type(exc).__name__}") from None
         with self._lock:
             key = snapshot.snapshot_id
