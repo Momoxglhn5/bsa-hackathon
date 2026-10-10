@@ -33,3 +33,4 @@ target/
 
 # Logs
 *.log
+backend/data/
