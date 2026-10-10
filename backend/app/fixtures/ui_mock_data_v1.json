@@ -1,0 +1,925 @@
+{
+  "schema_version": "data-contract-v1.0",
+  "data_mode": "DEMO",
+  "generated_at": "2026-10-01T00:00:00Z",
+  "notice": "All values are simulated demo data. Not real markets, addresses or prices.",
+  "markets": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "protocol": "MORPHO_BLUE",
+      "market_id": "0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "status": "PARTIAL",
+      "as_of": "2026-10-01T00:00:00Z",
+      "block_number": 12345678,
+      "morpho": {
+        "morpho_address": "0xcccccccccccccccccccccccccccccccccccccccc",
+        "loan_token": {
+          "chain_id": 1,
+          "address": "0x1111111111111111111111111111111111111111",
+          "symbol": "DEMO-USD",
+          "name": null,
+          "decimals": 6
+        },
+        "collateral_token": {
+          "chain_id": 1,
+          "address": "0x2222222222222222222222222222222222222222",
+          "symbol": "DEMO-PT-yUSD",
+          "name": null,
+          "decimals": 18
+        },
+        "oracle_address": "0x6666666666666666666666666666666666666666",
+        "irm_address": "0x7777777777777777777777777777777777777777",
+        "lltv": "0.915000000000000000",
+        "lltv_raw": "915000000000000000",
+        "total_supply_assets": "2500000.000000",
+        "total_supply_assets_raw": "2500000000000",
+        "total_borrow_assets": "1800000.000000",
+        "total_borrow_assets_raw": "1800000000000",
+        "total_supply_shares_raw": "2500000000000000000",
+        "total_borrow_shares_raw": "1790000000000000000",
+        "utilization": "0.72",
+        "supply_apy": "0.0412",
+        "borrow_apy": "0.0598",
+        "fee": "0.000000000000000000",
+        "last_update": "2026-10-01T00:00:00Z",
+        "oracle_price": null,
+        "collateral_price": null,
+        "loan_price": null
+      },
+      "pendle": null,
+      "verification": [
+        {
+          "check": "morpho.loan_token",
+          "claimed_value": "0x1111111111111111111111111111111111111111",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x1111111111111111111111111111111111111111",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_8f91d84aa36b84176b2dcd4a"
+          ]
+        },
+        {
+          "check": "morpho.collateral_token",
+          "claimed_value": "0x2222222222222222222222222222222222222222",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x2222222222222222222222222222222222222222",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_8f91d84aa36b84176b2dcd4a"
+          ]
+        },
+        {
+          "check": "morpho.oracle",
+          "claimed_value": "0x6666666666666666666666666666666666666666",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x6666666666666666666666666666666666666666",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_8f91d84aa36b84176b2dcd4a"
+          ]
+        },
+        {
+          "check": "morpho.irm",
+          "claimed_value": "0x7777777777777777777777777777777777777777",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x7777777777777777777777777777777777777777",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_8f91d84aa36b84176b2dcd4a"
+          ]
+        },
+        {
+          "check": "morpho.lltv",
+          "claimed_value": "915000000000000000",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "915000000000000000",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_8f91d84aa36b84176b2dcd4a"
+          ]
+        }
+      ],
+      "source_ids": [
+        "demo_fixture"
+      ],
+      "evidence_ids": [
+        "ev_5fe44175755419dd6f589c23",
+        "ev_8f91d84aa36b84176b2dcd4a",
+        "ev_99fd04f6af35ee082e362569",
+        "ev_e5b3478a9536dab7e9dbd5c7"
+      ]
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "protocol": "PENDLE_V2",
+      "market_id": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "status": "PARTIAL",
+      "as_of": "2026-10-01T00:00:00Z",
+      "block_number": 12345678,
+      "morpho": null,
+      "pendle": {
+        "market_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "pt": {
+          "chain_id": 1,
+          "address": "0x2222222222222222222222222222222222222222",
+          "symbol": "DEMO-PT-yUSD",
+          "name": null,
+          "decimals": 18
+        },
+        "yt": {
+          "chain_id": 1,
+          "address": "0x3333333333333333333333333333333333333333",
+          "symbol": "DEMO-YT-yUSD",
+          "name": null,
+          "decimals": 18
+        },
+        "sy": {
+          "chain_id": 1,
+          "address": "0x4444444444444444444444444444444444444444",
+          "symbol": "DEMO-SY-yUSD",
+          "name": null,
+          "decimals": 18
+        },
+        "expiry": "2027-03-25T00:00:00Z",
+        "underlying_asset": {
+          "chain_id": 1,
+          "address": "0x5555555555555555555555555555555555555555",
+          "symbol": "DEMO-yUSD",
+          "name": null,
+          "decimals": 18
+        },
+        "is_expired": false,
+        "implied_apy": "0.0874",
+        "underlying_apy": "0.0621",
+        "pt_price": null,
+        "liquidity_usd": null,
+        "total_pt": "1250000.5",
+        "total_sy": "980000.25"
+      },
+      "verification": [
+        {
+          "check": "pendle.sy",
+          "claimed_value": "0x4444444444444444444444444444444444444444",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x4444444444444444444444444444444444444444",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_854b897d0b2aa2bf597a9220"
+          ]
+        },
+        {
+          "check": "pendle.pt",
+          "claimed_value": "0x2222222222222222222222222222222222222222",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x2222222222222222222222222222222222222222",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_854b897d0b2aa2bf597a9220"
+          ]
+        },
+        {
+          "check": "pendle.yt",
+          "claimed_value": "0x3333333333333333333333333333333333333333",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x3333333333333333333333333333333333333333",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_854b897d0b2aa2bf597a9220"
+          ]
+        },
+        {
+          "check": "pendle.expiry",
+          "claimed_value": "1805932800",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "1805932800",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_854b897d0b2aa2bf597a9220"
+          ]
+        }
+      ],
+      "source_ids": [
+        "demo_fixture"
+      ],
+      "evidence_ids": [
+        "ev_3eda2bc9c61446327db99054",
+        "ev_854b897d0b2aa2bf597a9220"
+      ]
+    }
+  ],
+  "strategies": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "strategy_id": "strat_57806bdbf4e3e23d4b2fcf3c",
+      "strategy_type": "PENDLE_PT_COLLATERAL_ON_MORPHO",
+      "status": "VERIFIED_ACTIVE",
+      "status_reason": "DEMO: simulated verification",
+      "data_status": "OK",
+      "morpho_market_id": "0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "pendle_market_address": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "pt": {
+        "chain_id": 1,
+        "address": "0x2222222222222222222222222222222222222222",
+        "symbol": "DEMO-PT-yUSD",
+        "name": null,
+        "decimals": 18
+      },
+      "loan_asset": {
+        "chain_id": 1,
+        "address": "0x1111111111111111111111111111111111111111",
+        "symbol": "DEMO-USD",
+        "name": null,
+        "decimals": 6
+      },
+      "underlying_asset": {
+        "chain_id": 1,
+        "address": "0x5555555555555555555555555555555555555555",
+        "symbol": "DEMO-yUSD",
+        "name": null,
+        "decimals": 18
+      },
+      "expiry": "2027-03-25T00:00:00Z",
+      "as_of": "2026-10-01T00:00:00Z",
+      "block_number": 12345678,
+      "verification": [
+        {
+          "check": "morpho.loan_token",
+          "claimed_value": "0x1111111111111111111111111111111111111111",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x1111111111111111111111111111111111111111",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_8f91d84aa36b84176b2dcd4a"
+          ]
+        },
+        {
+          "check": "morpho.collateral_token",
+          "claimed_value": "0x2222222222222222222222222222222222222222",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x2222222222222222222222222222222222222222",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_8f91d84aa36b84176b2dcd4a"
+          ]
+        },
+        {
+          "check": "morpho.oracle",
+          "claimed_value": "0x6666666666666666666666666666666666666666",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x6666666666666666666666666666666666666666",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_8f91d84aa36b84176b2dcd4a"
+          ]
+        },
+        {
+          "check": "morpho.irm",
+          "claimed_value": "0x7777777777777777777777777777777777777777",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x7777777777777777777777777777777777777777",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_8f91d84aa36b84176b2dcd4a"
+          ]
+        },
+        {
+          "check": "morpho.lltv",
+          "claimed_value": "915000000000000000",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "915000000000000000",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_8f91d84aa36b84176b2dcd4a"
+          ]
+        },
+        {
+          "check": "pendle.sy",
+          "claimed_value": "0x4444444444444444444444444444444444444444",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x4444444444444444444444444444444444444444",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_854b897d0b2aa2bf597a9220"
+          ]
+        },
+        {
+          "check": "pendle.pt",
+          "claimed_value": "0x2222222222222222222222222222222222222222",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x2222222222222222222222222222222222222222",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_854b897d0b2aa2bf597a9220"
+          ]
+        },
+        {
+          "check": "pendle.yt",
+          "claimed_value": "0x3333333333333333333333333333333333333333",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x3333333333333333333333333333333333333333",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_854b897d0b2aa2bf597a9220"
+          ]
+        },
+        {
+          "check": "pendle.expiry",
+          "claimed_value": "1805932800",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "1805932800",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_854b897d0b2aa2bf597a9220"
+          ]
+        },
+        {
+          "check": "strategy.pt_is_morpho_collateral",
+          "claimed_value": "0x2222222222222222222222222222222222222222",
+          "claimed_source_id": "demo_fixture",
+          "onchain_value": "0x2222222222222222222222222222222222222222",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_8f91d84aa36b84176b2dcd4a",
+            "ev_854b897d0b2aa2bf597a9220"
+          ]
+        }
+      ],
+      "source_ids": [
+        "demo_fixture"
+      ],
+      "evidence_ids": [
+        "ev_5fe44175755419dd6f589c23",
+        "ev_8f91d84aa36b84176b2dcd4a",
+        "ev_99fd04f6af35ee082e362569",
+        "ev_e5b3478a9536dab7e9dbd5c7",
+        "ev_3eda2bc9c61446327db99054",
+        "ev_854b897d0b2aa2bf597a9220"
+      ]
+    }
+  ],
+  "positions": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "position_id": "pos_demo_ui_1",
+      "kind": "SIMULATED",
+      "protocol": "MORPHO_BLUE",
+      "market_id": "0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "owner": null,
+      "collateral_asset": {
+        "chain_id": 1,
+        "address": "0x2222222222222222222222222222222222222222",
+        "symbol": "DEMO-PT-yUSD",
+        "name": null,
+        "decimals": 18
+      },
+      "loan_asset": {
+        "chain_id": 1,
+        "address": "0x1111111111111111111111111111111111111111",
+        "symbol": "DEMO-USD",
+        "name": null,
+        "decimals": 6
+      },
+      "collateral_amount": "10000",
+      "collateral_amount_raw": "10000000000000000000000",
+      "borrow_amount": "7500.5",
+      "borrow_amount_raw": "7500500000",
+      "borrow_shares_raw": null,
+      "supply_shares_raw": null,
+      "strategy_id": "strat_57806bdbf4e3e23d4b2fcf3c",
+      "label": "DEMO simulated borrow",
+      "as_of": "2026-10-01T00:00:00Z",
+      "block_number": null,
+      "status": "OK",
+      "source_ids": [
+        "user_input"
+      ],
+      "evidence_ids": []
+    }
+  ],
+  "evidence": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "evidence_id": "ev_5fe44175755419dd6f589c23",
+      "source_kind": "FIXTURE",
+      "source_id": "demo_fixture",
+      "method": "fixture:morpho_item",
+      "target_address": null,
+      "request_params": {
+        "fixture": "ui_mock_data_v1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-01T00:00:00Z",
+      "payload_sha256": null,
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": {
+        "note": "simulated"
+      },
+      "parser_version": "build_ui_fixture.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "evidence_id": "ev_e5b3478a9536dab7e9dbd5c7",
+      "source_kind": "FIXTURE",
+      "source_id": "demo_fixture",
+      "method": "fixture:morpho_apys",
+      "target_address": null,
+      "request_params": {
+        "fixture": "ui_mock_data_v1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-01T00:00:00Z",
+      "payload_sha256": null,
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": {
+        "note": "simulated"
+      },
+      "parser_version": "build_ui_fixture.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "evidence_id": "ev_3eda2bc9c61446327db99054",
+      "source_kind": "FIXTURE",
+      "source_id": "demo_fixture",
+      "method": "fixture:pendle_item",
+      "target_address": null,
+      "request_params": {
+        "fixture": "ui_mock_data_v1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-01T00:00:00Z",
+      "payload_sha256": null,
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": {
+        "note": "simulated"
+      },
+      "parser_version": "build_ui_fixture.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "evidence_id": "ev_f16188b75996f58007dfa23e",
+      "source_kind": "FIXTURE",
+      "source_id": "demo_fixture",
+      "method": "fixture:series",
+      "target_address": null,
+      "request_params": {
+        "fixture": "ui_mock_data_v1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-01T00:00:00Z",
+      "payload_sha256": null,
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": {
+        "note": "simulated"
+      },
+      "parser_version": "build_ui_fixture.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "evidence_id": "ev_8f91d84aa36b84176b2dcd4a",
+      "source_kind": "FIXTURE",
+      "source_id": "demo_fixture",
+      "method": "fixture:sim_morpho_params",
+      "target_address": null,
+      "request_params": {
+        "fixture": "ui_mock_data_v1"
+      },
+      "block_number": 12345678,
+      "block_hash": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "fetched_at": "2026-10-01T00:00:00Z",
+      "payload_sha256": null,
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": {
+        "note": "simulated"
+      },
+      "parser_version": "build_ui_fixture.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "evidence_id": "ev_99fd04f6af35ee082e362569",
+      "source_kind": "FIXTURE",
+      "source_id": "demo_fixture",
+      "method": "fixture:sim_morpho_state",
+      "target_address": null,
+      "request_params": {
+        "fixture": "ui_mock_data_v1"
+      },
+      "block_number": 12345678,
+      "block_hash": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "fetched_at": "2026-10-01T00:00:00Z",
+      "payload_sha256": null,
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": {
+        "note": "simulated"
+      },
+      "parser_version": "build_ui_fixture.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "evidence_id": "ev_854b897d0b2aa2bf597a9220",
+      "source_kind": "FIXTURE",
+      "source_id": "demo_fixture",
+      "method": "fixture:sim_pendle_tokens",
+      "target_address": null,
+      "request_params": {
+        "fixture": "ui_mock_data_v1"
+      },
+      "block_number": 12345678,
+      "block_hash": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "fetched_at": "2026-10-01T00:00:00Z",
+      "payload_sha256": null,
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": {
+        "note": "simulated"
+      },
+      "parser_version": "build_ui_fixture.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "evidence_id": "ev_52a0b1c80b2c0f190aa5c092",
+      "source_kind": "FIXTURE",
+      "source_id": "demo_fixture",
+      "method": "fixture:sim_sy_info",
+      "target_address": null,
+      "request_params": {
+        "fixture": "ui_mock_data_v1"
+      },
+      "block_number": 12345678,
+      "block_hash": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "fetched_at": "2026-10-01T00:00:00Z",
+      "payload_sha256": null,
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": {
+        "note": "simulated"
+      },
+      "parser_version": "build_ui_fixture.v1"
+    }
+  ],
+  "relations": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "relation_id": "rel_10d6a15d51ff69dedcdd2122",
+      "source_node_id": "morpho:1:0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "target_node_id": "asset:1:0x1111111111111111111111111111111111111111",
+      "relation_type": "MARKET_LOAN_ASSET",
+      "verification_status": "CURATED",
+      "evidence_ids": [
+        "ev_8f91d84aa36b84176b2dcd4a"
+      ],
+      "observed_at": "2026-10-01T00:00:00Z",
+      "block_number": null,
+      "note": "DEMO: simulated relation from fixture evidence, not read on-chain"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "relation_id": "rel_029052e21e8abe5b84fe95be",
+      "source_node_id": "morpho:1:0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "target_node_id": "asset:1:0x2222222222222222222222222222222222222222",
+      "relation_type": "MARKET_COLLATERAL_ASSET",
+      "verification_status": "CURATED",
+      "evidence_ids": [
+        "ev_8f91d84aa36b84176b2dcd4a"
+      ],
+      "observed_at": "2026-10-01T00:00:00Z",
+      "block_number": null,
+      "note": "DEMO: simulated relation from fixture evidence, not read on-chain"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "relation_id": "rel_c247fe4d3c8789f4931ed9ce",
+      "source_node_id": "morpho:1:0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "target_node_id": "contract:1:0x6666666666666666666666666666666666666666",
+      "relation_type": "MARKET_ORACLE",
+      "verification_status": "CURATED",
+      "evidence_ids": [
+        "ev_8f91d84aa36b84176b2dcd4a"
+      ],
+      "observed_at": "2026-10-01T00:00:00Z",
+      "block_number": null,
+      "note": "DEMO: simulated relation from fixture evidence, not read on-chain"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "relation_id": "rel_5bab8584b214f9343e2dbb6a",
+      "source_node_id": "morpho:1:0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "target_node_id": "contract:1:0x7777777777777777777777777777777777777777",
+      "relation_type": "MARKET_IRM",
+      "verification_status": "CURATED",
+      "evidence_ids": [
+        "ev_8f91d84aa36b84176b2dcd4a"
+      ],
+      "observed_at": "2026-10-01T00:00:00Z",
+      "block_number": null,
+      "note": "DEMO: simulated relation from fixture evidence, not read on-chain"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "relation_id": "rel_e34019b0cf4acf9576fca858",
+      "source_node_id": "pendle:1:0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "target_node_id": "asset:1:0x2222222222222222222222222222222222222222",
+      "relation_type": "PENDLE_MARKET_PT",
+      "verification_status": "CURATED",
+      "evidence_ids": [
+        "ev_854b897d0b2aa2bf597a9220"
+      ],
+      "observed_at": "2026-10-01T00:00:00Z",
+      "block_number": null,
+      "note": "DEMO: simulated relation from fixture evidence, not read on-chain"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "relation_id": "rel_2195e75465a8acd1e0dde8f7",
+      "source_node_id": "pendle:1:0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "target_node_id": "asset:1:0x4444444444444444444444444444444444444444",
+      "relation_type": "PENDLE_MARKET_SY",
+      "verification_status": "CURATED",
+      "evidence_ids": [
+        "ev_854b897d0b2aa2bf597a9220"
+      ],
+      "observed_at": "2026-10-01T00:00:00Z",
+      "block_number": null,
+      "note": "DEMO: simulated relation from fixture evidence, not read on-chain"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "relation_id": "rel_d4630b95a89e1c40fd8dafe1",
+      "source_node_id": "pendle:1:0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "target_node_id": "asset:1:0x3333333333333333333333333333333333333333",
+      "relation_type": "PENDLE_MARKET_YT",
+      "verification_status": "CURATED",
+      "evidence_ids": [
+        "ev_854b897d0b2aa2bf597a9220"
+      ],
+      "observed_at": "2026-10-01T00:00:00Z",
+      "block_number": null,
+      "note": "DEMO: simulated relation from fixture evidence, not read on-chain"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "relation_id": "rel_4c7c81b125b471c798bdb20b",
+      "source_node_id": "asset:1:0x4444444444444444444444444444444444444444",
+      "target_node_id": "asset:1:0x5555555555555555555555555555555555555555",
+      "relation_type": "SY_YIELD_TOKEN",
+      "verification_status": "CURATED",
+      "evidence_ids": [
+        "ev_52a0b1c80b2c0f190aa5c092"
+      ],
+      "observed_at": "2026-10-01T00:00:00Z",
+      "block_number": null,
+      "note": "DEMO: simulated relation from fixture evidence, not read on-chain"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "relation_id": "rel_86d8365ec7d173c525694fc2",
+      "source_node_id": "asset:1:0x4444444444444444444444444444444444444444",
+      "target_node_id": "asset:1:0x8888888888888888888888888888888888888888",
+      "relation_type": "SY_ACCOUNTING_ASSET",
+      "verification_status": "CURATED",
+      "evidence_ids": [
+        "ev_52a0b1c80b2c0f190aa5c092"
+      ],
+      "observed_at": "2026-10-01T00:00:00Z",
+      "block_number": null,
+      "note": "DEMO: simulated relation from fixture evidence, not read on-chain"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "relation_id": "rel_0c1d13ca8fce24b36d12ef5d",
+      "source_node_id": "asset:1:0x5555555555555555555555555555555555555555",
+      "target_node_id": "asset:1:0x8888888888888888888888888888888888888888",
+      "relation_type": "ECONOMIC_BACKING",
+      "verification_status": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_52a0b1c80b2c0f190aa5c092"
+      ],
+      "observed_at": "2026-10-01T00:00:00Z",
+      "block_number": null,
+      "note": "assetInfo/yieldToken do not prove backing"
+    }
+  ],
+  "series": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "series_id": "ts_demo_pt_implied_apy_day",
+      "metric": "PT_IMPLIED_APY",
+      "subject_kind": "MARKET",
+      "subject_id": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "unit": "RATIO",
+      "quote_asset": null,
+      "pricing_method": null,
+      "interval_seconds": 86400,
+      "source_id": "demo_fixture",
+      "status": "PARTIAL",
+      "points": [
+        {
+          "timestamp": "2026-09-25T00:00:00Z",
+          "value": "0.0851",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        },
+        {
+          "timestamp": "2026-09-26T00:00:00Z",
+          "value": "0.0858",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        },
+        {
+          "timestamp": "2026-09-27T00:00:00Z",
+          "value": null,
+          "status": "MISSING",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        },
+        {
+          "timestamp": "2026-09-28T00:00:00Z",
+          "value": "0.0866",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        },
+        {
+          "timestamp": "2026-09-29T00:00:00Z",
+          "value": "0.0869",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        },
+        {
+          "timestamp": "2026-09-30T00:00:00Z",
+          "value": "0.0871",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        },
+        {
+          "timestamp": "2026-10-01T00:00:00Z",
+          "value": "0.0874",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        }
+      ]
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "series_id": "ts_demo_pt_market_price_usd_day",
+      "metric": "MARKET_PRICE",
+      "subject_kind": "ASSET",
+      "subject_id": "0x2222222222222222222222222222222222222222",
+      "unit": "USD",
+      "quote_asset": null,
+      "pricing_method": "API_SPOT",
+      "interval_seconds": 86400,
+      "source_id": "demo_fixture",
+      "status": "OK",
+      "points": [
+        {
+          "timestamp": "2026-09-25T00:00:00Z",
+          "value": "0.9581",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        },
+        {
+          "timestamp": "2026-09-26T00:00:00Z",
+          "value": "0.9590",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        },
+        {
+          "timestamp": "2026-09-27T00:00:00Z",
+          "value": "0.9597",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        },
+        {
+          "timestamp": "2026-09-28T00:00:00Z",
+          "value": "0.9603",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        },
+        {
+          "timestamp": "2026-09-29T00:00:00Z",
+          "value": "0.9611",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        },
+        {
+          "timestamp": "2026-09-30T00:00:00Z",
+          "value": "0.9618",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        },
+        {
+          "timestamp": "2026-10-01T00:00:00Z",
+          "value": "0.9624",
+          "status": "OK",
+          "block_number": null,
+          "evidence_ids": [
+            "ev_f16188b75996f58007dfa23e"
+          ]
+        }
+      ]
+    }
+  ]
+}

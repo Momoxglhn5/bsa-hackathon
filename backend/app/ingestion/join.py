@@ -8,20 +8,30 @@ Symbols are never read here. Loan-asset preference (USDC by default, identified 
 address) only ranks or filters candidates; it never creates or implies a match.
 
 Output strategies are CANDIDATE (or EXPIRED when the PT expiry is already reached,
-which the contract requires). Nothing is marked VERIFIED_ACTIVE here.
+which the contract requires). Only `promote_strategy`, fed with on-chain checks,
+can mark a strategy VERIFIED_ACTIVE.
 """
 from __future__ import annotations
 
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Iterable
 
-from app.models.evidence import DataMode, DataStatus, normalize_address
+from app.models.evidence import (
+    DataMode,
+    DataStatus,
+    VerificationCheckDTO,
+    VerificationStatus,
+    normalize_address,
+)
 from app.models.market import MarketDTO, Protocol, TokenRef
 from app.models.strategy import StrategyDTO, StrategyStatus, StrategyType, make_strategy_id
 
 USDC_MAINNET = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
 DEFAULT_PREFERRED_LOAN_ASSETS = frozenset({(1, USDC_MAINNET)})
+
+# Source id of app.adapters.ethereum_rpc (not imported: this module stays network-free).
+RPC_SOURCE_ID = "ethereum_rpc"
 
 CANDIDATE_REASON = "address match only (Morpho collateral == Pendle PT); on-chain strategy verification pending"
 
@@ -214,3 +224,65 @@ def find_candidate_strategies(
         pendle_markets_seen=len(pendle_list),
         filtered_out_by_loan_asset=filtered_out,
     )
+
+def promote_strategy(
+    candidate: StrategyDTO,
+    checks: tuple[VerificationCheckDTO, ...],
+    block_number: int | None,
+    evidence_ids: tuple[str, ...],
+    onchain_expiry: datetime | None,
+    data_available: bool,
+    data_problems: list[str],
+    now: datetime,
+    min_days_to_expiry: int,
+) -> StrategyDTO:
+    """New StrategyDTO whose status follows the on-chain checks. Pure; input untouched.
+
+    Status is decided only from verification checks (addresses / raw values), the pinned
+    block and the on-chain PT expiry — never from symbols.
+    """
+    mismatched = [c.check for c in checks if c.status == VerificationStatus.MISMATCH]
+    unverified = [c.check for c in checks if c.status != VerificationStatus.VERIFIED]
+    incomplete = [
+        *(["no checks"] if not checks else []),
+        *([f"not verified: {', '.join(unverified)}"] if unverified else []),
+        *(["no pinned block"] if block_number is None else []),
+        *(["no on-chain expiry"] if onchain_expiry is None else []),
+    ]
+    # On-chain expiry when read; the API expiry only keeps the contract's expiry rule honest.
+    expiry = onchain_expiry if onchain_expiry is not None else candidate.expiry
+    expired = expiry is not None and expiry <= now
+
+    if mismatched:
+        status, data_status = StrategyStatus.UNSUPPORTED, DataStatus.MISMATCH
+        reason = f"on-chain verification failed: {', '.join(mismatched)}"
+    elif expired:
+        status = StrategyStatus.EXPIRED
+        data_status = DataStatus.UNVERIFIED if incomplete else DataStatus.OK
+        reason = "PT expiry reached (on-chain)" if onchain_expiry is not None else "PT expiry reached (API)"
+    elif incomplete:
+        status, data_status = StrategyStatus.CANDIDATE, DataStatus.UNVERIFIED
+        reason = f"on-chain verification incomplete: {'; '.join(incomplete)}"
+    elif expiry <= now + timedelta(days=min_days_to_expiry):
+        # Verified, but a CANDIDATE may not be OK: PARTIAL = essentials verified.
+        status, data_status = StrategyStatus.CANDIDATE, DataStatus.PARTIAL
+        reason = f"verified on-chain but PT expiry {expiry.isoformat()} within {min_days_to_expiry} days"
+    elif data_available:
+        status, data_status, reason = StrategyStatus.VERIFIED_ACTIVE, DataStatus.OK, None
+    else:
+        status, data_status = StrategyStatus.CANDIDATE, DataStatus.PARTIAL
+        reason = f"verified on-chain; data insufficient: {'; '.join(data_problems) or 'unspecified'}"
+
+    source_ids = candidate.source_ids + ((RPC_SOURCE_ID,) if block_number is not None and evidence_ids else ())
+    return StrategyDTO.model_validate({
+        **candidate.model_dump(),
+        "status": status,
+        "status_reason": reason[:512] if reason else None,
+        "data_status": data_status,
+        "expiry": expiry,
+        "as_of": now,
+        "block_number": block_number,
+        "verification": checks,
+        "source_ids": _dedupe(source_ids),
+        "evidence_ids": _dedupe((*candidate.evidence_ids, *evidence_ids)),
+    })
