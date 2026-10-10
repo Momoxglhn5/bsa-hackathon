@@ -1,0 +1,381 @@
+{
+  "schema_version": "analytics-snapshot-v1",
+  "snapshot_id": "synthetic-analytics-demo-v1",
+  "as_of": "2026-10-10T12:00:00Z",
+  "description": "ALL addresses, market observations, holdings and execution quotes are SYNTHETIC.",
+  "markets": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "protocol": "MORPHO_BLUE",
+      "market_id": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "status": "UNVERIFIED",
+      "as_of": "2026-10-10T12:00:00Z",
+      "block_number": null,
+      "morpho": {
+        "morpho_address": "0x8888888888888888888888888888888888888888",
+        "loan_token": {
+          "chain_id": 1,
+          "address": "0x2222222222222222222222222222222222222222",
+          "symbol": "DEMO-USD",
+          "name": null,
+          "decimals": 6
+        },
+        "collateral_token": {
+          "chain_id": 1,
+          "address": "0x1111111111111111111111111111111111111111",
+          "symbol": "DEMO-PT",
+          "name": null,
+          "decimals": 18
+        },
+        "oracle_address": "0x5555555555555555555555555555555555555555",
+        "irm_address": "0x6666666666666666666666666666666666666666",
+        "lltv": "0.915",
+        "lltv_raw": "915000000000000000",
+        "total_supply_assets": null,
+        "total_supply_assets_raw": null,
+        "total_borrow_assets": null,
+        "total_borrow_assets_raw": null,
+        "total_supply_shares_raw": null,
+        "total_borrow_shares_raw": null,
+        "utilization": "0.6",
+        "supply_apy": null,
+        "borrow_apy": "0.05",
+        "fee": null,
+        "last_update": null,
+        "oracle_price": {
+          "chain_id": 1,
+          "value": "1",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x1111111111111111111111111111111111111111",
+            "symbol": "DEMO-PT",
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "TOKEN",
+          "quote_asset": {
+            "chain_id": 1,
+            "address": "0x2222222222222222222222222222222222222222",
+            "symbol": "DEMO-USD",
+            "name": null,
+            "decimals": 6
+          },
+          "pricing_method": "MORPHO_ORACLE",
+          "observed_at": "2026-10-10T12:00:00Z",
+          "block_number": 123456,
+          "source_id": "fixture:analytics",
+          "evidence_ids": [
+            "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+          ],
+          "status": "UNVERIFIED",
+          "kind": "ORACLE",
+          "oracle_address": "0x5555555555555555555555555555555555555555",
+          "raw_value": "1000000000000000000000000",
+          "scale_exponent": 24
+        },
+        "collateral_price": {
+          "chain_id": 1,
+          "value": "1",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x1111111111111111111111111111111111111111",
+            "symbol": "DEMO-PT",
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-10T12:00:00Z",
+          "block_number": null,
+          "source_id": "fixture:analytics",
+          "evidence_ids": [
+            "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+          ],
+          "status": "UNVERIFIED",
+          "kind": "MARKET"
+        },
+        "loan_price": {
+          "chain_id": 1,
+          "value": "1",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x2222222222222222222222222222222222222222",
+            "symbol": "DEMO-USD",
+            "name": null,
+            "decimals": 6
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-10T12:00:00Z",
+          "block_number": null,
+          "source_id": "fixture:analytics",
+          "evidence_ids": [
+            "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+          ],
+          "status": "UNVERIFIED",
+          "kind": "MARKET"
+        }
+      },
+      "pendle": null,
+      "verification": [],
+      "source_ids": [
+        "fixture:analytics"
+      ],
+      "evidence_ids": [
+        "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+      ]
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "protocol": "PENDLE_V2",
+      "market_id": "0x7777777777777777777777777777777777777777",
+      "status": "UNVERIFIED",
+      "as_of": "2026-10-10T12:00:00Z",
+      "block_number": null,
+      "morpho": null,
+      "pendle": {
+        "market_address": "0x7777777777777777777777777777777777777777",
+        "pt": {
+          "chain_id": 1,
+          "address": "0x1111111111111111111111111111111111111111",
+          "symbol": "DEMO-PT",
+          "name": null,
+          "decimals": 18
+        },
+        "yt": {
+          "chain_id": 1,
+          "address": "0x4444444444444444444444444444444444444444",
+          "symbol": "DEMO-YT",
+          "name": null,
+          "decimals": 18
+        },
+        "sy": {
+          "chain_id": 1,
+          "address": "0x3333333333333333333333333333333333333333",
+          "symbol": "DEMO-SY",
+          "name": null,
+          "decimals": 18
+        },
+        "expiry": "2027-01-08T12:00:00Z",
+        "underlying_asset": null,
+        "is_expired": null,
+        "implied_apy": null,
+        "underlying_apy": null,
+        "pt_price": {
+          "chain_id": 1,
+          "value": "1",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x1111111111111111111111111111111111111111",
+            "symbol": "DEMO-PT",
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-10T12:00:00Z",
+          "block_number": null,
+          "source_id": "fixture:analytics",
+          "evidence_ids": [
+            "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+          ],
+          "status": "UNVERIFIED",
+          "kind": "MARKET"
+        },
+        "liquidity_usd": null,
+        "total_pt": null,
+        "total_sy": null
+      },
+      "verification": [],
+      "source_ids": [
+        "fixture:analytics"
+      ],
+      "evidence_ids": [
+        "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+      ]
+    }
+  ],
+  "positions": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "position_id": "pos_demo_fund",
+      "kind": "SIMULATED",
+      "protocol": "MORPHO_BLUE",
+      "market_id": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "owner": null,
+      "collateral_asset": {
+        "chain_id": 1,
+        "address": "0x1111111111111111111111111111111111111111",
+        "symbol": "DEMO-PT",
+        "name": null,
+        "decimals": 18
+      },
+      "loan_asset": {
+        "chain_id": 1,
+        "address": "0x2222222222222222222222222222222222222222",
+        "symbol": "DEMO-USD",
+        "name": null,
+        "decimals": 6
+      },
+      "collateral_amount": "2000000",
+      "collateral_amount_raw": null,
+      "borrow_amount": "1200000",
+      "borrow_amount_raw": null,
+      "borrow_shares_raw": null,
+      "supply_shares_raw": null,
+      "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+      "label": "Synthetic fund — NOT an on-chain holding",
+      "as_of": "2026-10-10T12:00:00Z",
+      "block_number": null,
+      "status": "OK",
+      "source_ids": [
+        "fixture:analytics"
+      ],
+      "evidence_ids": [
+        "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+      ]
+    }
+  ],
+  "strategies": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+      "strategy_type": "PENDLE_PT_COLLATERAL_ON_MORPHO",
+      "status": "CANDIDATE",
+      "status_reason": null,
+      "data_status": "UNVERIFIED",
+      "morpho_market_id": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "pendle_market_address": "0x7777777777777777777777777777777777777777",
+      "pt": {
+        "chain_id": 1,
+        "address": "0x1111111111111111111111111111111111111111",
+        "symbol": "DEMO-PT",
+        "name": null,
+        "decimals": 18
+      },
+      "loan_asset": {
+        "chain_id": 1,
+        "address": "0x2222222222222222222222222222222222222222",
+        "symbol": "DEMO-USD",
+        "name": null,
+        "decimals": 6
+      },
+      "underlying_asset": null,
+      "expiry": "2027-01-08T12:00:00Z",
+      "as_of": "2026-10-10T12:00:00Z",
+      "block_number": null,
+      "verification": [],
+      "source_ids": [
+        "fixture:analytics"
+      ],
+      "evidence_ids": [
+        "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "DEMO",
+      "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+      "source_kind": "FIXTURE",
+      "source_id": "fixture:analytics",
+      "method": "synthetic test assumptions; no RPC call",
+      "target_address": null,
+      "request_params": {},
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T12:00:00Z",
+      "payload_sha256": null,
+      "status": "UNVERIFIED",
+      "error_message": null
+    }
+  ],
+  "series": [],
+  "quotes": [
+    {
+      "quote_id": "quote:synthetic-full-position",
+      "position_id": "pos_demo_fund",
+      "quote": {
+        "chain_id": 1,
+        "value": "0.99",
+        "base_asset": {
+          "chain_id": 1,
+          "address": "0x1111111111111111111111111111111111111111",
+          "symbol": "DEMO-PT",
+          "name": null,
+          "decimals": 18
+        },
+        "quote_unit": "TOKEN",
+        "quote_asset": {
+          "chain_id": 1,
+          "address": "0x2222222222222222222222222222222222222222",
+          "symbol": "DEMO-USD",
+          "name": null,
+          "decimals": 6
+        },
+        "pricing_method": "EXECUTION_QUOTE",
+        "observed_at": "2026-10-10T12:00:00Z",
+        "block_number": null,
+        "source_id": "fixture:analytics",
+        "evidence_ids": [
+          "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+        ],
+        "status": "UNVERIFIED",
+        "kind": "EXIT",
+        "input_amount": "2000000",
+        "output_amount": "1980000",
+        "venue": "SYNTHETIC_ONLY",
+        "price_impact": "0.01",
+        "valid_until": "2026-10-10T12:05:00Z"
+      },
+      "output_usd_price": {
+        "chain_id": 1,
+        "value": "1",
+        "base_asset": {
+          "chain_id": 1,
+          "address": "0x2222222222222222222222222222222222222222",
+          "symbol": "DEMO-USD",
+          "name": null,
+          "decimals": 6
+        },
+        "quote_unit": "USD",
+        "quote_asset": null,
+        "pricing_method": "API_SPOT",
+        "observed_at": "2026-10-10T12:00:00Z",
+        "block_number": null,
+        "source_id": "fixture:analytics",
+        "evidence_ids": [
+          "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+        ],
+        "status": "UNVERIFIED",
+        "kind": "MARKET"
+      },
+      "gas_cost_usd": "100",
+      "extra_fees_usd": "0",
+      "route_available": true,
+      "closing_feasible": true,
+      "requires_external_repayment_liquidity": true,
+      "repayment_liquidity_confirmed": true,
+      "basis": "USER_ASSUMPTION",
+      "evidence_ids": [
+        "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+      ]
+    }
+  ],
+  "risk_observations": [],
+  "additional_nodes": [],
+  "additional_edges": []
+}
