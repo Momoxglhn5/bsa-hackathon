@@ -52,3 +52,17 @@ go run github.com/zricethezav/gitleaks/v8@v8.30.1 dir . --redact --no-banner
 ```
 
 Les checks de lint applicatif, de types, de tests et de build seront ajoutés dès que la stack sera choisie. Cette CI ne valide donc pas encore de comportement applicatif. Les contrôles ne bloquent une fusion que si une règle de protection de branche les exige ; cette configuration est distincte du workflow.
+
+## Lot ML — Marilou
+
+Les bases du forecast P1 sont disponibles sur la branche `marilou` : adaptation
+des séries Data V1, benchmark chronologique, contrat JSON et garde-fous du cache.
+Le modèle n'a pas encore été exécuté ; aucune donnée réelle n'a été utilisée.
+
+Voir [le contexte conservé, les tests et les données attendues](docs/implementation/marilou_ml.md).
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r ml/requirements-dev.txt
+.venv/bin/python -m pytest tests/ml -q
+```
