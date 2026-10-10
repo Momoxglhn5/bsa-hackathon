@@ -15,8 +15,9 @@ Endpoint status:
   * GraphQL /graphql `marketById { state { ... } }` — field names taken from the
     Morpho docs, NOT yet validated against the live schema. Unknown fields surface
     as MorphoGraphQLError. Run `--schema Market` / `--schema MarketState` to check.
-  * Oracle state, market history, APY history — no verified endpoint yet: the
-    functions raise MorphoEndpointUnavailable until a verified query is set.
+  * Market / APY history — GraphQL `marketById.historicalState`, verified by
+    introspection on 2026-10-10 (see MARKET_HISTORY_QUERY).
+  * Oracle state — no verified endpoint yet: raises MorphoEndpointUnavailable.
     The authoritative oracle price is read on-chain via RPC (IOracle.price()).
 """
 from __future__ import annotations
@@ -44,6 +45,7 @@ from app.models.evidence import (
     EvidenceDTO,
     SourceKind,
     make_evidence_id,
+    normalize_address,
     normalize_bytes32,
 )
 
@@ -87,10 +89,28 @@ query {
 """
 
 # No verified query yet. Set only after checking the live schema
-# (placeholders: market_id, chain_id, start_ts, end_ts).
+# (placeholders: market_id, chain_id, start_ts, end_ts, interval).
 ORACLE_STATE_QUERY: str | None = None
-MARKET_HISTORY_QUERY: str | None = None
-APY_HISTORY_QUERY: str | None = None
+
+# Verified by introspection on 2026-10-10: Market.historicalState -> MarketHistory;
+# each field takes `options: TimeseriesOptions {startTimestamp: Int, endTimestamp: Int,
+# interval: TimeseriesInterval}` and returns [{x: Float (unix s), y}] with
+# y BigInt (assets) or Float (ratios).
+_HISTORY_OPTIONS = "(options: {startTimestamp: %(start_ts)d, endTimestamp: %(end_ts)d, interval: %(interval)s})"
+MARKET_HISTORY_QUERY: str | None = (
+    'query { marketById(marketId: "%(market_id)s", chainId: %(chain_id)d) { historicalState {'
+    f" supplyAssets{_HISTORY_OPTIONS} {{ x y }}"
+    f" borrowAssets{_HISTORY_OPTIONS} {{ x y }}"
+    f" utilization{_HISTORY_OPTIONS} {{ x y }}"
+    " } } }"
+)
+APY_HISTORY_QUERY: str | None = (
+    'query { marketById(marketId: "%(market_id)s", chainId: %(chain_id)d) { historicalState {'
+    f" supplyApy{_HISTORY_OPTIONS} {{ x y }}"
+    f" borrowApy{_HISTORY_OPTIONS} {{ x y }}"
+    " } } }"
+)
+HISTORY_INTERVALS = frozenset({"HOUR", "DAY", "WEEK", "MONTH", "QUARTER", "YEAR"})
 
 SCHEMA_TYPE_QUERY = """
 query {
@@ -398,11 +418,25 @@ class MorphoApiClient:
 
     # -- REST: markets -----------------------------------------------------
 
-    def list_markets_page(self, cursor: str | None = None, limit: int = DEFAULT_PAGE_LIMIT) -> MarketsPage:
-        """One page of Morpho Blue markets on chain_id=1 (raw items)."""
+    def list_markets_page(
+        self,
+        cursor: str | None = None,
+        limit: int = DEFAULT_PAGE_LIMIT,
+        collateral_token: str | None = None,
+        loan_token: str | None = None,
+    ) -> MarketsPage:
+        """One page of Morpho Blue markets on chain_id=1 (raw items).
+
+        collateral_token / loan_token are server-side REST filters (verified against the
+        live API on 2026-10-10; they are part of the cursor's filter signature).
+        """
         if not 1 <= limit <= MAX_PAGE_LIMIT:
             raise ValueError(f"limit must be within [1, {MAX_PAGE_LIMIT}]")
         params = {"chain_id": str(CHAIN_ID), "limit": str(limit)}
+        if collateral_token is not None:
+            params["collateral_token"] = normalize_address(collateral_token)
+        if loan_token is not None:
+            params["loan_token"] = normalize_address(loan_token)
         if cursor is not None:
             params["cursor"] = cursor
         raw = self._request("GET", MARKETS_PATH, "rest:/v1/blue/markets", params=params)
@@ -428,7 +462,13 @@ class MorphoApiClient:
                 )
         return MarketsPage(response=raw, items=tuple(payload["data"]), next_cursor=next_cursor or None)
 
-    def list_markets(self, limit: int = DEFAULT_PAGE_LIMIT, max_pages: int = DEFAULT_MAX_PAGES) -> MarketListing:
+    def list_markets(
+        self,
+        limit: int = DEFAULT_PAGE_LIMIT,
+        max_pages: int = DEFAULT_MAX_PAGES,
+        collateral_token: str | None = None,
+        loan_token: str | None = None,
+    ) -> MarketListing:
         """All Morpho Blue markets on chain_id=1, following the cursor.
 
         A failing page stops paging; pages already fetched are kept and the error is
@@ -443,7 +483,9 @@ class MorphoApiClient:
 
         for _ in range(max_pages):
             try:
-                page = self.list_markets_page(cursor=cursor, limit=limit)
+                page = self.list_markets_page(
+                    cursor=cursor, limit=limit, collateral_token=collateral_token, loan_token=loan_token
+                )
             except MorphoAPIError as exc:
                 logger.error("morpho_api page %d failed: %s", len(pages), exc)
                 return MarketListing(tuple(pages), (exc,), False, f"page {len(pages)} failed")
@@ -498,11 +540,21 @@ class MorphoApiClient:
             hint="the authoritative Morpho oracle price is IOracle.price() read via RPC",
         )
 
-    def fetch_market_history(self, market_id: str, start_ts: int, end_ts: int) -> RawResponse:
-        return self._run_optional_query(MARKET_HISTORY_QUERY, "market_history", market_id, start_ts, end_ts)
+    def fetch_market_history(
+        self, market_id: str, start_ts: int, end_ts: int, interval: str = "DAY"
+    ) -> RawResponse:
+        """historicalState supplyAssets / borrowAssets (raw BigInt) / utilization."""
+        return self._run_optional_query(
+            MARKET_HISTORY_QUERY, "market_history", market_id, start_ts, end_ts, interval=interval
+        )
 
-    def fetch_apy_history(self, market_id: str, start_ts: int, end_ts: int) -> RawResponse:
-        return self._run_optional_query(APY_HISTORY_QUERY, "apy_history", market_id, start_ts, end_ts)
+    def fetch_apy_history(
+        self, market_id: str, start_ts: int, end_ts: int, interval: str = "DAY"
+    ) -> RawResponse:
+        """historicalState supplyApy / borrowApy (ratios)."""
+        return self._run_optional_query(
+            APY_HISTORY_QUERY, "apy_history", market_id, start_ts, end_ts, interval=interval
+        )
 
     def _run_optional_query(
         self,
@@ -512,6 +564,7 @@ class MorphoApiClient:
         start_ts: int | None = None,
         end_ts: int | None = None,
         hint: str = "",
+        interval: str = "DAY",
     ) -> RawResponse:
         if template is None:
             raise MorphoEndpointUnavailable(
@@ -520,11 +573,14 @@ class MorphoApiClient:
             )
         if start_ts is not None and end_ts is not None and not 0 <= start_ts < end_ts:
             raise ValueError("require 0 <= start_ts < end_ts")
+        if interval not in HISTORY_INTERVALS:
+            raise ValueError(f"interval must be one of {sorted(HISTORY_INTERVALS)}")
         query = template % {
             "market_id": normalize_bytes32(market_id),
             "chain_id": CHAIN_ID,
             "start_ts": start_ts if start_ts is not None else 0,
             "end_ts": end_ts if end_ts is not None else 0,
+            "interval": interval,
         }
         return self.graphql(query, operation)
 

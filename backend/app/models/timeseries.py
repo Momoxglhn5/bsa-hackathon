@@ -1,8 +1,8 @@
 """Data contract v1.0 — historical series of a single metric for one subject.
 
 Missing points keep `value=None` with status MISSING/ERROR; they are never
-filled with 0 or interpolated here. Exit prices are size-dependent and are
-not represented as a timeseries.
+filled with 0 or interpolated here. PT_EXIT_EXECUTION_PRICE is a per-1-PT swap
+quote (EXECUTION_QUOTE); exit prices for other sizes are not series.
 """
 from __future__ import annotations
 
@@ -32,6 +32,12 @@ class SeriesUnit(str, Enum):
 
 
 class TimeseriesMetric(str, Enum):
+    # Brief names -> metric (entity = subject):
+    #   PT_MARKET_PRICE_USD                     = MARKET_PRICE, unit USD, on the PT asset
+    #   MORPHO_ORACLE_PRICE_LOAN_PER_COLLATERAL = ORACLE_PRICE (Morpho market)
+    #   PT_EXIT_EXECUTION_PRICE                 = PT_EXIT_EXECUTION_PRICE, on the PT asset
+    #   PT_REFERENCE_ASSET_PRICE                = MARKET_PRICE on the reference asset
+    #                                             (different entity_id than the PT)
     MARKET_PRICE = "MARKET_PRICE"
     ORACLE_PRICE = "ORACLE_PRICE"
     PT_IMPLIED_APY = "PT_IMPLIED_APY"
@@ -42,6 +48,7 @@ class TimeseriesMetric(str, Enum):
     TOTAL_SUPPLY_ASSETS = "TOTAL_SUPPLY_ASSETS"
     TOTAL_BORROW_ASSETS = "TOTAL_BORROW_ASSETS"
     LIQUIDITY_USD = "LIQUIDITY_USD"
+    PT_EXIT_EXECUTION_PRICE = "PT_EXIT_EXECUTION_PRICE"
 
 
 class SubjectKind(str, Enum):
@@ -60,14 +67,16 @@ _ALLOWED_UNITS: dict[TimeseriesMetric, frozenset[SeriesUnit]] = {
     TimeseriesMetric.TOTAL_SUPPLY_ASSETS: frozenset({SeriesUnit.TOKEN}),
     TimeseriesMetric.TOTAL_BORROW_ASSETS: frozenset({SeriesUnit.TOKEN}),
     TimeseriesMetric.LIQUIDITY_USD: frozenset({SeriesUnit.USD}),
+    TimeseriesMetric.PT_EXIT_EXECUTION_PRICE: frozenset({SeriesUnit.TOKEN, SeriesUnit.USD}),
 }
 
 _ALLOWED_METHODS: dict[TimeseriesMetric, frozenset[PricingMethod]] = {
     TimeseriesMetric.MARKET_PRICE: frozenset({PricingMethod.API_SPOT, PricingMethod.PENDLE_IMPLIED}),
     TimeseriesMetric.ORACLE_PRICE: frozenset({PricingMethod.MORPHO_ORACLE}),
+    TimeseriesMetric.PT_EXIT_EXECUTION_PRICE: frozenset({PricingMethod.EXECUTION_QUOTE}),
 }
 
-_ASSET_METRICS = frozenset({TimeseriesMetric.MARKET_PRICE})
+_ASSET_METRICS = frozenset({TimeseriesMetric.MARKET_PRICE, TimeseriesMetric.PT_EXIT_EXECUTION_PRICE})
 
 _EMPTY_STATUSES = frozenset({DataStatus.MISSING, DataStatus.ERROR})
 

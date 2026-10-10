@@ -6,13 +6,72 @@
   "loanTokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
   "oracleAddress": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
   "expiry": "2027-01-07T00:00:00Z",
-  "verifiedBlock": null,
-  "verifiedAt": null,
+  "verifiedBlock": 26163015,
+  "verifiedBlockHash": "0x8453c217b038eb4a22c128e9ca678347062f89bbb93fdb0b33959705de10290a",
+  "verifiedAt": "2026-10-10T15:45:47Z",
   "sourceUrls": [
     "https://api.morpho.org/v1/blue/markets?chain_id=1&limit=100",
     "https://api-v2.pendle.finance/core/v2/markets/all?skip=0&limit=100&chainId=1&isActive=true",
-    "https://api-v2.pendle.finance/core/v3/1/markets/0xd44f2630260ff3805d7cb317d4f6740b0044c408/historical-data?time_frame=day&timestamp_start=2026-09-26T14%3A22%3A12Z&timestamp_end=2026-10-10T14%3A22%3A12Z",
+    "https://api-v2.pendle.finance/core/v3/1/markets/0xd44f2630260ff3805d7cb317d4f6740b0044c408/historical-data?time_frame=day&timestamp_start=2026-09-26T15%3A45%3A48Z&timestamp_end=2026-10-10T15%3A45%3A48Z",
     "https://api.morpho.org/graphql"
   ],
-  "status": "CANDIDATE"
+  "status": "VERIFIED_ACTIVE",
+  "statusReason": null,
+  "dataStatus": "OK",
+  "evidenceIds": [
+    "ev_61ba38f2bbaeb994e99eb863",
+    "ev_e02cb13ca1e892d388765c96",
+    "ev_a3e2c5694d7d6ccb5fc5fd07",
+    "ev_e0df16ac374341ed616e177b",
+    "ev_bab92bd1d6cb6e6bfbd97201",
+    "ev_7fe89b2e120ce4e9564c281a",
+    "ev_3234161c5bf836e65cc8031f"
+  ],
+  "checks": [
+    {
+      "name": "morpho.loan_token",
+      "status": "VERIFIED"
+    },
+    {
+      "name": "morpho.collateral_token",
+      "status": "VERIFIED"
+    },
+    {
+      "name": "morpho.oracle",
+      "status": "VERIFIED"
+    },
+    {
+      "name": "morpho.irm",
+      "status": "VERIFIED"
+    },
+    {
+      "name": "morpho.lltv",
+      "status": "VERIFIED"
+    },
+    {
+      "name": "pendle.sy",
+      "status": "VERIFIED"
+    },
+    {
+      "name": "pendle.pt",
+      "status": "VERIFIED"
+    },
+    {
+      "name": "pendle.yt",
+      "status": "VERIFIED"
+    },
+    {
+      "name": "pendle.expiry",
+      "status": "VERIFIED"
+    },
+    {
+      "name": "pendle.sy_yield_token",
+      "status": "VERIFIED"
+    },
+    {
+      "name": "strategy.pt_is_morpho_collateral",
+      "status": "VERIFIED"
+    }
+  ],
+  "relationsCount": 10
 }

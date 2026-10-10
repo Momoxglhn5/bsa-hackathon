@@ -31,8 +31,13 @@ from app.models.evidence import (
     ETHEREUM_MAINNET_CHAIN_ID,
     DataMode,
     DataStatus,
+    EvidenceDTO,
+    RelationDTO,
+    RelationStatus,
+    RelationType,
     VerificationCheckDTO,
     VerificationStatus,
+    make_relation,
     missing_fields,
     normalize_address,
     normalize_bytes32,
@@ -93,6 +98,11 @@ class MissingReason(str, Enum):
 
 def asset_id(address: str, chain_id: int = CHAIN_ID) -> str:
     return f"asset:{chain_id}:{normalize_address(address)}"
+
+
+def contract_id(address: str, chain_id: int = CHAIN_ID) -> str:
+    """Node id for a non-token contract (oracle, IRM)."""
+    return f"contract:{chain_id}:{normalize_address(address)}"
 
 
 def morpho_market_key(market_id: str, chain_id: int = CHAIN_ID) -> str:
@@ -193,6 +203,28 @@ class OnchainPendleTokens:
     expiry_ts: int | None
     block_number: int
     ref: SourceRef
+
+
+class SyAssetType(int, Enum):
+    """Pendle IStandardizedYield.AssetType."""
+    TOKEN = 0
+    LIQUIDITY = 1
+
+
+@dataclass(frozen=True)
+class OnchainSyAssetInfo:
+    """SY.yieldToken() + SY.assetInfo() (the SY's accounting asset).
+
+    Neither read proves 1:1 economic backing or redeemability of the SY.
+    """
+    sy_address: str
+    yield_token: str
+    asset_type: SyAssetType
+    asset_address: str
+    asset_decimals: int
+    block_number: int
+    ref: SourceRef              # assetInfo() evidence
+    yield_token_ref: SourceRef  # yieldToken() evidence
 
 
 # ---------------------------------------------------------------------------
@@ -606,6 +638,168 @@ def pendle_token_checks(
         _check("pendle.expiry", api_expiry, src,
                str(onchain.expiry_ts) if onchain.expiry_ts is not None else None, ev),
     )
+
+
+def pendle_sy_yield_token_check(
+    item: Mapping[str, Any], api_ref: SourceRef, onchain: OnchainSyAssetInfo
+) -> VerificationCheckDTO:
+    """API underlyingAsset vs SY.yieldToken() (same layer; assetInfo() is a different one)."""
+    api_asset = item.get("underlyingAsset")
+    return _check(
+        "pendle.sy_yield_token",
+        parse_pendle_id(api_asset)[1] if api_asset is not None else None,
+        api_ref.source_id,
+        normalize_address(onchain.yield_token),
+        (onchain.yield_token_ref.evidence_id,),
+    )
+
+
+BACKING_UNRESOLVED_NOTE = "assetInfo/yieldToken do not prove backing"
+
+
+def build_strategy_relations(
+    morpho_params: OnchainMarketParams,
+    pendle_tokens: OnchainPendleTokens,
+    sy_info: OnchainSyAssetInfo,
+    evidence_by_id: Mapping[str, EvidenceDTO],
+) -> list[RelationDTO]:
+    """Edges of one Morpho x Pendle strategy from RPC reads taken at one pinned block."""
+    blocks = {morpho_params.block_number, pendle_tokens.block_number, sy_info.block_number}
+    if len(blocks) != 1:
+        raise ValueError(f"strategy reads span several blocks: {sorted(blocks)}")
+    if normalize_address(sy_info.sy_address) != normalize_address(pendle_tokens.sy):
+        raise ValueError("sy_info is not for the SY returned by readTokens()")
+
+    def ev(ref: SourceRef) -> list[EvidenceDTO]:
+        if ref.evidence_id not in evidence_by_id:
+            raise KeyError(f"evidence {ref.evidence_id} missing from evidence_by_id")
+        return [evidence_by_id[ref.evidence_id]]
+
+    def onchain(src: str, rel: RelationType, dst: str, ref: SourceRef) -> RelationDTO:
+        return make_relation(
+            source_node_id=src, target_node_id=dst, relation_type=rel,
+            verification_status=RelationStatus.ONCHAIN_VERIFIED,
+            evidence=ev(ref), observed_at=ref.observed_at,
+        )
+
+    morpho = morpho_market_key(morpho_params.market_id)
+    pendle = pendle_market_key(pendle_tokens.market_address)
+    sy = asset_id(sy_info.sy_address)
+    yield_token = asset_id(sy_info.yield_token)
+    accounting = asset_id(sy_info.asset_address)
+    m_ref, p_ref = morpho_params.ref, pendle_tokens.ref
+    relations = [
+        onchain(morpho, RelationType.MARKET_LOAN_ASSET, asset_id(morpho_params.loan_token), m_ref),
+        onchain(morpho, RelationType.MARKET_COLLATERAL_ASSET, asset_id(morpho_params.collateral_token), m_ref),
+        onchain(morpho, RelationType.MARKET_ORACLE, contract_id(morpho_params.oracle), m_ref),
+        onchain(morpho, RelationType.MARKET_IRM, contract_id(morpho_params.irm), m_ref),
+        onchain(pendle, RelationType.PENDLE_MARKET_PT, asset_id(pendle_tokens.pt), p_ref),
+        onchain(pendle, RelationType.PENDLE_MARKET_SY, sy, p_ref),
+        onchain(pendle, RelationType.PENDLE_MARKET_YT, asset_id(pendle_tokens.yt), p_ref),
+        onchain(sy, RelationType.SY_YIELD_TOKEN, yield_token, sy_info.yield_token_ref),
+        onchain(sy, RelationType.SY_ACCOUNTING_ASSET, accounting, sy_info.ref),
+    ]
+    # If the yield token is the accounting asset itself, the open question is the SY's backing.
+    relations.append(make_relation(
+        source_node_id=yield_token if yield_token != accounting else sy,
+        target_node_id=accounting,
+        relation_type=RelationType.ECONOMIC_BACKING,
+        verification_status=RelationStatus.UNRESOLVED,
+        evidence=ev(sy_info.yield_token_ref) + ev(sy_info.ref),
+        observed_at=sy_info.ref.observed_at,
+        note=BACKING_UNRESOLVED_NOTE,
+    ))
+    return relations
+
+
+# historicalState field -> (metric, is raw asset amount). Assets are BigInt raw units of
+# the loan token; utilization and APYs are Float ratios (0.05 == 5 %).
+_MORPHO_HISTORY_METRICS: dict[str, tuple[TimeseriesMetric, bool]] = {
+    "supplyAssets": (TimeseriesMetric.TOTAL_SUPPLY_ASSETS, True),
+    "borrowAssets": (TimeseriesMetric.TOTAL_BORROW_ASSETS, True),
+    "utilization": (TimeseriesMetric.UTILIZATION, False),
+    "supplyApy": (TimeseriesMetric.SUPPLY_APY, False),
+    "borrowApy": (TimeseriesMetric.BORROW_APY, False),
+}
+
+
+def normalize_morpho_history(
+    raw_payload: Mapping[str, Any],
+    market_id: str,
+    ref: SourceRef,
+    *,
+    time_frame: str,
+    loan_token: TokenRef,
+    data_mode: DataMode = DataMode.REAL,
+) -> dict[TimeseriesMetric, NormalizedSeries]:
+    """GraphQL marketById.historicalState -> one TimeseriesDTO per field present.
+
+    Ratios stay ratios; asset amounts are scaled by the loan token decimals (unit TOKEN,
+    quote_asset = loan token). Null y -> MISSING point, never 0. Fields absent from the
+    payload (e.g. the other history query) produce no series.
+    """
+    if time_frame not in _TIME_FRAME_SECONDS:
+        raise NormalizationError(f"invalid time_frame {time_frame!r}")
+    market = normalize_bytes32(market_id)
+    history = (((raw_payload or {}).get("data") or {}).get("marketById") or {}).get("historicalState")
+    if not isinstance(history, Mapping):
+        raise NormalizationError("payload without data.marketById.historicalState")
+
+    out: dict[TimeseriesMetric, NormalizedSeries] = {}
+    for source_field, (metric, is_assets) in _MORPHO_HISTORY_METRICS.items():
+        rows = history.get(source_field)
+        if rows is None:
+            continue
+        if not isinstance(rows, list):
+            raise NormalizationError(f"historicalState.{source_field} is not a list")
+        if is_assets and loan_token.decimals is None:
+            raise NormalizationError(f"{source_field}: loan token decimals unknown, cannot scale")
+        by_ts: dict[datetime, TimeseriesPointDTO] = {}
+        dropped = 0
+        for row in rows:
+            x = _required(row, "x", f"{source_field}.x")
+            if isinstance(x, bool) or not isinstance(x, (int, Decimal)) or x != int(x):
+                raise NormalizationError(f"{source_field}.x must be integer unix seconds, got {x!r}")
+            ts = from_unix(int(x))
+            if ts in by_ts:
+                dropped += 1
+                continue
+            y = row.get("y") if isinstance(row, Mapping) else None
+            if y is None:
+                value = None
+            elif is_assets:
+                value = scale_raw(to_raw_uint(y), loan_token.decimals)
+            else:
+                value = to_decimal(y)
+            by_ts[ts] = TimeseriesPointDTO(
+                timestamp=ts,
+                value=value,
+                status=DataStatus.OK if value is not None else DataStatus.MISSING,
+                evidence_ids=(ref.evidence_id,),
+            )
+        points = tuple(by_ts[t] for t in sorted(by_ts))
+        n_missing = sum(1 for p in points if p.value is None)
+        status = (
+            DataStatus.MISSING if not points or n_missing == len(points)
+            else DataStatus.PARTIAL if n_missing
+            else DataStatus.OK
+        )
+        dto = TimeseriesDTO(
+            chain_id=CHAIN_ID,
+            data_mode=data_mode,
+            series_id=f"ts_morpho_{metric.value.lower()}_{time_frame}_{market[2:26]}",
+            metric=metric,
+            subject_kind=SubjectKind.MARKET,
+            subject_id=market,
+            unit=SeriesUnit.TOKEN if is_assets else SeriesUnit.RATIO,
+            quote_asset=loan_token if is_assets else None,
+            interval_seconds=_TIME_FRAME_SECONDS[time_frame],
+            source_id=ref.source_id,
+            status=status,
+            points=points,
+        )
+        out[metric] = NormalizedSeries(dto, n_missing, dropped)
+    return out
 
 
 def normalize_pendle_market(

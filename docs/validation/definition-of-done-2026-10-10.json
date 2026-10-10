@@ -1,0 +1,204 @@
+{
+  "checked_at": "2026-10-10T16:41:51.363124+00:00",
+  "offline_requests": {
+    "/docs": {
+      "http": 200,
+      "status": null
+    },
+    "/api/v1/health": {
+      "http": 200,
+      "status": "OK"
+    },
+    "/api/v1/strategies?status=VERIFIED_ACTIVE": {
+      "http": 200,
+      "status": "OK"
+    },
+    "/api/v1/markets?protocol=MORPHO_BLUE&chain_id=1": {
+      "http": 200,
+      "status": "STALE"
+    },
+    "/api/v1/strategies/strat_e76bee1f14994d77f99f42a7": {
+      "http": 200,
+      "status": "OK"
+    },
+    "/api/v1/data-status?entity_id=morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689": {
+      "http": 200,
+      "status": "STALE"
+    }
+  },
+  "series": [
+    {
+      "metric": "BORROW_APY",
+      "source": "morpho_api",
+      "points": 14,
+      "with_value": 14,
+      "first": "2026-10-01T00:00:00Z",
+      "last": "2026-10-10T16:10:57.732396Z",
+      "status": "OK",
+      "strictly_increasing": true
+    },
+    {
+      "metric": "LIQUIDITY_USD",
+      "source": "pendle_api",
+      "points": 4,
+      "with_value": 4,
+      "first": "2026-10-10T16:04:35.498078Z",
+      "last": "2026-10-10T16:10:57.791571Z",
+      "status": "OK",
+      "strictly_increasing": true
+    },
+    {
+      "metric": "ORACLE_PRICE",
+      "source": "ethereum_rpc",
+      "points": 4,
+      "with_value": 4,
+      "first": "2026-10-10T16:04:23Z",
+      "last": "2026-10-10T16:10:47Z",
+      "status": "OK",
+      "strictly_increasing": true
+    },
+    {
+      "metric": "PT_IMPLIED_APY",
+      "source": "pendle_api",
+      "points": 35,
+      "with_value": 35,
+      "first": "2026-09-10T00:00:00Z",
+      "last": "2026-10-10T16:10:57.791571Z",
+      "status": "OK",
+      "strictly_increasing": true
+    },
+    {
+      "metric": "SUPPLY_APY",
+      "source": "morpho_api",
+      "points": 14,
+      "with_value": 14,
+      "first": "2026-10-01T00:00:00Z",
+      "last": "2026-10-10T16:10:57.732396Z",
+      "status": "OK",
+      "strictly_increasing": true
+    },
+    {
+      "metric": "TOTAL_BORROW_ASSETS",
+      "source": "ethereum_rpc",
+      "points": 4,
+      "with_value": 4,
+      "first": "2026-10-10T16:04:23Z",
+      "last": "2026-10-10T16:10:47Z",
+      "status": "OK",
+      "strictly_increasing": true
+    },
+    {
+      "metric": "TOTAL_BORROW_ASSETS",
+      "source": "morpho_api",
+      "points": 10,
+      "with_value": 10,
+      "first": "2026-10-01T00:00:00Z",
+      "last": "2026-10-10T00:00:00Z",
+      "status": "OK",
+      "strictly_increasing": true
+    },
+    {
+      "metric": "TOTAL_SUPPLY_ASSETS",
+      "source": "ethereum_rpc",
+      "points": 4,
+      "with_value": 4,
+      "first": "2026-10-10T16:04:23Z",
+      "last": "2026-10-10T16:10:47Z",
+      "status": "OK",
+      "strictly_increasing": true
+    },
+    {
+      "metric": "TOTAL_SUPPLY_ASSETS",
+      "source": "morpho_api",
+      "points": 10,
+      "with_value": 10,
+      "first": "2026-10-01T00:00:00Z",
+      "last": "2026-10-10T00:00:00Z",
+      "status": "OK",
+      "strictly_increasing": true
+    },
+    {
+      "metric": "UNDERLYING_APY",
+      "source": "pendle_api",
+      "points": 35,
+      "with_value": 35,
+      "first": "2026-09-10T00:00:00Z",
+      "last": "2026-10-10T16:10:57.791571Z",
+      "status": "OK",
+      "strictly_increasing": true
+    },
+    {
+      "metric": "UTILIZATION",
+      "source": "ethereum_rpc",
+      "points": 4,
+      "with_value": 4,
+      "first": "2026-10-10T16:04:23Z",
+      "last": "2026-10-10T16:10:47Z",
+      "status": "OK",
+      "strictly_increasing": true
+    },
+    {
+      "metric": "UTILIZATION",
+      "source": "morpho_api",
+      "points": 10,
+      "with_value": 10,
+      "first": "2026-10-01T00:00:00Z",
+      "last": "2026-10-10T00:00:00Z",
+      "status": "OK",
+      "strictly_increasing": true
+    }
+  ],
+  "relations_returned": 7,
+  "shared_graph_ids_valid": true,
+  "missing_evidence_ids": [],
+  "stored_rpc_reads": {
+    "readTokens": true,
+    "idToMarketParams": true
+  },
+  "market_data_status": {
+    "schema_version": "data-contract-v1.0",
+    "status": "STALE",
+    "as_of": "2026-10-10T16:10:57.732396Z",
+    "snapshot": {
+      "data_mode": "REAL",
+      "block_number": 26163140,
+      "block_hash": null
+    },
+    "data": {
+      "kind": "market",
+      "status": "STALE",
+      "freshness": {
+        "as_of": "2026-10-10T16:10:57.732396+00:00",
+        "age_seconds": 1854,
+        "ttl_seconds": 300,
+        "is_stale": true
+      },
+      "missing_fields": [
+        "morpho.collateral_price",
+        "morpho.loan_price"
+      ],
+      "evidence_count": 5
+    },
+    "provenance": {
+      "source_ids": [
+        "morpho_api",
+        "ethereum_rpc"
+      ],
+      "evidence_ids": [
+        "ev_6fcf963ddbe7898f050f3bec",
+        "ev_865dfe97d21f5f485f98bd87",
+        "ev_aa50ad999c3622e26aa2ed1a",
+        "ev_59be2224406e27ee3bc9d8cf",
+        "ev_be75ac85dd239e4c69a2ae94"
+      ]
+    },
+    "missing_fields": [
+      "morpho.collateral_price",
+      "morpho.loan_price"
+    ],
+    "warnings": [
+      "stale: age_seconds=1854 ttl_seconds=300"
+    ]
+  },
+  "offline_snapshot_usable": true
+}

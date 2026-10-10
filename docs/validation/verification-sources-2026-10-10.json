@@ -1,0 +1,270 @@
+{
+  "data_mode": "REAL",
+  "checked_at": "2026-10-10T16:39:37.601532+00:00",
+  "checks": [
+    {
+      "name": "manifest",
+      "status": "PASS",
+      "detail": {
+        "morpho_market_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+        "pendle_market": "0xd44f2630260ff3805d7cb317d4f6740b0044c408"
+      }
+    },
+    {
+      "name": "morpho.api",
+      "status": "PASS",
+      "detail": {
+        "pages": 1,
+        "complete": true,
+        "errors": 0
+      }
+    },
+    {
+      "name": "morpho.market_exists",
+      "status": "PASS",
+      "detail": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689"
+    },
+    {
+      "name": "morpho.freshness",
+      "status": "PASS",
+      "detail": {
+        "observed_at": "2026-10-10T16:39:37.728025+00:00",
+        "age_seconds": 0.0,
+        "ttl_seconds": 300
+      }
+    },
+    {
+      "name": "pendle.api",
+      "status": "PASS",
+      "detail": {
+        "pages": 5,
+        "complete": true,
+        "errors": 0
+      }
+    },
+    {
+      "name": "pendle.market_exists",
+      "status": "PASS",
+      "detail": "0xd44f2630260ff3805d7cb317d4f6740b0044c408"
+    },
+    {
+      "name": "pendle.freshness",
+      "status": "PASS",
+      "detail": {
+        "observed_at": "2026-10-10T16:39:43.885773+00:00",
+        "age_seconds": 0.01,
+        "ttl_seconds": 300
+      }
+    },
+    {
+      "name": "rpc.chain_id",
+      "status": "PASS",
+      "detail": 1
+    },
+    {
+      "name": "rpc.freshness",
+      "status": "PASS",
+      "detail": {
+        "observed_at": "2026-10-10T16:39:35+00:00",
+        "age_seconds": 9.06,
+        "ttl_seconds": 300
+      }
+    },
+    {
+      "name": "morpho.idToMarketParams",
+      "status": "PASS",
+      "detail": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689"
+    },
+    {
+      "name": "manifest.collateral",
+      "status": "PASS",
+      "detail": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+    },
+    {
+      "name": "manifest.loan",
+      "status": "PASS",
+      "detail": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    },
+    {
+      "name": "oracle.recorded",
+      "status": "PASS",
+      "detail": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570"
+    },
+    {
+      "name": "morpho.loan_token",
+      "status": "PASS",
+      "detail": {
+        "check": "morpho.loan_token",
+        "claimed_value": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "claimed_source_id": "morpho_api",
+        "onchain_value": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "status": "VERIFIED",
+        "evidence_ids": [
+          "ev_ddff965bdc8a04190e1910c4"
+        ]
+      }
+    },
+    {
+      "name": "morpho.collateral_token",
+      "status": "PASS",
+      "detail": {
+        "check": "morpho.collateral_token",
+        "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "claimed_source_id": "morpho_api",
+        "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "status": "VERIFIED",
+        "evidence_ids": [
+          "ev_ddff965bdc8a04190e1910c4"
+        ]
+      }
+    },
+    {
+      "name": "morpho.oracle",
+      "status": "PASS",
+      "detail": {
+        "check": "morpho.oracle",
+        "claimed_value": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+        "claimed_source_id": "morpho_api",
+        "onchain_value": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+        "status": "VERIFIED",
+        "evidence_ids": [
+          "ev_ddff965bdc8a04190e1910c4"
+        ]
+      }
+    },
+    {
+      "name": "morpho.irm",
+      "status": "PASS",
+      "detail": {
+        "check": "morpho.irm",
+        "claimed_value": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+        "claimed_source_id": "morpho_api",
+        "onchain_value": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+        "status": "VERIFIED",
+        "evidence_ids": [
+          "ev_ddff965bdc8a04190e1910c4"
+        ]
+      }
+    },
+    {
+      "name": "morpho.lltv",
+      "status": "PASS",
+      "detail": {
+        "check": "morpho.lltv",
+        "claimed_value": "860000000000000000",
+        "claimed_source_id": "morpho_api",
+        "onchain_value": "860000000000000000",
+        "status": "VERIFIED",
+        "evidence_ids": [
+          "ev_ddff965bdc8a04190e1910c4"
+        ]
+      }
+    },
+    {
+      "name": "pendle.readTokens",
+      "status": "PASS",
+      "detail": {
+        "pt": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "sy": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "yt": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c"
+      }
+    },
+    {
+      "name": "manifest.pt",
+      "status": "PASS",
+      "detail": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+    },
+    {
+      "name": "expiry.valid",
+      "status": "PASS",
+      "detail": {
+        "onchain": "2027-01-07T00:00:00+00:00",
+        "manifest": "2027-01-07T00:00:00+00:00"
+      }
+    },
+    {
+      "name": "pendle.sy",
+      "status": "PASS",
+      "detail": {
+        "check": "pendle.sy",
+        "claimed_value": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "claimed_source_id": "pendle_api",
+        "onchain_value": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "status": "VERIFIED",
+        "evidence_ids": [
+          "ev_43aa17e821daebfab0bd6f7e"
+        ]
+      }
+    },
+    {
+      "name": "pendle.pt",
+      "status": "PASS",
+      "detail": {
+        "check": "pendle.pt",
+        "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "claimed_source_id": "pendle_api",
+        "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "status": "VERIFIED",
+        "evidence_ids": [
+          "ev_43aa17e821daebfab0bd6f7e"
+        ]
+      }
+    },
+    {
+      "name": "pendle.yt",
+      "status": "PASS",
+      "detail": {
+        "check": "pendle.yt",
+        "claimed_value": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+        "claimed_source_id": "pendle_api",
+        "onchain_value": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+        "status": "VERIFIED",
+        "evidence_ids": [
+          "ev_43aa17e821daebfab0bd6f7e"
+        ]
+      }
+    },
+    {
+      "name": "pendle.expiry",
+      "status": "PASS",
+      "detail": {
+        "check": "pendle.expiry",
+        "claimed_value": "1799280000",
+        "claimed_source_id": "pendle_api",
+        "onchain_value": "1799280000",
+        "status": "VERIFIED",
+        "evidence_ids": [
+          "ev_43aa17e821daebfab0bd6f7e"
+        ]
+      }
+    },
+    {
+      "name": "pt_matches_collateral",
+      "status": "PASS",
+      "detail": {
+        "check": "strategy.pt_is_morpho_collateral",
+        "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "claimed_source_id": "ethereum_rpc",
+        "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "status": "VERIFIED",
+        "evidence_ids": [
+          "ev_ddff965bdc8a04190e1910c4",
+          "ev_43aa17e821daebfab0bd6f7e"
+        ]
+      }
+    }
+  ],
+  "evidence_ids": [
+    "ev_cffa5f29822c51991b3bb5f3",
+    "ev_a0f33ca143aedbcf52c311aa",
+    "ev_ddff965bdc8a04190e1910c4",
+    "ev_43aa17e821daebfab0bd6f7e",
+    "ev_a7e7a8daddf8808ea2a47bcf"
+  ],
+  "block": {
+    "number": 26163283,
+    "hash": "0xb9501af738308ddbe953629943d730873a1014eb412fc25ab0631123b882e79e",
+    "timestamp": "2026-10-10T16:39:35+00:00"
+  },
+  "ok": true
+}

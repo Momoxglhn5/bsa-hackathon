@@ -318,7 +318,11 @@ def make_evidence_id(
 
 
 class EvidenceDTO(VersionedModel):
-    """One retrieval from one source. Other DTOs reference it by `evidence_id`."""
+    """One retrieval from one source. Other DTOs reference it by `evidence_id`.
+
+    Brief names -> fields: source_type=source_kind, retrieved_at=fetched_at,
+    contract_address=target_address, params=request_params, raw_value_hash=payload_sha256.
+    """
 
     evidence_id: EvidenceId
     source_kind: SourceKind
@@ -332,6 +336,18 @@ class EvidenceDTO(VersionedModel):
     payload_sha256: str | None = None
     status: DataStatus
     error_message: str | None = None
+    # Optional registry fields. source_uri is hostname[/path] only: never a full URL
+    # with query, credentials or an API key.
+    source_uri: str | None = Field(default=None, max_length=512)
+    decoded_excerpt: dict[str, str] | None = None
+    parser_version: str | None = Field(default=None, max_length=64)
+
+    @field_validator("source_uri")
+    @classmethod
+    def _uri(cls, v: str | None) -> str | None:
+        if v is not None and (any(c in v for c in "?#@ ") or "://" in v):
+            raise ValueError("source_uri must be hostname[/path] only (no scheme, query, credentials)")
+        return v
 
     @field_validator("payload_sha256")
     @classmethod
@@ -389,3 +405,116 @@ class VerificationCheckDTO(ContractModel):
         if self.claimed_value is not None and self.claimed_source_id is None:
             raise ValueError(f"{self.check}: claimed_value requires claimed_source_id")
         return self
+
+# ---------------------------------------------------------------------------
+# Relations (edges between nodes `asset:1:<addr>`, `contract:1:<addr>`,
+# `morpho:1:<bytes32>`, `pendle:1:<addr>`)
+# ---------------------------------------------------------------------------
+
+NodeId = Annotated[
+    str,
+    Field(pattern=r"^((asset|contract|pendle):\d+:0x[0-9a-f]{40}|morpho:\d+:0x[0-9a-f]{64})$"),
+]
+RelationId = Annotated[str, Field(pattern=r"^rel_[0-9a-f]{24}$")]
+
+
+class RelationStatus(str, Enum):
+    ONCHAIN_VERIFIED = "ONCHAIN_VERIFIED"  # read from chain (RPC, status OK, pinned block)
+    API_OBSERVED = "API_OBSERVED"          # stated by an API, not confirmed on-chain
+    CURATED = "CURATED"                    # asserted by a human/fixture, with a note
+    UNRESOLVED = "UNRESOLVED"              # open question, with a note
+
+
+class RelationType(str, Enum):
+    MARKET_LOAN_ASSET = "MARKET_LOAN_ASSET"
+    MARKET_COLLATERAL_ASSET = "MARKET_COLLATERAL_ASSET"
+    MARKET_ORACLE = "MARKET_ORACLE"
+    MARKET_IRM = "MARKET_IRM"
+    PENDLE_MARKET_PT = "PENDLE_MARKET_PT"
+    PENDLE_MARKET_SY = "PENDLE_MARKET_SY"
+    PENDLE_MARKET_YT = "PENDLE_MARKET_YT"
+    SY_YIELD_TOKEN = "SY_YIELD_TOKEN"
+    SY_ACCOUNTING_ASSET = "SY_ACCOUNTING_ASSET"
+    ECONOMIC_BACKING = "ECONOMIC_BACKING"
+
+
+def make_relation_id(
+    chain_id: int, source_node_id: str, relation_type: RelationType, target_node_id: str
+) -> str:
+    blob = json.dumps([chain_id, source_node_id, relation_type.value, target_node_id], separators=(",", ":"))
+    return "rel_" + hashlib.sha256(blob.encode()).hexdigest()[:24]
+
+
+class RelationDTO(VersionedModel):
+    """One directed edge source -> target with its verification status and evidence."""
+
+    relation_id: RelationId
+    source_node_id: NodeId
+    target_node_id: NodeId
+    relation_type: RelationType
+    verification_status: RelationStatus
+    evidence_ids: tuple[EvidenceId, ...] = ()
+    observed_at: UtcDatetime
+    block_number: BlockNumber | None = None
+    note: str | None = Field(default=None, max_length=512)
+
+    @model_validator(mode="after")
+    def _consistency(self) -> "RelationDTO":
+        if self.source_node_id == self.target_node_id:
+            raise ValueError("relation source and target must differ")
+        expected = make_relation_id(
+            self.chain_id, self.source_node_id, self.relation_type, self.target_node_id
+        )
+        if self.relation_id != expected:
+            raise ValueError("relation_id does not match (chain_id, source, type, target)")
+        if self.verification_status == RelationStatus.ONCHAIN_VERIFIED and (
+            not self.evidence_ids or self.block_number is None
+        ):
+            raise ValueError("ONCHAIN_VERIFIED requires evidence_ids and block_number")
+        if self.verification_status in (RelationStatus.CURATED, RelationStatus.UNRESOLVED) and not self.note:
+            raise ValueError(f"{self.verification_status.value} requires a note")
+        return self
+
+
+def make_relation(
+    *,
+    source_node_id: str,
+    target_node_id: str,
+    relation_type: RelationType,
+    verification_status: RelationStatus,
+    evidence: list[EvidenceDTO],
+    observed_at: datetime,
+    note: str | None = None,
+    chain_id: int = ETHEREUM_MAINNET_CHAIN_ID,
+    data_mode: DataMode = DataMode.REAL,
+) -> RelationDTO:
+    """Build a RelationDTO. ONCHAIN_VERIFIED only from OK RPC evidence at one block."""
+    block_number: int | None = None
+    if verification_status == RelationStatus.ONCHAIN_VERIFIED:
+        if not evidence:
+            raise ValueError("ONCHAIN_VERIFIED requires evidence")
+        bad = [
+            e.evidence_id for e in evidence
+            if e.source_kind != SourceKind.RPC or e.status != DataStatus.OK or e.block_number is None
+        ]
+        if bad:
+            raise ValueError(f"ONCHAIN_VERIFIED requires OK RPC evidence with block_number; got {bad}")
+        blocks = {e.block_number for e in evidence}
+        if len(blocks) != 1:
+            raise ValueError(f"ONCHAIN_VERIFIED evidence spans several blocks: {sorted(blocks)}")
+        block_number = blocks.pop()
+    if any(e.chain_id != chain_id for e in evidence):
+        raise ValueError(f"evidence chain_id differs from relation chain_id {chain_id}")
+    return RelationDTO(
+        chain_id=chain_id,
+        data_mode=data_mode,
+        relation_id=make_relation_id(chain_id, source_node_id, relation_type, target_node_id),
+        source_node_id=source_node_id,
+        target_node_id=target_node_id,
+        relation_type=relation_type,
+        verification_status=verification_status,
+        evidence_ids=tuple(e.evidence_id for e in evidence),
+        observed_at=observed_at,
+        block_number=block_number,
+        note=note,
+    )

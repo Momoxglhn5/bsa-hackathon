@@ -35,8 +35,12 @@ from web3.exceptions import ContractLogicError, Web3Exception
 from app.ingestion.normalize import (
     MORPHO_BLUE_ADDRESS,
     OnchainMarketParams,
+    OnchainMarketState,
     OnchainPendleTokens,
+    OnchainSyAssetInfo,
+    OracleRead,
     SourceRef,
+    SyAssetType,
     _check,
 )
 from app.models.evidence import (
@@ -69,6 +73,9 @@ DEFAULT_MAX_ATTEMPTS = 3
 BACKOFF_BASE_S = 0.5
 BACKOFF_CAP_S = 4.0
 
+PARSER_VERSION = "ethereum_rpc.v1"
+_EXCERPT_MAX_CHARS = 256
+
 _ENV_FILE = Path(__file__).resolve().parents[2] / ".env"  # backend/.env
 _DEMO_MANIFEST = Path(__file__).resolve().parents[1] / "fixtures" / "demo_strategy_manifest.json"
 
@@ -86,6 +93,30 @@ MORPHO_ID_TO_MARKET_PARAMS_ABI = {
     ],
 }
 
+_UINT128 = "uint128"
+MORPHO_MARKET_ABI = {
+    "type": "function",
+    "name": "market",
+    "stateMutability": "view",
+    "inputs": [{"name": "id", "type": "bytes32"}],
+    "outputs": [
+        {"name": "totalSupplyAssets", "type": _UINT128},
+        {"name": "totalSupplyShares", "type": _UINT128},
+        {"name": "totalBorrowAssets", "type": _UINT128},
+        {"name": "totalBorrowShares", "type": _UINT128},
+        {"name": "lastUpdate", "type": _UINT128},
+        {"name": "fee", "type": _UINT128},
+    ],
+}
+
+ORACLE_PRICE_ABI = {
+    "type": "function",
+    "name": "price",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{"name": "", "type": "uint256"}],
+}
+
 PENDLE_READ_TOKENS_ABI = {
     "type": "function",
     "name": "readTokens",
@@ -97,6 +128,28 @@ PENDLE_READ_TOKENS_ABI = {
         {"name": "_YT", "type": "address"},
     ],
 }
+
+SY_ASSET_INFO_ABI = {
+    "type": "function",
+    "name": "assetInfo",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [
+        {"name": "assetType", "type": "uint8"},
+        {"name": "assetAddress", "type": "address"},
+        {"name": "assetDecimals", "type": "uint8"},
+    ],
+}
+
+SY_YIELD_TOKEN_ABI = {
+    "type": "function",
+    "name": "yieldToken",
+    "stateMutability": "view",
+    "inputs": [],
+    "outputs": [{"name": "", "type": "address"}],
+}
+
+SY_BACKING_NOTE = "economic backing beyond the SY: UNRESOLVED"
 
 PT_EXPIRY_ABI = {
     "type": "function",
@@ -149,8 +202,16 @@ class MorphoMarketNotFoundError(EthereumRPCError):
     """idToMarketParams returned all zeros: no such market at the pinned block."""
 
 
+class MorphoStateError(EthereumRPCError):
+    """Morpho.market(id) is all zeros (market not created) or the oracle price is 0."""
+
+
 class PendleMarketReadError(EthereumRPCError):
     """readTokens() returned a zero address: not a Pendle market (or not initialised)."""
+
+
+class SyAssetInfoError(EthereumRPCError):
+    """yieldToken()/assetInfo() returned a zero address or an unknown asset type."""
 
 
 class BlockMismatchError(EthereumRPCError):
@@ -226,6 +287,8 @@ class EthereumRpcClient:
         self.rpc_host = parts.hostname
         self._url_path = parts.path if len(parts.path) > 1 else None
         self.max_attempts = max_attempts
+        # Every evidence produced by call() (OK and ERROR), by evidence_id.
+        self.evidence: dict[str, EvidenceDTO] = {}
         # web3's built-in retry is disabled: retries are bounded and explicit here.
         self._w3 = Web3(
             HTTPProvider(
@@ -314,8 +377,8 @@ class EthereumRpcClient:
         evidence_id = make_evidence_id(SOURCE_ID, f"{method}@{target}", request_params, pinned.number)
 
         def evidence(status: DataStatus, *, payload_sha256: str | None = None,
-                     error: str | None = None) -> EvidenceDTO:
-            return EvidenceDTO(
+                     error: str | None = None, excerpt: dict[str, str] | None = None) -> EvidenceDTO:
+            ev = EvidenceDTO(
                 chain_id=CHAIN_ID,
                 data_mode=DataMode.REAL,
                 evidence_id=evidence_id,
@@ -330,7 +393,12 @@ class EthereumRpcClient:
                 payload_sha256=payload_sha256,
                 status=status,
                 error_message=error,
+                source_uri=self.rpc_host,
+                decoded_excerpt=excerpt,
+                parser_version=PARSER_VERSION,
             )
+            self.evidence[evidence_id] = ev
+            return ev
 
         def fail(cls: type[EthereumRPCError], message: str) -> EthereumRPCError:
             return cls(message, evidence=evidence(DataStatus.ERROR, error=message))
@@ -353,13 +421,28 @@ class EthereumRpcClient:
         except Exception as exc:  # eth_abi raises several unrelated error types
             raise fail(RpcDecodeError, f"{self._describe(exc)} (raw={raw_hex[:132]})") from None
 
-        ev = evidence(DataStatus.OK, payload_sha256=hash_payload(raw_hex))
+        names = [o.get("name") or f"out{i}" for i, o in enumerate(abi_fragment.get("outputs", []))]
+        ev = evidence(
+            DataStatus.OK,
+            payload_sha256=hash_payload(raw_hex),
+            excerpt={n: _excerpt_value(v) for n, v in zip(names, decoded)},
+        )
         return RpcCallResult(
             value=decoded[0] if len(decoded) == 1 else tuple(decoded),
             raw_return=raw_hex,
             evidence=ev,
             source_ref=SourceRef(SOURCE_ID, evidence_id, pinned.timestamp),
         )
+
+
+def _excerpt_value(value: Any) -> str:
+    if isinstance(value, bytes):
+        text = Web3.to_hex(value)
+    elif isinstance(value, str) and Web3.is_address(value):
+        text = normalize_address(value)
+    else:
+        text = str(value)
+    return text[:_EXCERPT_MAX_CHARS]
 
 
 # ---------------------------------------------------------------------------
@@ -390,6 +473,45 @@ def read_morpho_market_params(
         block_number=pinned.number,
         ref=res.source_ref,
     )
+
+
+def read_morpho_market_state(
+    client: EthereumRpcClient, market_id: str, pinned: PinnedBlock
+) -> OnchainMarketState:
+    """Morpho.market(id) at the pinned block. lastUpdate == 0 means the market does not exist."""
+    market_id = normalize_bytes32(market_id)
+    res = client.call(MORPHO_BLUE_ADDRESS, MORPHO_MARKET_ABI, "market", [market_id], pinned)
+    supply_assets, supply_shares, borrow_assets, borrow_shares, last_update, fee = (int(v) for v in res.value)
+    if last_update == 0:
+        raise _data_error(
+            MorphoStateError, res, f"Morpho market {market_id} not created at block {pinned.number}"
+        )
+    return OnchainMarketState(
+        market_id=market_id,
+        total_supply_assets_raw=supply_assets,
+        total_supply_shares_raw=supply_shares,
+        total_borrow_assets_raw=borrow_assets,
+        total_borrow_shares_raw=borrow_shares,
+        last_update=last_update,
+        fee_raw=fee,
+        block_number=pinned.number,
+        ref=res.source_ref,
+    )
+
+
+def read_oracle_price(client: EthereumRpcClient, oracle: str, pinned: PinnedBlock) -> OracleRead:
+    """IOracle(oracle).price() at the pinned block. A zero price is an error, never data."""
+    oracle = normalize_address(oracle)
+    res = client.call(oracle, ORACLE_PRICE_ABI, "price", [], pinned)
+    if int(res.value) == 0:
+        raise _data_error(MorphoStateError, res, f"oracle {oracle} returned price 0 at block {pinned.number}")
+    return OracleRead(oracle_address=oracle, price_raw=int(res.value), block_number=pinned.number,
+                      ref=res.source_ref)
+
+
+def read_erc20_decimals(client: EthereumRpcClient, token: str, pinned: PinnedBlock) -> RpcCallResult:
+    """ERC20 decimals() at the pinned block (value + evidence)."""
+    return client.call(normalize_address(token), ERC20_DECIMALS_ABI, "decimals", [], pinned)
 
 
 def _data_error(cls: type[EthereumRPCError], res: RpcCallResult, message: str) -> EthereumRPCError:
@@ -430,6 +552,40 @@ def read_pendle_market_tokens(
         ref=res.source_ref,
     )
     return tokens, expiry.evidence
+
+
+def read_sy_asset_info(
+    client: EthereumRpcClient, sy_address: str, pinned: PinnedBlock
+) -> OnchainSyAssetInfo:
+    """SY.yieldToken() and SY.assetInfo() at the pinned block.
+
+    Only the SY's declared yield token and accounting asset: neither proves 1:1 economic
+    backing or redeemability. Callers must never mark backing as verified from these reads.
+    """
+    sy = normalize_address(sy_address)
+    yt_res = client.call(sy, SY_YIELD_TOKEN_ABI, "yieldToken", [], pinned)
+    yield_token = normalize_address(yt_res.value)
+    if yield_token == ZERO_ADDRESS:
+        raise _data_error(SyAssetInfoError, yt_res, f"yieldToken() on {sy} returned a zero address")
+    res = client.call(sy, SY_ASSET_INFO_ABI, "assetInfo", [], pinned)
+    asset_type, asset, decimals = res.value
+    asset = normalize_address(asset)
+    if asset == ZERO_ADDRESS:
+        raise _data_error(SyAssetInfoError, res, f"assetInfo() on {sy} returned a zero asset address")
+    try:
+        kind = SyAssetType(asset_type)
+    except ValueError:
+        raise _data_error(SyAssetInfoError, res, f"assetInfo() on {sy}: unknown assetType {asset_type}") from None
+    return OnchainSyAssetInfo(
+        sy_address=sy,
+        yield_token=yield_token,
+        asset_type=kind,
+        asset_address=asset,
+        asset_decimals=int(decimals),
+        block_number=pinned.number,
+        ref=res.source_ref,
+        yield_token_ref=yt_res.source_ref,
+    )
 
 
 def verify_pt_matches_collateral(
@@ -484,10 +640,10 @@ def _verify_morpho_market(client: EthereumRpcClient, pinned: PinnedBlock, market
         print(f"morpho_blue={MORPHO_BLUE_ADDRESS} market_id={market_id}")
     print(f"onchain evidence_id={onchain.ref.evidence_id}")
 
-    # ponytail: REST has no verified by-id filter, so the full listing is scanned.
+    # Filter server-side on the on-chain collateral: one page instead of the full listing.
     try:
         with MorphoApiClient() as api:
-            listing = api.list_markets()
+            listing = api.list_markets(collateral_token=onchain.collateral_token)
     except MorphoAPIError as exc:
         print(f"ERROR {type(exc).__name__}: {exc}", file=sys.stderr)
         return 1
@@ -525,12 +681,22 @@ def _verify_pendle_market(
 ) -> int:
     # Local imports: the Pendle API is only needed for this smoke path.
     from app.adapters.pendle_api import PendleAPIError, PendleApiClient
-    from app.ingestion.normalize import pendle_token_checks
+    from app.ingestion.normalize import (
+        build_strategy_relations,
+        pendle_sy_yield_token_check,
+        pendle_token_checks,
+    )
 
     market = normalize_address(market_address)
     print(f"pendle_market={market}")
     tokens, expiry_ev = read_pendle_market_tokens(client, market, pinned)
     print(f"readTokens evidence_id={tokens.ref.evidence_id} expiry evidence_id={expiry_ev.evidence_id}")
+    sy_info = read_sy_asset_info(client, tokens.sy, pinned)
+    print(f"SY yieldToken={sy_info.yield_token} evidence_id={sy_info.yield_token_ref.evidence_id}")
+    print(
+        f"SY accounting asset (assetInfo): type={sy_info.asset_type.name} address={sy_info.asset_address} "
+        f"decimals={sy_info.asset_decimals} evidence_id={sy_info.ref.evidence_id}"
+    )
     morpho = read_morpho_market_params(client, morpho_market_id, pinned)
     print(f"morpho market_id={morpho.market_id} evidence_id={morpho.ref.evidence_id}")
 
@@ -555,8 +721,21 @@ def _verify_pendle_market(
     item, raw = found
     print(f"api evidence_id={raw.evidence_id} retrieved_at={raw.retrieved_at.isoformat()}")
 
-    checks = pendle_token_checks(item, SourceRef.from_response(raw), tokens)
-    return _report(checks + (verify_pt_matches_collateral(morpho, tokens),))
+    api_ref = SourceRef.from_response(raw)
+    checks = pendle_token_checks(item, api_ref, tokens)
+    exit_code = _report(checks + (
+        pendle_sy_yield_token_check(item, api_ref, sy_info),
+        verify_pt_matches_collateral(morpho, tokens),
+    ))
+    print(f"chain: PT {tokens.pt} -> SY {sy_info.sy_address} -> yieldToken {sy_info.yield_token} "
+          f"-> accounting asset {sy_info.asset_address}")
+    print(f"note: {SY_BACKING_NOTE}")
+
+    print("relations:")
+    for r in build_strategy_relations(morpho, tokens, sy_info, client.evidence):
+        print(f"- {r.source_node_id} -> {r.relation_type.value} -> {r.target_node_id} "
+              f"status={r.verification_status.value} evidence={len(r.evidence_ids)}")
+    return exit_code
 
 
 def _main(argv: list[str] | None = None) -> int:
