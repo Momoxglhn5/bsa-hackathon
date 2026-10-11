@@ -1,0 +1,1302 @@
+{
+  "schema_version": "analytics-snapshot-v1",
+  "snapshot_id": "delivery:REAL:b7fdd9a7c088e0c975bcf175",
+  "as_of": "2026-10-10T19:22:00.664387Z",
+  "description": "Real market data; simulated 1/2/5M USD funds at 70% market LTV. Quotes indicative; repayment/closing unverified.",
+  "markets": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "protocol": "MORPHO_BLUE",
+      "market_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "status": "PARTIAL",
+      "as_of": "2026-10-10T19:21:57.162706Z",
+      "block_number": 26164093,
+      "morpho": {
+        "morpho_address": "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb",
+        "loan_token": {
+          "chain_id": 1,
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "symbol": null,
+          "name": null,
+          "decimals": 6
+        },
+        "collateral_token": {
+          "chain_id": 1,
+          "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "symbol": null,
+          "name": null,
+          "decimals": 18
+        },
+        "oracle_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+        "irm_address": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+        "lltv": "0.860000000000000000",
+        "lltv_raw": "860000000000000000",
+        "total_supply_assets": "501505.873442",
+        "total_supply_assets_raw": "501505873442",
+        "total_borrow_assets": "451328.132536",
+        "total_borrow_assets_raw": "451328132536",
+        "total_supply_shares_raw": "501036614583514175",
+        "total_borrow_shares_raw": "450853043398898159",
+        "utilization": "0.89994585594459016768581520855463576558923167707262",
+        "supply_apy": "0.035386947696642766",
+        "borrow_apy": "0.03939774836053341",
+        "fee": "0.000000000000000000",
+        "last_update": "2026-10-09T20:26:35Z",
+        "oracle_price": {
+          "chain_id": 1,
+          "value": "0.963756216704718418000000",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "symbol": null,
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "TOKEN",
+          "quote_asset": {
+            "chain_id": 1,
+            "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "symbol": null,
+            "name": null,
+            "decimals": 6
+          },
+          "pricing_method": "MORPHO_ORACLE",
+          "observed_at": "2026-10-10T19:21:47Z",
+          "block_number": 26164093,
+          "source_id": "ethereum_rpc",
+          "evidence_ids": [
+            "ev_079e8fcea3cf169853e20c5a"
+          ],
+          "status": "OK",
+          "kind": "ORACLE",
+          "oracle_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+          "raw_value": "963756216704718418000000",
+          "scale_exponent": 24
+        },
+        "collateral_price": {
+          "chain_id": 1,
+          "value": "0.9772659508597581",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "symbol": null,
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-10T19:21:57.212358Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_dd63ee8b1f163f9b445bd776"
+          ],
+          "status": "OK",
+          "kind": "MARKET"
+        },
+        "loan_price": {
+          "chain_id": 1,
+          "value": "0.99989145",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "symbol": null,
+            "name": null,
+            "decimals": 6
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-10T19:21:57.212358Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_dd63ee8b1f163f9b445bd776"
+          ],
+          "status": "OK",
+          "kind": "MARKET"
+        }
+      },
+      "pendle": null,
+      "verification": [
+        {
+          "check": "morpho.loan_token",
+          "claimed_value": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "morpho.collateral_token",
+          "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "morpho.oracle",
+          "claimed_value": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "morpho.irm",
+          "claimed_value": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "morpho.lltv",
+          "claimed_value": "860000000000000000",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "860000000000000000",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        }
+      ],
+      "source_ids": [
+        "morpho_api",
+        "ethereum_rpc"
+      ],
+      "evidence_ids": [
+        "ev_059ab3ee9aa81965b8923dc7",
+        "ev_19351c48162a9b2a0716fe40",
+        "ev_bef76d38a6e3343303960685",
+        "ev_079e8fcea3cf169853e20c5a",
+        "ev_1ce361e3d03ad20d7c0f5b2b"
+      ]
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "protocol": "PENDLE_V2",
+      "market_id": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "status": "PARTIAL",
+      "as_of": "2026-10-10T19:21:57.184440Z",
+      "block_number": 26164093,
+      "morpho": null,
+      "pendle": {
+        "market_address": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "pt": {
+          "chain_id": 1,
+          "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "symbol": null,
+          "name": null,
+          "decimals": null
+        },
+        "yt": {
+          "chain_id": 1,
+          "address": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+          "symbol": null,
+          "name": null,
+          "decimals": null
+        },
+        "sy": {
+          "chain_id": 1,
+          "address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+          "symbol": null,
+          "name": null,
+          "decimals": null
+        },
+        "expiry": "2027-01-07T00:00:00Z",
+        "underlying_asset": {
+          "chain_id": 1,
+          "address": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+          "symbol": null,
+          "name": null,
+          "decimals": null
+        },
+        "is_expired": false,
+        "implied_apy": "0.09935351863292019",
+        "underlying_apy": "0.06127687101334689",
+        "pt_price": {
+          "chain_id": 1,
+          "value": "0.9772659508597581",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "symbol": null,
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-10T19:21:57.212358Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_dd63ee8b1f163f9b445bd776"
+          ],
+          "status": "OK",
+          "kind": "MARKET"
+        },
+        "liquidity_usd": "11160259.549349792",
+        "total_pt": "5983814.664115523",
+        "total_sy": "4857494.944825547"
+      },
+      "verification": [
+        {
+          "check": "pendle.sy",
+          "claimed_value": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        },
+        {
+          "check": "pendle.pt",
+          "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        },
+        {
+          "check": "pendle.yt",
+          "claimed_value": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        },
+        {
+          "check": "pendle.expiry",
+          "claimed_value": "1799280000",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "1799280000",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        }
+      ],
+      "source_ids": [
+        "pendle_api",
+        "ethereum_rpc"
+      ],
+      "evidence_ids": [
+        "ev_b2e480e2150210efd2c61d61",
+        "ev_d198d3f9bf15eb2735fc9591"
+      ]
+    }
+  ],
+  "positions": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "position_id": "pos_simulated_1000000usd",
+      "kind": "SIMULATED",
+      "protocol": "MORPHO_BLUE",
+      "market_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "owner": null,
+      "collateral_asset": {
+        "chain_id": 1,
+        "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "symbol": null,
+        "name": null,
+        "decimals": 18
+      },
+      "loan_asset": {
+        "chain_id": 1,
+        "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "symbol": null,
+        "name": null,
+        "decimals": 6
+      },
+      "collateral_amount": "1023262.909262561972339205",
+      "collateral_amount_raw": null,
+      "borrow_amount": "700075.993249",
+      "borrow_amount_raw": null,
+      "borrow_shares_raw": null,
+      "supply_shares_raw": null,
+      "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+      "label": "Hypothetical 1000000 USD collateral; 70% market LTV; capacity unverified",
+      "as_of": "2026-10-10T19:21:57.247137Z",
+      "block_number": null,
+      "status": "UNVERIFIED",
+      "source_ids": [
+        "analytics:user_assumption"
+      ],
+      "evidence_ids": []
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "position_id": "pos_simulated_2000000usd",
+      "kind": "SIMULATED",
+      "protocol": "MORPHO_BLUE",
+      "market_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "owner": null,
+      "collateral_asset": {
+        "chain_id": 1,
+        "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "symbol": null,
+        "name": null,
+        "decimals": 18
+      },
+      "loan_asset": {
+        "chain_id": 1,
+        "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "symbol": null,
+        "name": null,
+        "decimals": 6
+      },
+      "collateral_amount": "2046525.818525123944678410",
+      "collateral_amount_raw": null,
+      "borrow_amount": "1400151.986498",
+      "borrow_amount_raw": null,
+      "borrow_shares_raw": null,
+      "supply_shares_raw": null,
+      "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+      "label": "Hypothetical 2000000 USD collateral; 70% market LTV; capacity unverified",
+      "as_of": "2026-10-10T19:21:58.665097Z",
+      "block_number": null,
+      "status": "UNVERIFIED",
+      "source_ids": [
+        "analytics:user_assumption"
+      ],
+      "evidence_ids": []
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "position_id": "pos_simulated_5000000usd",
+      "kind": "SIMULATED",
+      "protocol": "MORPHO_BLUE",
+      "market_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "owner": null,
+      "collateral_asset": {
+        "chain_id": 1,
+        "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "symbol": null,
+        "name": null,
+        "decimals": 18
+      },
+      "loan_asset": {
+        "chain_id": 1,
+        "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "symbol": null,
+        "name": null,
+        "decimals": 6
+      },
+      "collateral_amount": "5116314.546312809861696027",
+      "collateral_amount_raw": null,
+      "borrow_amount": "3500379.966245",
+      "borrow_amount_raw": null,
+      "borrow_shares_raw": null,
+      "supply_shares_raw": null,
+      "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+      "label": "Hypothetical 5000000 USD collateral; 70% market LTV; capacity unverified",
+      "as_of": "2026-10-10T19:21:59.943128Z",
+      "block_number": null,
+      "status": "UNVERIFIED",
+      "source_ids": [
+        "analytics:user_assumption"
+      ],
+      "evidence_ids": []
+    }
+  ],
+  "strategies": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+      "strategy_type": "PENDLE_PT_COLLATERAL_ON_MORPHO",
+      "status": "VERIFIED_ACTIVE",
+      "status_reason": null,
+      "data_status": "OK",
+      "morpho_market_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "pendle_market_address": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "pt": {
+        "chain_id": 1,
+        "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "symbol": null,
+        "name": null,
+        "decimals": null
+      },
+      "loan_asset": {
+        "chain_id": 1,
+        "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "symbol": null,
+        "name": null,
+        "decimals": null
+      },
+      "underlying_asset": {
+        "chain_id": 1,
+        "address": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+        "symbol": null,
+        "name": null,
+        "decimals": null
+      },
+      "expiry": "2027-01-07T00:00:00Z",
+      "as_of": "2026-10-10T19:21:50.637083Z",
+      "block_number": 26164093,
+      "verification": [
+        {
+          "check": "morpho.loan_token",
+          "claimed_value": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "morpho.collateral_token",
+          "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "morpho.oracle",
+          "claimed_value": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "morpho.irm",
+          "claimed_value": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "morpho.lltv",
+          "claimed_value": "860000000000000000",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "860000000000000000",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "pendle.sy",
+          "claimed_value": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        },
+        {
+          "check": "pendle.pt",
+          "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        },
+        {
+          "check": "pendle.yt",
+          "claimed_value": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        },
+        {
+          "check": "pendle.expiry",
+          "claimed_value": "1799280000",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "1799280000",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        },
+        {
+          "check": "pendle.sy_yield_token",
+          "claimed_value": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_81bc89ce9cd859a8ff4c8466"
+          ]
+        },
+        {
+          "check": "strategy.pt_is_morpho_collateral",
+          "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "claimed_source_id": "ethereum_rpc",
+          "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40",
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        }
+      ],
+      "source_ids": [
+        "morpho_api",
+        "pendle_api",
+        "ethereum_rpc"
+      ],
+      "evidence_ids": [
+        "ev_8f2761d737414fcb8478caac",
+        "ev_94cf643451aa9aff13b4f0d8",
+        "ev_19351c48162a9b2a0716fe40",
+        "ev_d198d3f9bf15eb2735fc9591",
+        "ev_6a4df0e0f1c0f77409f194da",
+        "ev_81bc89ce9cd859a8ff4c8466",
+        "ev_6b2784dfb1b2fbeed0f348d1"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_8f2761d737414fcb8478caac",
+      "source_kind": "MORPHO_API",
+      "source_id": "morpho_api",
+      "method": "GET rest:/v1/blue/markets",
+      "target_address": null,
+      "request_params": {
+        "chain_id": "1",
+        "limit": "100",
+        "collateral_token": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:50.733912Z",
+      "payload_sha256": "227431b252cf7f859d18b9f1d93bb158352330750fc0a67bab972985276c711b",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_059ab3ee9aa81965b8923dc7",
+      "source_kind": "MORPHO_API",
+      "source_id": "morpho_api",
+      "method": "GET rest:/v1/blue/markets",
+      "target_address": null,
+      "request_params": {
+        "chain_id": "1",
+        "limit": "100",
+        "collateral_token": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:57.021767Z",
+      "payload_sha256": "227431b252cf7f859d18b9f1d93bb158352330750fc0a67bab972985276c711b",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_1ce361e3d03ad20d7c0f5b2b",
+      "source_kind": "MORPHO_API",
+      "source_id": "morpho_api",
+      "method": "POST graphql:marketById",
+      "target_address": null,
+      "request_params": {},
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:57.162706Z",
+      "payload_sha256": "845b84ebbef7ea3aa46e8c4252969ee61064fcee603ac6751bdd8e6abfd31ea2",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_94cf643451aa9aff13b4f0d8",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "GET rest:/v2/markets/all",
+      "target_address": null,
+      "request_params": {
+        "skip": "0",
+        "limit": "100",
+        "chainId": "1",
+        "isActive": "true"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:51.323589Z",
+      "payload_sha256": "7354283201bf7beee434757160982fe260e02dd09d82f3b774868c95a1015f09",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_b2e480e2150210efd2c61d61",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "GET rest:/v2/markets/all",
+      "target_address": null,
+      "request_params": {
+        "skip": "0",
+        "limit": "100",
+        "chainId": "1",
+        "isActive": "true"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:57.184440Z",
+      "payload_sha256": "7354283201bf7beee434757160982fe260e02dd09d82f3b774868c95a1015f09",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_dd63ee8b1f163f9b445bd776",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "GET rest:/v1/prices/assets",
+      "target_address": null,
+      "request_params": {
+        "ids": "1-0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1,1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48,1-0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+        "chainId": "1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:57.212358Z",
+      "payload_sha256": "aa7e7bde826411e0282f0642a728868fe3ddab79dbe090c19bf16eb4c5251f73",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_8625ef54460b3b9735c2d4dc",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "POST /v3/sdk/1/convert",
+      "target_address": null,
+      "request_params": {
+        "market": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "body": "{\"enableAggregator\":true,\"inputs\":[{\"amount\":\"1023262909262561972339205\",\"token\":\"0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1\"}],\"outputs\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"receiver\":\"0x1111111111111111111111111111111111111111\",\"slippage\":0.01,\"useLimitOrder\":false}"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:58.661446Z",
+      "payload_sha256": "f0a5d0d62de61ca7c26a094300f24664667553e2ee9d1d379e67b0766ed5f9d1",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_7133a9eca40c7e1779819a33",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "POST /v3/sdk/1/convert",
+      "target_address": null,
+      "request_params": {
+        "market": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "body": "{\"enableAggregator\":true,\"inputs\":[{\"amount\":\"2046525818525123944678410\",\"token\":\"0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1\"}],\"outputs\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"receiver\":\"0x1111111111111111111111111111111111111111\",\"slippage\":0.01,\"useLimitOrder\":false}"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:59.940033Z",
+      "payload_sha256": "cff55a63c4f364e960ec21afce256381ffc46459f340fae2efc61b4dad8f965a",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_7d156d5ba1bd9226e240be20",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "POST /v3/sdk/1/convert",
+      "target_address": null,
+      "request_params": {
+        "market": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "body": "{\"enableAggregator\":true,\"inputs\":[{\"amount\":\"5116314546312809861696027\",\"token\":\"0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1\"}],\"outputs\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"receiver\":\"0x1111111111111111111111111111111111111111\",\"slippage\":0.01,\"useLimitOrder\":false}"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:22:00.664387Z",
+      "payload_sha256": "68580cd68834c41a13074826f06d22cb1caab55f7d9523f2e793280bb279588b",
+      "status": "ERROR",
+      "error_message": "Pendle quote HTTP 400: {\"message\":\"MarketProportionTooHigh. Market liquidity is likely insufficient, please consider placing limit order or try again later.\",\"error\":\"Bad Request\"}",
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_19351c48162a9b2a0716fe40",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call idToMarketParams(bytes32)",
+      "target_address": "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[\"0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689\"]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.083962Z",
+      "payload_sha256": "59a08045d0abe75d8118960ff7139cd264823cc493fad8342088853fb660c559",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "loanToken": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "collateralToken": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "oracle": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+        "irm": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+        "lltv": "860000000000000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_d198d3f9bf15eb2735fc9591",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call readTokens()",
+      "target_address": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.227347Z",
+      "payload_sha256": "63446b4e7f0cb192b61c2b5f3fb91f9ae24adf65a54c7fe42ca7f97e68f42600",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "_SY": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "_PT": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "_YT": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_6a4df0e0f1c0f77409f194da",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call expiry()",
+      "target_address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.289867Z",
+      "payload_sha256": "525794155f4e874dba363bdaecd7b2cffc72e74bad14746b157c96e4e6235642",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "1799280000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_81bc89ce9cd859a8ff4c8466",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call yieldToken()",
+      "target_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.354541Z",
+      "payload_sha256": "3afcaa99eedd9b05b5b171a743cc7a6f71146431340f64f79d07c530c099263b",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_6b2784dfb1b2fbeed0f348d1",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call assetInfo()",
+      "target_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.442140Z",
+      "payload_sha256": "e8cdc4869ebd17201306a3a19ca192292ce7fd3c26d35250979c6ce1b64ab9d7",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "assetType": "0",
+        "assetAddress": "0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+        "assetDecimals": "18"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_bef76d38a6e3343303960685",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call market(bytes32)",
+      "target_address": "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[\"0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689\"]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.628145Z",
+      "payload_sha256": "0d6956efcf155c4c466e6a40835793e346cafc6acf65a67c9b273b1082832fe0",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "totalSupplyAssets": "501505873442",
+        "totalSupplyShares": "501036614583514175",
+        "totalBorrowAssets": "451328132536",
+        "totalBorrowShares": "450853043398898159",
+        "lastUpdate": "1791577595",
+        "fee": "0"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_079e8fcea3cf169853e20c5a",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.851512Z",
+      "payload_sha256": "260e3f760669de6e739ffeb466f92636c0d72ca6ff91a7ec83064f188de746ef",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "963756216704718418000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    }
+  ],
+  "relations": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_0aa7421553d2499ed66fefee",
+      "source_node_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "target_node_id": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+      "relation_type": "SY_YIELD_TOKEN",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_81bc89ce9cd859a8ff4c8466"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_377f3eb31833ba5f1f8fefad",
+      "source_node_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "target_node_id": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+      "relation_type": "SY_ACCOUNTING_ASSET",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_6b2784dfb1b2fbeed0f348d1"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_37d7ae18c7e3452d74aec41c",
+      "source_node_id": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "target_node_id": "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+      "relation_type": "PENDLE_MARKET_PT",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_d198d3f9bf15eb2735fc9591"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_800d0f8a386b5043624d70e3",
+      "source_node_id": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "target_node_id": "asset:1:0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+      "relation_type": "PENDLE_MARKET_YT",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_d198d3f9bf15eb2735fc9591"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_83c3d77132f936130b875a9b",
+      "source_node_id": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+      "target_node_id": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+      "relation_type": "ECONOMIC_BACKING",
+      "verification_status": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_81bc89ce9cd859a8ff4c8466",
+        "ev_6b2784dfb1b2fbeed0f348d1"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": null,
+      "note": "assetInfo/yieldToken do not prove backing"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_936d169188cfa86be28e233b",
+      "source_node_id": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "target_node_id": "contract:1:0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+      "relation_type": "MARKET_IRM",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_19351c48162a9b2a0716fe40"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_b04f25c4f91128686217b60c",
+      "source_node_id": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "target_node_id": "contract:1:0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "relation_type": "MARKET_ORACLE",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_19351c48162a9b2a0716fe40"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_f14a1f1d2496309293679e5c",
+      "source_node_id": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "target_node_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "relation_type": "PENDLE_MARKET_SY",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_d198d3f9bf15eb2735fc9591"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_f4a5bc1d68b9f34cfda86463",
+      "source_node_id": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "target_node_id": "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+      "relation_type": "MARKET_COLLATERAL_ASSET",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_19351c48162a9b2a0716fe40"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_fdeb0cf074b3ad15299add24",
+      "source_node_id": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "target_node_id": "asset:1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "relation_type": "MARKET_LOAN_ASSET",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_19351c48162a9b2a0716fe40"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    }
+  ],
+  "series": [],
+  "quotes": [
+    {
+      "quote_id": "ev_8625ef54460b3b9735c2d4dc",
+      "position_id": "pos_simulated_1000000usd",
+      "quote": {
+        "chain_id": 1,
+        "value": "0.975361708337761225463026142287916102419917161077613140172436611048784587721084659967814830295945535481408294736567318921",
+        "base_asset": {
+          "chain_id": 1,
+          "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "symbol": null,
+          "name": null,
+          "decimals": 18
+        },
+        "quote_unit": "TOKEN",
+        "quote_asset": {
+          "chain_id": 1,
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "symbol": null,
+          "name": null,
+          "decimals": 6
+        },
+        "pricing_method": "EXECUTION_QUOTE",
+        "observed_at": "2026-10-10T19:21:58.661446Z",
+        "block_number": null,
+        "source_id": "pendle_api",
+        "evidence_ids": [
+          "ev_8625ef54460b3b9735c2d4dc"
+        ],
+        "status": "OK",
+        "kind": "EXIT",
+        "input_amount": "1023262.909262561972339205",
+        "output_amount": "998051.459257",
+        "venue": "KYBERSWAP",
+        "price_impact": "-0.0020568792289022823",
+        "valid_until": "2026-10-10T19:26:58.661446Z"
+      },
+      "output_usd_price": {
+        "chain_id": 1,
+        "value": "0.99989145",
+        "base_asset": {
+          "chain_id": 1,
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "symbol": null,
+          "name": null,
+          "decimals": 6
+        },
+        "quote_unit": "USD",
+        "quote_asset": null,
+        "pricing_method": "API_SPOT",
+        "observed_at": "2026-10-10T19:21:57.212358Z",
+        "block_number": null,
+        "source_id": "pendle_api",
+        "evidence_ids": [
+          "ev_dd63ee8b1f163f9b445bd776"
+        ],
+        "status": "OK",
+        "kind": "MARKET"
+      },
+      "gas_cost_usd": null,
+      "extra_fees_usd": null,
+      "route_available": true,
+      "closing_feasible": null,
+      "requires_external_repayment_liquidity": true,
+      "repayment_liquidity_confirmed": false,
+      "basis": "USER_ASSUMPTION",
+      "evidence_ids": [
+        "ev_8625ef54460b3b9735c2d4dc"
+      ]
+    },
+    {
+      "quote_id": "ev_7133a9eca40c7e1779819a33",
+      "position_id": "pos_simulated_2000000usd",
+      "quote": {
+        "chain_id": 1,
+        "value": "0.973656097079694828233691863769922596888737926514108908198117958829989087228452106724305348604778589193213773787404993480",
+        "base_asset": {
+          "chain_id": 1,
+          "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "symbol": null,
+          "name": null,
+          "decimals": 18
+        },
+        "quote_unit": "TOKEN",
+        "quote_asset": {
+          "chain_id": 1,
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "symbol": null,
+          "name": null,
+          "decimals": 6
+        },
+        "pricing_method": "EXECUTION_QUOTE",
+        "observed_at": "2026-10-10T19:21:59.940033Z",
+        "block_number": null,
+        "source_id": "pendle_api",
+        "evidence_ids": [
+          "ev_7133a9eca40c7e1779819a33"
+        ],
+        "status": "OK",
+        "kind": "EXIT",
+        "input_amount": "2046525.818525123944678410",
+        "output_amount": "1992612.341038",
+        "venue": "KYBERSWAP",
+        "price_impact": "-0.0038019785158098676",
+        "valid_until": "2026-10-10T19:26:59.940033Z"
+      },
+      "output_usd_price": {
+        "chain_id": 1,
+        "value": "0.99989145",
+        "base_asset": {
+          "chain_id": 1,
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "symbol": null,
+          "name": null,
+          "decimals": 6
+        },
+        "quote_unit": "USD",
+        "quote_asset": null,
+        "pricing_method": "API_SPOT",
+        "observed_at": "2026-10-10T19:21:57.212358Z",
+        "block_number": null,
+        "source_id": "pendle_api",
+        "evidence_ids": [
+          "ev_dd63ee8b1f163f9b445bd776"
+        ],
+        "status": "OK",
+        "kind": "MARKET"
+      },
+      "gas_cost_usd": null,
+      "extra_fees_usd": null,
+      "route_available": true,
+      "closing_feasible": null,
+      "requires_external_repayment_liquidity": true,
+      "repayment_liquidity_confirmed": false,
+      "basis": "USER_ASSUMPTION",
+      "evidence_ids": [
+        "ev_7133a9eca40c7e1779819a33"
+      ]
+    }
+  ],
+  "forecasts": [],
+  "risk_observations": [],
+  "additional_nodes": [],
+  "additional_edges": []
+}

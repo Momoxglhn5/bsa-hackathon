@@ -1,0 +1,275 @@
+{
+  "schema_version": "sized-exit-quotes-v1",
+  "data_mode": "REAL",
+  "records": [
+    {
+      "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+      "size_usd": "1000000",
+      "status": "PARTIAL",
+      "quote": {
+        "chain_id": 1,
+        "value": "0.975361708337761225463026142287916102419917161077613140172436611048784587721084659967814830295945535481408294736567318921",
+        "base_asset": {
+          "chain_id": 1,
+          "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "symbol": null,
+          "name": null,
+          "decimals": 18
+        },
+        "quote_unit": "TOKEN",
+        "quote_asset": {
+          "chain_id": 1,
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "symbol": null,
+          "name": null,
+          "decimals": 6
+        },
+        "pricing_method": "EXECUTION_QUOTE",
+        "observed_at": "2026-10-10T19:21:58.661446Z",
+        "block_number": null,
+        "source_id": "pendle_api",
+        "evidence_ids": [
+          "ev_8625ef54460b3b9735c2d4dc"
+        ],
+        "status": "OK",
+        "kind": "EXIT",
+        "input_amount": "1023262.909262561972339205",
+        "output_amount": "998051.459257",
+        "venue": "KYBERSWAP",
+        "price_impact": "-0.0020568792289022823",
+        "valid_until": "2026-10-10T19:26:58.661446Z"
+      },
+      "context": {
+        "quote_id": "ev_8625ef54460b3b9735c2d4dc",
+        "position_id": "pos_simulated_1000000usd",
+        "quote": {
+          "chain_id": 1,
+          "value": "0.975361708337761225463026142287916102419917161077613140172436611048784587721084659967814830295945535481408294736567318921",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "symbol": null,
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "TOKEN",
+          "quote_asset": {
+            "chain_id": 1,
+            "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "symbol": null,
+            "name": null,
+            "decimals": 6
+          },
+          "pricing_method": "EXECUTION_QUOTE",
+          "observed_at": "2026-10-10T19:21:58.661446Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_8625ef54460b3b9735c2d4dc"
+          ],
+          "status": "OK",
+          "kind": "EXIT",
+          "input_amount": "1023262.909262561972339205",
+          "output_amount": "998051.459257",
+          "venue": "KYBERSWAP",
+          "price_impact": "-0.0020568792289022823",
+          "valid_until": "2026-10-10T19:26:58.661446Z"
+        },
+        "output_usd_price": {
+          "chain_id": 1,
+          "value": "0.99989145",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "symbol": null,
+            "name": null,
+            "decimals": 6
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-10T19:21:57.212358Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_dd63ee8b1f163f9b445bd776"
+          ],
+          "status": "OK",
+          "kind": "MARKET"
+        },
+        "gas_cost_usd": null,
+        "extra_fees_usd": null,
+        "route_available": true,
+        "closing_feasible": null,
+        "requires_external_repayment_liquidity": true,
+        "repayment_liquidity_confirmed": false,
+        "basis": "USER_ASSUMPTION",
+        "evidence_ids": [
+          "ev_8625ef54460b3b9735c2d4dc"
+        ]
+      },
+      "missing_fields": [
+        "closing_feasible",
+        "gas_cost_usd",
+        "extra_fees_usd",
+        "repayment_liquidity_confirmed"
+      ],
+      "position_id": "pos_simulated_1000000usd",
+      "input_amount": "1023262.909262561972339205",
+      "details": {
+        "min_output_amount_raw": "988070944664",
+        "gas_used_estimate": "2628538",
+        "reported_fee_usd": "464.3751554834484",
+        "fee_treatment": "Provider-reported; additional closing fees unknown",
+        "slippage_tolerance": "0.01",
+        "cache_ttl_seconds": 300,
+        "warning": "Indicative quote only; simulation receiver; no approval or transaction sent"
+      }
+    },
+    {
+      "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+      "size_usd": "2000000",
+      "status": "PARTIAL",
+      "quote": {
+        "chain_id": 1,
+        "value": "0.973656097079694828233691863769922596888737926514108908198117958829989087228452106724305348604778589193213773787404993480",
+        "base_asset": {
+          "chain_id": 1,
+          "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "symbol": null,
+          "name": null,
+          "decimals": 18
+        },
+        "quote_unit": "TOKEN",
+        "quote_asset": {
+          "chain_id": 1,
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "symbol": null,
+          "name": null,
+          "decimals": 6
+        },
+        "pricing_method": "EXECUTION_QUOTE",
+        "observed_at": "2026-10-10T19:21:59.940033Z",
+        "block_number": null,
+        "source_id": "pendle_api",
+        "evidence_ids": [
+          "ev_7133a9eca40c7e1779819a33"
+        ],
+        "status": "OK",
+        "kind": "EXIT",
+        "input_amount": "2046525.818525123944678410",
+        "output_amount": "1992612.341038",
+        "venue": "KYBERSWAP",
+        "price_impact": "-0.0038019785158098676",
+        "valid_until": "2026-10-10T19:26:59.940033Z"
+      },
+      "context": {
+        "quote_id": "ev_7133a9eca40c7e1779819a33",
+        "position_id": "pos_simulated_2000000usd",
+        "quote": {
+          "chain_id": 1,
+          "value": "0.973656097079694828233691863769922596888737926514108908198117958829989087228452106724305348604778589193213773787404993480",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "symbol": null,
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "TOKEN",
+          "quote_asset": {
+            "chain_id": 1,
+            "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "symbol": null,
+            "name": null,
+            "decimals": 6
+          },
+          "pricing_method": "EXECUTION_QUOTE",
+          "observed_at": "2026-10-10T19:21:59.940033Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_7133a9eca40c7e1779819a33"
+          ],
+          "status": "OK",
+          "kind": "EXIT",
+          "input_amount": "2046525.818525123944678410",
+          "output_amount": "1992612.341038",
+          "venue": "KYBERSWAP",
+          "price_impact": "-0.0038019785158098676",
+          "valid_until": "2026-10-10T19:26:59.940033Z"
+        },
+        "output_usd_price": {
+          "chain_id": 1,
+          "value": "0.99989145",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "symbol": null,
+            "name": null,
+            "decimals": 6
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-10T19:21:57.212358Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_dd63ee8b1f163f9b445bd776"
+          ],
+          "status": "OK",
+          "kind": "MARKET"
+        },
+        "gas_cost_usd": null,
+        "extra_fees_usd": null,
+        "route_available": true,
+        "closing_feasible": null,
+        "requires_external_repayment_liquidity": true,
+        "repayment_liquidity_confirmed": false,
+        "basis": "USER_ASSUMPTION",
+        "evidence_ids": [
+          "ev_7133a9eca40c7e1779819a33"
+        ]
+      },
+      "missing_fields": [
+        "closing_feasible",
+        "gas_cost_usd",
+        "extra_fees_usd",
+        "repayment_liquidity_confirmed"
+      ],
+      "position_id": "pos_simulated_2000000usd",
+      "input_amount": "2046525.818525123944678410",
+      "details": {
+        "min_output_amount_raw": "1972686217627",
+        "gas_used_estimate": "2628538",
+        "reported_fee_usd": "927.1262088795321",
+        "fee_treatment": "Provider-reported; additional closing fees unknown",
+        "slippage_tolerance": "0.01",
+        "cache_ttl_seconds": 300,
+        "warning": "Indicative quote only; simulation receiver; no approval or transaction sent"
+      }
+    },
+    {
+      "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+      "size_usd": "5000000",
+      "status": "UNAVAILABLE",
+      "quote": null,
+      "context": null,
+      "missing_fields": [
+        "closing_feasible",
+        "gas_cost_usd",
+        "extra_fees_usd",
+        "repayment_liquidity_confirmed",
+        "execution_quote"
+      ],
+      "position_id": "pos_simulated_5000000usd",
+      "input_amount": "5116314.546312809861696027",
+      "reason": "Pendle quote HTTP 400: {\"message\":\"MarketProportionTooHigh. Market liquidity is likely insufficient, please consider placing limit order or try again later.\",\"error\":\"Bad Request\"}",
+      "evidence_ids": [
+        "ev_7d156d5ba1bd9226e240be20"
+      ],
+      "observed_at": "2026-10-10T19:22:00.664387+00:00"
+    }
+  ]
+}

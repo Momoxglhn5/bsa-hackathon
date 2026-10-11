@@ -1,0 +1,2784 @@
+{
+  "version": "radar-jury-demo-v1",
+  "as_of": "2026-10-10T19:22:00.664387+00:00",
+  "snapshot_sha256": "6cade42ba9df0f48c39c55252e86053f717292f773cce15891929d09bd6b240a",
+  "position": {
+    "chain_id": 1,
+    "schema_version": "data-contract-v1.0",
+    "data_mode": "REAL",
+    "position_id": "pos_simulated_2000000usd",
+    "kind": "SIMULATED",
+    "protocol": "MORPHO_BLUE",
+    "market_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+    "owner": null,
+    "collateral_asset": {
+      "chain_id": 1,
+      "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+      "symbol": null,
+      "name": null,
+      "decimals": 18
+    },
+    "loan_asset": {
+      "chain_id": 1,
+      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": null,
+      "name": null,
+      "decimals": 6
+    },
+    "collateral_amount": "2046525.818525123944678410",
+    "collateral_amount_raw": null,
+    "borrow_amount": "1400151.986498",
+    "borrow_amount_raw": null,
+    "borrow_shares_raw": null,
+    "supply_shares_raw": null,
+    "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+    "label": "Hypothetical 2000000 USD collateral; 70% market LTV; capacity unverified",
+    "as_of": "2026-10-10T19:21:58.665097Z",
+    "block_number": null,
+    "status": "UNVERIFIED",
+    "source_ids": [
+      "analytics:user_assumption"
+    ],
+    "evidence_ids": []
+  },
+  "valuation": {
+    "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+    "debt_value_usd": "1399999.99999986564210",
+    "equity_usd": "600000.0000001343578999991580807148926210",
+    "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+    "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+    "lltv_ratio": "0.860000000000000000",
+    "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+    "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+    "liquidatable": false
+  },
+  "graph": {
+    "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+    "graph_status": "PARTIAL",
+    "snapshot_as_of": "2026-10-10T19:22:00.664387Z",
+    "nodes": [
+      {
+        "id": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+        "type": "ASSET",
+        "label": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+        "chain_id": 1,
+        "position_kind": null
+      },
+      {
+        "id": "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "type": "ASSET",
+        "label": "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "chain_id": 1,
+        "position_kind": null
+      },
+      {
+        "id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "type": "SY",
+        "label": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "chain_id": 1,
+        "position_kind": null
+      },
+      {
+        "id": "asset:1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "type": "ASSET",
+        "label": "asset:1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "chain_id": 1,
+        "position_kind": null
+      },
+      {
+        "id": "asset:1:0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+        "type": "ASSET",
+        "label": "asset:1:0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+        "chain_id": 1,
+        "position_kind": null
+      },
+      {
+        "id": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+        "type": "ASSET",
+        "label": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+        "chain_id": 1,
+        "position_kind": null
+      },
+      {
+        "id": "irm:1:0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+        "type": "IRM",
+        "label": "irm:1:0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+        "chain_id": 1,
+        "position_kind": null
+      },
+      {
+        "id": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+        "type": "MARKET",
+        "label": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+        "chain_id": 1,
+        "position_kind": null
+      },
+      {
+        "id": "oracle:1:0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+        "type": "ORACLE",
+        "label": "oracle:1:0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+        "chain_id": 1,
+        "position_kind": null
+      },
+      {
+        "id": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "type": "MARKET",
+        "label": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "chain_id": 1,
+        "position_kind": null
+      },
+      {
+        "id": "pos_simulated_2000000usd",
+        "type": "POSITION",
+        "label": "Hypothetical 2000000 USD collateral; 70% market LTV; capacity unverified",
+        "chain_id": 1,
+        "position_kind": "SIMULATED"
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge:2e4101a82c5a80e3f5465a88",
+        "source": "pos_simulated_2000000usd",
+        "target": "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "relation_type": "COLLATERALIZED_BY",
+        "verification_status": "HYPOTHESIS",
+        "evidence_ids": [],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "ECONOMIC",
+          "LIVENESS",
+          "EXECUTION"
+        ],
+        "required": true,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:22:00.664387Z",
+        "block_number": null
+      },
+      {
+        "id": "edge:494fb10a55e4079956186d5f",
+        "source": "pos_simulated_2000000usd",
+        "target": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+        "relation_type": "BORROWS_FROM",
+        "verification_status": "HYPOTHESIS",
+        "evidence_ids": [],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "ECONOMIC",
+          "LIVENESS",
+          "VALUATION",
+          "EXECUTION"
+        ],
+        "required": true,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:22:00.664387Z",
+        "block_number": null
+      },
+      {
+        "id": "edge:6b0eb674e3ef655131e95834",
+        "source": "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "target": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "relation_type": "REDEEMS_THROUGH",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_d198d3f9bf15eb2735fc9591"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "ECONOMIC",
+          "LIVENESS",
+          "EXECUTION"
+        ],
+        "required": true,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:22:00.664387Z",
+        "block_number": 26164093
+      },
+      {
+        "id": "rel_0aa7421553d2499ed66fefee",
+        "source": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "target": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+        "relation_type": "USES_YIELD_TOKEN",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_81bc89ce9cd859a8ff4c8466"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "LIVENESS",
+          "EXECUTION"
+        ],
+        "required": true,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093
+      },
+      {
+        "id": "rel_377f3eb31833ba5f1f8fefad",
+        "source": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "target": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+        "relation_type": "ACCOUNTED_IN",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_6b2784dfb1b2fbeed0f348d1"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "ECONOMIC"
+        ],
+        "required": false,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093
+      },
+      {
+        "id": "rel_37d7ae18c7e3452d74aec41c",
+        "source": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "target": "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "relation_type": "USES_PT",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_d198d3f9bf15eb2735fc9591"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "EXECUTION"
+        ],
+        "required": false,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093
+      },
+      {
+        "id": "rel_800d0f8a386b5043624d70e3",
+        "source": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "target": "asset:1:0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+        "relation_type": "USES_YT",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_d198d3f9bf15eb2735fc9591"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "EXECUTION"
+        ],
+        "required": false,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093
+      },
+      {
+        "id": "rel_83c3d77132f936130b875a9b",
+        "source": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+        "target": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+        "relation_type": "BACKED_BY",
+        "verification_status": "UNRESOLVED",
+        "evidence_ids": [
+          "ev_81bc89ce9cd859a8ff4c8466",
+          "ev_6b2784dfb1b2fbeed0f348d1"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "ECONOMIC",
+          "LIVENESS"
+        ],
+        "required": true,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": null
+      },
+      {
+        "id": "rel_936d169188cfa86be28e233b",
+        "source": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+        "target": "irm:1:0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+        "relation_type": "USES_IRM",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_19351c48162a9b2a0716fe40"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "ECONOMIC",
+          "LIVENESS"
+        ],
+        "required": true,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093
+      },
+      {
+        "id": "rel_b04f25c4f91128686217b60c",
+        "source": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+        "target": "oracle:1:0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+        "relation_type": "USES_ORACLE",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_19351c48162a9b2a0716fe40"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "VALUATION",
+          "LIVENESS"
+        ],
+        "required": true,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093
+      },
+      {
+        "id": "rel_f14a1f1d2496309293679e5c",
+        "source": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "target": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "relation_type": "USES_SY",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_d198d3f9bf15eb2735fc9591"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "ECONOMIC",
+          "LIVENESS",
+          "EXECUTION"
+        ],
+        "required": true,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093
+      },
+      {
+        "id": "rel_f4a5bc1d68b9f34cfda86463",
+        "source": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+        "target": "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "relation_type": "COLLATERALIZED_BY",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_19351c48162a9b2a0716fe40"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "ECONOMIC",
+          "LIVENESS",
+          "EXECUTION"
+        ],
+        "required": true,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093
+      },
+      {
+        "id": "rel_fdeb0cf074b3ad15299add24",
+        "source": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+        "target": "asset:1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "relation_type": "USES_LOAN_ASSET",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_19351c48162a9b2a0716fe40"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "ECONOMIC",
+          "LIVENESS"
+        ],
+        "required": true,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093
+      }
+    ],
+    "unknown_dependency_classes": [
+      "ORACLE_IMPLEMENTATION",
+      "YIELD_SOURCE",
+      "GOVERNANCE"
+    ],
+    "warnings": []
+  },
+  "quotes": [
+    {
+      "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+      "size_usd": "1000000",
+      "status": "PARTIAL",
+      "quote": {
+        "chain_id": 1,
+        "value": "0.975361708337761225463026142287916102419917161077613140172436611048784587721084659967814830295945535481408294736567318921",
+        "base_asset": {
+          "chain_id": 1,
+          "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "symbol": null,
+          "name": null,
+          "decimals": 18
+        },
+        "quote_unit": "TOKEN",
+        "quote_asset": {
+          "chain_id": 1,
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "symbol": null,
+          "name": null,
+          "decimals": 6
+        },
+        "pricing_method": "EXECUTION_QUOTE",
+        "observed_at": "2026-10-10T19:21:58.661446Z",
+        "block_number": null,
+        "source_id": "pendle_api",
+        "evidence_ids": [
+          "ev_8625ef54460b3b9735c2d4dc"
+        ],
+        "status": "OK",
+        "kind": "EXIT",
+        "input_amount": "1023262.909262561972339205",
+        "output_amount": "998051.459257",
+        "venue": "KYBERSWAP",
+        "price_impact": "-0.0020568792289022823",
+        "valid_until": "2026-10-10T19:26:58.661446Z"
+      },
+      "context": {
+        "quote_id": "ev_8625ef54460b3b9735c2d4dc",
+        "position_id": "pos_simulated_1000000usd",
+        "quote": {
+          "chain_id": 1,
+          "value": "0.975361708337761225463026142287916102419917161077613140172436611048784587721084659967814830295945535481408294736567318921",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "symbol": null,
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "TOKEN",
+          "quote_asset": {
+            "chain_id": 1,
+            "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "symbol": null,
+            "name": null,
+            "decimals": 6
+          },
+          "pricing_method": "EXECUTION_QUOTE",
+          "observed_at": "2026-10-10T19:21:58.661446Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_8625ef54460b3b9735c2d4dc"
+          ],
+          "status": "OK",
+          "kind": "EXIT",
+          "input_amount": "1023262.909262561972339205",
+          "output_amount": "998051.459257",
+          "venue": "KYBERSWAP",
+          "price_impact": "-0.0020568792289022823",
+          "valid_until": "2026-10-10T19:26:58.661446Z"
+        },
+        "output_usd_price": {
+          "chain_id": 1,
+          "value": "0.99989145",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "symbol": null,
+            "name": null,
+            "decimals": 6
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-10T19:21:57.212358Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_dd63ee8b1f163f9b445bd776"
+          ],
+          "status": "OK",
+          "kind": "MARKET"
+        },
+        "gas_cost_usd": null,
+        "extra_fees_usd": null,
+        "route_available": true,
+        "closing_feasible": null,
+        "requires_external_repayment_liquidity": true,
+        "repayment_liquidity_confirmed": false,
+        "basis": "USER_ASSUMPTION",
+        "evidence_ids": [
+          "ev_8625ef54460b3b9735c2d4dc"
+        ]
+      },
+      "missing_fields": [
+        "closing_feasible",
+        "gas_cost_usd",
+        "extra_fees_usd",
+        "repayment_liquidity_confirmed"
+      ],
+      "position_id": "pos_simulated_1000000usd",
+      "input_amount": "1023262.909262561972339205",
+      "details": {
+        "min_output_amount_raw": "988070944664",
+        "gas_used_estimate": "2628538",
+        "reported_fee_usd": "464.3751554834484",
+        "fee_treatment": "Provider-reported; additional closing fees unknown",
+        "slippage_tolerance": "0.01",
+        "cache_ttl_seconds": 300,
+        "warning": "Indicative quote only; simulation receiver; no approval or transaction sent"
+      }
+    },
+    {
+      "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+      "size_usd": "2000000",
+      "status": "PARTIAL",
+      "quote": {
+        "chain_id": 1,
+        "value": "0.973656097079694828233691863769922596888737926514108908198117958829989087228452106724305348604778589193213773787404993480",
+        "base_asset": {
+          "chain_id": 1,
+          "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "symbol": null,
+          "name": null,
+          "decimals": 18
+        },
+        "quote_unit": "TOKEN",
+        "quote_asset": {
+          "chain_id": 1,
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "symbol": null,
+          "name": null,
+          "decimals": 6
+        },
+        "pricing_method": "EXECUTION_QUOTE",
+        "observed_at": "2026-10-10T19:21:59.940033Z",
+        "block_number": null,
+        "source_id": "pendle_api",
+        "evidence_ids": [
+          "ev_7133a9eca40c7e1779819a33"
+        ],
+        "status": "OK",
+        "kind": "EXIT",
+        "input_amount": "2046525.818525123944678410",
+        "output_amount": "1992612.341038",
+        "venue": "KYBERSWAP",
+        "price_impact": "-0.0038019785158098676",
+        "valid_until": "2026-10-10T19:26:59.940033Z"
+      },
+      "context": {
+        "quote_id": "ev_7133a9eca40c7e1779819a33",
+        "position_id": "pos_simulated_2000000usd",
+        "quote": {
+          "chain_id": 1,
+          "value": "0.973656097079694828233691863769922596888737926514108908198117958829989087228452106724305348604778589193213773787404993480",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "symbol": null,
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "TOKEN",
+          "quote_asset": {
+            "chain_id": 1,
+            "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "symbol": null,
+            "name": null,
+            "decimals": 6
+          },
+          "pricing_method": "EXECUTION_QUOTE",
+          "observed_at": "2026-10-10T19:21:59.940033Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_7133a9eca40c7e1779819a33"
+          ],
+          "status": "OK",
+          "kind": "EXIT",
+          "input_amount": "2046525.818525123944678410",
+          "output_amount": "1992612.341038",
+          "venue": "KYBERSWAP",
+          "price_impact": "-0.0038019785158098676",
+          "valid_until": "2026-10-10T19:26:59.940033Z"
+        },
+        "output_usd_price": {
+          "chain_id": 1,
+          "value": "0.99989145",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "symbol": null,
+            "name": null,
+            "decimals": 6
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-10T19:21:57.212358Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_dd63ee8b1f163f9b445bd776"
+          ],
+          "status": "OK",
+          "kind": "MARKET"
+        },
+        "gas_cost_usd": null,
+        "extra_fees_usd": null,
+        "route_available": true,
+        "closing_feasible": null,
+        "requires_external_repayment_liquidity": true,
+        "repayment_liquidity_confirmed": false,
+        "basis": "USER_ASSUMPTION",
+        "evidence_ids": [
+          "ev_7133a9eca40c7e1779819a33"
+        ]
+      },
+      "missing_fields": [
+        "closing_feasible",
+        "gas_cost_usd",
+        "extra_fees_usd",
+        "repayment_liquidity_confirmed"
+      ],
+      "position_id": "pos_simulated_2000000usd",
+      "input_amount": "2046525.818525123944678410",
+      "details": {
+        "min_output_amount_raw": "1972686217627",
+        "gas_used_estimate": "2628538",
+        "reported_fee_usd": "927.1262088795321",
+        "fee_treatment": "Provider-reported; additional closing fees unknown",
+        "slippage_tolerance": "0.01",
+        "cache_ttl_seconds": 300,
+        "warning": "Indicative quote only; simulation receiver; no approval or transaction sent"
+      }
+    },
+    {
+      "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+      "size_usd": "5000000",
+      "status": "UNAVAILABLE",
+      "quote": null,
+      "context": null,
+      "missing_fields": [
+        "closing_feasible",
+        "gas_cost_usd",
+        "extra_fees_usd",
+        "repayment_liquidity_confirmed",
+        "execution_quote"
+      ],
+      "position_id": "pos_simulated_5000000usd",
+      "input_amount": "5116314.546312809861696027",
+      "reason": "Pendle quote HTTP 400: {\"message\":\"MarketProportionTooHigh. Market liquidity is likely insufficient, please consider placing limit order or try again later.\",\"error\":\"Bad Request\"}",
+      "evidence_ids": [
+        "ev_7d156d5ba1bd9226e240be20"
+      ],
+      "observed_at": "2026-10-10T19:22:00.664387+00:00"
+    }
+  ],
+  "cases": {
+    "10": {
+      "observed": {
+        "stress": {
+          "simulation_id": "stress:fcbfd7d6e8db85125f5c7921",
+          "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+          "position_id": "pos_simulated_2000000usd",
+          "horizon_days": 7,
+          "scenario_type": "UNAUTHORIZED_MINTING",
+          "scenario_scope": "HYPOTHETICAL",
+          "scenario_status": "CALCULATED",
+          "affected_node_ids": [
+            "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+            "pos_simulated_2000000usd"
+          ],
+          "affected_position_ids": [
+            "pos_simulated_2000000usd"
+          ],
+          "confirmed_exposed_capital_usd": "0",
+          "potentially_exposed_capital_usd": "600000.0000001343578999991580807148926210",
+          "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+          "operationally_blocked_usd": null,
+          "scenario_estimated_loss_usd": "199999.99999999999999999991580807148926210",
+          "position_effects": {
+            "pos_simulated_2000000usd": {
+              "before": {
+                "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+                "debt_value_usd": "1399999.99999986564210",
+                "equity_usd": "600000.0000001343578999991580807148926210",
+                "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+                "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+                "lltv_ratio": "0.860000000000000000",
+                "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+                "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+                "liquidatable": false
+              },
+              "after": {
+                "collateral_value_usd": "1799999.99999999999999999924227264340335890",
+                "debt_value_usd": "1399999.99999986564210",
+                "equity_usd": "400000.00000013435789999924227264340335890",
+                "gross_exposure_usd": "3199999.99999986564209999924227264340335890",
+                "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+                "lltv_ratio": "0.860000000000000000",
+                "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+                "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+                "liquidatable": false
+              },
+              "scenario_estimated_loss_usd": "199999.99999999999999999991580807148926210"
+            }
+          },
+          "representative_paths": {
+            "pos_simulated_2000000usd": [
+              "pos_simulated_2000000usd",
+              "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+            ]
+          },
+          "assumptions": [
+            "Simulated failure; not evidence of an actual incident",
+            "assumed_token_haircut_ratio=0.1"
+          ],
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ],
+          "warnings": []
+        },
+        "decisions": {
+          "2": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "INSUFFICIENT_DATA",
+            "verdict": null,
+            "comparison": null,
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "597000.0000001343578999991597645534628357580",
+            "exit_value_usd": null,
+            "expected_loss_usd": "3999.9999999999999999999983161614297852420",
+            "exit_cost_usd": null,
+            "net_carry_usd": "1000",
+            "break_even_probability": null,
+            "break_even_status": null,
+            "sensitivity_scenario_ref": "stress:fcbfd7d6e8db85125f5c7921",
+            "sensitivity_probability_max": null,
+            "quote_status": "INSUFFICIENT_DATA",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:fcbfd7d6e8db85125f5c7921"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Closing feasibility unknown",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          },
+          "10": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "INSUFFICIENT_DATA",
+            "verdict": null,
+            "comparison": null,
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "581000.000000134357899999166499907743694790",
+            "exit_value_usd": null,
+            "expected_loss_usd": "19999.999999999999999999991580807148926210",
+            "exit_cost_usd": null,
+            "net_carry_usd": "1000",
+            "break_even_probability": null,
+            "break_even_status": null,
+            "sensitivity_scenario_ref": "stress:fcbfd7d6e8db85125f5c7921",
+            "sensitivity_probability_max": null,
+            "quote_status": "INSUFFICIENT_DATA",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:fcbfd7d6e8db85125f5c7921"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Closing feasibility unknown",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          },
+          "20": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "INSUFFICIENT_DATA",
+            "verdict": null,
+            "comparison": null,
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "561000.000000134357899999174919100594768580",
+            "exit_value_usd": null,
+            "expected_loss_usd": "39999.999999999999999999983161614297852420",
+            "exit_cost_usd": null,
+            "net_carry_usd": "1000",
+            "break_even_probability": null,
+            "break_even_status": null,
+            "sensitivity_scenario_ref": "stress:fcbfd7d6e8db85125f5c7921",
+            "sensitivity_probability_max": null,
+            "quote_status": "INSUFFICIENT_DATA",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:fcbfd7d6e8db85125f5c7921"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Closing feasibility unknown",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          }
+        }
+      },
+      "conditional": {
+        "stress": {
+          "simulation_id": "stress:e0a9c6bea76117f06a371a5a",
+          "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+          "position_id": "pos_simulated_2000000usd",
+          "horizon_days": 7,
+          "scenario_type": "UNAUTHORIZED_MINTING",
+          "scenario_scope": "HYPOTHETICAL",
+          "scenario_status": "CALCULATED",
+          "affected_node_ids": [
+            "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+            "pos_simulated_2000000usd"
+          ],
+          "affected_position_ids": [
+            "pos_simulated_2000000usd"
+          ],
+          "confirmed_exposed_capital_usd": "0",
+          "potentially_exposed_capital_usd": "600000.0000001343578999991580807148926210",
+          "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+          "operationally_blocked_usd": null,
+          "scenario_estimated_loss_usd": "199999.99999999999999999991580807148926210",
+          "position_effects": {
+            "pos_simulated_2000000usd": {
+              "before": {
+                "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+                "debt_value_usd": "1399999.99999986564210",
+                "equity_usd": "600000.0000001343578999991580807148926210",
+                "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+                "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+                "lltv_ratio": "0.860000000000000000",
+                "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+                "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+                "liquidatable": false
+              },
+              "after": {
+                "collateral_value_usd": "1799999.99999999999999999924227264340335890",
+                "debt_value_usd": "1399999.99999986564210",
+                "equity_usd": "400000.00000013435789999924227264340335890",
+                "gross_exposure_usd": "3199999.99999986564209999924227264340335890",
+                "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+                "lltv_ratio": "0.860000000000000000",
+                "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+                "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+                "liquidatable": false
+              },
+              "scenario_estimated_loss_usd": "199999.99999999999999999991580807148926210"
+            }
+          },
+          "representative_paths": {
+            "pos_simulated_2000000usd": [
+              "pos_simulated_2000000usd",
+              "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+            ]
+          },
+          "assumptions": [
+            "Simulated failure; not evidence of an actual incident",
+            "assumed_token_haircut_ratio=0.1"
+          ],
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ],
+          "warnings": []
+        },
+        "decisions": {
+          "2": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "CONDITIONAL",
+            "verdict": "STAY",
+            "comparison": "STAY_BETTER",
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "597000.0000001343578999991597645534628357580",
+            "exit_value_usd": "592096.0429685146830000000000000000000000",
+            "expected_loss_usd": "3999.9999999999999999999983161614297852420",
+            "exit_cost_usd": "7903.9570316196748999991580807148926210",
+            "net_carry_usd": "1000",
+            "break_even_probability": "0.0445197851580983744999958091446073098251427145950747467296489",
+            "break_even_status": "WITHIN_FEASIBLE_RANGE",
+            "sensitivity_scenario_ref": "stress:e0a9c6bea76117f06a371a5a",
+            "sensitivity_probability_max": "1",
+            "quote_status": "OK",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:e0a9c6bea76117f06a371a5a"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Net quote output includes price impact; gas/extra fees added once",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          },
+          "10": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "CONDITIONAL",
+            "verdict": "EXIT",
+            "comparison": "EXIT_BETTER",
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "581000.000000134357899999166499907743694790",
+            "exit_value_usd": "592096.0429685146830000000000000000000000",
+            "expected_loss_usd": "19999.999999999999999999991580807148926210",
+            "exit_cost_usd": "7903.9570316196748999991580807148926210",
+            "net_carry_usd": "1000",
+            "break_even_probability": "0.0445197851580983744999958091446073098251427145950747467296489",
+            "break_even_status": "WITHIN_FEASIBLE_RANGE",
+            "sensitivity_scenario_ref": "stress:e0a9c6bea76117f06a371a5a",
+            "sensitivity_probability_max": "1",
+            "quote_status": "OK",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:e0a9c6bea76117f06a371a5a"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Net quote output includes price impact; gas/extra fees added once",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          },
+          "20": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "CONDITIONAL",
+            "verdict": "EXIT",
+            "comparison": "EXIT_BETTER",
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "561000.000000134357899999174919100594768580",
+            "exit_value_usd": "592096.0429685146830000000000000000000000",
+            "expected_loss_usd": "39999.999999999999999999983161614297852420",
+            "exit_cost_usd": "7903.9570316196748999991580807148926210",
+            "net_carry_usd": "1000",
+            "break_even_probability": "0.0445197851580983744999958091446073098251427145950747467296489",
+            "break_even_status": "WITHIN_FEASIBLE_RANGE",
+            "sensitivity_scenario_ref": "stress:e0a9c6bea76117f06a371a5a",
+            "sensitivity_probability_max": "1",
+            "quote_status": "OK",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:e0a9c6bea76117f06a371a5a"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Net quote output includes price impact; gas/extra fees added once",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          }
+        }
+      }
+    },
+    "20": {
+      "observed": {
+        "stress": {
+          "simulation_id": "stress:ea021726ad9f31d5c6437f66",
+          "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+          "position_id": "pos_simulated_2000000usd",
+          "horizon_days": 7,
+          "scenario_type": "UNAUTHORIZED_MINTING",
+          "scenario_scope": "HYPOTHETICAL",
+          "scenario_status": "CALCULATED",
+          "affected_node_ids": [
+            "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+            "pos_simulated_2000000usd"
+          ],
+          "affected_position_ids": [
+            "pos_simulated_2000000usd"
+          ],
+          "confirmed_exposed_capital_usd": "0",
+          "potentially_exposed_capital_usd": "600000.0000001343578999991580807148926210",
+          "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+          "operationally_blocked_usd": null,
+          "scenario_estimated_loss_usd": "399999.99999999999999999983161614297852420",
+          "position_effects": {
+            "pos_simulated_2000000usd": {
+              "before": {
+                "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+                "debt_value_usd": "1399999.99999986564210",
+                "equity_usd": "600000.0000001343578999991580807148926210",
+                "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+                "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+                "lltv_ratio": "0.860000000000000000",
+                "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+                "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+                "liquidatable": false
+              },
+              "after": {
+                "collateral_value_usd": "1599999.99999999999999999932646457191409680",
+                "debt_value_usd": "1399999.99999986564210",
+                "equity_usd": "200000.00000013435789999932646457191409680",
+                "gross_exposure_usd": "2999999.99999986564209999932646457191409680",
+                "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+                "lltv_ratio": "0.860000000000000000",
+                "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+                "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+                "liquidatable": false
+              },
+              "scenario_estimated_loss_usd": "399999.99999999999999999983161614297852420"
+            }
+          },
+          "representative_paths": {
+            "pos_simulated_2000000usd": [
+              "pos_simulated_2000000usd",
+              "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+            ]
+          },
+          "assumptions": [
+            "Simulated failure; not evidence of an actual incident",
+            "assumed_token_haircut_ratio=0.2"
+          ],
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ],
+          "warnings": []
+        },
+        "decisions": {
+          "2": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "INSUFFICIENT_DATA",
+            "verdict": null,
+            "comparison": null,
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "593000.0000001343578999991614483920330505160",
+            "exit_value_usd": null,
+            "expected_loss_usd": "7999.9999999999999999999966323228595704840",
+            "exit_cost_usd": null,
+            "net_carry_usd": "1000",
+            "break_even_probability": null,
+            "break_even_status": null,
+            "sensitivity_scenario_ref": "stress:ea021726ad9f31d5c6437f66",
+            "sensitivity_probability_max": null,
+            "quote_status": "INSUFFICIENT_DATA",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:ea021726ad9f31d5c6437f66"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Closing feasibility unknown",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          },
+          "10": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "INSUFFICIENT_DATA",
+            "verdict": null,
+            "comparison": null,
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "561000.000000134357899999174919100594768580",
+            "exit_value_usd": null,
+            "expected_loss_usd": "39999.999999999999999999983161614297852420",
+            "exit_cost_usd": null,
+            "net_carry_usd": "1000",
+            "break_even_probability": null,
+            "break_even_status": null,
+            "sensitivity_scenario_ref": "stress:ea021726ad9f31d5c6437f66",
+            "sensitivity_probability_max": null,
+            "quote_status": "INSUFFICIENT_DATA",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:ea021726ad9f31d5c6437f66"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Closing feasibility unknown",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          },
+          "20": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "INSUFFICIENT_DATA",
+            "verdict": null,
+            "comparison": null,
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "521000.000000134357899999191757486296916160",
+            "exit_value_usd": null,
+            "expected_loss_usd": "79999.999999999999999999966323228595704840",
+            "exit_cost_usd": null,
+            "net_carry_usd": "1000",
+            "break_even_probability": null,
+            "break_even_status": null,
+            "sensitivity_scenario_ref": "stress:ea021726ad9f31d5c6437f66",
+            "sensitivity_probability_max": null,
+            "quote_status": "INSUFFICIENT_DATA",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:ea021726ad9f31d5c6437f66"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Closing feasibility unknown",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          }
+        }
+      },
+      "conditional": {
+        "stress": {
+          "simulation_id": "stress:e042d30201f275155b869c72",
+          "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+          "position_id": "pos_simulated_2000000usd",
+          "horizon_days": 7,
+          "scenario_type": "UNAUTHORIZED_MINTING",
+          "scenario_scope": "HYPOTHETICAL",
+          "scenario_status": "CALCULATED",
+          "affected_node_ids": [
+            "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+            "pos_simulated_2000000usd"
+          ],
+          "affected_position_ids": [
+            "pos_simulated_2000000usd"
+          ],
+          "confirmed_exposed_capital_usd": "0",
+          "potentially_exposed_capital_usd": "600000.0000001343578999991580807148926210",
+          "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+          "operationally_blocked_usd": null,
+          "scenario_estimated_loss_usd": "399999.99999999999999999983161614297852420",
+          "position_effects": {
+            "pos_simulated_2000000usd": {
+              "before": {
+                "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+                "debt_value_usd": "1399999.99999986564210",
+                "equity_usd": "600000.0000001343578999991580807148926210",
+                "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+                "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+                "lltv_ratio": "0.860000000000000000",
+                "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+                "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+                "liquidatable": false
+              },
+              "after": {
+                "collateral_value_usd": "1599999.99999999999999999932646457191409680",
+                "debt_value_usd": "1399999.99999986564210",
+                "equity_usd": "200000.00000013435789999932646457191409680",
+                "gross_exposure_usd": "2999999.99999986564209999932646457191409680",
+                "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+                "lltv_ratio": "0.860000000000000000",
+                "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+                "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+                "liquidatable": false
+              },
+              "scenario_estimated_loss_usd": "399999.99999999999999999983161614297852420"
+            }
+          },
+          "representative_paths": {
+            "pos_simulated_2000000usd": [
+              "pos_simulated_2000000usd",
+              "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+            ]
+          },
+          "assumptions": [
+            "Simulated failure; not evidence of an actual incident",
+            "assumed_token_haircut_ratio=0.2"
+          ],
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ],
+          "warnings": []
+        },
+        "decisions": {
+          "2": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "CONDITIONAL",
+            "verdict": "STAY",
+            "comparison": "STAY_BETTER",
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "593000.0000001343578999991614483920330505160",
+            "exit_value_usd": "592096.0429685146830000000000000000000000",
+            "expected_loss_usd": "7999.9999999999999999999966323228595704840",
+            "exit_cost_usd": "7903.9570316196748999991580807148926210",
+            "net_carry_usd": "1000",
+            "break_even_probability": "0.0222598925790491872499979045723036549125713572975373733648245",
+            "break_even_status": "WITHIN_FEASIBLE_RANGE",
+            "sensitivity_scenario_ref": "stress:e042d30201f275155b869c72",
+            "sensitivity_probability_max": "1",
+            "quote_status": "OK",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:e042d30201f275155b869c72"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Net quote output includes price impact; gas/extra fees added once",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          },
+          "10": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "CONDITIONAL",
+            "verdict": "EXIT",
+            "comparison": "EXIT_BETTER",
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "561000.000000134357899999174919100594768580",
+            "exit_value_usd": "592096.0429685146830000000000000000000000",
+            "expected_loss_usd": "39999.999999999999999999983161614297852420",
+            "exit_cost_usd": "7903.9570316196748999991580807148926210",
+            "net_carry_usd": "1000",
+            "break_even_probability": "0.0222598925790491872499979045723036549125713572975373733648245",
+            "break_even_status": "WITHIN_FEASIBLE_RANGE",
+            "sensitivity_scenario_ref": "stress:e042d30201f275155b869c72",
+            "sensitivity_probability_max": "1",
+            "quote_status": "OK",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:e042d30201f275155b869c72"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Net quote output includes price impact; gas/extra fees added once",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          },
+          "20": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "CONDITIONAL",
+            "verdict": "EXIT",
+            "comparison": "EXIT_BETTER",
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "521000.000000134357899999191757486296916160",
+            "exit_value_usd": "592096.0429685146830000000000000000000000",
+            "expected_loss_usd": "79999.999999999999999999966323228595704840",
+            "exit_cost_usd": "7903.9570316196748999991580807148926210",
+            "net_carry_usd": "1000",
+            "break_even_probability": "0.0222598925790491872499979045723036549125713572975373733648245",
+            "break_even_status": "WITHIN_FEASIBLE_RANGE",
+            "sensitivity_scenario_ref": "stress:e042d30201f275155b869c72",
+            "sensitivity_probability_max": "1",
+            "quote_status": "OK",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:e042d30201f275155b869c72"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Net quote output includes price impact; gas/extra fees added once",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          }
+        }
+      }
+    },
+    "40": {
+      "observed": {
+        "stress": {
+          "simulation_id": "stress:f6599b8842efe72e947ba12b",
+          "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+          "position_id": "pos_simulated_2000000usd",
+          "horizon_days": 7,
+          "scenario_type": "UNAUTHORIZED_MINTING",
+          "scenario_scope": "HYPOTHETICAL",
+          "scenario_status": "CALCULATED",
+          "affected_node_ids": [
+            "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+            "pos_simulated_2000000usd"
+          ],
+          "affected_position_ids": [
+            "pos_simulated_2000000usd"
+          ],
+          "confirmed_exposed_capital_usd": "0",
+          "potentially_exposed_capital_usd": "600000.0000001343578999991580807148926210",
+          "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+          "operationally_blocked_usd": null,
+          "scenario_estimated_loss_usd": "799999.99999999999999999966323228595704840",
+          "position_effects": {
+            "pos_simulated_2000000usd": {
+              "before": {
+                "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+                "debt_value_usd": "1399999.99999986564210",
+                "equity_usd": "600000.0000001343578999991580807148926210",
+                "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+                "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+                "lltv_ratio": "0.860000000000000000",
+                "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+                "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+                "liquidatable": false
+              },
+              "after": {
+                "collateral_value_usd": "1199999.99999999999999999949484842893557260",
+                "debt_value_usd": "1399999.99999986564210",
+                "equity_usd": "-199999.99999986564210000050515157106442740",
+                "gross_exposure_usd": "2599999.99999986564209999949484842893557260",
+                "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+                "lltv_ratio": "0.860000000000000000",
+                "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+                "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+                "liquidatable": false
+              },
+              "scenario_estimated_loss_usd": "799999.99999999999999999966323228595704840"
+            }
+          },
+          "representative_paths": {
+            "pos_simulated_2000000usd": [
+              "pos_simulated_2000000usd",
+              "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+            ]
+          },
+          "assumptions": [
+            "Simulated failure; not evidence of an actual incident",
+            "assumed_token_haircut_ratio=0.4"
+          ],
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ],
+          "warnings": []
+        },
+        "decisions": {
+          "2": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "INSUFFICIENT_DATA",
+            "verdict": null,
+            "comparison": null,
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "585000.0000001343578999991648160691734800320",
+            "exit_value_usd": null,
+            "expected_loss_usd": "15999.9999999999999999999932646457191409680",
+            "exit_cost_usd": null,
+            "net_carry_usd": "1000",
+            "break_even_probability": null,
+            "break_even_status": null,
+            "sensitivity_scenario_ref": "stress:f6599b8842efe72e947ba12b",
+            "sensitivity_probability_max": null,
+            "quote_status": "INSUFFICIENT_DATA",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:f6599b8842efe72e947ba12b"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Closing feasibility unknown",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          },
+          "10": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "INSUFFICIENT_DATA",
+            "verdict": null,
+            "comparison": null,
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "521000.000000134357899999191757486296916160",
+            "exit_value_usd": null,
+            "expected_loss_usd": "79999.999999999999999999966323228595704840",
+            "exit_cost_usd": null,
+            "net_carry_usd": "1000",
+            "break_even_probability": null,
+            "break_even_status": null,
+            "sensitivity_scenario_ref": "stress:f6599b8842efe72e947ba12b",
+            "sensitivity_probability_max": null,
+            "quote_status": "INSUFFICIENT_DATA",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:f6599b8842efe72e947ba12b"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Closing feasibility unknown",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          },
+          "20": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "INSUFFICIENT_DATA",
+            "verdict": null,
+            "comparison": null,
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "441000.000000134357899999225434257701211320",
+            "exit_value_usd": null,
+            "expected_loss_usd": "159999.999999999999999999932646457191409680",
+            "exit_cost_usd": null,
+            "net_carry_usd": "1000",
+            "break_even_probability": null,
+            "break_even_status": null,
+            "sensitivity_scenario_ref": "stress:f6599b8842efe72e947ba12b",
+            "sensitivity_probability_max": null,
+            "quote_status": "INSUFFICIENT_DATA",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:f6599b8842efe72e947ba12b"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Closing feasibility unknown",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          }
+        }
+      },
+      "conditional": {
+        "stress": {
+          "simulation_id": "stress:6f5023836b7de6783664402d",
+          "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+          "position_id": "pos_simulated_2000000usd",
+          "horizon_days": 7,
+          "scenario_type": "UNAUTHORIZED_MINTING",
+          "scenario_scope": "HYPOTHETICAL",
+          "scenario_status": "CALCULATED",
+          "affected_node_ids": [
+            "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+            "pos_simulated_2000000usd"
+          ],
+          "affected_position_ids": [
+            "pos_simulated_2000000usd"
+          ],
+          "confirmed_exposed_capital_usd": "0",
+          "potentially_exposed_capital_usd": "600000.0000001343578999991580807148926210",
+          "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+          "operationally_blocked_usd": null,
+          "scenario_estimated_loss_usd": "799999.99999999999999999966323228595704840",
+          "position_effects": {
+            "pos_simulated_2000000usd": {
+              "before": {
+                "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+                "debt_value_usd": "1399999.99999986564210",
+                "equity_usd": "600000.0000001343578999991580807148926210",
+                "gross_exposure_usd": "3399999.9999998656420999991580807148926210",
+                "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+                "lltv_ratio": "0.860000000000000000",
+                "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+                "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+                "liquidatable": false
+              },
+              "after": {
+                "collateral_value_usd": "1199999.99999999999999999949484842893557260",
+                "debt_value_usd": "1399999.99999986564210",
+                "equity_usd": "-199999.99999986564210000050515157106442740",
+                "gross_exposure_usd": "2599999.99999986564209999949484842893557260",
+                "oracle_collateral_value_loan_units": "1972351.980250300591081438198044248613955380000000",
+                "lltv_ratio": "0.860000000000000000",
+                "ltv_ratio": "0.709889512885176932426800400978189794552535584653743987910942",
+                "health_factor": "1.21145612717214926480010471980832633517907268467126382594990",
+                "liquidatable": false
+              },
+              "scenario_estimated_loss_usd": "799999.99999999999999999966323228595704840"
+            }
+          },
+          "representative_paths": {
+            "pos_simulated_2000000usd": [
+              "pos_simulated_2000000usd",
+              "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+            ]
+          },
+          "assumptions": [
+            "Simulated failure; not evidence of an actual incident",
+            "assumed_token_haircut_ratio=0.4"
+          ],
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ],
+          "warnings": []
+        },
+        "decisions": {
+          "2": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "CONDITIONAL",
+            "verdict": "EXIT",
+            "comparison": "EXIT_BETTER",
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "585000.0000001343578999991648160691734800320",
+            "exit_value_usd": "592096.0429685146830000000000000000000000",
+            "expected_loss_usd": "15999.9999999999999999999932646457191409680",
+            "exit_cost_usd": "7903.9570316196748999991580807148926210",
+            "net_carry_usd": "1000",
+            "break_even_probability": "0.0111299462895245936249989522861518274562856786487686866824122",
+            "break_even_status": "WITHIN_FEASIBLE_RANGE",
+            "sensitivity_scenario_ref": "stress:6f5023836b7de6783664402d",
+            "sensitivity_probability_max": "1",
+            "quote_status": "OK",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:6f5023836b7de6783664402d"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Net quote output includes price impact; gas/extra fees added once",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          },
+          "10": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "CONDITIONAL",
+            "verdict": "EXIT",
+            "comparison": "EXIT_BETTER",
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "521000.000000134357899999191757486296916160",
+            "exit_value_usd": "592096.0429685146830000000000000000000000",
+            "expected_loss_usd": "79999.999999999999999999966323228595704840",
+            "exit_cost_usd": "7903.9570316196748999991580807148926210",
+            "net_carry_usd": "1000",
+            "break_even_probability": "0.0111299462895245936249989522861518274562856786487686866824122",
+            "break_even_status": "WITHIN_FEASIBLE_RANGE",
+            "sensitivity_scenario_ref": "stress:6f5023836b7de6783664402d",
+            "sensitivity_probability_max": "1",
+            "quote_status": "OK",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:6f5023836b7de6783664402d"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Net quote output includes price impact; gas/extra fees added once",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          },
+          "20": {
+            "horizon_days": 7,
+            "requested_mode": "normal",
+            "effective_mode": "normal",
+            "forecast_bundle_id": null,
+            "fallback_reason": null,
+            "decision_status": "CONDITIONAL",
+            "verdict": "EXIT",
+            "comparison": "EXIT_BETTER",
+            "equity_now_usd": "600000.0000001343578999991580807148926210",
+            "stay_value_usd": "441000.000000134357899999225434257701211320",
+            "exit_value_usd": "592096.0429685146830000000000000000000000",
+            "expected_loss_usd": "159999.999999999999999999932646457191409680",
+            "exit_cost_usd": "7903.9570316196748999991580807148926210",
+            "net_carry_usd": "1000",
+            "break_even_probability": "0.0111299462895245936249989522861518274562856786487686866824122",
+            "break_even_status": "WITHIN_FEASIBLE_RANGE",
+            "sensitivity_scenario_ref": "stress:6f5023836b7de6783664402d",
+            "sensitivity_probability_max": "1",
+            "quote_status": "OK",
+            "requires_external_repayment_liquidity": true,
+            "included_scenario_ids": [
+              "stress:6f5023836b7de6783664402d"
+            ],
+            "excluded_scenario_ids": [],
+            "excluded_unquantified_scenario_ids": [],
+            "assumption_basis": "ASSUMPTION_DRIVEN",
+            "structural_risk_index": null,
+            "risk_completeness_pct": "30",
+            "explanation": [
+              "Conditional comparison in USD using the same current equity.",
+              "Probabilities and net carry are explicit user assumptions for this horizon.",
+              "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+              "Net quote output includes price impact; gas/extra fees added once",
+              "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+              "Structural Risk Index is explanatory only and never used as a probability."
+            ],
+            "warnings": [
+              "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "evidence": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_8f2761d737414fcb8478caac",
+      "source_kind": "MORPHO_API",
+      "source_id": "morpho_api",
+      "method": "GET rest:/v1/blue/markets",
+      "target_address": null,
+      "request_params": {
+        "chain_id": "1",
+        "limit": "100",
+        "collateral_token": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:50.733912Z",
+      "payload_sha256": "227431b252cf7f859d18b9f1d93bb158352330750fc0a67bab972985276c711b",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_059ab3ee9aa81965b8923dc7",
+      "source_kind": "MORPHO_API",
+      "source_id": "morpho_api",
+      "method": "GET rest:/v1/blue/markets",
+      "target_address": null,
+      "request_params": {
+        "chain_id": "1",
+        "limit": "100",
+        "collateral_token": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:57.021767Z",
+      "payload_sha256": "227431b252cf7f859d18b9f1d93bb158352330750fc0a67bab972985276c711b",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_1ce361e3d03ad20d7c0f5b2b",
+      "source_kind": "MORPHO_API",
+      "source_id": "morpho_api",
+      "method": "POST graphql:marketById",
+      "target_address": null,
+      "request_params": {},
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:57.162706Z",
+      "payload_sha256": "845b84ebbef7ea3aa46e8c4252969ee61064fcee603ac6751bdd8e6abfd31ea2",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_94cf643451aa9aff13b4f0d8",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "GET rest:/v2/markets/all",
+      "target_address": null,
+      "request_params": {
+        "skip": "0",
+        "limit": "100",
+        "chainId": "1",
+        "isActive": "true"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:51.323589Z",
+      "payload_sha256": "7354283201bf7beee434757160982fe260e02dd09d82f3b774868c95a1015f09",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_b2e480e2150210efd2c61d61",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "GET rest:/v2/markets/all",
+      "target_address": null,
+      "request_params": {
+        "skip": "0",
+        "limit": "100",
+        "chainId": "1",
+        "isActive": "true"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:57.184440Z",
+      "payload_sha256": "7354283201bf7beee434757160982fe260e02dd09d82f3b774868c95a1015f09",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_dd63ee8b1f163f9b445bd776",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "GET rest:/v1/prices/assets",
+      "target_address": null,
+      "request_params": {
+        "ids": "1-0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1,1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48,1-0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+        "chainId": "1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:57.212358Z",
+      "payload_sha256": "aa7e7bde826411e0282f0642a728868fe3ddab79dbe090c19bf16eb4c5251f73",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_8625ef54460b3b9735c2d4dc",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "POST /v3/sdk/1/convert",
+      "target_address": null,
+      "request_params": {
+        "market": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "body": "{\"enableAggregator\":true,\"inputs\":[{\"amount\":\"1023262909262561972339205\",\"token\":\"0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1\"}],\"outputs\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"receiver\":\"0x1111111111111111111111111111111111111111\",\"slippage\":0.01,\"useLimitOrder\":false}"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:58.661446Z",
+      "payload_sha256": "f0a5d0d62de61ca7c26a094300f24664667553e2ee9d1d379e67b0766ed5f9d1",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_7133a9eca40c7e1779819a33",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "POST /v3/sdk/1/convert",
+      "target_address": null,
+      "request_params": {
+        "market": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "body": "{\"enableAggregator\":true,\"inputs\":[{\"amount\":\"2046525818525123944678410\",\"token\":\"0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1\"}],\"outputs\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"receiver\":\"0x1111111111111111111111111111111111111111\",\"slippage\":0.01,\"useLimitOrder\":false}"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:59.940033Z",
+      "payload_sha256": "cff55a63c4f364e960ec21afce256381ffc46459f340fae2efc61b4dad8f965a",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_7d156d5ba1bd9226e240be20",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "POST /v3/sdk/1/convert",
+      "target_address": null,
+      "request_params": {
+        "market": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "body": "{\"enableAggregator\":true,\"inputs\":[{\"amount\":\"5116314546312809861696027\",\"token\":\"0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1\"}],\"outputs\":[\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"],\"receiver\":\"0x1111111111111111111111111111111111111111\",\"slippage\":0.01,\"useLimitOrder\":false}"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:22:00.664387Z",
+      "payload_sha256": "68580cd68834c41a13074826f06d22cb1caab55f7d9523f2e793280bb279588b",
+      "status": "ERROR",
+      "error_message": "Pendle quote HTTP 400: {\"message\":\"MarketProportionTooHigh. Market liquidity is likely insufficient, please consider placing limit order or try again later.\",\"error\":\"Bad Request\"}",
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_19351c48162a9b2a0716fe40",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call idToMarketParams(bytes32)",
+      "target_address": "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[\"0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689\"]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.083962Z",
+      "payload_sha256": "59a08045d0abe75d8118960ff7139cd264823cc493fad8342088853fb660c559",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "loanToken": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "collateralToken": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "oracle": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+        "irm": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+        "lltv": "860000000000000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_d198d3f9bf15eb2735fc9591",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call readTokens()",
+      "target_address": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.227347Z",
+      "payload_sha256": "63446b4e7f0cb192b61c2b5f3fb91f9ae24adf65a54c7fe42ca7f97e68f42600",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "_SY": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "_PT": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "_YT": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_6a4df0e0f1c0f77409f194da",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call expiry()",
+      "target_address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.289867Z",
+      "payload_sha256": "525794155f4e874dba363bdaecd7b2cffc72e74bad14746b157c96e4e6235642",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "1799280000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_81bc89ce9cd859a8ff4c8466",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call yieldToken()",
+      "target_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.354541Z",
+      "payload_sha256": "3afcaa99eedd9b05b5b171a743cc7a6f71146431340f64f79d07c530c099263b",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_6b2784dfb1b2fbeed0f348d1",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call assetInfo()",
+      "target_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.442140Z",
+      "payload_sha256": "e8cdc4869ebd17201306a3a19ca192292ce7fd3c26d35250979c6ce1b64ab9d7",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "assetType": "0",
+        "assetAddress": "0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+        "assetDecimals": "18"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_bef76d38a6e3343303960685",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call market(bytes32)",
+      "target_address": "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[\"0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689\"]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.628145Z",
+      "payload_sha256": "0d6956efcf155c4c466e6a40835793e346cafc6acf65a67c9b273b1082832fe0",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "totalSupplyAssets": "501505873442",
+        "totalSupplyShares": "501036614583514175",
+        "totalBorrowAssets": "451328132536",
+        "totalBorrowShares": "450853043398898159",
+        "lastUpdate": "1791577595",
+        "fee": "0"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_079e8fcea3cf169853e20c5a",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.851512Z",
+      "payload_sha256": "260e3f760669de6e739ffeb466f92636c0d72ca6ff91a7ec83064f188de746ef",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "963756216704718418000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_6f06762a86cdf523c39b329a",
+      "source_kind": "USER_INPUT",
+      "source_id": "demo_closing_assumption",
+      "method": "illustrative_closing_plan",
+      "target_address": null,
+      "request_params": {},
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:22:00.664387Z",
+      "payload_sha256": "6f06762a86cdf523c39b329a2ed44796b80dcb43469c669cd37ffcc215bd3596",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": {
+        "closing_feasible": "True",
+        "repayment_liquidity_confirmed": "True",
+        "gas_cost_usd": "300",
+        "extra_fees_usd": "0",
+        "basis": "USER_ASSUMPTION"
+      },
+      "parser_version": null
+    }
+  ],
+  "closing_assumptions": {
+    "closing_feasible": true,
+    "repayment_liquidity_confirmed": true,
+    "gas_cost_usd": "300",
+    "extra_fees_usd": "0",
+    "basis": "USER_ASSUMPTION"
+  },
+  "net_carry_assumption_usd": "1000",
+  "mc": {
+    "schema_version": "monte-carlo-real-validation-v1",
+    "executed_at": "2026-10-11T00:04:45.630269+00:00",
+    "snapshot_as_of": "2026-10-11T00:02:47.435526+00:00",
+    "snapshot_sha256": "43147940b54f45d047e14b8c565cd3ca40db7e24091540a6dc34277df3bbecd3",
+    "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+    "position_id": "pos_mc_validation",
+    "position_kind": "SIMULATED",
+    "market_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+    "oracle_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+    "observed_calibration_status": "UNAVAILABLE",
+    "required_daily_samples": 31,
+    "missing_fields": [
+      "oracle_series.sample:2026-09-11T00:00:00Z",
+      "oracle_series.sample:2026-09-12T00:00:00Z",
+      "oracle_series.sample:2026-09-13T00:00:00Z",
+      "oracle_series.sample:2026-09-14T00:00:00Z",
+      "oracle_series.sample:2026-09-15T00:00:00Z",
+      "oracle_series.sample:2026-09-16T00:00:00Z",
+      "oracle_series.sample:2026-09-17T00:00:00Z",
+      "oracle_series.sample:2026-09-18T00:00:00Z",
+      "oracle_series.sample:2026-09-19T00:00:00Z",
+      "oracle_series.sample:2026-09-20T00:00:00Z",
+      "oracle_series.sample:2026-09-21T00:00:00Z",
+      "oracle_series.sample:2026-09-22T00:00:00Z",
+      "oracle_series.sample:2026-09-23T00:00:00Z",
+      "oracle_series.sample:2026-09-24T00:00:00Z",
+      "oracle_series.sample:2026-09-25T00:00:00Z",
+      "oracle_series.sample:2026-09-26T00:00:00Z",
+      "oracle_series.sample:2026-09-27T00:00:00Z",
+      "oracle_series.sample:2026-09-28T00:00:00Z",
+      "oracle_series.sample:2026-09-29T00:00:00Z",
+      "oracle_series.sample:2026-09-30T00:00:00Z"
+    ],
+    "calibration": null,
+    "history": {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "series_id": "ts_oracle_price_799ba318e18396326c4df95c",
+      "metric": "ORACLE_PRICE",
+      "subject_kind": "MARKET",
+      "subject_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "unit": "TOKEN",
+      "quote_asset": {
+        "chain_id": 1,
+        "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "symbol": null,
+        "name": null,
+        "decimals": 6
+      },
+      "pricing_method": "MORPHO_ORACLE",
+      "interval_seconds": null,
+      "source_id": "ethereum_rpc",
+      "status": "OK",
+      "points": [
+        {
+          "timestamp": "2026-09-30T23:59:59Z",
+          "value": "0.959726022640791477000000",
+          "status": "OK",
+          "block_number": 26093737,
+          "evidence_ids": [
+            "ev_d35423c41624512ec983d3f8"
+          ]
+        },
+        {
+          "timestamp": "2026-10-01T23:59:59Z",
+          "value": "0.960136981544901066000000",
+          "status": "OK",
+          "block_number": 26100913,
+          "evidence_ids": [
+            "ev_6ccebb1732d99bdffa832998"
+          ]
+        },
+        {
+          "timestamp": "2026-10-02T23:59:59Z",
+          "value": "0.960547940449010655000000",
+          "status": "OK",
+          "block_number": 26108081,
+          "evidence_ids": [
+            "ev_112abb70500b570ca5ce246d"
+          ]
+        },
+        {
+          "timestamp": "2026-10-03T23:59:59Z",
+          "value": "0.960958899353120244000000",
+          "status": "OK",
+          "block_number": 26115260,
+          "evidence_ids": [
+            "ev_033106a061e87050fe4839fa"
+          ]
+        },
+        {
+          "timestamp": "2026-10-04T23:59:59Z",
+          "value": "0.961369858257229833000000",
+          "status": "OK",
+          "block_number": 26122439,
+          "evidence_ids": [
+            "ev_2e3a2905308e462957071a2a"
+          ]
+        },
+        {
+          "timestamp": "2026-10-05T23:59:59Z",
+          "value": "0.961780817161339422000000",
+          "status": "OK",
+          "block_number": 26129614,
+          "evidence_ids": [
+            "ev_f9fadffd286d5db97f6087d9"
+          ]
+        },
+        {
+          "timestamp": "2026-10-06T23:59:59Z",
+          "value": "0.962191776065449011000000",
+          "status": "OK",
+          "block_number": 26136782,
+          "evidence_ids": [
+            "ev_1e383d5b0136558ced681e38"
+          ]
+        },
+        {
+          "timestamp": "2026-10-07T23:59:59Z",
+          "value": "0.962602734969558600000000",
+          "status": "OK",
+          "block_number": 26143955,
+          "evidence_ids": [
+            "ev_504f6c59ca7dd530121b9bd1"
+          ]
+        },
+        {
+          "timestamp": "2026-10-08T23:59:59Z",
+          "value": "0.963013693873668189000000",
+          "status": "OK",
+          "block_number": 26151122,
+          "evidence_ids": [
+            "ev_fb755c11a4fda4ff81fe9111"
+          ]
+        },
+        {
+          "timestamp": "2026-10-09T23:59:59Z",
+          "value": "0.963424652777777778000000",
+          "status": "OK",
+          "block_number": 26158300,
+          "evidence_ids": [
+            "ev_1449ce76c2f8f1ef2fc00e07"
+          ]
+        },
+        {
+          "timestamp": "2026-10-10T23:59:59Z",
+          "value": "0.963835611681887367000000",
+          "status": "OK",
+          "block_number": 26165481,
+          "evidence_ids": [
+            "ev_87f3d8c45cb9f64ebe0503cc"
+          ]
+        }
+      ]
+    },
+    "runs": [
+      {
+        "source": "OBSERVED_ORACLE_SERIES",
+        "horizon_days": 1,
+        "result": {
+          "schema_version": "monte-carlo-internal-v1",
+          "status": "UNAVAILABLE",
+          "as_of": "2026-10-11T00:02:47.435526Z",
+          "data": null,
+          "provenance": {
+            "calibration": "OBSERVED_ORACLE_SERIES",
+            "evidence_ids": [],
+            "oracle_calibration": null
+          },
+          "missing_fields": [
+            "oracle_series.sample:2026-09-11T00:00:00Z",
+            "oracle_series.sample:2026-09-12T00:00:00Z",
+            "oracle_series.sample:2026-09-13T00:00:00Z",
+            "oracle_series.sample:2026-09-14T00:00:00Z",
+            "oracle_series.sample:2026-09-15T00:00:00Z",
+            "oracle_series.sample:2026-09-16T00:00:00Z",
+            "oracle_series.sample:2026-09-17T00:00:00Z",
+            "oracle_series.sample:2026-09-18T00:00:00Z",
+            "oracle_series.sample:2026-09-19T00:00:00Z",
+            "oracle_series.sample:2026-09-20T00:00:00Z",
+            "oracle_series.sample:2026-09-21T00:00:00Z",
+            "oracle_series.sample:2026-09-22T00:00:00Z",
+            "oracle_series.sample:2026-09-23T00:00:00Z",
+            "oracle_series.sample:2026-09-24T00:00:00Z",
+            "oracle_series.sample:2026-09-25T00:00:00Z",
+            "oracle_series.sample:2026-09-26T00:00:00Z",
+            "oracle_series.sample:2026-09-27T00:00:00Z",
+            "oracle_series.sample:2026-09-28T00:00:00Z",
+            "oracle_series.sample:2026-09-29T00:00:00Z",
+            "oracle_series.sample:2026-09-30T00:00:00Z"
+          ],
+          "warnings": [
+            "NO_SIMULATION_RUN",
+            "NO_FIXTURE_SUBSTITUTED"
+          ]
+        }
+      },
+      {
+        "source": "OBSERVED_ORACLE_SERIES",
+        "horizon_days": 3,
+        "result": {
+          "schema_version": "monte-carlo-internal-v1",
+          "status": "UNAVAILABLE",
+          "as_of": "2026-10-11T00:02:47.435526Z",
+          "data": null,
+          "provenance": {
+            "calibration": "OBSERVED_ORACLE_SERIES",
+            "evidence_ids": [],
+            "oracle_calibration": null
+          },
+          "missing_fields": [
+            "oracle_series.sample:2026-09-11T00:00:00Z",
+            "oracle_series.sample:2026-09-12T00:00:00Z",
+            "oracle_series.sample:2026-09-13T00:00:00Z",
+            "oracle_series.sample:2026-09-14T00:00:00Z",
+            "oracle_series.sample:2026-09-15T00:00:00Z",
+            "oracle_series.sample:2026-09-16T00:00:00Z",
+            "oracle_series.sample:2026-09-17T00:00:00Z",
+            "oracle_series.sample:2026-09-18T00:00:00Z",
+            "oracle_series.sample:2026-09-19T00:00:00Z",
+            "oracle_series.sample:2026-09-20T00:00:00Z",
+            "oracle_series.sample:2026-09-21T00:00:00Z",
+            "oracle_series.sample:2026-09-22T00:00:00Z",
+            "oracle_series.sample:2026-09-23T00:00:00Z",
+            "oracle_series.sample:2026-09-24T00:00:00Z",
+            "oracle_series.sample:2026-09-25T00:00:00Z",
+            "oracle_series.sample:2026-09-26T00:00:00Z",
+            "oracle_series.sample:2026-09-27T00:00:00Z",
+            "oracle_series.sample:2026-09-28T00:00:00Z",
+            "oracle_series.sample:2026-09-29T00:00:00Z",
+            "oracle_series.sample:2026-09-30T00:00:00Z"
+          ],
+          "warnings": [
+            "NO_SIMULATION_RUN",
+            "NO_FIXTURE_SUBSTITUTED"
+          ]
+        }
+      },
+      {
+        "source": "OBSERVED_ORACLE_SERIES",
+        "horizon_days": 7,
+        "result": {
+          "schema_version": "monte-carlo-internal-v1",
+          "status": "UNAVAILABLE",
+          "as_of": "2026-10-11T00:02:47.435526Z",
+          "data": null,
+          "provenance": {
+            "calibration": "OBSERVED_ORACLE_SERIES",
+            "evidence_ids": [],
+            "oracle_calibration": null
+          },
+          "missing_fields": [
+            "oracle_series.sample:2026-09-11T00:00:00Z",
+            "oracle_series.sample:2026-09-12T00:00:00Z",
+            "oracle_series.sample:2026-09-13T00:00:00Z",
+            "oracle_series.sample:2026-09-14T00:00:00Z",
+            "oracle_series.sample:2026-09-15T00:00:00Z",
+            "oracle_series.sample:2026-09-16T00:00:00Z",
+            "oracle_series.sample:2026-09-17T00:00:00Z",
+            "oracle_series.sample:2026-09-18T00:00:00Z",
+            "oracle_series.sample:2026-09-19T00:00:00Z",
+            "oracle_series.sample:2026-09-20T00:00:00Z",
+            "oracle_series.sample:2026-09-21T00:00:00Z",
+            "oracle_series.sample:2026-09-22T00:00:00Z",
+            "oracle_series.sample:2026-09-23T00:00:00Z",
+            "oracle_series.sample:2026-09-24T00:00:00Z",
+            "oracle_series.sample:2026-09-25T00:00:00Z",
+            "oracle_series.sample:2026-09-26T00:00:00Z",
+            "oracle_series.sample:2026-09-27T00:00:00Z",
+            "oracle_series.sample:2026-09-28T00:00:00Z",
+            "oracle_series.sample:2026-09-29T00:00:00Z",
+            "oracle_series.sample:2026-09-30T00:00:00Z"
+          ],
+          "warnings": [
+            "NO_SIMULATION_RUN",
+            "NO_FIXTURE_SUBSTITUTED"
+          ]
+        }
+      },
+      {
+        "source": "USER_ASSUMPTION",
+        "horizon_days": 1,
+        "annual_volatility_assumption": "0.25",
+        "result": {
+          "schema_version": "monte-carlo-internal-v1",
+          "status": "OK",
+          "as_of": "2026-10-11T00:02:47.435526Z",
+          "data": {
+            "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+            "position_id": "pos_mc_validation",
+            "model_version": "GBM_ORACLE_PRICE_V1",
+            "horizon_days": 1,
+            "initial_ltv": "0.6017619046831808146181368312",
+            "initial_health_factor": "1.429136662369443132448275862",
+            "critical_oracle_drop_ratio": "0.3002768550195571923044920568",
+            "breached_paths": 0,
+            "total_paths": 10000,
+            "simulated_threshold_breach_frequency": "0",
+            "terminal_ltv_p50": "0.6019171317904378",
+            "terminal_ltv_p95": "0.6151425261797481",
+            "min_health_factor_p05": "1.3980499858197026",
+            "mc_sampling_ci_95": {
+              "low": "0.0",
+              "high": "0.00038401247776654115"
+            },
+            "oracle_mark_to_model_var95_loan_units": "20965.433021917874",
+            "oracle_mark_to_model_es95_loan_units": "26099.468198116614",
+            "realized_liquidation_loss_usd": null,
+            "assumptions": [
+              "Oracle price follows GBM in debt-token-per-PT units",
+              "Annual volatility and drift are assumptions in PR1",
+              "PT collateral quantity held constant",
+              "Debt model: FROZEN_DEBT",
+              "CONSTANT_APR, when selected, uses D0 * exp(apr * t / 365)",
+              "No oracle hack simulated",
+              "No protocol exploit simulated",
+              "No liquidation execution simulated",
+              "PT spot price is not used",
+              "Chronos is not used",
+              "FinBERT is not used",
+              "Threshold breach frequency is a model-implied simulation frequency",
+              "Losses are oracle mark-to-model values in loan-token units, not USD",
+              "Wilson interval describes sampling uncertainty only"
+            ]
+          },
+          "provenance": {
+            "calibration": "USER_ASSUMPTION",
+            "evidence_ids": [
+              "ev_19351c48162a9b2a0716fe40",
+              "ev_1b0fbcaa3d7758fe1d010dd9",
+              "ev_1d38d9b48dfea10dd8684c0e",
+              "ev_6783e16446deed875dbac3a0",
+              "ev_6a4df0e0f1c0f77409f194da",
+              "ev_6b2784dfb1b2fbeed0f348d1",
+              "ev_81bc89ce9cd859a8ff4c8466",
+              "ev_8f2761d737414fcb8478caac",
+              "ev_94cf643451aa9aff13b4f0d8",
+              "ev_9d8782b579be68e23bbc19fb",
+              "ev_ba41505e51d8b62431788e61",
+              "ev_d198d3f9bf15eb2735fc9591"
+            ],
+            "oracle_calibration": null
+          },
+          "missing_fields": [],
+          "warnings": [
+            "MODEL_RISK_GBM",
+            "NOT_A_REAL_WORLD_LIQUIDATION_PROBABILITY",
+            "DAILY_STEPS_MAY_MISS_INTRADAY_BREACH",
+            "HYPOTHETICAL_INPUT_SCOPE",
+            "FROZEN_DEBT",
+            "INPUT_DATA_MODE_REAL",
+            "VOLATILITY_AND_DRIFT_ARE_USER_ASSUMPTIONS_NOT_CALIBRATED",
+            "HYPOTHETICAL_POSITION_AMOUNTS",
+            "FROZEN_REPLAY_NOT_LIVE"
+          ]
+        }
+      },
+      {
+        "source": "USER_ASSUMPTION",
+        "horizon_days": 3,
+        "annual_volatility_assumption": "0.25",
+        "result": {
+          "schema_version": "monte-carlo-internal-v1",
+          "status": "OK",
+          "as_of": "2026-10-11T00:02:47.435526Z",
+          "data": {
+            "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+            "position_id": "pos_mc_validation",
+            "model_version": "GBM_ORACLE_PRICE_V1",
+            "horizon_days": 3,
+            "initial_ltv": "0.6017619046831808146181368312",
+            "initial_health_factor": "1.429136662369443132448275862",
+            "critical_oracle_drop_ratio": "0.3002768550195571923044920568",
+            "breached_paths": 0,
+            "total_paths": 10000,
+            "simulated_threshold_breach_frequency": "0",
+            "terminal_ltv_p50": "0.6017899249880835",
+            "terminal_ltv_p95": "0.6248625971165127",
+            "min_health_factor_p05": "1.3746581516243686",
+            "mc_sampling_ci_95": {
+              "low": "0.0",
+              "high": "0.00038401247776654115"
+            },
+            "oracle_mark_to_model_var95_loan_units": "35632.29294600417",
+            "oracle_mark_to_model_es95_loan_units": "44132.68247688182",
+            "realized_liquidation_loss_usd": null,
+            "assumptions": [
+              "Oracle price follows GBM in debt-token-per-PT units",
+              "Annual volatility and drift are assumptions in PR1",
+              "PT collateral quantity held constant",
+              "Debt model: FROZEN_DEBT",
+              "CONSTANT_APR, when selected, uses D0 * exp(apr * t / 365)",
+              "No oracle hack simulated",
+              "No protocol exploit simulated",
+              "No liquidation execution simulated",
+              "PT spot price is not used",
+              "Chronos is not used",
+              "FinBERT is not used",
+              "Threshold breach frequency is a model-implied simulation frequency",
+              "Losses are oracle mark-to-model values in loan-token units, not USD",
+              "Wilson interval describes sampling uncertainty only"
+            ]
+          },
+          "provenance": {
+            "calibration": "USER_ASSUMPTION",
+            "evidence_ids": [
+              "ev_19351c48162a9b2a0716fe40",
+              "ev_1b0fbcaa3d7758fe1d010dd9",
+              "ev_1d38d9b48dfea10dd8684c0e",
+              "ev_6783e16446deed875dbac3a0",
+              "ev_6a4df0e0f1c0f77409f194da",
+              "ev_6b2784dfb1b2fbeed0f348d1",
+              "ev_81bc89ce9cd859a8ff4c8466",
+              "ev_8f2761d737414fcb8478caac",
+              "ev_94cf643451aa9aff13b4f0d8",
+              "ev_9d8782b579be68e23bbc19fb",
+              "ev_ba41505e51d8b62431788e61",
+              "ev_d198d3f9bf15eb2735fc9591"
+            ],
+            "oracle_calibration": null
+          },
+          "missing_fields": [],
+          "warnings": [
+            "MODEL_RISK_GBM",
+            "NOT_A_REAL_WORLD_LIQUIDATION_PROBABILITY",
+            "DAILY_STEPS_MAY_MISS_INTRADAY_BREACH",
+            "HYPOTHETICAL_INPUT_SCOPE",
+            "FROZEN_DEBT",
+            "INPUT_DATA_MODE_REAL",
+            "VOLATILITY_AND_DRIFT_ARE_USER_ASSUMPTIONS_NOT_CALIBRATED",
+            "HYPOTHETICAL_POSITION_AMOUNTS",
+            "FROZEN_REPLAY_NOT_LIVE"
+          ]
+        }
+      },
+      {
+        "source": "USER_ASSUMPTION",
+        "horizon_days": 7,
+        "annual_volatility_assumption": "0.25",
+        "result": {
+          "schema_version": "monte-carlo-internal-v1",
+          "status": "OK",
+          "as_of": "2026-10-11T00:02:47.435526Z",
+          "data": {
+            "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+            "position_id": "pos_mc_validation",
+            "model_version": "GBM_ORACLE_PRICE_V1",
+            "horizon_days": 7,
+            "initial_ltv": "0.6017619046831808146181368312",
+            "initial_health_factor": "1.429136662369443132448275862",
+            "critical_oracle_drop_ratio": "0.3002768550195571923044920568",
+            "breached_paths": 0,
+            "total_paths": 10000,
+            "simulated_threshold_breach_frequency": "0",
+            "terminal_ltv_p50": "0.602475325219862",
+            "terminal_ltv_p95": "0.6374197800107914",
+            "min_health_factor_p05": "1.342952303300687",
+            "mc_sampling_ci_95": {
+              "low": "0.0",
+              "high": "0.00038401247776654115"
+            },
+            "oracle_mark_to_model_var95_loan_units": "53917.931431124256",
+            "oracle_mark_to_model_es95_loan_units": "67121.44984114914",
+            "realized_liquidation_loss_usd": null,
+            "assumptions": [
+              "Oracle price follows GBM in debt-token-per-PT units",
+              "Annual volatility and drift are assumptions in PR1",
+              "PT collateral quantity held constant",
+              "Debt model: FROZEN_DEBT",
+              "CONSTANT_APR, when selected, uses D0 * exp(apr * t / 365)",
+              "No oracle hack simulated",
+              "No protocol exploit simulated",
+              "No liquidation execution simulated",
+              "PT spot price is not used",
+              "Chronos is not used",
+              "FinBERT is not used",
+              "Threshold breach frequency is a model-implied simulation frequency",
+              "Losses are oracle mark-to-model values in loan-token units, not USD",
+              "Wilson interval describes sampling uncertainty only"
+            ]
+          },
+          "provenance": {
+            "calibration": "USER_ASSUMPTION",
+            "evidence_ids": [
+              "ev_19351c48162a9b2a0716fe40",
+              "ev_1b0fbcaa3d7758fe1d010dd9",
+              "ev_1d38d9b48dfea10dd8684c0e",
+              "ev_6783e16446deed875dbac3a0",
+              "ev_6a4df0e0f1c0f77409f194da",
+              "ev_6b2784dfb1b2fbeed0f348d1",
+              "ev_81bc89ce9cd859a8ff4c8466",
+              "ev_8f2761d737414fcb8478caac",
+              "ev_94cf643451aa9aff13b4f0d8",
+              "ev_9d8782b579be68e23bbc19fb",
+              "ev_ba41505e51d8b62431788e61",
+              "ev_d198d3f9bf15eb2735fc9591"
+            ],
+            "oracle_calibration": null
+          },
+          "missing_fields": [],
+          "warnings": [
+            "MODEL_RISK_GBM",
+            "NOT_A_REAL_WORLD_LIQUIDATION_PROBABILITY",
+            "DAILY_STEPS_MAY_MISS_INTRADAY_BREACH",
+            "HYPOTHETICAL_INPUT_SCOPE",
+            "FROZEN_DEBT",
+            "INPUT_DATA_MODE_REAL",
+            "VOLATILITY_AND_DRIFT_ARE_USER_ASSUMPTIONS_NOT_CALIBRATED",
+            "HYPOTHETICAL_POSITION_AMOUNTS",
+            "FROZEN_REPLAY_NOT_LIVE"
+          ]
+        }
+      }
+    ],
+    "checks": {
+      "seed_reproducible_j1": true,
+      "assumption_scope_hypothetical_j1": true,
+      "seed_reproducible_j3": true,
+      "assumption_scope_hypothetical_j3": true,
+      "seed_reproducible_j7": true,
+      "assumption_scope_hypothetical_j7": true,
+      "missing_history_not_substituted": true,
+      "stale_inputs_refused": true,
+      "oracle_proof_mismatch_refused": true
+    },
+    "limitations": [
+      "Archived replay, not live execution.",
+      "Simulated funds remain hypothetical; REAL_DATA requires a verified on-chain position.",
+      "Breach frequency is model-implied, not an objective liquidation probability.",
+      "Losses are oracle mark-to-model amounts in loan-token units, not realized losses or USD."
+    ],
+    "missing_daily_samples": 20,
+    "available_daily_samples": 11,
+    "status": "PARTIAL_VALIDATION"
+  }
+}

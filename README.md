@@ -7,7 +7,7 @@ Analyse en lecture seule de positions d'emprunt Morpho utilisant des PT Pendle :
 - [Tracks et informations sur DoraHacks](https://dorahacks.io/hackathon/bsa-the-hackathon/tracks)
 - Track visé dans les briefs projet : Belem Capital DeFi Risk Challenge ; règles de soumission à revérifier sur la source officielle.
 - Backend : Python 3.13, FastAPI, Pydantic v2, NetworkX, Decimal, snapshots JSON.
-- Frontend : hors du périmètre actuellement implémenté.
+- Interface jury : parcours hors ligne en quatre étapes, alimenté par un replay de données réelles et les moteurs Core.
 
 ## Disponible localement
 
@@ -18,7 +18,17 @@ Analyse en lecture seule de positions d'emprunt Morpho utilisant des PT Pendle :
 - Monte Carlo du prix oracle Morpho raccordé à Data, avec calibration de volatilité sur la série oracle prouvée par RPC ; contrôlé sur un snapshot de marché réel avec 11 observations RPC ; les runs sous hypothèse passent, la calibration sur 31 points reste indisponible ([détails](docs/implementation/monte_carlo_pr2.md)).
 - Sept endpoints sous `/api/v1`, documentation OpenAPI et tests automatisés.
 
-**La démo analytics incluse est entièrement synthétique.** Les moteurs sont branchés aux stores SQLite/Parquet Data et aux relations vérifiées. Le manifeste livré est `VERIFIED_ACTIVE` ; les stores réels, ignorés par Git, doivent être collectés ou transférés séparément. Les prix USD et quotes absents restent `null` ; aucun verdict réel n'est forcé.
+**Le script de démo analytics utilise des fixtures synthétiques.** La [démo jury](docs/demo/radar/README.md) utilise un marché et des prix réels enregistrés, des fonds simulés et des hypothèses explicites. Les moteurs sont branchés aux stores SQLite/Parquet Data et aux relations vérifiées. Le manifeste livré est `VERIFIED_ACTIVE` ; les stores réels, ignorés par Git, doivent être collectés ou transférés séparément. Les prix USD et quotes absents restent `null` ; aucun verdict réel n'est forcé.
+
+## Démo jury en deux minutes
+
+Ouvrir [la page autonome](docs/demo/radar/index.html), ou lancer :
+
+```bash
+python3 -m http.server 8766 --bind 127.0.0.1 --directory docs/demo
+```
+
+Ouvrir <http://127.0.0.1:8766/radar/> : dépendances et preuves → sorties 1/2/5 M$ → impact du choc → STAY/EXIT conditionnel. Le [texte à présenter](docs/demo/radar/README.md) précise le parcours et les limites. Marilou et Monte Carlo restent accessibles dans les compléments.
 
 ## Développement
 
