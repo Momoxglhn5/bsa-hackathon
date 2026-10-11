@@ -141,6 +141,7 @@ Bundle absent, périmé/futur ou non validé : repli Normal avec `FORECAST_UNAVA
 
 | Méthode | Route | Résultat |
 | --- | --- | --- |
+| GET | `/api/v1/catalog` | Stratégies, marchés, positions et contextes de devis chargés par Core : seuls identifiants valides pour `position_id` et `exit_quote_id` du dataset servi ; pas une liste de wallet |
 | GET | `/api/v1/graph/{strategy_id}` | Dépendances, preuves et inconnues |
 | GET | `/api/v1/risk/{strategy_id}` | Facteurs, score si publiable, couverture, confiance et santé des positions |
 | GET | `/api/v1/scenarios` | Catalogue statique, disponible sans stockage initialisé |

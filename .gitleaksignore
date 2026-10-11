@@ -39,3 +39,12 @@ docs/demo/radar/index.html:generic-api-key:14
 1809658637557b9aee4c70b44ff78107619c85e9:docs/demo/radar/demo-data.json:generic-api-key:2045
 1809658637557b9aee4c70b44ff78107619c85e9:docs/demo/radar/demo-data.json:generic-api-key:2046
 1809658637557b9aee4c70b44ff78107619c85e9:docs/demo/radar/index.html:generic-api-key:14
+
+# Reviewed public contract addresses (yield_token, collateral_token, loanToken) added to the
+# jury demo archive by 737ee1b.
+737ee1bef09ba88019c12a9e7db62aafbb9514ab:docs/demo/radar/source/dependencies.json:generic-api-key:8
+docs/demo/radar/source/dependencies.json:generic-api-key:8
+docs/demo/radar/demo-data.json:generic-api-key:2579
+docs/demo/radar/demo-data.json:generic-api-key:2603
+docs/demo/radar/demo-data.json:generic-api-key:2798
+docs/demo/radar/demo-data.json:generic-api-key:2799

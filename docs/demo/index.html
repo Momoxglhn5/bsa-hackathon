@@ -8,7 +8,7 @@
 </style>
 </head>
 <body><main>
-<header><div class="brand">marilou<span>.</span> <small style="font-size:12px;font-weight:450;color:var(--muted)">DeFi Risk Radar / BSA</small></div><span class="badge">Prototype expérimental</span></header>
+<header><div class="brand">marilou<span>.</span> <small style="font-size:12px;font-weight:450;color:var(--muted)">DeFiNe / BSA</small></div><span class="badge">Prototype expérimental</span></header>
 <section class="intro"><div class="eyebrow">Prévision · Pendle PT · J+7</div><h1>Anticiper le prix d’un PT.<br>Garder l’incertitude visible.</h1><p class="muted">Historiques réels, modèles préentraînés, comparaison avec un prix inchangé. Démo hors ligne : résultats calculés sur un snapshot arrêté au <strong id="asof"></strong>.</p></section>
 <section class="cards" aria-label="Résultats exploratoires globaux à sept jours"><div class="card"><div class="label">Erreur à J7 face à Chronos-2</div><div class="value green" id="gain-chronos"></div><small>Réduction de MAE · test réutilisé</small></div><div class="card"><div class="label">Erreur à J7 face au prix inchangé</div><div class="value green" id="gain-baseline"></div><small>Moyenne sur 4 PT · 8 fenêtres</small></div><div class="card"><div class="label">Couverture réelle de l’intervalle à J7</div><div class="value orange" id="coverage"></div><small>Intervalle nominal de 80 % · calibration insuffisante</small></div></section>
 <section class="panel"><div class="horizon"><div><h2>Historique & prévision</h2><p class="muted" style="font-size:13px;margin:0">Prix du PT en USD · modèle TimesFM 2.5</p></div><span class="chip" id="observations"></span></div>

@@ -150,12 +150,12 @@ class RawSnapshotMeta:
 
 
 class SqliteStore:
-    def __init__(self, path: str | Path | None = None) -> None:
+    def __init__(self, path: str | Path | None = None, *, check_same_thread: bool = True) -> None:
         path = default_db_path() if path is None else path
         if str(path) != ":memory:":
             Path(path).parent.mkdir(parents=True, exist_ok=True)
         self.path = str(path)
-        self._conn = sqlite3.connect(self.path)
+        self._conn = sqlite3.connect(self.path, check_same_thread=check_same_thread)
         with self._conn:
             self._conn.executescript(_SCHEMA)
             self._conn.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")

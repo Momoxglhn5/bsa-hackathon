@@ -2,7 +2,7 @@
 
 ## Pitch de 60 à 90 secondes
 
-« Dans DeFi Risk Radar, nous analysons des stratégies Morpho qui utilisent des
+« Dans DeFiNe, nous analysons des stratégies Morpho qui utilisent des
 PT Pendle. Marilou explore une question complémentaire : quelle trajectoire le
 prix de marché d’un PT pourrait-il suivre dans les sept prochains jours ?
 

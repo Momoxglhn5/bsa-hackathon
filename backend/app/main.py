@@ -43,7 +43,7 @@ def create_app(
     if snapshot is None and os.environ.get("ANALYTICS_SNAPSHOT"):
         snapshot = load_snapshot(os.environ["ANALYTICS_SNAPSHOT"])
     replay = (os.environ.get("ANALYTICS_REPLAY", str(snapshot is not None)).lower() == "true") if replay is None else replay
-    app = FastAPI(title="DeFi Risk Radar — Data and Core Analytics", version="1.1.0")
+    app = FastAPI(title="DeFiNe — Data and Core Analytics", version="1.1.0")
     app.state.db_path = db_path or default_db_path()
     app.state.timeseries_root = timeseries_root or default_data_dir() / "timeseries"
     app.state.clock = clock or (lambda: datetime.now(timezone.utc))

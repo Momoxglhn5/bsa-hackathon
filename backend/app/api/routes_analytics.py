@@ -5,8 +5,11 @@ from fastapi import APIRouter, Depends, Query
 from app.models.evidence import DataMode
 from pydantic import BaseModel, Field
 
-from app.analytics.dataset import AnalyticsSnapshot
+from app.analytics.dataset import AnalyticsSnapshot, QuoteContext
 from app.analytics.service import AnalyticsService
+from app.models.market import MarketDTO
+from app.models.position import PositionDTO
+from app.models.strategy import StrategyDTO
 from app.graph.builder import build_graph
 from app.graph.types import GraphDTO
 from app.graph.exposure import DependencyExposure, dependency_exposure
@@ -49,6 +52,19 @@ class Envelope(BaseModel, Generic[T]):
 class ScenarioCatalog(ContractModel):
     scenario_types: tuple[str, ...]
     probability_basis: str = "USER_ASSUMPTION"
+
+
+class AnalyticsCatalog(ContractModel):
+    """Objects already loaded by Core, so a client selects ids instead of reconstructing them.
+
+    Not a wallet listing: positions are those of the served dataset (often SIMULATED).
+    Quote contexts are the only valid `exit_quote_id` values for this dataset.
+    """
+    description: str
+    strategies: tuple[StrategyDTO, ...]
+    markets: tuple[MarketDTO, ...]
+    positions: tuple[PositionDTO, ...]
+    quotes: tuple[QuoteContext, ...]
 
 
 class IncidentFrequencies(ContractModel):
@@ -101,6 +117,13 @@ def create_router(service=None, *, provider=None):
                                               position_kinds=tuple(sorted({p.kind.value for p in snapshot.positions})),
                                               replay=service.replay, evaluated_at=service.now(), evidence=snapshot.evidence),
                         missing_fields=missing, warnings=tuple(warnings))
+
+    @router.get("/catalog", response_model=Envelope[AnalyticsCatalog],
+                summary="Strategies, positions and exit quote contexts loaded by Core (read-only)")
+    def catalog(service=Depends(resolve)):
+        s = service.snapshot
+        return envelope(service, AnalyticsCatalog(description=s.description, strategies=s.strategies,
+                                                  markets=s.markets, positions=s.positions, quotes=s.quotes))
 
     @router.get("/graph/{strategy_id}", response_model=Envelope[GraphDTO], summary="Dependencies and supporting evidence")
     def graph(strategy_id: str, service=Depends(resolve)):
