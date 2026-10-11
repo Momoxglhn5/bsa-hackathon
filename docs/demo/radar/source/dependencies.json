@@ -1,0 +1,287 @@
+{
+  "schema_version": "dependency-discovery-v1",
+  "as_of": "2026-10-11T02:10:53.881470+00:00",
+  "block_number": 26164093,
+  "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+  "block_time": "2026-10-10T19:21:47+00:00",
+  "sy_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+  "yield_token": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+  "relations": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_452d4acda6a48046a5d65dbe",
+      "source_node_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "target_node_id": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+      "relation_type": "SY_ACCEPTS_INPUT",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_325e403a57da7fa3d406fedc"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": "Declared alternative deposit/redemption token; not a guarantee of liquidity, execution or backing."
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_ca4072b356fb86d80922862d",
+      "source_node_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "target_node_id": "asset:1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "relation_type": "SY_ACCEPTS_INPUT",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_325e403a57da7fa3d406fedc"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": "Declared alternative deposit/redemption token; not a guarantee of liquidity, execution or backing."
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_8cb0e011149cf089a13849cb",
+      "source_node_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "target_node_id": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+      "relation_type": "SY_ACCEPTS_INPUT",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_325e403a57da7fa3d406fedc"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": "Declared alternative deposit/redemption token; not a guarantee of liquidity, execution or backing."
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_16bb1279553ddb4973595b10",
+      "source_node_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "target_node_id": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+      "relation_type": "SY_REDEEMS_TO",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_4fcc48852a1ca7dbf15652fb"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": "Declared alternative deposit/redemption token; not a guarantee of liquidity, execution or backing."
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_159c446db10381f89b65c9f5",
+      "source_node_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "target_node_id": "asset:1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "relation_type": "SY_REDEEMS_TO",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_4fcc48852a1ca7dbf15652fb"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": "Declared alternative deposit/redemption token; not a guarantee of liquidity, execution or backing."
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_597c169a1c202bdfee3a2ad4",
+      "source_node_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "target_node_id": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+      "relation_type": "SY_REDEEMS_TO",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_4fcc48852a1ca7dbf15652fb"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": "Declared alternative deposit/redemption token; not a guarantee of liquidity, execution or backing."
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_fe5a5ede0b2ad3b7bbfec7a8",
+      "source_node_id": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+      "target_node_id": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+      "relation_type": "TOKEN_DECLARED_ASSET",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_f14af79f0cef60a3d2bebc21"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": "asset() declares a token dependency; ERC4626 compliance, reserves and solvency remain unverified. No automatic loss propagation."
+    }
+  ],
+  "evidence": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_81bc89ce9cd859a8ff4c8466",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call yieldToken()",
+      "target_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-11T02:10:53.426537Z",
+      "payload_sha256": "3afcaa99eedd9b05b5b171a743cc7a6f71146431340f64f79d07c530c099263b",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_6b2784dfb1b2fbeed0f348d1",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call assetInfo()",
+      "target_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-11T02:10:53.518383Z",
+      "payload_sha256": "e8cdc4869ebd17201306a3a19ca192292ce7fd3c26d35250979c6ce1b64ab9d7",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "assetType": "0",
+        "assetAddress": "0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+        "assetDecimals": "18"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_325e403a57da7fa3d406fedc",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call getTokensIn()",
+      "target_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-11T02:10:53.595431Z",
+      "payload_sha256": "86387fdb38ce8c73a995ec6cc7f14d675001cdcc1f237afd85bd478b48e5e7e7",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "result": "('0x48f9e38f3070ad8945dfeae3fa70987722e3d89c', '0xdbdc1ef57537e34680b898e1febd3d68c7389bcb', '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48')"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_4fcc48852a1ca7dbf15652fb",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call getTokensOut()",
+      "target_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-11T02:10:53.745044Z",
+      "payload_sha256": "86387fdb38ce8c73a995ec6cc7f14d675001cdcc1f237afd85bd478b48e5e7e7",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "result": "('0x48f9e38f3070ad8945dfeae3fa70987722e3d89c', '0xdbdc1ef57537e34680b898e1febd3d68c7389bcb', '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48')"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_f14af79f0cef60a3d2bebc21",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call asset()",
+      "target_address": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-11T02:10:53.809451Z",
+      "payload_sha256": "66c958e51aa8eebc8d24bf449ffc0e6b6903bdb6e3cc83b04b46b1e84ebf1805",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "result": "0x48f9e38f3070ad8945dfeae3fa70987722e3d89c"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_8e35311a53211b98124759d3",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call asset()",
+      "target_address": "0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-11T02:10:53.881253Z",
+      "payload_sha256": null,
+      "status": "ERROR",
+      "error_message": "ContractLogicError: ('execution reverted', 'no data')",
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": null,
+      "parser_version": "ethereum_rpc.v1"
+    }
+  ],
+  "raw_returns": {
+    "ev_325e403a57da7fa3d406fedc": "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000300000000000000000000000048f9e38f3070ad8945dfeae3fa70987722e3d89c000000000000000000000000dbdc1ef57537e34680b898e1febd3d68c7389bcb000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "ev_4fcc48852a1ca7dbf15652fb": "0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000300000000000000000000000048f9e38f3070ad8945dfeae3fa70987722e3d89c000000000000000000000000dbdc1ef57537e34680b898e1febd3d68c7389bcb000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "ev_f14af79f0cef60a3d2bebc21": "0x00000000000000000000000048f9e38f3070ad8945dfeae3fa70987722e3d89c"
+  },
+  "warnings": [
+    "0x48f9e38f3070ad8945dfeae3fa70987722e3d89c: asset unavailable (RpcRevertError)"
+  ],
+  "limitations": [
+    "Getter declarations do not establish reserves, solvency or mandatory risk propagation.",
+    "Read later at the original replay block; financial quotes remain dated."
+  ]
+}

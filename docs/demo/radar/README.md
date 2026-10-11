@@ -58,6 +58,45 @@ la page rétablit les valeurs initiales.
 
 ## Reconstruction
 
+### Dépendances approfondies
+
+Le SY déclare trois tokens d'entrée et trois tokens de sortie via
+`getTokensIn()` / `getTokensOut()`. Le token de rendement déclare aussi son
+actif via `asset()`. Sept liens supplémentaires sont enregistrés par RPC.
+Ces déclarations ne prouvent ni les réserves ni une conversion exécutable.
+L'appel `asset()` suivant est refusé : le backing économique reste non résolu.
+
+Cliquer sur un nœud affiche la position exposée et son chemin. Cliquer sur
+un lien affiche ses modes de transmission, son statut et ses preuves.
+Les routes alternatives et getters génériques restent informatifs : leur
+défaillance ne produit pas automatiquement une perte dans le moteur.
+
+Les nouvelles lectures portent sur le bloc historique **26164093**. Leur
+date de récupération est affichée séparément de celle des prix et devis.
+L'archive `source/dependencies.json` conserve les retours RPC bruts et leurs
+empreintes, y compris la preuve de l'appel refusé.
+
+```bash
+.venv/bin/python backend/scripts/collect_dependencies.py \
+  --snapshot docs/demo/radar/source/analytics_snapshot.json \
+  --output docs/demo/radar/source/dependencies.json
+```
+
+Cette commande effectue des lectures réseau avec le RPC configuré. Le
+générateur HTML, lui, fonctionne hors ligne. La collecte Data habituelle
+inclut désormais cette découverte facultative et bornée à deux niveaux.
+
+API : `GET /api/v1/graph/{strategy_id}/exposure?node_id=asset:1:0x...`.
+Chaque position est comptée une fois, même si plusieurs chemins la relient
+à la dépendance. Des prix absents ou périmés gardent l'exposition USD inconnue.
+Les trois fonds alternatifs de la collecte ne constituent pas un portefeuille
+réel ; la démo ne retient que celui de 2 M$.
+
+Références des interfaces :
+[SY Pendle](https://github.com/pendle-finance/pendle-core-v2-public/blob/main/contracts/interfaces/IStandardizedYield.sol)
+et [ERC-4626](https://eips.ethereum.org/EIPS/eip-4626).
+Un getter `asset()` réussi ne suffit pas à certifier la conformité ERC-4626.
+
 L'archive publique minimale dans `source/` conserve les DTO nécessaires
 et les preuves référencées, sans clés ni historiques inutilisés. Les montants
 sont calculés en Decimal par Core ; JavaScript ne fait que les afficher.

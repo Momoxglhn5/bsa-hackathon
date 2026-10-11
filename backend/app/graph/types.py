@@ -27,7 +27,7 @@ class Edge(ContractModel):
     id: str
     source: str
     target: str
-    relation_type: Literal["BORROWS_FROM", "LENDS_TO", "USES_LOAN_ASSET", "COLLATERALIZED_BY", "USES_ORACLE", "USES_IRM", "USES_PT", "USES_SY", "BACKED_BY", "REDEEMS_THROUGH", "QUOTED_BY", "RUNS_ON", "BRIDGED_BY", "GOVERNED_BY", "USES_YT", "USES_YIELD_TOKEN", "ACCOUNTED_IN"]
+    relation_type: Literal["BORROWS_FROM", "LENDS_TO", "USES_LOAN_ASSET", "COLLATERALIZED_BY", "USES_ORACLE", "USES_IRM", "USES_PT", "USES_SY", "BACKED_BY", "REDEEMS_THROUGH", "QUOTED_BY", "RUNS_ON", "BRIDGED_BY", "GOVERNED_BY", "USES_YT", "USES_YIELD_TOKEN", "ACCOUNTED_IN", "ACCEPTS_INPUT", "DECLARES_REDEMPTION_TOKEN", "DECLARES_ASSET"]
     verification_status: Truth
     evidence_ids: tuple[EvidenceId, ...] = ()
     criticality: Literal["CRITICAL", "MATERIAL", "SUPPORTING"] = "CRITICAL"
@@ -36,6 +36,7 @@ class Edge(ContractModel):
     fallbacks: tuple[Fallback, ...] = ()
     as_of: UtcDatetime
     block_number: int | None = None
+    transmission_note: str | None = None
 
 
 class GraphDTO(ContractModel):

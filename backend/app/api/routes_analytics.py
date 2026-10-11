@@ -9,6 +9,7 @@ from app.analytics.dataset import AnalyticsSnapshot
 from app.analytics.service import AnalyticsService
 from app.graph.builder import build_graph
 from app.graph.types import GraphDTO
+from app.graph.exposure import DependencyExposure, dependency_exposure
 from app.models.evidence import ContractModel, EvidenceDTO, UtcDatetime
 from app.risk.scoring import RiskResult, current_risk
 from app.stress.schemas import SimulationRequest, SimulationResult
@@ -105,6 +106,12 @@ def create_router(service=None, *, provider=None):
     def graph(strategy_id: str, service=Depends(resolve)):
         result = build_graph(service.snapshot, strategy_id)
         return envelope(service, result, result.graph_status)
+
+    @router.get('/graph/{strategy_id}/exposure', response_model=Envelope[DependencyExposure])
+    def exposure(strategy_id: str, node_id: str = Query(...), service=Depends(resolve)):
+        result = dependency_exposure(service.snapshot, build_graph(service.snapshot, strategy_id),
+                                     node_id, now=service.now())
+        return envelope(service, DependencyExposure.model_validate(result), 'STRUCTURAL_EXPOSURE')
 
     @router.get("/risk/{strategy_id}", response_model=Envelope[RiskResult], summary="Observable factors, coverage and evidence confidence")
     def risk(strategy_id: str, service=Depends(resolve)):

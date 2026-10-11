@@ -16,13 +16,15 @@ from app.analytics.service import AnalyticsService
 from app.analytics.valuation import value_position
 from app.decision.schemas import DecisionRequest
 from app.graph.builder import build_graph
-from app.models.evidence import EvidenceDTO
+from app.graph.exposure import dependency_exposure
+from app.models.evidence import EvidenceDTO, RelationDTO, hash_payload
+from datetime import datetime
 from app.stress.schemas import SimulationRequest
 
 ROOT=Path(__file__).resolve().parents[2]
 
 
-def build(snapshot,quotes):
+def build(snapshot,quotes,dependencies=None):
     position=next(p for p in snapshot.positions if p.position_id=='pos_simulated_2000000usd')
     strategy=snapshot.strategy(position.strategy_id)
     if snapshot.market(position).data_mode.value!='REAL' or position.kind.value!='SIMULATED':
@@ -32,7 +34,24 @@ def build(snapshot,quotes):
     valuation=value_position(snapshot,position,now=snapshot.as_of)
     if valuation.equity_usd is None or len(snapshot.quotes)!=1:
         raise ValueError('fresh replay valuation and one sized quote required')
-    graph=build_graph(snapshot,strategy.strategy_id)
+    graph_snapshot=snapshot
+    dependency_evidence=[]
+    if dependencies is not None:
+        if dependencies['block_number'] != next(m.block_number for m in snapshot.markets if m.pendle):
+            raise ValueError('dependency archive must match the original replay block')
+        dependency_evidence=[EvidenceDTO.model_validate(e) for e in dependencies['evidence']]
+        for e in dependency_evidence:
+            if e.status=='OK' and e.evidence_id in dependencies['raw_returns']:
+                if hash_payload(dependencies['raw_returns'][e.evidence_id]) != e.payload_sha256:
+                    raise ValueError('dependency raw evidence hash mismatch')
+        evidence={e.evidence_id:e for e in snapshot.evidence}
+        evidence.update({e.evidence_id:e for e in dependency_evidence})
+        graph_snapshot=snapshot.model_copy(update={
+            'as_of':datetime.fromisoformat(dependencies['as_of']),
+            'relations':snapshot.relations+tuple(RelationDTO.model_validate(r) for r in dependencies['relations']),
+            'evidence':tuple(evidence.values())})
+    graph=build_graph(graph_snapshot,strategy.strategy_id)
+    exposures={n.id:dependency_exposure(snapshot,graph,n.id) for n in graph.nodes}
     assumption={'closing_feasible':True,'repayment_liquidity_confirmed':True,
         'gas_cost_usd':'300','extra_fees_usd':'0','basis':'USER_ASSUMPTION'}
     text=json.dumps(assumption,sort_keys=True)
@@ -74,7 +93,10 @@ def build(snapshot,quotes):
         'snapshot_sha256':hashlib.sha256(snapshot.model_dump_json().encode()).hexdigest(),
         'position':position.model_dump(mode='json'),'valuation':valuation.model_dump(mode='json'),
         'graph':graph.model_dump(mode='json'),'quotes':quotes,'cases':cases,
-        'evidence':[e.model_dump(mode='json') for e in conditional.evidence],
+        'evidence':[e.model_dump(mode='json') for e in {e.evidence_id:e for e in (*conditional.evidence,*dependency_evidence)}.values()],
+        'dependency_exposures':exposures,
+        'dependency_reads':{'collected_at':dependencies['as_of'],'block_number':dependencies['block_number'],
+                            'warnings':dependencies['warnings']} if dependencies else None,
         'closing_assumptions':assumption,'net_carry_assumption_usd':'1000',
         'mc':json.loads((ROOT/'docs/validation/monte_carlo_20261011/report.json').read_text())}
 
@@ -84,8 +106,10 @@ def main():
     parser.add_argument('--delivery',type=Path,default=ROOT/'docs/demo/radar/source')
     parser.add_argument('--output',type=Path,default=ROOT/'docs/demo/radar')
     args=parser.parse_args()
+    archive=args.delivery/'dependencies.json'
     data=build(load_snapshot(args.delivery/'analytics_snapshot.json'),
-               json.loads((args.delivery/'exit_quotes.json').read_text())['records'])
+               json.loads((args.delivery/'exit_quotes.json').read_text())['records'],
+               json.loads(archive.read_text()) if archive.exists() else None)
     args.output.mkdir(parents=True,exist_ok=True)
     (args.output/'demo-data.json').write_text(json.dumps(data,indent=2)+'\n')
     template=(ROOT/'backend/app/fixtures/radar_demo_template.html').read_text()

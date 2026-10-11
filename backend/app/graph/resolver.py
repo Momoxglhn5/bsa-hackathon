@@ -4,6 +4,7 @@ SY assetInfo is an accounting denomination; yieldToken is a contract dependency.
 Neither is evidence for a BACKED_BY relation.
 """
 from app.graph.types import Edge, Node
+import ast
 
 MAPPING = {
     "MARKET_LOAN_ASSET": ("USES_LOAN_ASSET", ("ECONOMIC", "LIVENESS"), True),
@@ -16,7 +17,36 @@ MAPPING = {
     "SY_YIELD_TOKEN": ("USES_YIELD_TOKEN", ("LIVENESS", "EXECUTION"), True),
     "SY_ACCOUNTING_ASSET": ("ACCOUNTED_IN", ("ECONOMIC",), False),
     "ECONOMIC_BACKING": ("BACKED_BY", ("ECONOMIC", "LIVENESS"), True),
+    # Alternative routes and generic asset getters are informational, not
+    # proven mandatory dependencies; losing one cannot disable all routes.
+    "SY_ACCEPTS_INPUT": ("ACCEPTS_INPUT", ("EXECUTION",), False),
+    "SY_REDEEMS_TO": ("DECLARES_REDEMPTION_TOKEN", ("EXECUTION", "LIVENESS"), False),
+    "TOKEN_DECLARED_ASSET": ("DECLARES_ASSET", ("ECONOMIC", "LIVENESS"), False),
 }
+
+
+def declared_target_proved(relation, records):
+    methods = {'SY_ACCEPTS_INPUT': 'getTokensIn()', 'SY_REDEEMS_TO': 'getTokensOut()',
+               'TOKEN_DECLARED_ASSET': 'asset()'}
+    method = methods.get(relation.relation_type.value)
+    if method is None:
+        return True
+    target = relation.target_node_id.split(':')[-1]
+    for identity in relation.evidence_ids:
+        e = records.get(identity)
+        if e is None or e.method != 'eth_call '+method or not e.payload_sha256 or not e.block_hash:
+            continue
+        excerpt = (e.decoded_excerpt or {}).get('result')
+        if method == 'asset()' and excerpt == target:
+            return True
+        if method != 'asset()':
+            try:
+                values = ast.literal_eval(excerpt or '[]')
+                if isinstance(values, (tuple, list)) and target in values:
+                    return True
+            except (ValueError, TypeError, SyntaxError):
+                pass
+    return False
 
 
 def resolve_relations(snapshot, existing_nodes):
@@ -44,7 +74,8 @@ def resolve_relations(snapshot, existing_nodes):
         address = market.morpho.morpho_address if market and market.morpho else raw_target
         if truth == "CONFIRMED" and (r.block_number is None or r.observed_at > snapshot.as_of
                 or not rpc_evidence(snapshot, r.evidence_ids, chain_id=r.chain_id,
-                                    block=r.block_number, target=address)):
+                                    block=r.block_number, target=address)
+                or not declared_target_proved(r, records)):
             truth = "UNRESOLVED"
         if truth == "OBSERVED" and (not r.evidence_ids or any(
                 i not in records or records[i].data_mode != r.data_mode or records[i].chain_id != r.chain_id
@@ -63,5 +94,5 @@ def resolve_relations(snapshot, existing_nodes):
         edges.append(Edge(id=r.relation_id, source=source, target=target, relation_type=rel,
                           verification_status=truth, evidence_ids=r.evidence_ids,
                           failure_modes=modes, required=required, as_of=r.observed_at,
-                          block_number=r.block_number))
+                          block_number=r.block_number, transmission_note=r.note))
     return nodes, edges

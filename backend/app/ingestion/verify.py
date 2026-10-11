@@ -39,6 +39,7 @@ from app.models.evidence import ZERO_ADDRESS, RelationDTO, VerificationCheckDTO,
 from app.models.market import MarketDTO
 from app.models.strategy import StrategyDTO
 from app.models.timeseries import TimeseriesMetric
+from app.ingestion.dependencies import discover_sy_dependencies
 
 logger = logging.getLogger(__name__)
 
@@ -217,7 +218,10 @@ def verify_onchain(
         + (pendle_sy_yield_token_check(pendle_item, pendle_ref, sy_info),
            verify_pt_matches_collateral(params, tokens))
     )
-    relations = tuple(build_strategy_relations(params, tokens, sy_info, rpc.evidence))
+    discovery = discover_sy_dependencies(rpc, sy_info, pinned)
+    for warning in discovery.warnings:
+        logger.warning('Optional dependency discovery: %s', warning)
+    relations = tuple(build_strategy_relations(params, tokens, sy_info, rpc.evidence) + discovery.relations)
     rpc_ids = (params.ref.evidence_id, tokens.ref.evidence_id, expiry_ev.evidence_id,
                sy_info.yield_token_ref.evidence_id, sy_info.ref.evidence_id)
     return Verification(

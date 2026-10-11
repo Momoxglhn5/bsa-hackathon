@@ -55,7 +55,7 @@
   "graph": {
     "strategy_id": "strat_e76bee1f14994d77f99f42a7",
     "graph_status": "PARTIAL",
-    "snapshot_as_of": "2026-10-10T19:22:00.664387Z",
+    "snapshot_as_of": "2026-10-11T02:10:53.881470Z",
     "nodes": [
       {
         "id": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
@@ -151,8 +151,9 @@
         ],
         "required": true,
         "fallbacks": [],
-        "as_of": "2026-10-10T19:22:00.664387Z",
-        "block_number": null
+        "as_of": "2026-10-11T02:10:53.881470Z",
+        "block_number": null,
+        "transmission_note": null
       },
       {
         "id": "edge:494fb10a55e4079956186d5f",
@@ -170,8 +171,9 @@
         ],
         "required": true,
         "fallbacks": [],
-        "as_of": "2026-10-10T19:22:00.664387Z",
-        "block_number": null
+        "as_of": "2026-10-11T02:10:53.881470Z",
+        "block_number": null,
+        "transmission_note": null
       },
       {
         "id": "edge:6b0eb674e3ef655131e95834",
@@ -190,8 +192,9 @@
         ],
         "required": true,
         "fallbacks": [],
-        "as_of": "2026-10-10T19:22:00.664387Z",
-        "block_number": 26164093
+        "as_of": "2026-10-11T02:10:53.881470Z",
+        "block_number": 26164093,
+        "transmission_note": null
       },
       {
         "id": "rel_0aa7421553d2499ed66fefee",
@@ -210,7 +213,48 @@
         "required": true,
         "fallbacks": [],
         "as_of": "2026-10-10T19:21:47Z",
-        "block_number": 26164093
+        "block_number": 26164093,
+        "transmission_note": null
+      },
+      {
+        "id": "rel_159c446db10381f89b65c9f5",
+        "source": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "target": "asset:1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "relation_type": "DECLARES_REDEMPTION_TOKEN",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_4fcc48852a1ca7dbf15652fb"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "EXECUTION",
+          "LIVENESS"
+        ],
+        "required": false,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093,
+        "transmission_note": "Declared alternative deposit/redemption token; not a guarantee of liquidity, execution or backing."
+      },
+      {
+        "id": "rel_16bb1279553ddb4973595b10",
+        "source": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "target": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+        "relation_type": "DECLARES_REDEMPTION_TOKEN",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_4fcc48852a1ca7dbf15652fb"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "EXECUTION",
+          "LIVENESS"
+        ],
+        "required": false,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093,
+        "transmission_note": "Declared alternative deposit/redemption token; not a guarantee of liquidity, execution or backing."
       },
       {
         "id": "rel_377f3eb31833ba5f1f8fefad",
@@ -228,7 +272,8 @@
         "required": false,
         "fallbacks": [],
         "as_of": "2026-10-10T19:21:47Z",
-        "block_number": 26164093
+        "block_number": 26164093,
+        "transmission_note": null
       },
       {
         "id": "rel_37d7ae18c7e3452d74aec41c",
@@ -246,7 +291,47 @@
         "required": false,
         "fallbacks": [],
         "as_of": "2026-10-10T19:21:47Z",
-        "block_number": 26164093
+        "block_number": 26164093,
+        "transmission_note": null
+      },
+      {
+        "id": "rel_452d4acda6a48046a5d65dbe",
+        "source": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "target": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+        "relation_type": "ACCEPTS_INPUT",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_325e403a57da7fa3d406fedc"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "EXECUTION"
+        ],
+        "required": false,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093,
+        "transmission_note": "Declared alternative deposit/redemption token; not a guarantee of liquidity, execution or backing."
+      },
+      {
+        "id": "rel_597c169a1c202bdfee3a2ad4",
+        "source": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "target": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+        "relation_type": "DECLARES_REDEMPTION_TOKEN",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_4fcc48852a1ca7dbf15652fb"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "EXECUTION",
+          "LIVENESS"
+        ],
+        "required": false,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093,
+        "transmission_note": "Declared alternative deposit/redemption token; not a guarantee of liquidity, execution or backing."
       },
       {
         "id": "rel_800d0f8a386b5043624d70e3",
@@ -264,7 +349,8 @@
         "required": false,
         "fallbacks": [],
         "as_of": "2026-10-10T19:21:47Z",
-        "block_number": 26164093
+        "block_number": 26164093,
+        "transmission_note": null
       },
       {
         "id": "rel_83c3d77132f936130b875a9b",
@@ -284,7 +370,27 @@
         "required": true,
         "fallbacks": [],
         "as_of": "2026-10-10T19:21:47Z",
-        "block_number": null
+        "block_number": null,
+        "transmission_note": "assetInfo/yieldToken do not prove backing"
+      },
+      {
+        "id": "rel_8cb0e011149cf089a13849cb",
+        "source": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "target": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+        "relation_type": "ACCEPTS_INPUT",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_325e403a57da7fa3d406fedc"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "EXECUTION"
+        ],
+        "required": false,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093,
+        "transmission_note": "Declared alternative deposit/redemption token; not a guarantee of liquidity, execution or backing."
       },
       {
         "id": "rel_936d169188cfa86be28e233b",
@@ -303,7 +409,8 @@
         "required": true,
         "fallbacks": [],
         "as_of": "2026-10-10T19:21:47Z",
-        "block_number": 26164093
+        "block_number": 26164093,
+        "transmission_note": null
       },
       {
         "id": "rel_b04f25c4f91128686217b60c",
@@ -322,7 +429,27 @@
         "required": true,
         "fallbacks": [],
         "as_of": "2026-10-10T19:21:47Z",
-        "block_number": 26164093
+        "block_number": 26164093,
+        "transmission_note": null
+      },
+      {
+        "id": "rel_ca4072b356fb86d80922862d",
+        "source": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "target": "asset:1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "relation_type": "ACCEPTS_INPUT",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_325e403a57da7fa3d406fedc"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "EXECUTION"
+        ],
+        "required": false,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093,
+        "transmission_note": "Declared alternative deposit/redemption token; not a guarantee of liquidity, execution or backing."
       },
       {
         "id": "rel_f14a1f1d2496309293679e5c",
@@ -342,7 +469,8 @@
         "required": true,
         "fallbacks": [],
         "as_of": "2026-10-10T19:21:47Z",
-        "block_number": 26164093
+        "block_number": 26164093,
+        "transmission_note": null
       },
       {
         "id": "rel_f4a5bc1d68b9f34cfda86463",
@@ -362,7 +490,8 @@
         "required": true,
         "fallbacks": [],
         "as_of": "2026-10-10T19:21:47Z",
-        "block_number": 26164093
+        "block_number": 26164093,
+        "transmission_note": null
       },
       {
         "id": "rel_fdeb0cf074b3ad15299add24",
@@ -381,7 +510,28 @@
         "required": true,
         "fallbacks": [],
         "as_of": "2026-10-10T19:21:47Z",
-        "block_number": 26164093
+        "block_number": 26164093,
+        "transmission_note": null
+      },
+      {
+        "id": "rel_fe5a5ede0b2ad3b7bbfec7a8",
+        "source": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+        "target": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+        "relation_type": "DECLARES_ASSET",
+        "verification_status": "CONFIRMED",
+        "evidence_ids": [
+          "ev_f14af79f0cef60a3d2bebc21"
+        ],
+        "criticality": "CRITICAL",
+        "failure_modes": [
+          "ECONOMIC",
+          "LIVENESS"
+        ],
+        "required": false,
+        "fallbacks": [],
+        "as_of": "2026-10-10T19:21:47Z",
+        "block_number": 26164093,
+        "transmission_note": "asset() declares a token dependency; ERC4626 compliance, reserves and solvency remain unverified. No automatic loss propagation."
       }
     ],
     "unknown_dependency_classes": [
@@ -735,7 +885,7 @@
             "effective_mode": "normal",
             "forecast_bundle_id": null,
             "fallback_reason": null,
-            "decision_status": "INSUFFICIENT_DATA",
+            "decision_status": "EXIT_NOT_FEASIBLE",
             "verdict": null,
             "comparison": null,
             "equity_now_usd": "600000.0000001343578999991580807148926210",
@@ -748,7 +898,7 @@
             "break_even_status": null,
             "sensitivity_scenario_ref": "stress:fcbfd7d6e8db85125f5c7921",
             "sensitivity_probability_max": null,
-            "quote_status": "INSUFFICIENT_DATA",
+            "quote_status": "EXIT_NOT_FEASIBLE",
             "requires_external_repayment_liquidity": true,
             "included_scenario_ids": [
               "stress:fcbfd7d6e8db85125f5c7921"
@@ -758,11 +908,47 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "EXIT_NOT_FEASIBLE",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": null,
+              "extra_fees_usd": null,
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": null,
+              "net_proceeds_usd": null,
+              "total_operation_cost_usd": null,
+              "exit_cost_usd": null,
+              "net_equity_after_exit_usd": null,
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [
+                "closing_feasible",
+                "gas_cost_usd",
+                "extra_fees_usd",
+                "repayment_liquidity_confirmed"
+              ],
+              "warnings": [
+                "Debt repayment requires external liquidity not confirmed",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
               "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
-              "Closing feasibility unknown",
+              "Debt repayment requires external liquidity not confirmed",
               "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
               "Structural Risk Index is explanatory only and never used as a probability."
             ],
@@ -776,7 +962,7 @@
             "effective_mode": "normal",
             "forecast_bundle_id": null,
             "fallback_reason": null,
-            "decision_status": "INSUFFICIENT_DATA",
+            "decision_status": "EXIT_NOT_FEASIBLE",
             "verdict": null,
             "comparison": null,
             "equity_now_usd": "600000.0000001343578999991580807148926210",
@@ -789,7 +975,7 @@
             "break_even_status": null,
             "sensitivity_scenario_ref": "stress:fcbfd7d6e8db85125f5c7921",
             "sensitivity_probability_max": null,
-            "quote_status": "INSUFFICIENT_DATA",
+            "quote_status": "EXIT_NOT_FEASIBLE",
             "requires_external_repayment_liquidity": true,
             "included_scenario_ids": [
               "stress:fcbfd7d6e8db85125f5c7921"
@@ -799,11 +985,47 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "EXIT_NOT_FEASIBLE",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": null,
+              "extra_fees_usd": null,
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": null,
+              "net_proceeds_usd": null,
+              "total_operation_cost_usd": null,
+              "exit_cost_usd": null,
+              "net_equity_after_exit_usd": null,
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [
+                "closing_feasible",
+                "gas_cost_usd",
+                "extra_fees_usd",
+                "repayment_liquidity_confirmed"
+              ],
+              "warnings": [
+                "Debt repayment requires external liquidity not confirmed",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
               "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
-              "Closing feasibility unknown",
+              "Debt repayment requires external liquidity not confirmed",
               "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
               "Structural Risk Index is explanatory only and never used as a probability."
             ],
@@ -817,7 +1039,7 @@
             "effective_mode": "normal",
             "forecast_bundle_id": null,
             "fallback_reason": null,
-            "decision_status": "INSUFFICIENT_DATA",
+            "decision_status": "EXIT_NOT_FEASIBLE",
             "verdict": null,
             "comparison": null,
             "equity_now_usd": "600000.0000001343578999991580807148926210",
@@ -830,7 +1052,7 @@
             "break_even_status": null,
             "sensitivity_scenario_ref": "stress:fcbfd7d6e8db85125f5c7921",
             "sensitivity_probability_max": null,
-            "quote_status": "INSUFFICIENT_DATA",
+            "quote_status": "EXIT_NOT_FEASIBLE",
             "requires_external_repayment_liquidity": true,
             "included_scenario_ids": [
               "stress:fcbfd7d6e8db85125f5c7921"
@@ -840,11 +1062,47 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "EXIT_NOT_FEASIBLE",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": null,
+              "extra_fees_usd": null,
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": null,
+              "net_proceeds_usd": null,
+              "total_operation_cost_usd": null,
+              "exit_cost_usd": null,
+              "net_equity_after_exit_usd": null,
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [
+                "closing_feasible",
+                "gas_cost_usd",
+                "extra_fees_usd",
+                "repayment_liquidity_confirmed"
+              ],
+              "warnings": [
+                "Debt repayment requires external liquidity not confirmed",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
               "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
-              "Closing feasibility unknown",
+              "Debt repayment requires external liquidity not confirmed",
               "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
               "Structural Risk Index is explanatory only and never used as a probability."
             ],
@@ -948,6 +1206,37 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "CONDITIONAL",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": "300",
+              "extra_fees_usd": "0",
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": "1992396.0429683803251000000000000000000000",
+              "net_proceeds_usd": "1992096.0429683803251000000000000000000000",
+              "total_operation_cost_usd": "300",
+              "exit_cost_usd": "7903.9570316196748999991580807148926210",
+              "net_equity_after_exit_usd": "592096.0429685146830000000000000000000000",
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [],
+              "warnings": [
+                "Net quote output includes price impact; gas/extra fees added once",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
@@ -989,6 +1278,37 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "CONDITIONAL",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": "300",
+              "extra_fees_usd": "0",
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": "1992396.0429683803251000000000000000000000",
+              "net_proceeds_usd": "1992096.0429683803251000000000000000000000",
+              "total_operation_cost_usd": "300",
+              "exit_cost_usd": "7903.9570316196748999991580807148926210",
+              "net_equity_after_exit_usd": "592096.0429685146830000000000000000000000",
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [],
+              "warnings": [
+                "Net quote output includes price impact; gas/extra fees added once",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
@@ -1030,6 +1350,37 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "CONDITIONAL",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": "300",
+              "extra_fees_usd": "0",
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": "1992396.0429683803251000000000000000000000",
+              "net_proceeds_usd": "1992096.0429683803251000000000000000000000",
+              "total_operation_cost_usd": "300",
+              "exit_cost_usd": "7903.9570316196748999991580807148926210",
+              "net_equity_after_exit_usd": "592096.0429685146830000000000000000000000",
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [],
+              "warnings": [
+                "Net quote output includes price impact; gas/extra fees added once",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
@@ -1117,7 +1468,7 @@
             "effective_mode": "normal",
             "forecast_bundle_id": null,
             "fallback_reason": null,
-            "decision_status": "INSUFFICIENT_DATA",
+            "decision_status": "EXIT_NOT_FEASIBLE",
             "verdict": null,
             "comparison": null,
             "equity_now_usd": "600000.0000001343578999991580807148926210",
@@ -1130,7 +1481,7 @@
             "break_even_status": null,
             "sensitivity_scenario_ref": "stress:ea021726ad9f31d5c6437f66",
             "sensitivity_probability_max": null,
-            "quote_status": "INSUFFICIENT_DATA",
+            "quote_status": "EXIT_NOT_FEASIBLE",
             "requires_external_repayment_liquidity": true,
             "included_scenario_ids": [
               "stress:ea021726ad9f31d5c6437f66"
@@ -1140,11 +1491,47 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "EXIT_NOT_FEASIBLE",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": null,
+              "extra_fees_usd": null,
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": null,
+              "net_proceeds_usd": null,
+              "total_operation_cost_usd": null,
+              "exit_cost_usd": null,
+              "net_equity_after_exit_usd": null,
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [
+                "closing_feasible",
+                "gas_cost_usd",
+                "extra_fees_usd",
+                "repayment_liquidity_confirmed"
+              ],
+              "warnings": [
+                "Debt repayment requires external liquidity not confirmed",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
               "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
-              "Closing feasibility unknown",
+              "Debt repayment requires external liquidity not confirmed",
               "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
               "Structural Risk Index is explanatory only and never used as a probability."
             ],
@@ -1158,7 +1545,7 @@
             "effective_mode": "normal",
             "forecast_bundle_id": null,
             "fallback_reason": null,
-            "decision_status": "INSUFFICIENT_DATA",
+            "decision_status": "EXIT_NOT_FEASIBLE",
             "verdict": null,
             "comparison": null,
             "equity_now_usd": "600000.0000001343578999991580807148926210",
@@ -1171,7 +1558,7 @@
             "break_even_status": null,
             "sensitivity_scenario_ref": "stress:ea021726ad9f31d5c6437f66",
             "sensitivity_probability_max": null,
-            "quote_status": "INSUFFICIENT_DATA",
+            "quote_status": "EXIT_NOT_FEASIBLE",
             "requires_external_repayment_liquidity": true,
             "included_scenario_ids": [
               "stress:ea021726ad9f31d5c6437f66"
@@ -1181,11 +1568,47 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "EXIT_NOT_FEASIBLE",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": null,
+              "extra_fees_usd": null,
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": null,
+              "net_proceeds_usd": null,
+              "total_operation_cost_usd": null,
+              "exit_cost_usd": null,
+              "net_equity_after_exit_usd": null,
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [
+                "closing_feasible",
+                "gas_cost_usd",
+                "extra_fees_usd",
+                "repayment_liquidity_confirmed"
+              ],
+              "warnings": [
+                "Debt repayment requires external liquidity not confirmed",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
               "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
-              "Closing feasibility unknown",
+              "Debt repayment requires external liquidity not confirmed",
               "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
               "Structural Risk Index is explanatory only and never used as a probability."
             ],
@@ -1199,7 +1622,7 @@
             "effective_mode": "normal",
             "forecast_bundle_id": null,
             "fallback_reason": null,
-            "decision_status": "INSUFFICIENT_DATA",
+            "decision_status": "EXIT_NOT_FEASIBLE",
             "verdict": null,
             "comparison": null,
             "equity_now_usd": "600000.0000001343578999991580807148926210",
@@ -1212,7 +1635,7 @@
             "break_even_status": null,
             "sensitivity_scenario_ref": "stress:ea021726ad9f31d5c6437f66",
             "sensitivity_probability_max": null,
-            "quote_status": "INSUFFICIENT_DATA",
+            "quote_status": "EXIT_NOT_FEASIBLE",
             "requires_external_repayment_liquidity": true,
             "included_scenario_ids": [
               "stress:ea021726ad9f31d5c6437f66"
@@ -1222,11 +1645,47 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "EXIT_NOT_FEASIBLE",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": null,
+              "extra_fees_usd": null,
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": null,
+              "net_proceeds_usd": null,
+              "total_operation_cost_usd": null,
+              "exit_cost_usd": null,
+              "net_equity_after_exit_usd": null,
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [
+                "closing_feasible",
+                "gas_cost_usd",
+                "extra_fees_usd",
+                "repayment_liquidity_confirmed"
+              ],
+              "warnings": [
+                "Debt repayment requires external liquidity not confirmed",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
               "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
-              "Closing feasibility unknown",
+              "Debt repayment requires external liquidity not confirmed",
               "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
               "Structural Risk Index is explanatory only and never used as a probability."
             ],
@@ -1330,6 +1789,37 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "CONDITIONAL",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": "300",
+              "extra_fees_usd": "0",
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": "1992396.0429683803251000000000000000000000",
+              "net_proceeds_usd": "1992096.0429683803251000000000000000000000",
+              "total_operation_cost_usd": "300",
+              "exit_cost_usd": "7903.9570316196748999991580807148926210",
+              "net_equity_after_exit_usd": "592096.0429685146830000000000000000000000",
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [],
+              "warnings": [
+                "Net quote output includes price impact; gas/extra fees added once",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
@@ -1371,6 +1861,37 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "CONDITIONAL",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": "300",
+              "extra_fees_usd": "0",
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": "1992396.0429683803251000000000000000000000",
+              "net_proceeds_usd": "1992096.0429683803251000000000000000000000",
+              "total_operation_cost_usd": "300",
+              "exit_cost_usd": "7903.9570316196748999991580807148926210",
+              "net_equity_after_exit_usd": "592096.0429685146830000000000000000000000",
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [],
+              "warnings": [
+                "Net quote output includes price impact; gas/extra fees added once",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
@@ -1412,6 +1933,37 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "CONDITIONAL",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": "300",
+              "extra_fees_usd": "0",
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": "1992396.0429683803251000000000000000000000",
+              "net_proceeds_usd": "1992096.0429683803251000000000000000000000",
+              "total_operation_cost_usd": "300",
+              "exit_cost_usd": "7903.9570316196748999991580807148926210",
+              "net_equity_after_exit_usd": "592096.0429685146830000000000000000000000",
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [],
+              "warnings": [
+                "Net quote output includes price impact; gas/extra fees added once",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
@@ -1499,7 +2051,7 @@
             "effective_mode": "normal",
             "forecast_bundle_id": null,
             "fallback_reason": null,
-            "decision_status": "INSUFFICIENT_DATA",
+            "decision_status": "EXIT_NOT_FEASIBLE",
             "verdict": null,
             "comparison": null,
             "equity_now_usd": "600000.0000001343578999991580807148926210",
@@ -1512,7 +2064,7 @@
             "break_even_status": null,
             "sensitivity_scenario_ref": "stress:f6599b8842efe72e947ba12b",
             "sensitivity_probability_max": null,
-            "quote_status": "INSUFFICIENT_DATA",
+            "quote_status": "EXIT_NOT_FEASIBLE",
             "requires_external_repayment_liquidity": true,
             "included_scenario_ids": [
               "stress:f6599b8842efe72e947ba12b"
@@ -1522,11 +2074,47 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "EXIT_NOT_FEASIBLE",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": null,
+              "extra_fees_usd": null,
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": null,
+              "net_proceeds_usd": null,
+              "total_operation_cost_usd": null,
+              "exit_cost_usd": null,
+              "net_equity_after_exit_usd": null,
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [
+                "closing_feasible",
+                "gas_cost_usd",
+                "extra_fees_usd",
+                "repayment_liquidity_confirmed"
+              ],
+              "warnings": [
+                "Debt repayment requires external liquidity not confirmed",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
               "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
-              "Closing feasibility unknown",
+              "Debt repayment requires external liquidity not confirmed",
               "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
               "Structural Risk Index is explanatory only and never used as a probability."
             ],
@@ -1540,7 +2128,7 @@
             "effective_mode": "normal",
             "forecast_bundle_id": null,
             "fallback_reason": null,
-            "decision_status": "INSUFFICIENT_DATA",
+            "decision_status": "EXIT_NOT_FEASIBLE",
             "verdict": null,
             "comparison": null,
             "equity_now_usd": "600000.0000001343578999991580807148926210",
@@ -1553,7 +2141,7 @@
             "break_even_status": null,
             "sensitivity_scenario_ref": "stress:f6599b8842efe72e947ba12b",
             "sensitivity_probability_max": null,
-            "quote_status": "INSUFFICIENT_DATA",
+            "quote_status": "EXIT_NOT_FEASIBLE",
             "requires_external_repayment_liquidity": true,
             "included_scenario_ids": [
               "stress:f6599b8842efe72e947ba12b"
@@ -1563,11 +2151,47 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "EXIT_NOT_FEASIBLE",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": null,
+              "extra_fees_usd": null,
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": null,
+              "net_proceeds_usd": null,
+              "total_operation_cost_usd": null,
+              "exit_cost_usd": null,
+              "net_equity_after_exit_usd": null,
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [
+                "closing_feasible",
+                "gas_cost_usd",
+                "extra_fees_usd",
+                "repayment_liquidity_confirmed"
+              ],
+              "warnings": [
+                "Debt repayment requires external liquidity not confirmed",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
               "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
-              "Closing feasibility unknown",
+              "Debt repayment requires external liquidity not confirmed",
               "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
               "Structural Risk Index is explanatory only and never used as a probability."
             ],
@@ -1581,7 +2205,7 @@
             "effective_mode": "normal",
             "forecast_bundle_id": null,
             "fallback_reason": null,
-            "decision_status": "INSUFFICIENT_DATA",
+            "decision_status": "EXIT_NOT_FEASIBLE",
             "verdict": null,
             "comparison": null,
             "equity_now_usd": "600000.0000001343578999991580807148926210",
@@ -1594,7 +2218,7 @@
             "break_even_status": null,
             "sensitivity_scenario_ref": "stress:f6599b8842efe72e947ba12b",
             "sensitivity_probability_max": null,
-            "quote_status": "INSUFFICIENT_DATA",
+            "quote_status": "EXIT_NOT_FEASIBLE",
             "requires_external_repayment_liquidity": true,
             "included_scenario_ids": [
               "stress:f6599b8842efe72e947ba12b"
@@ -1604,11 +2228,47 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "EXIT_NOT_FEASIBLE",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": null,
+              "extra_fees_usd": null,
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": null,
+              "net_proceeds_usd": null,
+              "total_operation_cost_usd": null,
+              "exit_cost_usd": null,
+              "net_equity_after_exit_usd": null,
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [
+                "closing_feasible",
+                "gas_cost_usd",
+                "extra_fees_usd",
+                "repayment_liquidity_confirmed"
+              ],
+              "warnings": [
+                "Debt repayment requires external liquidity not confirmed",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
               "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
-              "Closing feasibility unknown",
+              "Debt repayment requires external liquidity not confirmed",
               "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
               "Structural Risk Index is explanatory only and never used as a probability."
             ],
@@ -1712,6 +2372,37 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "CONDITIONAL",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": "300",
+              "extra_fees_usd": "0",
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": "1992396.0429683803251000000000000000000000",
+              "net_proceeds_usd": "1992096.0429683803251000000000000000000000",
+              "total_operation_cost_usd": "300",
+              "exit_cost_usd": "7903.9570316196748999991580807148926210",
+              "net_equity_after_exit_usd": "592096.0429685146830000000000000000000000",
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [],
+              "warnings": [
+                "Net quote output includes price impact; gas/extra fees added once",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
@@ -1753,6 +2444,37 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "CONDITIONAL",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": "300",
+              "extra_fees_usd": "0",
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": "1992396.0429683803251000000000000000000000",
+              "net_proceeds_usd": "1992096.0429683803251000000000000000000000",
+              "total_operation_cost_usd": "300",
+              "exit_cost_usd": "7903.9570316196748999991580807148926210",
+              "net_equity_after_exit_usd": "592096.0429685146830000000000000000000000",
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [],
+              "warnings": [
+                "Net quote output includes price impact; gas/extra fees added once",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
@@ -1794,6 +2516,37 @@
             "assumption_basis": "ASSUMPTION_DRIVEN",
             "structural_risk_index": null,
             "risk_completeness_pct": "30",
+            "carry_calculation": null,
+            "closing_plan": {
+              "status": "CONDITIONAL",
+              "position_id": "pos_simulated_2000000usd",
+              "quote_id": "ev_7133a9eca40c7e1779819a33",
+              "basis": "USER_ASSUMPTION",
+              "required_repayment_loan_units": "1400151.986498",
+              "available_repayment_loan_units": null,
+              "repayment_shortfall_loan_units": null,
+              "gas_cost_usd": "300",
+              "extra_fees_usd": "0",
+              "financing_fee_usd": null,
+              "sale_proceeds_usd": "1992396.0429683803251000000000000000000000",
+              "net_proceeds_usd": "1992096.0429683803251000000000000000000000",
+              "total_operation_cost_usd": "300",
+              "exit_cost_usd": "7903.9570316196748999991580807148926210",
+              "net_equity_after_exit_usd": "592096.0429685146830000000000000000000000",
+              "steps": [
+                "Provide external loan-token funds to repay the current debt",
+                "Repay Morpho debt before withdrawing collateral",
+                "Withdraw the full PT collateral",
+                "Sell the exact PT quantity using the quoted route",
+                "Recover the funding principal and deduct financing, gas and additional fees"
+              ],
+              "missing_fields": [],
+              "warnings": [
+                "Net quote output includes price impact; gas/extra fees added once",
+                "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+                "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+              ]
+            },
             "explanation": [
               "Conditional comparison in USD using the same current equity.",
               "Probabilities and net carry are explicit user assumptions for this horizon.",
@@ -2117,7 +2870,7 @@
       },
       "block_number": 26164093,
       "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
-      "fetched_at": "2026-10-10T19:21:53.354541Z",
+      "fetched_at": "2026-10-11T02:10:53.426537Z",
       "payload_sha256": "3afcaa99eedd9b05b5b171a743cc7a6f71146431340f64f79d07c530c099263b",
       "status": "OK",
       "error_message": null,
@@ -2142,7 +2895,7 @@
       },
       "block_number": 26164093,
       "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
-      "fetched_at": "2026-10-10T19:21:53.442140Z",
+      "fetched_at": "2026-10-11T02:10:53.518383Z",
       "payload_sha256": "e8cdc4869ebd17201306a3a19ca192292ce7fd3c26d35250979c6ce1b64ab9d7",
       "status": "OK",
       "error_message": null,
@@ -2234,8 +2987,442 @@
         "basis": "USER_ASSUMPTION"
       },
       "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_325e403a57da7fa3d406fedc",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call getTokensIn()",
+      "target_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-11T02:10:53.595431Z",
+      "payload_sha256": "86387fdb38ce8c73a995ec6cc7f14d675001cdcc1f237afd85bd478b48e5e7e7",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "result": "('0x48f9e38f3070ad8945dfeae3fa70987722e3d89c', '0xdbdc1ef57537e34680b898e1febd3d68c7389bcb', '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48')"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_4fcc48852a1ca7dbf15652fb",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call getTokensOut()",
+      "target_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-11T02:10:53.745044Z",
+      "payload_sha256": "86387fdb38ce8c73a995ec6cc7f14d675001cdcc1f237afd85bd478b48e5e7e7",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "result": "('0x48f9e38f3070ad8945dfeae3fa70987722e3d89c', '0xdbdc1ef57537e34680b898e1febd3d68c7389bcb', '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48')"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_f14af79f0cef60a3d2bebc21",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call asset()",
+      "target_address": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-11T02:10:53.809451Z",
+      "payload_sha256": "66c958e51aa8eebc8d24bf449ffc0e6b6903bdb6e3cc83b04b46b1e84ebf1805",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "result": "0x48f9e38f3070ad8945dfeae3fa70987722e3d89c"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_8e35311a53211b98124759d3",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call asset()",
+      "target_address": "0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-11T02:10:53.881253Z",
+      "payload_sha256": null,
+      "status": "ERROR",
+      "error_message": "ContractLogicError: ('execution reverted', 'no data')",
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": null,
+      "parser_version": "ethereum_rpc.v1"
     }
   ],
+  "dependency_exposures": {
+    "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c": {
+      "dependency_id": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+      "positions": [
+        {
+          "position_id": "pos_simulated_2000000usd",
+          "kind": "SIMULATED",
+          "path": [
+            "pos_simulated_2000000usd",
+            "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+            "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+            "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c"
+          ],
+          "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+          "equity_usd": "600000.0000001343578999991580807148926210",
+          "link_statuses": [
+            "CONFIRMED",
+            "HYPOTHESIS"
+          ],
+          "evidence_ids": [
+            "ev_325e403a57da7fa3d406fedc",
+            "ev_4fcc48852a1ca7dbf15652fb",
+            "ev_6b2784dfb1b2fbeed0f348d1",
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        }
+      ],
+      "unique_position_count": 1,
+      "collateral_exposure_usd": "1999999.9999999999999999991580807148926210",
+      "basis": "STRUCTURAL_REACHABILITY_NOT_LOSS",
+      "warnings": [
+        "Alternative routes and unresolved links may occur in paths.",
+        "Simulated positions are hypothetical; this is not a realized loss."
+      ]
+    },
+    "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1": {
+      "dependency_id": "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+      "positions": [
+        {
+          "position_id": "pos_simulated_2000000usd",
+          "kind": "SIMULATED",
+          "path": [
+            "pos_simulated_2000000usd",
+            "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+          ],
+          "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+          "equity_usd": "600000.0000001343578999991580807148926210",
+          "link_statuses": [
+            "HYPOTHESIS"
+          ],
+          "evidence_ids": []
+        }
+      ],
+      "unique_position_count": 1,
+      "collateral_exposure_usd": "1999999.9999999999999999991580807148926210",
+      "basis": "STRUCTURAL_REACHABILITY_NOT_LOSS",
+      "warnings": [
+        "Alternative routes and unresolved links may occur in paths.",
+        "Simulated positions are hypothetical; this is not a realized loss."
+      ]
+    },
+    "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920": {
+      "dependency_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "positions": [
+        {
+          "position_id": "pos_simulated_2000000usd",
+          "kind": "SIMULATED",
+          "path": [
+            "pos_simulated_2000000usd",
+            "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+            "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920"
+          ],
+          "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+          "equity_usd": "600000.0000001343578999991580807148926210",
+          "link_statuses": [
+            "CONFIRMED",
+            "HYPOTHESIS"
+          ],
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        }
+      ],
+      "unique_position_count": 1,
+      "collateral_exposure_usd": "1999999.9999999999999999991580807148926210",
+      "basis": "STRUCTURAL_REACHABILITY_NOT_LOSS",
+      "warnings": [
+        "Alternative routes and unresolved links may occur in paths.",
+        "Simulated positions are hypothetical; this is not a realized loss."
+      ]
+    },
+    "asset:1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+      "dependency_id": "asset:1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "positions": [
+        {
+          "position_id": "pos_simulated_2000000usd",
+          "kind": "SIMULATED",
+          "path": [
+            "pos_simulated_2000000usd",
+            "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+            "asset:1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+          ],
+          "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+          "equity_usd": "600000.0000001343578999991580807148926210",
+          "link_statuses": [
+            "CONFIRMED",
+            "HYPOTHESIS"
+          ],
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        }
+      ],
+      "unique_position_count": 1,
+      "collateral_exposure_usd": "1999999.9999999999999999991580807148926210",
+      "basis": "STRUCTURAL_REACHABILITY_NOT_LOSS",
+      "warnings": [
+        "Alternative routes and unresolved links may occur in paths.",
+        "Simulated positions are hypothetical; this is not a realized loss."
+      ]
+    },
+    "asset:1:0xd42f23aa6d2b886524006c6aecb1ad80579e736c": {
+      "dependency_id": "asset:1:0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+      "positions": [
+        {
+          "position_id": "pos_simulated_2000000usd",
+          "kind": "SIMULATED",
+          "path": [
+            "pos_simulated_2000000usd",
+            "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+            "asset:1:0xd42f23aa6d2b886524006c6aecb1ad80579e736c"
+          ],
+          "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+          "equity_usd": "600000.0000001343578999991580807148926210",
+          "link_statuses": [
+            "CONFIRMED",
+            "HYPOTHESIS"
+          ],
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        }
+      ],
+      "unique_position_count": 1,
+      "collateral_exposure_usd": "1999999.9999999999999999991580807148926210",
+      "basis": "STRUCTURAL_REACHABILITY_NOT_LOSS",
+      "warnings": [
+        "Alternative routes and unresolved links may occur in paths.",
+        "Simulated positions are hypothetical; this is not a realized loss."
+      ]
+    },
+    "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb": {
+      "dependency_id": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+      "positions": [
+        {
+          "position_id": "pos_simulated_2000000usd",
+          "kind": "SIMULATED",
+          "path": [
+            "pos_simulated_2000000usd",
+            "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+            "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+            "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb"
+          ],
+          "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+          "equity_usd": "600000.0000001343578999991580807148926210",
+          "link_statuses": [
+            "CONFIRMED",
+            "HYPOTHESIS"
+          ],
+          "evidence_ids": [
+            "ev_325e403a57da7fa3d406fedc",
+            "ev_4fcc48852a1ca7dbf15652fb",
+            "ev_81bc89ce9cd859a8ff4c8466",
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        }
+      ],
+      "unique_position_count": 1,
+      "collateral_exposure_usd": "1999999.9999999999999999991580807148926210",
+      "basis": "STRUCTURAL_REACHABILITY_NOT_LOSS",
+      "warnings": [
+        "Alternative routes and unresolved links may occur in paths.",
+        "Simulated positions are hypothetical; this is not a realized loss."
+      ]
+    },
+    "irm:1:0x870ac11d48b15db9a138cf899d20f13f79ba00bc": {
+      "dependency_id": "irm:1:0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+      "positions": [
+        {
+          "position_id": "pos_simulated_2000000usd",
+          "kind": "SIMULATED",
+          "path": [
+            "pos_simulated_2000000usd",
+            "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+            "irm:1:0x870ac11d48b15db9a138cf899d20f13f79ba00bc"
+          ],
+          "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+          "equity_usd": "600000.0000001343578999991580807148926210",
+          "link_statuses": [
+            "CONFIRMED",
+            "HYPOTHESIS"
+          ],
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        }
+      ],
+      "unique_position_count": 1,
+      "collateral_exposure_usd": "1999999.9999999999999999991580807148926210",
+      "basis": "STRUCTURAL_REACHABILITY_NOT_LOSS",
+      "warnings": [
+        "Alternative routes and unresolved links may occur in paths.",
+        "Simulated positions are hypothetical; this is not a realized loss."
+      ]
+    },
+    "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689": {
+      "dependency_id": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "positions": [
+        {
+          "position_id": "pos_simulated_2000000usd",
+          "kind": "SIMULATED",
+          "path": [
+            "pos_simulated_2000000usd",
+            "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689"
+          ],
+          "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+          "equity_usd": "600000.0000001343578999991580807148926210",
+          "link_statuses": [
+            "HYPOTHESIS"
+          ],
+          "evidence_ids": []
+        }
+      ],
+      "unique_position_count": 1,
+      "collateral_exposure_usd": "1999999.9999999999999999991580807148926210",
+      "basis": "STRUCTURAL_REACHABILITY_NOT_LOSS",
+      "warnings": [
+        "Alternative routes and unresolved links may occur in paths.",
+        "Simulated positions are hypothetical; this is not a realized loss."
+      ]
+    },
+    "oracle:1:0xf9c1d6954eb6c59731cd277bc27bbc5239c67570": {
+      "dependency_id": "oracle:1:0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "positions": [
+        {
+          "position_id": "pos_simulated_2000000usd",
+          "kind": "SIMULATED",
+          "path": [
+            "pos_simulated_2000000usd",
+            "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+            "oracle:1:0xf9c1d6954eb6c59731cd277bc27bbc5239c67570"
+          ],
+          "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+          "equity_usd": "600000.0000001343578999991580807148926210",
+          "link_statuses": [
+            "CONFIRMED",
+            "HYPOTHESIS"
+          ],
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        }
+      ],
+      "unique_position_count": 1,
+      "collateral_exposure_usd": "1999999.9999999999999999991580807148926210",
+      "basis": "STRUCTURAL_REACHABILITY_NOT_LOSS",
+      "warnings": [
+        "Alternative routes and unresolved links may occur in paths.",
+        "Simulated positions are hypothetical; this is not a realized loss."
+      ]
+    },
+    "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408": {
+      "dependency_id": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "positions": [
+        {
+          "position_id": "pos_simulated_2000000usd",
+          "kind": "SIMULATED",
+          "path": [
+            "pos_simulated_2000000usd",
+            "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408"
+          ],
+          "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+          "equity_usd": "600000.0000001343578999991580807148926210",
+          "link_statuses": [
+            "CONFIRMED",
+            "HYPOTHESIS"
+          ],
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        }
+      ],
+      "unique_position_count": 1,
+      "collateral_exposure_usd": "1999999.9999999999999999991580807148926210",
+      "basis": "STRUCTURAL_REACHABILITY_NOT_LOSS",
+      "warnings": [
+        "Alternative routes and unresolved links may occur in paths.",
+        "Simulated positions are hypothetical; this is not a realized loss."
+      ]
+    },
+    "pos_simulated_2000000usd": {
+      "dependency_id": "pos_simulated_2000000usd",
+      "positions": [
+        {
+          "position_id": "pos_simulated_2000000usd",
+          "kind": "SIMULATED",
+          "path": [
+            "pos_simulated_2000000usd"
+          ],
+          "collateral_value_usd": "1999999.9999999999999999991580807148926210",
+          "equity_usd": "600000.0000001343578999991580807148926210",
+          "link_statuses": [],
+          "evidence_ids": []
+        }
+      ],
+      "unique_position_count": 1,
+      "collateral_exposure_usd": "1999999.9999999999999999991580807148926210",
+      "basis": "STRUCTURAL_REACHABILITY_NOT_LOSS",
+      "warnings": [
+        "Alternative routes and unresolved links may occur in paths.",
+        "Simulated positions are hypothetical; this is not a realized loss."
+      ]
+    }
+  },
+  "dependency_reads": {
+    "collected_at": "2026-10-11T02:10:53.881470+00:00",
+    "block_number": 26164093,
+    "warnings": [
+      "0x48f9e38f3070ad8945dfeae3fa70987722e3d89c: asset unavailable (RpcRevertError)"
+    ]
+  },
   "closing_assumptions": {
     "closing_feasible": true,
     "repayment_liquidity_confirmed": true,
