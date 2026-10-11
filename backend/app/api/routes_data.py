@@ -325,6 +325,7 @@ def get_series(
         warnings.append(f"{n_missing} of {len(series.points)} points MISSING (not filled)")
     return _envelope(status=status, as_of=last.timestamp, data_mode=data_mode,
                      data=series.model_dump(mode="json"), source_ids=[series.source_id],
+                     evidence_ids=[i for p in series.points for i in p.evidence_ids],
                      warnings=warnings, block_number=last.block_number)
 
 

@@ -27,8 +27,8 @@ Avant de coder : **inspecte réellement le repository** (`ls`, README, arboresce
 
 Le hackathon est organisé par la **Blockchain Student Association de l'EPFL (BSA)**, avec **Belem Capital** et **Swissquote** comme sponsors. L'événement se déroule à l'EPFL, dans le bâtiment BC. Il propose notamment un track autour du **risque DeFi** et un autre autour des **wallets self-custody**. Nous avons choisi **le track de Belem Capital sur les dépendances de risque DeFi**, et non celui des wallets.
 
-- Page organisateur : https://luma.com/d5gqew38
-- Lien vers les tracks indiqué par l'organisateur : https://dorahacks.io/hackathon/bsa-the-hackathon/tracks
+- Page organisateur : <https://luma.com/d5gqew38>
+- Lien vers les tracks indiqué par l'organisateur : <https://dorahacks.io/hackathon/bsa-the-hackathon/tracks>
 - Le hackathon est court : privilégier une **démo end-to-end crédible** plutôt qu'une plateforme tentaculaire.
 
 **Précision sur les scores ci-dessous :** la répartition vient de la grille consignée par le responsable projet dans l'architecture V1.1, d'après DoraHacks ; nous n'avons pas ici une reproduction indépendante du texte complet du règlement du track. Ne la réécris pas comme une citation officielle mot pour mot.
@@ -50,7 +50,7 @@ Le vrai risque n'est donc pas seulement « est-ce que Morpho fonctionne ? » ou 
 ### 1.3 Attentes du challenge consignées dans la V1.1
 
 | Dimension | Pondération issue de la V1.1 | Preuve attendue dans notre démonstration |
-|---|---:|---|
+| --- | ---: | --- |
 | **Dependency discovery** | 30 % | Graphe multi-hop réel, relations vérifiées, preuves inspectables |
 | **Impact estimation** | 30 % | Propagation contrôlée des scénarios, capital exposé dédupliqué, LTV/liquidation, pertes justifiées |
 | **STAY / EXIT decision** | 25 % | Comparaison financière conditionnelle en **mode Normal**, coût de sortie et seuil de bascule |
@@ -63,7 +63,7 @@ Le vrai risque n'est donc pas seulement « est-ce que Morpho fonctionne ? » ou 
 ## 2. Notions DeFi minimales pour ne pas coder de contresens
 
 | Concept | Signification dans notre projet |
-|---|---|
+| --- | --- |
 | **USDC** | Token utilisé pour la dette du scénario principal ; vérifier sa véritable adresse sur Ethereum mainnet. |
 | **Morpho Blue** | Protocole de marchés isolés de prêt/emprunt. Un marché précise notamment le loan token, le collateral token, l'oracle, l'IRM et le LLTV. |
 | **Borrow position** | Position qui dépose un collatéral et emprunte des USDC. Elle peut subir une liquidation si sa santé devient insuffisante. |
@@ -218,7 +218,7 @@ Afficher `completeness` et `evidence_confidence` séparément. Selon la V1.1, l'
 ### 5.4 Trois scénarios de stress obligatoires (P0)
 
 | ID | Ce que simuler | Limite de crédibilité |
-|---|---|---|
+| --- | --- | --- |
 | `ORACLE_MANIPULATION` | Variation d'oracle ± % ou outage **distingué** ; nouveau LTV/health factor, liquidations potentielles et opérations bloquées | Un oracle en panne ne signifie **pas** 100 % de perte. |
 | `UNAUTHORIZED_MINTING` | Émission non autorisée sur un actif vraiment dépendant ou hypothèse marquée, avec **haircut de prix séparé du nombre minté** | Ne pas dériver la perte directement de la quantité mintée. |
 | `CROSS_CHAIN_FAILURE` | Bridge ou règlement cross-chain réellement prouvé, durée d'indisponibilité et haircut éventuel | Si aucun bridge prouvé : `NOT_APPLICABLE` sur le graphe réel, fixture `HYPOTHETICAL` distincte. |
@@ -293,7 +293,7 @@ Les raisons prévues sont `FORECAST_UNAVAILABLE`, `FORECAST_STALE` et `FORECAST_
 ### 7.2 Frontières de responsabilité
 
 | Marillou DOIT | Marillou NE DOIT PAS |
-|---|---|
+| --- | --- |
 | Charger les séries issues du pipeline data | Modifier l'architecture des moteurs |
 | Vérifier unité, granularité, timestamps et trous | Inventer des points historiques ou des valeurs live |
 | Créer une baseline et évaluer Chronos-2 chronologiquement | Tester seulement sur des données déjà vues comme si c'était du futur |
@@ -333,7 +333,7 @@ S'il n'existe pas encore de données historiques, tu peux **implémenter l'infra
 Préfixe : `/api/v1` ; conventions : `schema_version`, `status`, `as_of`, `data`, `provenance`, `missing_fields`, `warnings`.
 
 | Endpoint | Méthode | Ownership |
-|---|---|---|
+| --- | --- | --- |
 | `/api/v1/strategies` et `/api/v1/strategies/{id}` | GET | Data |
 | `/api/v1/markets` et `/api/v1/markets/{id}` | GET | Data |
 | `/api/v1/positions/{id}` | GET | Data / read-only |
@@ -441,15 +441,15 @@ Quand tu termines une itération, réponds avec :
 
 **Sources techniques identifiées par la V1.1 :**
 
-- Morpho API : https://docs.morpho.org/developers/api/morpho/
-- Morpho Blue on-chain : https://docs.morpho.org/developers/contracts/blue/
-- Pendle Hosted SDK / Convert API : https://docs.pendle.finance/pendle-v2-dev/Backend/HostedSdk
-- Pendle RouterStatic : https://docs.pendle.finance/pendle-v2-dev/Contracts/RouterStatic/ApiReference/SwapFunctions
-- Chronos-2 : https://huggingface.co/amazon/chronos-2
-- Chronos Python officiel : https://github.com/amazon-science/chronos-forecasting
-- FinBERT (optionnel) : https://huggingface.co/ProsusAI/finbert
-- Google Colab FAQ : https://research.google.com/colaboratory/faq.html
-- Organisateur hackathon BSA : https://luma.com/d5gqew38
+- Morpho API : <https://docs.morpho.org/developers/api/morpho/>
+- Morpho Blue on-chain : <https://docs.morpho.org/developers/contracts/blue/>
+- Pendle Hosted SDK / Convert API : <https://docs.pendle.finance/pendle-v2-dev/Backend/HostedSdk>
+- Pendle RouterStatic : <https://docs.pendle.finance/pendle-v2-dev/Contracts/RouterStatic/ApiReference/SwapFunctions>
+- Chronos-2 : <https://huggingface.co/amazon/chronos-2>
+- Chronos Python officiel : <https://github.com/amazon-science/chronos-forecasting>
+- FinBERT (optionnel) : <https://huggingface.co/ProsusAI/finbert>
+- Google Colab FAQ : <https://research.google.com/colaboratory/faq.html>
+- Organisateur hackathon BSA : <https://luma.com/d5gqew38>
 
 ---
 

@@ -51,7 +51,7 @@ def forecast_carry(snapshot, request, now):
     if not bundles:
         return None, "FORECAST_UNAVAILABLE", None
     bundle = max(bundles, key=lambda b: b.generated_at)
-    if bundle.generated_at > now or bundle.valid_until < now:
+    if bundle.generated_at > now or bundle.valid_until <= now:
         return None, "STALE", None
     if bundle.validation_status != "VALIDATED":
         return None, "NOT_VALIDATED", None
@@ -59,7 +59,9 @@ def forecast_carry(snapshot, request, now):
             snapshot, request.strategy_id, request.position_id):
         return None, "FORECAST_INPUTS_CHANGED", None
     evidence = {e.evidence_id: e for e in snapshot.evidence}
+    position = snapshot.position(request.strategy_id, request.position_id)
     if any(i not in evidence or evidence[i].status in {"MISSING", "ERROR", "MISMATCH", "STALE"}
-           or evidence[i].fetched_at > now for i in bundle.evidence_ids):
+           or evidence[i].fetched_at > now or evidence[i].data_mode != position.data_mode
+           or evidence[i].chain_id != position.chain_id for i in bundle.evidence_ids):
         return None, "NOT_VALIDATED", None
     return bundle.estimated_net_carry_usd, None, bundle.bundle_id

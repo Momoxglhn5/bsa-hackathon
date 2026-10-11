@@ -17,6 +17,7 @@ Chaîne : stores Data (SQLite : DTO + preuves ; Parquet : série `ORACLE_PRICE`)
 **Mapping :** `collateral_amount` → quantité de PT ; `borrow_amount` → dette (jamais les totaux du marché) ; `morpho.lltv` → LLTV ; `morpho.oracle_price.value` → prix oracle initial ; `strategy.expiry` → expiry du PT.
 
 **Contrôles de l'adapter :**
+
 - chaîne 1 ; jointure par adresse et identifiant, jamais par symbole ; pas de mélange REAL/DEMO ;
 - marché, stratégie, PT et loan token identiques ; oracle `MORPHO_ORACLE` coté en loan token ;
 - fraîcheur 300 s (position, marché, oracle) et 24 h (stratégie), pas de date future ;
@@ -27,6 +28,7 @@ Une incohérence d'identité renvoie HTTP 422. Une donnée absente renvoie HTTP 
 **Règle de portée :** `REAL_DATA` seulement si le marché est REAL, la position `ONCHAIN` et la calibration observée vérifiée. Une position `SIMULATED` reste `HYPOTHETICAL`, même sur un marché réel.
 
 **Calibration `ORACLE_DAILY_LOG_RETURNS_30D_V1` :**
+
 - 31 cibles = minuits UTC ; la plus récente est le dernier minuit ≤ `as_of` ;
 - pour chaque cible, le dernier point valide dans `[cible − 1 h, cible]` ; pas d'interpolation ; une cible manquante rend la calibration indisponible ;
 - point valide : valeur > 0, statut OK, bloc connu, preuve RPC `eth_call price()` de l'oracle du marché au même bloc, avec hash de bloc, récupérée au plus tard à `as_of`. La valeur brute de la preuve, divisée par `10^(36 + déc. loan − déc. PT)`, doit égaler exactement la valeur stockée ;
@@ -35,6 +37,7 @@ Une incohérence d'identité renvoie HTTP 422. Une donnée absente renvoie HTTP 
 - drift fixé à 0 par politique, jamais estimé ; volatilité > 5 → indisponible.
 
 **Collecte :**
+
 - rétrospective : `eth_call price()` au dernier bloc ≤ chaque minuit. Recherche du bloc : estimation à 12 s par slot (borne basse garantie après le Merge), encadrement puis bissection. Exige un RPC archive. Bornée à 60 jours, arrêt après 3 échecs consécutifs ;
 - prospective : le refresh existant écrit un point oracle prouvé à chaque exécution.
 

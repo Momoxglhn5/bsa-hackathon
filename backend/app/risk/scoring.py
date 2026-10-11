@@ -136,7 +136,9 @@ def current_risk(snapshot, strategy_id, now):
         if observation:
             risk, timestamp, ids, methodology = observation
             records = [evidence.get(i) for i in ids]
-            if not ids or any(e is None or e.status in {"ERROR", "MISSING", "MISMATCH"} or e.fetched_at > now for e in records) or timestamp > now:
+            if not ids or any(e is None or e.status in {"ERROR", "MISSING", "MISMATCH"}
+                             or e.chain_id != market.chain_id or e.data_mode != market.data_mode
+                             or e.fetched_at > now for e in records) or timestamp > now:
                 observation = None
         if observation is None:
             factors.append(Factor(factor_id=id, dimension=dim, explanation="Unknown: missing usable evidence or applicable methodology; never counted as zero risk."))

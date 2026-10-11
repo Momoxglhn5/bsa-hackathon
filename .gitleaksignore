@@ -1,0 +1,41 @@
+# Reviewed public token addresses and a test helper argument, not credentials.
+# Exact history and working-tree findings only; all other matches remain scanned.
+5a588f35169368bb6c150c37c71d6ec67a47c181:backend/app/tests/test_cross_protocol_join.py:generic-api-key:10
+84381fd89106f5237172075599b29325407879ab:backend/app/fixtures/demo_strategy_manifest.json:generic-api-key:5
+84381fd89106f5237172075599b29325407879ab:backend/app/fixtures/demo_strategy_manifest.json:generic-api-key:6
+backend/app/tests/test_cross_protocol_join.py:generic-api-key:10
+backend/app/fixtures/demo_strategy_manifest.json:generic-api-key:5
+backend/app/fixtures/demo_strategy_manifest.json:generic-api-key:6
+# Public loan/collateral addresses in the reviewed real replay archive.
+docs/validation/monte_carlo_20261011/snapshot.json:generic-api-key:613
+docs/validation/monte_carlo_20261011/snapshot.json:generic-api-key:614
+docs/validation/monte_carlo_20261011/snapshot.json:generic-api-key:663
+docs/validation/monte_carlo_20261011/snapshot.json:generic-api-key:794
+docs/validation/monte_carlo_20261011/snapshot.json:generic-api-key:795
+docs/validation/monte_carlo_20261011/snapshot.json:generic-api-key:941
+1c25f7fbfc9b8c0b6d05d77d15347eb950ed51c0:docs/validation/monte_carlo_20261011/snapshot.json:generic-api-key:613
+1c25f7fbfc9b8c0b6d05d77d15347eb950ed51c0:docs/validation/monte_carlo_20261011/snapshot.json:generic-api-key:614
+1c25f7fbfc9b8c0b6d05d77d15347eb950ed51c0:docs/validation/monte_carlo_20261011/snapshot.json:generic-api-key:663
+1c25f7fbfc9b8c0b6d05d77d15347eb950ed51c0:docs/validation/monte_carlo_20261011/snapshot.json:generic-api-key:794
+1c25f7fbfc9b8c0b6d05d77d15347eb950ed51c0:docs/validation/monte_carlo_20261011/snapshot.json:generic-api-key:795
+1c25f7fbfc9b8c0b6d05d77d15347eb950ed51c0:docs/validation/monte_carlo_20261011/snapshot.json:generic-api-key:941
+
+# Reviewed public EVM token addresses in the offline jury demo archive.
+docs/demo/radar/source/analytics_snapshot.json:generic-api-key:607
+docs/demo/radar/source/analytics_snapshot.json:generic-api-key:631
+docs/demo/radar/source/analytics_snapshot.json:generic-api-key:826
+docs/demo/radar/source/analytics_snapshot.json:generic-api-key:827
+docs/demo/radar/demo-data.json:generic-api-key:1826
+docs/demo/radar/demo-data.json:generic-api-key:1850
+docs/demo/radar/demo-data.json:generic-api-key:2045
+docs/demo/radar/demo-data.json:generic-api-key:2046
+docs/demo/radar/index.html:generic-api-key:14
+1809658637557b9aee4c70b44ff78107619c85e9:docs/demo/radar/source/analytics_snapshot.json:generic-api-key:607
+1809658637557b9aee4c70b44ff78107619c85e9:docs/demo/radar/source/analytics_snapshot.json:generic-api-key:631
+1809658637557b9aee4c70b44ff78107619c85e9:docs/demo/radar/source/analytics_snapshot.json:generic-api-key:826
+1809658637557b9aee4c70b44ff78107619c85e9:docs/demo/radar/source/analytics_snapshot.json:generic-api-key:827
+1809658637557b9aee4c70b44ff78107619c85e9:docs/demo/radar/demo-data.json:generic-api-key:1826
+1809658637557b9aee4c70b44ff78107619c85e9:docs/demo/radar/demo-data.json:generic-api-key:1850
+1809658637557b9aee4c70b44ff78107619c85e9:docs/demo/radar/demo-data.json:generic-api-key:2045
+1809658637557b9aee4c70b44ff78107619c85e9:docs/demo/radar/demo-data.json:generic-api-key:2046
+1809658637557b9aee4c70b44ff78107619c85e9:docs/demo/radar/index.html:generic-api-key:14

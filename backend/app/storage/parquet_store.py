@@ -56,6 +56,8 @@ SCHEMA = pa.schema([
     pa.field("is_interpolated", pa.bool_(), nullable=False),
     pa.field("block_number", pa.int64()),
     pa.field("pricing_method", pa.string()),
+    pa.field("evidence_ids", pa.list_(pa.string())),
+    pa.field("interval_seconds", pa.int64()),
 ])
 
 
@@ -76,6 +78,8 @@ class Observation:
     is_interpolated: bool = False
     block_number: int | None = None
     pricing_method: str | None = None
+    evidence_ids: tuple[str, ...] = ()
+    interval_seconds: int | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -107,6 +111,8 @@ def observations_from_series(dto: TimeseriesDTO, entity_id: str, retrieved_at: d
             quality_flags=() if p.status == DataStatus.OK else (p.status.value,),
             block_number=p.block_number,
             pricing_method=dto.pricing_method.value if dto.pricing_method else None,
+            evidence_ids=p.evidence_ids,
+            interval_seconds=dto.interval_seconds,
         )
         for p in dto.points
     ]
@@ -138,6 +144,10 @@ def validate_observations(rows: list[Observation]) -> None:
     if len({(r.entity_id, r.metric) for r in rows}) != 1:
         raise ObservationError("one file never mixes entities or metrics")
     for r in rows:
+        if any(not re.fullmatch(r"ev_[0-9a-f]{16,64}", i) for i in r.evidence_ids):
+            raise ObservationError("invalid evidence id")
+        if r.interval_seconds is not None and (isinstance(r.interval_seconds, bool) or r.interval_seconds <= 0):
+            raise ObservationError("interval_seconds must be positive")
         _entity_subject(r.entity_id)
         for name in ("ts_utc", "retrieved_at"):
             if getattr(r, name).tzinfo is None:
@@ -182,6 +192,8 @@ def _to_table(rows: list[Observation]) -> pa.Table:
         "is_interpolated": r.is_interpolated,
         "block_number": r.block_number,
         "pricing_method": r.pricing_method,
+        "evidence_ids": list(r.evidence_ids),
+        "interval_seconds": r.interval_seconds,
     } for r in rows], schema=SCHEMA)
 
 
@@ -199,6 +211,8 @@ def _from_table(table: pa.Table) -> list[Observation]:
             is_interpolated=d["is_interpolated"],
             block_number=d["block_number"],
             pricing_method=d["pricing_method"],
+            evidence_ids=tuple(d.get("evidence_ids") or ()),
+            interval_seconds=d.get("interval_seconds"),
         )
         for d in table.to_pylist()
     ]
@@ -305,6 +319,7 @@ class ParquetStore:
                 value=r.value_decimal,
                 status=next((DataStatus(f) for f in r.quality_flags if f in _STATUS_FLAGS), DataStatus.OK),
                 block_number=r.block_number,
+                evidence_ids=r.evidence_ids,
             )
             for r in rows
         )
@@ -329,7 +344,8 @@ class ParquetStore:
             unit=SeriesUnit(first.unit),
             quote_asset=quote_asset,
             pricing_method=PricingMethod(first.pricing_method) if first.pricing_method else None,
-            interval_seconds=interval_seconds,
+            interval_seconds=interval_seconds if interval_seconds is not None else
+                (first.interval_seconds if all(r.interval_seconds == first.interval_seconds for r in rows) else None),
             source_id=first.source_id,
             status=status,
             points=points,

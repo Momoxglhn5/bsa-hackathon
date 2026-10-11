@@ -166,3 +166,29 @@ def test_simulated_usd_sizing_requires_fresh_prices_and_keeps_exact_token_units(
     assert position.borrow_amount == Decimal("700700.700700")
     with pytest.raises(module.SizingUnavailable, match="stale"):
         module.position_for_size(market, strategy, Decimal("1000000"), NOW + timedelta(seconds=301))
+
+
+@pytest.mark.parametrize("fault", ["amount", "validity", "missing_fields", "future"])
+def test_cached_quote_rejects_invalid_delivery_or_future_observation(tmp_path, fault):
+    with client_for(route_payload()) as client:
+        quote, _, _, _ = call_quote(client)
+    strategy = "strat_" + "a" * 24
+    record = {"strategy_id": strategy, "input_amount": "1",
+              "quote": quote.model_dump(mode="json"), "missing_fields": ["closing_feasible"]}
+    if fault == "amount":
+        record["quote"]["input_amount"] = "2"
+    elif fault == "validity":
+        record["quote"]["valid_until"] = None
+    elif fault == "missing_fields":
+        del record["missing_fields"]
+    bundle = tmp_path / "delivery" / "snapshot"
+    bundle.mkdir(parents=True)
+    (bundle.parent / "current.json").write_text(json.dumps({"bundle": bundle.name}))
+    (bundle / "exit_quotes.json").write_text(json.dumps({"records": [record]}))
+    now = quote.observed_at - timedelta(seconds=1) if fault == "future" else quote.observed_at
+    api = TestClient(create_app(tmp_path / "db.sqlite", clock=lambda: now))
+    response = api.post("/api/v1/exit-quotes", json={"strategy_id": strategy, "input_amount": "1"})
+    if fault == "future":
+        assert response.status_code == 200 and response.json()["status"] == "STALE"
+    else:
+        assert response.status_code == 503

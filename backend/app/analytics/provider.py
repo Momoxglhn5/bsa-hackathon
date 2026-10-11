@@ -101,6 +101,7 @@ def snapshot_from_store(store, parquet, data_mode=DataMode.REAL, *, inputs=None)
                 oracle_evidence += proofs
     ids = {i for x in (*markets, *strategies, *positions, *relations) for i in x.evidence_ids}
     ids.update(i for m in markets for c in m.verification for i in c.evidence_ids)
+    ids.update(i for s in series for p in s.points for i in p.evidence_ids)
     ids.update(i for m in markets for fields in (m.morpho, m.pendle) if fields
                for name in ("collateral_price", "loan_price", "oracle_price", "pt_price")
                if (price := getattr(fields, name, None)) for i in price.evidence_ids)

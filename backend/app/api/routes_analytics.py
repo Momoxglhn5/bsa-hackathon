@@ -3,7 +3,7 @@ from typing import Generic, TypeVar
 
 from fastapi import APIRouter, Depends, Query
 from app.models.evidence import DataMode
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.analytics.dataset import AnalyticsSnapshot
 from app.analytics.service import AnalyticsService
@@ -13,6 +13,8 @@ from app.models.evidence import ContractModel, EvidenceDTO, UtcDatetime
 from app.risk.scoring import RiskResult, current_risk
 from app.stress.schemas import SimulationRequest, SimulationResult
 from app.decision.schemas import DecisionRequest, DecisionResult
+from app.decision.carry import CarryAssumptions, CarryResult, estimate_carry
+from app.decision.closing import ClosingAssumptions, ClosingPlanResult, closing_plan
 
 from app.stress.monte_carlo.adapter import (
     MonteCarloDataRequest, MonteCarloDataUnavailable, MonteCarloNotApplicable,
@@ -51,6 +53,20 @@ class ScenarioCatalog(ContractModel):
 class IncidentFrequencies(ContractModel):
     estimates: tuple[str, ...] = ()
     methodology: str = "No calibrated history or denominator supplied; enter explicit horizon-specific user assumptions."
+
+
+class CarryRequest(ContractModel):
+    strategy_id: str
+    position_id: str
+    horizon_days: int = Field(default=7, strict=True, ge=1, le=365)
+    assumptions: CarryAssumptions | None = None
+
+
+class ClosingPlanRequest(ContractModel):
+    strategy_id: str
+    position_id: str
+    exit_quote_id: str | None = None
+    assumptions: ClosingAssumptions | None = None
 
 
 def create_router(service=None, *, provider=None):
@@ -133,6 +149,22 @@ def create_router(service=None, *, provider=None):
     @router.get("/incident-frequencies", response_model=Envelope[IncidentFrequencies])
     def incidents(service=Depends(resolve_catalog)):
         return envelope(service, IncidentFrequencies(), "INSUFFICIENT_DATA")
+
+    @router.post("/carry-estimates", response_model=Envelope[CarryResult])
+    def carry_estimate(request: CarryRequest, service=Depends(resolve)):
+        result = estimate_carry(service.snapshot, request.strategy_id, request.position_id,
+                                request.horizon_days, service.now(), request.assumptions)
+        response = envelope(service, result, result.status)
+        response.missing_fields = result.missing_fields
+        return response
+
+    @router.post("/closing-plans", response_model=Envelope[ClosingPlanResult])
+    def closing_preview(request: ClosingPlanRequest, service=Depends(resolve)):
+        result = closing_plan(service.snapshot, request.strategy_id, request.position_id,
+                              request.exit_quote_id, service.now(), request.assumptions)
+        response = envelope(service, result, result.status)
+        response.missing_fields = result.missing_fields
+        return response
 
     @router.post("/decisions", response_model=Envelope[DecisionResult], summary="Conditional STAY/EXIT and break-even, no ML required")
     def decisions(request: DecisionRequest, service=Depends(resolve)):

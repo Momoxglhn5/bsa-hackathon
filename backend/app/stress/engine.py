@@ -1,7 +1,7 @@
 import hashlib
 from decimal import Decimal
 
-from app.analytics.valuation import value_position
+from app.analytics.valuation import compatible_data_modes, value_position
 from app.graph.builder import build_graph
 from app.graph.exposure import exposure
 from app.graph.propagation import propagate
@@ -10,17 +10,25 @@ from app.stress.schemas import PositionEffect, SimulationRequest, SimulationResu
 
 def simulate(snapshot, request: SimulationRequest, *, now=None) -> SimulationResult:
     now = now or snapshot.as_of
-    snapshot.position(request.strategy_id, request.position_id)
-    graph = build_graph(snapshot, request.strategy_id, hypothetical=request.scenario_scope == "HYPOTHETICAL")
+    position = snapshot.position(request.strategy_id, request.position_id)
     sid = "stress:" + hashlib.sha256((snapshot.model_dump_json() + request.model_dump_json()).encode()).hexdigest()[:24]
     base = dict(simulation_id=sid, strategy_id=request.strategy_id, position_id=request.position_id,
                 horizon_days=request.horizon_days, scenario_type=request.scenario_type,
                 scenario_scope=request.scenario_scope)
+    def result(**fields):
+        output = SimulationResult(**base, **fields)
+        if "MIXED_DATA_MODE_NOT_COMPARABLE" not in output.warnings:
+            output._data_mode = position.data_mode
+        return output
+
+    if not compatible_data_modes(snapshot, position):
+        return result(scenario_status="PARTIAL", warnings=("MIXED_DATA_MODE_NOT_COMPARABLE",))
+    graph = build_graph(snapshot, request.strategy_id, hypothetical=request.scenario_scope == "HYPOTHETICAL")
     target = next((n for n in graph.nodes if n.id == request.target_node_id), None)
     incoming = [e for e in graph.edges if e.target == request.target_node_id]
     bridge_verified = target is not None and target.type == "BRIDGE" and any(e.verification_status == "CONFIRMED" for e in incoming)
     if request.scenario_type == "CROSS_CHAIN_FAILURE" and (target is None or (request.scenario_scope != "HYPOTHETICAL" and not bridge_verified)):
-        return SimulationResult(**base, scenario_status="NOT_APPLICABLE", warnings=("NO_VERIFIED_BRIDGE_DEPENDENCY",))
+        return result(scenario_status="NOT_APPLICABLE", warnings=("NO_VERIFIED_BRIDGE_DEPENDENCY",))
     if target is None:
         raise KeyError("Unknown target node")
     expected_types = {"ORACLE_MANIPULATION": {"ORACLE"}, "ORACLE_OUTAGE": {"ORACLE"},
@@ -39,6 +47,9 @@ def simulate(snapshot, request: SimulationRequest, *, now=None) -> SimulationRes
     effects, warnings = {}, []
     for pid in ids:
         p = snapshot.position(request.strategy_id, pid)
+        if not compatible_data_modes(snapshot, p) or p.data_mode != position.data_mode:
+            warnings.append("MIXED_DATA_MODE_NOT_COMPARABLE")
+            continue
         before = value_position(snapshot, p, now=now)
         after, loss = before, None
         if request.scenario_type == "ORACLE_MANIPULATION":
@@ -73,12 +84,13 @@ def simulate(snapshot, request: SimulationRequest, *, now=None) -> SimulationRes
                 warnings.append("BRIDGE_RECOVERY_AND_ECONOMIC_BACKING_UNKNOWN; no automatic haircut transmission")
         effects[pid] = PositionEffect(before=before, after=after, scenario_estimated_loss_usd=loss)
     losses = [e.scenario_estimated_loss_usd for e in effects.values()]
-    total_loss = sum(losses, Decimal(0)) if losses and all(x is not None for x in losses) else None
+    total_loss = sum(losses, Decimal(0)) if (losses and all(x is not None for x in losses)
+        and "MIXED_DATA_MODE_NOT_COMPARABLE" not in warnings) else None
     if total_loss is None:
         warnings.append("CONDITIONAL_LOSS_UNQUANTIFIED")
     assumptions = ["Simulated failure; not evidence of an actual incident"]
     assumptions += [f"{k}={v}" for k, v in request.parameters.model_dump(mode="json").items() if v is not None]
-    return SimulationResult(**base, scenario_status="CALCULATED" if total_loss is not None else "PARTIAL",
+    return result(scenario_status="CALCULATED" if total_loss is not None else "PARTIAL",
                             affected_node_ids=impact.affected_node_ids, affected_position_ids=tuple(ids),
                             confirmed_exposed_capital_usd=exposure(snapshot, impact.confirmed_position_ids, now=now),
                             potentially_exposed_capital_usd=exposure(snapshot, impact.potential_position_ids, now=now),

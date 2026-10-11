@@ -1,9 +1,9 @@
 from typing import Literal
 
-from pydantic import Field, model_validator
+from pydantic import Field, PrivateAttr, model_validator
 
 from app.analytics.valuation import Valuation
-from app.models.evidence import (ContractModel, EvidenceId, NonNegativeDecimal,
+from app.models.evidence import (ContractModel, DataMode, EvidenceId, NonNegativeDecimal,
                                  PreciseDecimal, UnitRatio)
 
 ScenarioType = Literal["ORACLE_MANIPULATION", "ORACLE_OUTAGE", "UNAUTHORIZED_MINTING", "CROSS_CHAIN_FAILURE"]
@@ -58,6 +58,8 @@ class PositionEffect(ContractModel):
 
 
 class SimulationResult(ContractModel):
+    # Process-local provenance: never a client field or a Data V1 schema change.
+    _data_mode: DataMode | None = PrivateAttr(default=None)
     simulation_id: str
     strategy_id: str
     position_id: str

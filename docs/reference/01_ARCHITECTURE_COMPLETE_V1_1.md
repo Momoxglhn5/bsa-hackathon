@@ -59,13 +59,14 @@ flowchart TD
 Grille de notation fournie par le responsable projet d'après DoraHacks :
 
 | Critère | Pondération | Notre preuve de valeur |
-|---|---:|---|
+| --- | ---: | --- |
 | Dependency discovery | **30 %** | Graphe multi-hop authentique + evidence inspectable par arête |
 | Impact estimation | **30 %** | Chocs, sous-graphe touché, exposition dédupliquée, risque de liquidation, pertes conditionnelles |
 | STAY / EXIT decision | **25 %** | Comparaison quantitative **en mode Normal**, curseurs d'hypothèses, devis d'exit, seuil de renversement |
 | Real-data demonstration | **15 %** | `chain_id=1`, IDs de marché, transactions / appels RPC et données officielles avec horodatage |
 
 **Acceptation P0 = parcours complet observable et rejouable :**
+
 1. Choisir une stratégie réellement vérifiée (ou afficher explicitement `NO_VERIFIED_LIVE_STRATEGY`).
 2. Voir une position de fonds **SIMULATED** sur un marché **REAL** ; saisir dette et collatéral sans wallet.
 3. Explorer au moins Morpho market → loan/collateral/oracle/IRM et PT → Pendle market → SY ; résoudre le rendement sous-jacent quand justifiable.
@@ -79,7 +80,7 @@ Grille de notation fournie par le responsable projet d'après DoraHacks :
 ## 3. Architecture par module et interfaces de responsabilité
 
 | Bloc V1.1 | Rôle | Entrées | Sorties | Priorité |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | **Data Pipeline V1** | Collecter, normaliser et sourcer | Morpho, Pendle, Ethereum RPC (+ sources auxiliaires) | `MarketDTO`, `StrategyDTO`, `PositionDTO`, `Evidence`, séries, quotes cachées | P0 |
 | **Historical Data + Evidence** | Fournir snapshot/replay; historique léger | Data Pipeline | JSON et index read-only pour moteurs | P0 |
 | **Dependency Graph** | Découvrir les liens et les types de dépendance | DTO + relations + preuves | `GraphDTO`, impact reachability, chemins probants | P0 |
@@ -143,7 +144,7 @@ Important : factors de Morpho et Pendle doivent conserver leur signification. **
 Chaque scénario doit déclarer `verified_applicability`, `scenario_scope` (`VERIFIED_TARGET`/`HYPOTHETICAL`/`NOT_APPLICABLE`), `assumptions`, `affected_nodes`, `affected_positions`, `confirmed_exposure`, `potential_exposure`, `operational_impact`, `liquidation_impact`, `scenario_loss_usd: null|decimal`, `warnings`, `evidence_ids`.
 
 | Type P0 | Mécanisme | Variables UI minimales | Output justifiable |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `ORACLE_MANIPULATION` | Prix oracle altéré (ou mode outage distinct) | choc oracle ± %, éventuel outage | LTV/health factor post-choc **dans l'unité correcte**, marge liquidation, opérations affectées |
 | `UNAUTHORIZED_MINTING` | Token émis sans garanties suffisantes sur actif réellement dépendant ou hypothèse explicite | actif concerné + haircut de prix **séparé du montant minté** | chaînes de backing touchées, perte conditionnelle si haircut/quantité explicites |
 | `CROSS_CHAIN_FAILURE` | Bridge / wrapping cross-chain / règlement bloqué, **uniquement si lien sourcé** | indisponibilité durée + haircut hypothétique facultatif | effet opérationnel, fonds dépendants potentiellement bloqués ; perte `null` sans haircut |
@@ -156,7 +157,7 @@ Chaque scénario doit déclarer `verified_applicability`, `scenario_scope` (`VER
 
 Pour un même horizon `H`, même devise et même convention d'equity :
 
-```
+```text
 V_STAY(H) = equity_now + net_carry_over_H - scenario_expected_loss_over_H
 V_EXIT    = equity_now - total_exit_cost_now
 choose STAY if V_STAY > V_EXIT, otherwise EXIT (conditional on inputs)
@@ -178,7 +179,7 @@ En cas d'absence/échec : `requested_mode=predictive`, `effective_mode=normal`, 
 ## 9. Frontend / Figma — 3 écrans, sans 4e page
 
 | Écran | Sections visibles | Fonctions |
-|---|---|---|
+| --- | --- | --- |
 | **1. Dependency Graph** | Strategy selector, résumé montant/debt/LTV, trois métriques risque, canvas force-directed, inspector droite | Zoom/pan, focus, recherche, clic nœud ou arête → preuve, type de dépendance, unknown edge distinction |
 | **2. Stress Simulator** | Sélecteur Oracle / Mint / Cross-chain, shock controls, KPIs avant/après, graphe impacté compact | Scénario réel/hypothétique, propagation, exposition ≠ perte, repositionnement des impacts |
 | **3. STAY / EXIT Decision** | Toggle Normal/Predictive, sliders probabilités, horizon, quote sortie, deux colonnes de valeurs, seuil, explication | Verdict conditionnel, provenance, fallback Normal, montant 1–5 M$ |
@@ -190,7 +191,7 @@ En cas d'absence/échec : `requested_mode=predictive`, `effective_mode=normal`, 
 **Préfixe :** `/api/v1`. Les routes Data V1 existantes demeurent ; les routes analytiques ci-dessous enrichissent cet espace, avec mêmes conventions d'enveloppe (`schema_version`, `status`, `as_of`, `data`, `provenance`, `missing_fields`, `warnings`).
 
 | Endpoint | Méthode | Module propriétaire |
-|---|---|---|
+| --- | --- | --- |
 | `/api/v1/strategies` ; `/{id}` | GET | Data |
 | `/api/v1/markets` ; `/{id}` | GET | Data |
 | `/api/v1/positions/{id}` | GET | Data / read-only |
@@ -284,7 +285,7 @@ En cas d'absence/échec : `requested_mode=predictive`, `effective_mode=normal`, 
 ## 12. Livraisons équipe / ownership (5 développeurs)
 
 | Dev | Propriétaire | Done P0 |
-|---|---|---|
+| --- | --- | --- |
 | 1 — Frontend | React / 3 écrans | navigation, graph canvas, inspecteur preuves, sliders, decision toggle et affichage des états |
 | 2 — Graph | NetworkX | graphe réel, arêtes sourcées, reverse reachability + exposure union |
 | 3 — Morpho/Data | sources/normalisation | marché vérifié, oracle, position fictive, DTO V1, cache JSON et health |
@@ -295,14 +296,14 @@ Le développeur du brief ML/News (`05_BRIEF_DEV_ML_FORECAST_NEWS.md`) peut être
 
 ## 13. Références officielles à garder dans le repo
 
-- Morpho API : https://docs.morpho.org/developers/api/morpho/
-- Morpho Blue on-chain : https://docs.morpho.org/developers/contracts/blue/
-- Pendle Hosted SDK / Convert API : https://docs.pendle.finance/pendle-v2-dev/Backend/HostedSdk
-- Pendle RouterStatic : https://docs.pendle.finance/pendle-v2-dev/Contracts/RouterStatic/ApiReference/SwapFunctions
-- Chronos-2 : https://huggingface.co/amazon/chronos-2
-- Chronos Python officiel : https://github.com/amazon-science/chronos-forecasting
-- FinBERT : https://huggingface.co/ProsusAI/finbert
-- Google Colab FAQ : https://research.google.com/colaboratory/faq.html
+- Morpho API : <https://docs.morpho.org/developers/api/morpho/>
+- Morpho Blue on-chain : <https://docs.morpho.org/developers/contracts/blue/>
+- Pendle Hosted SDK / Convert API : <https://docs.pendle.finance/pendle-v2-dev/Backend/HostedSdk>
+- Pendle RouterStatic : <https://docs.pendle.finance/pendle-v2-dev/Contracts/RouterStatic/ApiReference/SwapFunctions>
+- Chronos-2 : <https://huggingface.co/amazon/chronos-2>
+- Chronos Python officiel : <https://github.com/amazon-science/chronos-forecasting>
+- FinBERT : <https://huggingface.co/ProsusAI/finbert>
+- Google Colab FAQ : <https://research.google.com/colaboratory/faq.html>
 
 ## 14. Fichiers livrés en parallèle
 

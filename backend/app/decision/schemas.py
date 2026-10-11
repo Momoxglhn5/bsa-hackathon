@@ -3,6 +3,8 @@ from typing import Literal
 from pydantic import Field, model_validator
 
 from app.models.evidence import ContractModel, NonNegativeDecimal, PreciseDecimal, UnitRatio
+from app.decision.carry import CarryAssumptions, CarryResult
+from app.decision.closing import ClosingAssumptions, ClosingPlanResult
 
 
 class ScenarioAssumption(ContractModel):
@@ -32,9 +34,13 @@ class DecisionRequest(ContractModel):
     carry_basis: Literal["USER_ASSUMPTION"] = "USER_ASSUMPTION"
     carry_explanation: str | None = Field(default=None, min_length=1, max_length=1000)
     sensitivity_scenario_ref: str | None = None
+    carry_assumptions: CarryAssumptions | None = None
+    closing_assumptions: ClosingAssumptions | None = None
 
     @model_validator(mode="after")
     def consistency(self):
+        if self.estimated_net_carry_usd is not None and self.carry_assumptions is not None:
+            raise ValueError("choose either explicit net carry or rate assumptions")
         ids = [s.loss_scenario_ref for s in self.scenario_assumptions]
         if len(ids) != len(set(ids)):
             raise ValueError("duplicate scenario reference")
@@ -76,5 +82,7 @@ class DecisionResult(ContractModel):
     assumption_basis: Literal["ASSUMPTION_DRIVEN"] = "ASSUMPTION_DRIVEN"
     structural_risk_index: PreciseDecimal | None = None
     risk_completeness_pct: PreciseDecimal | None = None
+    carry_calculation: CarryResult | None = None
+    closing_plan: ClosingPlanResult | None = None
     explanation: tuple[str, ...] = ()
     warnings: tuple[str, ...] = ()

@@ -1,16 +1,25 @@
 from decimal import Decimal, localcontext
+from datetime import timedelta
 
-from app.analytics.valuation import value_position
+from app.analytics.valuation import compatible_data_modes, value_position
 from app.decision.exit_cost import evaluate_exit
 from app.decision.forecast import forecast_carry
 from app.decision.schemas import DecisionRequest, DecisionResult
+from app.decision.carry import estimate_carry
+from app.decision.closing import closing_plan
 
 
 def decide(snapshot, request: DecisionRequest, simulations, now, risk_context=None) -> DecisionResult:
     position = snapshot.position(request.strategy_id, request.position_id)
+    expiry = snapshot.strategy(request.strategy_id).expiry
+    horizon_unavailable = expiry is None or now + timedelta(days=request.horizon_days) >= expiry
     valuation = value_position(snapshot, position, now=now)
-    quote_status, cost, external, quote_note = evaluate_exit(snapshot, position, request.exit_quote_id, now)
+    quote_status, cost, external, quote_note = evaluate_exit(
+        snapshot, position, request.exit_quote_id, now, assumptions=request.closing_assumptions)
+    plan = closing_plan(snapshot, request.strategy_id, request.position_id,
+                        request.exit_quote_id, now, request.closing_assumptions)
     warnings, included, excluded, unquantified, losses = [], [], [], [], {}
+    mixed_mode = not compatible_data_modes(snapshot, position)
     incomplete = False
     for assumption in request.scenario_assumptions:
         result = simulations.get(assumption.loss_scenario_ref)
@@ -28,6 +37,12 @@ def decide(snapshot, request: DecisionRequest, simulations, now, risk_context=No
             warnings.append("UNQUANTIFIED_RISK_NOT_INCLUDED" if loss is None else "SCENARIO_EXPLICITLY_EXCLUDED")
             continue
         included.append(result.simulation_id)
+        if result._data_mode != position.data_mode or "MIXED_DATA_MODE_NOT_COMPARABLE" in result.warnings:
+            mixed_mode = True
+            incomplete = True
+            if result._data_mode is None:
+                warnings.append("SIMULATION_DATA_MODE_UNKNOWN")
+            continue
         if loss is None or assumption.probability_over_horizon is None:
             incomplete = True
         else:
@@ -40,6 +55,14 @@ def decide(snapshot, request: DecisionRequest, simulations, now, risk_context=No
         warnings.append("NO_SCENARIO_INCLUDED")
     expected = None if incomplete else sum((p*l for p, l in losses.values()), Decimal(0))
     equity, carry = valuation.equity_usd, request.estimated_net_carry_usd
+    carry_result = None
+    if carry is None:
+        carry_result = estimate_carry(snapshot, request.strategy_id, request.position_id,
+                                      request.horizon_days, now, request.carry_assumptions)
+        carry = carry_result.net_carry_usd
+        warnings.extend(carry_result.warnings)
+    if request.closing_assumptions is not None:
+        warnings.append("CLOSING_PLAN_AND_FUNDING_ARE_USER_ASSUMPTIONS_NOT_VERIFIED_EXECUTION")
     effective_mode, fallback, bundle_id = "normal", None, None
     if request.mode == "predictive":
         forecast, fallback, bundle_id = forecast_carry(snapshot, request, now)
@@ -76,10 +99,24 @@ def decide(snapshot, request: DecisionRequest, simulations, now, risk_context=No
                 warnings.append("FORECAST_CARRY_CONDITIONAL_NOT_GUARANTEED")
             else:
                 bundle_id = None
+    if horizon_unavailable:
+        warnings.append("PT_EXPIRY_UNKNOWN" if expiry is None else "HORIZON_BEYOND_PT_EXPIRY")
+        carry = None
+        if bundle_id is not None:
+            effective_mode, bundle_id = "normal", None
+            fallback = "PT_EXPIRY_UNKNOWN" if expiry is None else "HORIZON_BEYOND_PT_EXPIRY"
+    if mixed_mode:
+        warnings.append("MIXED_DATA_MODE_NOT_COMPARABLE")
+        equity = carry = expected = cost = None
+        quote_status = "INSUFFICIENT_DATA"
+        plan = carry_result = None
+        effective_mode, bundle_id = "normal", None
     stay = equity + carry - expected if all(v is not None for v in (equity, carry, expected)) else None
     exit_value = equity - cost if equity is not None and cost is not None else None
     status = quote_status if quote_status != "OK" else "CONDITIONAL"
     if quote_status == "OK" and (stay is None or exit_value is None):
+        status = "INSUFFICIENT_DATA"
+    if horizon_unavailable:
         status = "INSUFFICIENT_DATA"
     comparison = verdict = threshold = threshold_status = probability_max = None
     sensitivity = request.sensitivity_scenario_ref or (included[0] if included else None)
@@ -114,8 +151,11 @@ def decide(snapshot, request: DecisionRequest, simulations, now, risk_context=No
                           excluded_unquantified_scenario_ids=tuple(unquantified),
                           structural_risk_index=risk_context.risk_index if risk_context else None,
                           risk_completeness_pct=risk_context.completeness_pct if risk_context else None,
+                          carry_calculation=carry_result, closing_plan=plan,
                           explanation=("Conditional comparison in USD using the same current equity.",
-                                       ("Probabilities are user assumptions; net carry comes from the identified validated forecast mapping." if bundle_id else "Probabilities and net carry are explicit user assumptions for this horizon."),
+                                       ("Probabilities are user assumptions; net carry comes from the identified validated forecast mapping." if bundle_id else
+                                        "Probabilities are user assumptions; carry uses the disclosed conditional rate calculation." if carry_result else
+                                        "Probabilities and net carry are explicit user assumptions for this horizon."),
                                        "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
                                        quote_note,
                                        "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).") + risk_note,

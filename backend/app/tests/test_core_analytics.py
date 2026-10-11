@@ -361,7 +361,7 @@ def test_risk_publication_threshold():
 
 def test_stale_evidence_lowers_confidence(snapshot):
     data = snapshot.model_dump(mode='json')
-    data['evidence'][0].update(data_mode='REAL', source_kind='MORPHO_API')
+    data['evidence'][0].update(source_kind='DERIVED')
     snap = AnalyticsSnapshot.model_validate(data)
     fresh = current_risk(snap, snap.strategies[0].strategy_id, snap.as_of)
     stale = current_risk(snap, snap.strategies[0].strategy_id, snap.as_of+timedelta(hours=12))

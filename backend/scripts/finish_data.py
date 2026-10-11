@@ -174,7 +174,7 @@ def main(argv=None):
                         values = dto.model_dump()
                         for point in values["points"]:
                             row = by_time[point["timestamp"]]
-                            point["evidence_ids"] = tuple(evidence_by_fetch.get((source, row.retrieved_at), ()))
+                            point["evidence_ids"] = point["evidence_ids"] or tuple(evidence_by_fetch.get((source, row.retrieved_at), ()))
                         series.append(type(dto).model_validate(values))
                 history_rows = [r for r in rows if FLAG_SNAPSHOT not in r.quality_flags]
                 daily = [r for r in history_rows if r.value_decimal is not None]

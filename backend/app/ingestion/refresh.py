@@ -164,13 +164,14 @@ def _err(exc: BaseException) -> str:
 
 def _snapshot(entity: str, metric: TimeseriesMetric, ts: datetime, value: Any, unit: SeriesUnit,
               source_id: str, retrieved_at: datetime, block: int | None = None,
-              method: PricingMethod | None = None) -> Observation:
+              method: PricingMethod | None = None, evidence_ids: tuple[str, ...] = ()) -> Observation:
     """Current-state point; a None value is stored as MISSING, never 0."""
     return Observation(
         entity_id=entity, metric=metric.value, ts_utc=ts, value_decimal=value, unit=unit.value,
         source_id=source_id, retrieved_at=retrieved_at,
         quality_flags=(FLAG_SNAPSHOT,) if value is not None else (FLAG_SNAPSHOT, FLAG_MISSING),
         block_number=block, pricing_method=method.value if method else None,
+        evidence_ids=evidence_ids,
     )
 
 
@@ -351,19 +352,20 @@ class Refresher:
                     (TimeseriesMetric.UTILIZATION, f.utilization, SeriesUnit.RATIO),
                 ):
                     series.append([_snapshot(entity, metric, block_ts, value, unit, st.ref.source_id,
-                                             retrieved, st.block_number)])
+                                             retrieved, st.block_number, evidence_ids=(st.ref.evidence_id,))])
             if "oracle" in reads:
                 o = reads["oracle"]
                 value = f.oracle_price.value if f.oracle_price is not None else None
                 series.append([_snapshot(entity, TimeseriesMetric.ORACLE_PRICE, pinned.timestamp, value,
                                          SeriesUnit.TOKEN, o.ref.source_id,
                                          self._rpc_fetched_at(o.ref.evidence_id, now), o.block_number,
-                                         PricingMethod.MORPHO_ORACLE)])
+                                         PricingMethod.MORPHO_ORACLE, evidence_ids=(o.ref.evidence_id,))])
             if apys_raw is not None:
                 for metric, value in ((TimeseriesMetric.SUPPLY_APY, f.supply_apy),
                                       (TimeseriesMetric.BORROW_APY, f.borrow_apy)):
                     series.append([_snapshot(entity, metric, apys_raw.retrieved_at, value, SeriesUnit.RATIO,
-                                             apys_raw.source_id, apys_raw.retrieved_at)])
+                                             apys_raw.source_id, apys_raw.retrieved_at,
+                                             evidence_ids=(apys_raw.evidence_id,))])
         if pendle_dto is not None:
             p, entity = pendle_dto.pendle, pendle_market_key(pendle_addr)
             for metric, value, unit in (
@@ -372,14 +374,16 @@ class Refresher:
                 (TimeseriesMetric.LIQUIDITY_USD, p.liquidity_usd, SeriesUnit.USD),
             ):
                 series.append([_snapshot(entity, metric, pendle_raw.retrieved_at, value, unit,
-                                         pendle_raw.source_id, pendle_raw.retrieved_at)])
+                                         pendle_raw.source_id, pendle_raw.retrieved_at,
+                                         evidence_ids=(pendle_raw.evidence_id,))])
         for market in markets:
             prices = (market.morpho.collateral_price, market.morpho.loan_price) if market.morpho else (market.pendle.pt_price,)
             for price in prices:
                 if price is not None:
                     series.append([_snapshot(f"asset:1:{price.base_asset.address}",
                         TimeseriesMetric.MARKET_PRICE, price.observed_at, price.value,
-                        SeriesUnit.USD, price.source_id, price.observed_at, method=price.pricing_method)])
+                        SeriesUnit.USD, price.source_id, price.observed_at, method=price.pricing_method,
+                        evidence_ids=price.evidence_ids)])
         if pendle_dto and pendle_dto.pendle.underlying_asset:
             underlying = pendle_dto.pendle.underlying_asset
             for raw in price_raws:
@@ -388,7 +392,7 @@ class Refresher:
                 if price is not None:
                     series.append([_snapshot(f"asset:1:{underlying.address}", TimeseriesMetric.MARKET_PRICE,
                         price.observed_at, price.value, SeriesUnit.USD, price.source_id,
-                        price.observed_at, method=price.pricing_method)])
+                        price.observed_at, method=price.pricing_method, evidence_ids=price.evidence_ids)])
         points = 0
         for rows in series:
             try:

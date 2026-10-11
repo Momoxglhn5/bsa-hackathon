@@ -40,9 +40,25 @@ def main():
     assert stay['data']['verdict'] == 'STAY'
     assert exit_result['data']['verdict'] == 'EXIT'
     assert shock['data']['position_effects'][position['position_id']]['after']['liquidatable'] is True
+    carry_assumptions = dict(pt_annual_return='0.10', borrow_apy='0.05', holding_fees_usd='0',
+                             explanation='Synthetic annual effective rates held constant over the horizon')
+    closing_assumptions = dict(available_repayment_loan_units=position['borrow_amount'],
+        gas_cost_usd='100', extra_fees_usd='20', financing_fee_usd='30',
+        explanation='Synthetic upfront debt-token funding and complete closing costs')
+    context = dict(strategy_id=strategy_id, position_id=position['position_id'])
+    carry_preview = call('carry-estimates', dict(context, horizon_days=7, assumptions=carry_assumptions))
+    closing_preview = call('closing-plans', dict(context, exit_quote_id=snapshot['quotes'][0]['quote_id'],
+                                                assumptions=closing_assumptions))
+    automatic = {k: v for k, v in decision.items() if k not in {'estimated_net_carry_usd', 'carry_explanation'}}
+    automatic.update(carry_assumptions=carry_assumptions, closing_assumptions=closing_assumptions)
+    normal = call('decisions', automatic)
+    assert normal['data']['decision_status'] == 'CONDITIONAL'
+    assert normal['data']['effective_mode'] == 'normal'
     print(json.dumps(dict(dataset='SYNTHETIC / FROZEN REPLAY', graph_nodes=len(graph['data']['nodes']),
                           graph_edges=len(graph['data']['edges']), oracle_stress=shock['data'],
                           stay_at_2pct=stay['data'], exit_at_10pct=exit_result['data'],
+                          carry_preview=carry_preview['data'], closing_preview=closing_preview['data'],
+                          normal_with_calculated_carry=normal['data'],
                           risk=call('risk/' + strategy_id)['data']), indent=2))
 
 

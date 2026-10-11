@@ -40,8 +40,25 @@ class Valuation(ContractModel):
     liquidatable: bool | None = None
 
 
+def compatible_data_modes(snapshot, position):
+    """Check the provenance of quantities and valuation inputs without changing DTOs."""
+    market = snapshot.market(position)
+    strategy = snapshot.strategy(position.strategy_id)
+    mode = position.data_mode
+    if market.data_mode != mode or strategy.data_mode != mode:
+        return False
+    records = {e.evidence_id: e for e in snapshot.evidence}
+    ids = set(position.evidence_ids) | set(market.evidence_ids)
+    for price in (market.morpho.collateral_price, market.morpho.loan_price, market.morpho.oracle_price):
+        if price is not None:
+            ids.update(price.evidence_ids)
+    return all(records[i].data_mode == mode for i in ids if i in records)
+
+
 def value_position(snapshot: AnalyticsSnapshot, p: PositionDTO, oracle_change=Decimal(0), *, now=None) -> Valuation:
     now = now or snapshot.as_of
+    if not compatible_data_modes(snapshot, p):
+        return Valuation()
     m = snapshot.market(p).morpho
     cp = usd_price(m.collateral_price) if fresh_price(snapshot, m.collateral_price, now, data_mode=snapshot.market(p).data_mode) else None
     lp = usd_price(m.loan_price) if fresh_price(snapshot, m.loan_price, now, data_mode=snapshot.market(p).data_mode) else None

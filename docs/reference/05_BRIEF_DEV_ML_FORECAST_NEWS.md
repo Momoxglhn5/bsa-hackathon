@@ -32,7 +32,7 @@ Ce diagramme est un **zoom**, pas un remplacement du diagramme global V1.1. **Le
 ## 2. Cibles ML et priorités définitives
 
 | Priorité | Target (`metric`) | Raison | Source primaire potentielle | Si non disponible |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | **P1-A** | `PT_MARKET_PRICE_USD` | Prix d'actif sur Pendle, visuel simple, suivi d'horizon | Historique Pendle | `FORECAST_UNAVAILABLE` |
 | P1-B | `MORPHO_BORROW_APY_RATIO` | Coût future de dette | Historique Morpho | omettre |
 | P1-B | `PENDLE_IMPLIED_APY_RATIO` | Rendement implicite PT | Historique Pendle | omettre |
@@ -78,8 +78,8 @@ Consommer le `TimeSeriesPoint` existant :
 
 ## 4. Chronos-2 — modèle candidat P1
 
-**Modèle officiel :** https://huggingface.co/amazon/chronos-2  
-**Repo :** https://github.com/amazon-science/chronos-forecasting  
+**Modèle officiel :** <https://huggingface.co/amazon/chronos-2>
+**Repo :** <https://github.com/amazon-science/chronos-forecasting>
 **Lib :** `chronos-forecasting>=2.0` ; Chronos-2 ~120 M paramètres, forecasting univarié/multivarié, quantiles.
 
 ### Notebook Colab demandé
@@ -231,7 +231,7 @@ News RSS / GDELT
 
 ### FinBERT technique
 
-- Modèle : https://huggingface.co/ProsusAI/finbert.
+- Modèle : <https://huggingface.co/ProsusAI/finbert>.
 - Package Transformers/PyTorch ; inférence batch / petit cache JSON, pas de boucle d'actualités temps réel obligatoire.
 - Ne jamais convertir un score de sentiment `0.9` en « 90 % risk » ou p(oracle hack). Les scores de modèle sont des scores de classification de texte, pas du risque financier.
 
@@ -267,7 +267,7 @@ FastAPI route P2 `GET /api/v1/news/{strategy_id}` répond `UNAVAILABLE`/liste vi
 ## 9. Ownership, ordre de travail et jalons
 
 | Priorité | Étape | Livrable | Condition pour avancer |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | P1 | 1. Inventaire historiques | vrai PT, son histoire, qualité, expiry | >= historique raisonnable et unités correctes |
 | P1 | 2. Baseline | notebook de persistence / backtest | métriques chronologiques reproductibles |
 | P1 | 3. Chronos-2 | quantiles forecasts, comparaison baseline | modèle réellement exécuté, pas un mock |
@@ -287,9 +287,9 @@ FastAPI route P2 `GET /api/v1/news/{strategy_id}` répond `UNAVAILABLE`/liste vi
 
 ## 10. Sources officielles et politiques
 
-- https://huggingface.co/amazon/chronos-2
-- https://github.com/amazon-science/chronos-forecasting
-- https://huggingface.co/ProsusAI/finbert
-- https://research.google.com/colaboratory/faq.html (Colab ≠ hosting permanent)
-- https://docs.pendle.finance/pendle-v2-dev/Backend/ApiOverview
-- https://docs.morpho.org/developers/api/morpho/
+- <https://huggingface.co/amazon/chronos-2>
+- <https://github.com/amazon-science/chronos-forecasting>
+- <https://huggingface.co/ProsusAI/finbert>
+- <https://research.google.com/colaboratory/faq.html> (Colab ≠ hosting permanent)
+- <https://docs.pendle.finance/pendle-v2-dev/Backend/ApiOverview>
+- <https://docs.morpho.org/developers/api/morpho/>
