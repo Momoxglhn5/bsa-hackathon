@@ -15,7 +15,7 @@ Analyse en lecture seule de positions d'emprunt Morpho utilisant des PT Pendle :
 - Stress oracle, minting et cross-chain avec exposition, santé de position et pertes uniquement chiffrables.
 - Décision conditionnelle STAY/EXIT, coût de sortie validé, seuil de bascule et repli Predictive → Normal.
 - Risque observable avec couverture, confiance et score masqué si données insuffisantes.
-- Monte Carlo du prix oracle Morpho raccordé à Data, avec calibration de volatilité sur la série oracle prouvée par RPC ; testé sur fixtures synthétiques uniquement, aucune série réelle collectée à ce jour ([détails](docs/implementation/monte_carlo_pr2.md)).
+- Monte Carlo du prix oracle Morpho raccordé à Data, avec calibration de volatilité sur la série oracle prouvée par RPC ; contrôlé sur un snapshot de marché réel avec 11 observations RPC ; les runs sous hypothèse passent, la calibration sur 31 points reste indisponible ([détails](docs/implementation/monte_carlo_pr2.md)).
 - Sept endpoints sous `/api/v1`, documentation OpenAPI et tests automatisés.
 
 **La démo analytics incluse est entièrement synthétique.** Les moteurs sont branchés aux stores SQLite/Parquet Data et aux relations vérifiées. Le manifeste livré est `VERIFIED_ACTIVE` ; les stores réels, ignorés par Git, doivent être collectés ou transférés séparément. Les prix USD et quotes absents restent `null` ; aucun verdict réel n'est forcé.

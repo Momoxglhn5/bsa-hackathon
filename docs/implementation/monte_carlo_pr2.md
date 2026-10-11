@@ -1,6 +1,6 @@
 # Monte Carlo PR2 — raccordement Data et calibration oracle
 
-Statut : raccordement implémenté et testé uniquement sur des fixtures synthétiques. Aucune série oracle réelle n'a encore été collectée ni calibrée. **PR2 réel non validé.**
+Statut : raccordement testé sur fixtures et sur un snapshot de marché réel du 11 octobre 2026. Onze observations oracle RPC ont été collectées ; les runs fonctionnels sous volatilité supposée passent à J1/J3/J7. **Calibration réelle sur 30 jours encore indisponible : 20 échantillons manquants.** Voir [le rapport et le replay réel](../validation/monte_carlo_20261011/README.md).
 
 ## Chaîne
 

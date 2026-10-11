@@ -1,0 +1,1470 @@
+{
+  "schema_version": "analytics-snapshot-v1",
+  "snapshot_id": "stored:REAL:c97d37a10ccce828b0673f8d:simulated-fund",
+  "as_of": "2026-10-11T00:02:47.435526Z",
+  "description": "Immutable export from Data SQLite/Parquet (REAL); missing prices and quotes remain unknown.",
+  "markets": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "protocol": "MORPHO_BLUE",
+      "market_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "status": "PARTIAL",
+      "as_of": "2026-10-11T00:02:44.540214Z",
+      "block_number": 26165494,
+      "morpho": {
+        "morpho_address": "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb",
+        "loan_token": {
+          "chain_id": 1,
+          "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "symbol": null,
+          "name": null,
+          "decimals": 6
+        },
+        "collateral_token": {
+          "chain_id": 1,
+          "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "symbol": null,
+          "name": null,
+          "decimals": 18
+        },
+        "oracle_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+        "irm_address": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+        "lltv": "0.860000000000000000",
+        "lltv_raw": "860000000000000000",
+        "total_supply_assets": "501505.873442",
+        "total_supply_assets_raw": "501505873442",
+        "total_borrow_assets": "451328.132536",
+        "total_borrow_assets_raw": "451328132536",
+        "total_supply_shares_raw": "501036614583514175",
+        "total_borrow_shares_raw": "450853043398898159",
+        "utilization": "0.89994585594459016768581520855463576558923167707262",
+        "supply_apy": "0.035386922979107234",
+        "borrow_apy": "0.039397720793859524",
+        "fee": "0.000000000000000000",
+        "last_update": "2026-10-09T20:26:35Z",
+        "oracle_price": {
+          "chain_id": 1,
+          "value": "0.963836353691019787000000",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "symbol": null,
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "TOKEN",
+          "quote_asset": {
+            "chain_id": 1,
+            "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "symbol": null,
+            "name": null,
+            "decimals": 6
+          },
+          "pricing_method": "MORPHO_ORACLE",
+          "observed_at": "2026-10-11T00:02:35Z",
+          "block_number": 26165494,
+          "source_id": "ethereum_rpc",
+          "evidence_ids": [
+            "ev_9d8782b579be68e23bbc19fb"
+          ],
+          "status": "OK",
+          "kind": "ORACLE",
+          "oracle_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+          "raw_value": "963836353691019787000000",
+          "scale_exponent": 24
+        },
+        "collateral_price": {
+          "chain_id": 1,
+          "value": "0.9773210052881203",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "symbol": null,
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-11T00:02:47.435526Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_5f453573b55a55d14d5490b2"
+          ],
+          "status": "OK",
+          "kind": "MARKET"
+        },
+        "loan_price": {
+          "chain_id": 1,
+          "value": "0.99989725",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "symbol": null,
+            "name": null,
+            "decimals": 6
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-11T00:02:47.435526Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_5f453573b55a55d14d5490b2"
+          ],
+          "status": "OK",
+          "kind": "MARKET"
+        }
+      },
+      "pendle": null,
+      "verification": [
+        {
+          "check": "morpho.loan_token",
+          "claimed_value": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_6783e16446deed875dbac3a0"
+          ]
+        },
+        {
+          "check": "morpho.collateral_token",
+          "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_6783e16446deed875dbac3a0"
+          ]
+        },
+        {
+          "check": "morpho.oracle",
+          "claimed_value": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_6783e16446deed875dbac3a0"
+          ]
+        },
+        {
+          "check": "morpho.irm",
+          "claimed_value": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_6783e16446deed875dbac3a0"
+          ]
+        },
+        {
+          "check": "morpho.lltv",
+          "claimed_value": "860000000000000000",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "860000000000000000",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_6783e16446deed875dbac3a0"
+          ]
+        }
+      ],
+      "source_ids": [
+        "morpho_api",
+        "ethereum_rpc"
+      ],
+      "evidence_ids": [
+        "ev_1d38d9b48dfea10dd8684c0e",
+        "ev_6783e16446deed875dbac3a0",
+        "ev_1b0fbcaa3d7758fe1d010dd9",
+        "ev_9d8782b579be68e23bbc19fb",
+        "ev_ba41505e51d8b62431788e61"
+      ]
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "protocol": "PENDLE_V2",
+      "market_id": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "status": "PARTIAL",
+      "as_of": "2026-10-11T00:02:46.191152Z",
+      "block_number": 26165494,
+      "morpho": null,
+      "pendle": {
+        "market_address": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+        "pt": {
+          "chain_id": 1,
+          "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "symbol": null,
+          "name": null,
+          "decimals": null
+        },
+        "yt": {
+          "chain_id": 1,
+          "address": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+          "symbol": null,
+          "name": null,
+          "decimals": null
+        },
+        "sy": {
+          "chain_id": 1,
+          "address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+          "symbol": null,
+          "name": null,
+          "decimals": null
+        },
+        "expiry": "2027-01-07T00:00:00Z",
+        "underlying_asset": {
+          "chain_id": 1,
+          "address": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+          "symbol": null,
+          "name": null,
+          "decimals": null
+        },
+        "is_expired": false,
+        "implied_apy": "0.09935453975410202",
+        "underlying_apy": "0.06104148539309806",
+        "pt_price": {
+          "chain_id": 1,
+          "value": "0.9773210052881203",
+          "base_asset": {
+            "chain_id": 1,
+            "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+            "symbol": null,
+            "name": null,
+            "decimals": 18
+          },
+          "quote_unit": "USD",
+          "quote_asset": null,
+          "pricing_method": "API_SPOT",
+          "observed_at": "2026-10-11T00:02:47.435526Z",
+          "block_number": null,
+          "source_id": "pendle_api",
+          "evidence_ids": [
+            "ev_5f453573b55a55d14d5490b2"
+          ],
+          "status": "OK",
+          "kind": "MARKET"
+        },
+        "liquidity_usd": "11160892.122504769",
+        "total_pt": "5983939.606324586",
+        "total_sy": "4857383.312089885"
+      },
+      "verification": [
+        {
+          "check": "pendle.sy",
+          "claimed_value": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d87d819714b11be9c523b285"
+          ]
+        },
+        {
+          "check": "pendle.pt",
+          "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d87d819714b11be9c523b285"
+          ]
+        },
+        {
+          "check": "pendle.yt",
+          "claimed_value": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d87d819714b11be9c523b285"
+          ]
+        },
+        {
+          "check": "pendle.expiry",
+          "claimed_value": "1799280000",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "1799280000",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d87d819714b11be9c523b285"
+          ]
+        }
+      ],
+      "source_ids": [
+        "pendle_api",
+        "ethereum_rpc"
+      ],
+      "evidence_ids": [
+        "ev_f71badb5fbf96167cfdf4b28",
+        "ev_d87d819714b11be9c523b285"
+      ]
+    }
+  ],
+  "positions": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "position_id": "pos_mc_validation",
+      "kind": "SIMULATED",
+      "protocol": "MORPHO_BLUE",
+      "market_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "owner": null,
+      "collateral_asset": {
+        "chain_id": 1,
+        "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "symbol": null,
+        "name": null,
+        "decimals": 18
+      },
+      "loan_asset": {
+        "chain_id": 1,
+        "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "symbol": null,
+        "name": null,
+        "decimals": 6
+      },
+      "collateral_amount": "1000000",
+      "collateral_amount_raw": null,
+      "borrow_amount": "580000",
+      "borrow_amount_raw": null,
+      "borrow_shares_raw": null,
+      "supply_shares_raw": null,
+      "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+      "label": "Simulated fund; capacity and execution unverified",
+      "as_of": "2026-10-11T00:02:47.435526Z",
+      "block_number": null,
+      "status": "UNVERIFIED",
+      "source_ids": [
+        "analytics:user_assumption"
+      ],
+      "evidence_ids": []
+    }
+  ],
+  "strategies": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+      "strategy_type": "PENDLE_PT_COLLATERAL_ON_MORPHO",
+      "status": "VERIFIED_ACTIVE",
+      "status_reason": null,
+      "data_status": "OK",
+      "morpho_market_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "pendle_market_address": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "pt": {
+        "chain_id": 1,
+        "address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "symbol": null,
+        "name": null,
+        "decimals": null
+      },
+      "loan_asset": {
+        "chain_id": 1,
+        "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "symbol": null,
+        "name": null,
+        "decimals": null
+      },
+      "underlying_asset": {
+        "chain_id": 1,
+        "address": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+        "symbol": null,
+        "name": null,
+        "decimals": null
+      },
+      "expiry": "2027-01-07T00:00:00Z",
+      "as_of": "2026-10-10T19:21:50.637083Z",
+      "block_number": 26164093,
+      "verification": [
+        {
+          "check": "morpho.loan_token",
+          "claimed_value": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "morpho.collateral_token",
+          "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "morpho.oracle",
+          "claimed_value": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "morpho.irm",
+          "claimed_value": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "morpho.lltv",
+          "claimed_value": "860000000000000000",
+          "claimed_source_id": "morpho_api",
+          "onchain_value": "860000000000000000",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40"
+          ]
+        },
+        {
+          "check": "pendle.sy",
+          "claimed_value": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        },
+        {
+          "check": "pendle.pt",
+          "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        },
+        {
+          "check": "pendle.yt",
+          "claimed_value": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        },
+        {
+          "check": "pendle.expiry",
+          "claimed_value": "1799280000",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "1799280000",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        },
+        {
+          "check": "pendle.sy_yield_token",
+          "claimed_value": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+          "claimed_source_id": "pendle_api",
+          "onchain_value": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_81bc89ce9cd859a8ff4c8466"
+          ]
+        },
+        {
+          "check": "strategy.pt_is_morpho_collateral",
+          "claimed_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "claimed_source_id": "ethereum_rpc",
+          "onchain_value": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+          "status": "VERIFIED",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40",
+            "ev_d198d3f9bf15eb2735fc9591"
+          ]
+        }
+      ],
+      "source_ids": [
+        "morpho_api",
+        "pendle_api",
+        "ethereum_rpc"
+      ],
+      "evidence_ids": [
+        "ev_8f2761d737414fcb8478caac",
+        "ev_94cf643451aa9aff13b4f0d8",
+        "ev_19351c48162a9b2a0716fe40",
+        "ev_d198d3f9bf15eb2735fc9591",
+        "ev_6a4df0e0f1c0f77409f194da",
+        "ev_81bc89ce9cd859a8ff4c8466",
+        "ev_6b2784dfb1b2fbeed0f348d1"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_033106a061e87050fe4839fa",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26115260,
+      "block_hash": "0xc08c4b917c5285fb0a0420a226d29584af63e910dbb078ab46c9408385d44900",
+      "fetched_at": "2026-10-11T00:02:08.506027Z",
+      "payload_sha256": "b26c9230189de437aadaf3e8421959ba00ae14e47693e5927fa89f38582f344a",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "960958899353120244000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_112abb70500b570ca5ce246d",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26108081,
+      "block_hash": "0x9f430d0cc4301a9f8ea0315223c2ed6e66373f6454baac771cac7449d725ba37",
+      "fetched_at": "2026-10-11T00:02:09.120917Z",
+      "payload_sha256": "11f87080940ba7061b240dddc8fa387b5edb2d16fb8527ba719bf47ffff8ad14",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "960547940449010655000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_1449ce76c2f8f1ef2fc00e07",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26158300,
+      "block_hash": "0xdf6b110e43acb4386323bf667c53dc86e3c74f048d30a6489c86d3456e603aab",
+      "fetched_at": "2026-10-11T00:02:06.014294Z",
+      "payload_sha256": "2f3b1f2ae7b000e4c1b3fdc313794883812bd7e1f8b1480c33f34dcaf8f375a9",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "963424652777777778000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_19351c48162a9b2a0716fe40",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call idToMarketParams(bytes32)",
+      "target_address": "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[\"0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689\"]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.083962Z",
+      "payload_sha256": "59a08045d0abe75d8118960ff7139cd264823cc493fad8342088853fb660c559",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "loanToken": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "collateralToken": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "oracle": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+        "irm": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+        "lltv": "860000000000000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_1b0fbcaa3d7758fe1d010dd9",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call market(bytes32)",
+      "target_address": "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[\"0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689\"]"
+      },
+      "block_number": 26165494,
+      "block_hash": "0xfa6a90864b77a199afac917b5ba489c31e7bee5b3ae6199f15d6ad69b0caac86",
+      "fetched_at": "2026-10-11T00:02:43.880895Z",
+      "payload_sha256": "0d6956efcf155c4c466e6a40835793e346cafc6acf65a67c9b273b1082832fe0",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "totalSupplyAssets": "501505873442",
+        "totalSupplyShares": "501036614583514175",
+        "totalBorrowAssets": "451328132536",
+        "totalBorrowShares": "450853043398898159",
+        "lastUpdate": "1791577595",
+        "fee": "0"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_1d38d9b48dfea10dd8684c0e",
+      "source_kind": "MORPHO_API",
+      "source_id": "morpho_api",
+      "method": "GET rest:/v1/blue/markets",
+      "target_address": null,
+      "request_params": {
+        "chain_id": "1",
+        "limit": "100",
+        "collateral_token": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-11T00:02:44.301186Z",
+      "payload_sha256": "227431b252cf7f859d18b9f1d93bb158352330750fc0a67bab972985276c711b",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_1e383d5b0136558ced681e38",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26136782,
+      "block_hash": "0x56d86a1a7d1f818eb7207ba34ea0942962a461355d28ee02409a4e1ac3a28a96",
+      "fetched_at": "2026-10-11T00:02:07.066214Z",
+      "payload_sha256": "a45007a32bd48ada762b5a1ff44b881be42e42d317c7fdc795c894fe247fabc1",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "962191776065449011000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_2e3a2905308e462957071a2a",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26122439,
+      "block_hash": "0x3401750e7c5cb2b34c5290ff470a0058c3c72ccc4317d2c822c2e271c0ff0362",
+      "fetched_at": "2026-10-11T00:02:08.037567Z",
+      "payload_sha256": "8aba76a716d5690f4cfc1526583c7b17d063ccdc4b686807323dd1a380ff16ee",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "961369858257229833000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_504f6c59ca7dd530121b9bd1",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26143955,
+      "block_hash": "0x848fd4b171e4d60e4c09e6985b94ec2021235e1a2fb14c4110a9b88f4a85bb28",
+      "fetched_at": "2026-10-11T00:02:06.697208Z",
+      "payload_sha256": "a1fec903a0ead58b555323b0b1088428989e168463844b0d4b0381636b346c9e",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "962602734969558600000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_5f453573b55a55d14d5490b2",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "GET rest:/v1/prices/assets",
+      "target_address": null,
+      "request_params": {
+        "ids": "1-0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1,1-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48,1-0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+        "chainId": "1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-11T00:02:47.435526Z",
+      "payload_sha256": "329adfd8dc45357029b85d28cd6bc63f5ff0d1b7874dabc949ad54e159d54f58",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_6783e16446deed875dbac3a0",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call idToMarketParams(bytes32)",
+      "target_address": "0xbbbbbbbbbb9cc5e90e3b3af64bdaf62c37eeffcb",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[\"0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689\"]"
+      },
+      "block_number": 26165494,
+      "block_hash": "0xfa6a90864b77a199afac917b5ba489c31e7bee5b3ae6199f15d6ad69b0caac86",
+      "fetched_at": "2026-10-11T00:02:43.813639Z",
+      "payload_sha256": "59a08045d0abe75d8118960ff7139cd264823cc493fad8342088853fb660c559",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "loanToken": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "collateralToken": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "oracle": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+        "irm": "0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+        "lltv": "860000000000000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_6a4df0e0f1c0f77409f194da",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call expiry()",
+      "target_address": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.289867Z",
+      "payload_sha256": "525794155f4e874dba363bdaecd7b2cffc72e74bad14746b157c96e4e6235642",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "1799280000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_6b2784dfb1b2fbeed0f348d1",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call assetInfo()",
+      "target_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.442140Z",
+      "payload_sha256": "e8cdc4869ebd17201306a3a19ca192292ce7fd3c26d35250979c6ce1b64ab9d7",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "assetType": "0",
+        "assetAddress": "0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+        "assetDecimals": "18"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_6ccebb1732d99bdffa832998",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26100913,
+      "block_hash": "0x2fe9266ceaaea215d32a4c5e0701f3c287705f2b976844cf3131534a814aa272",
+      "fetched_at": "2026-10-11T00:02:09.555175Z",
+      "payload_sha256": "f3c20cc2e4db3aac448dfdca7faa894e08f4bf64541f5cadd5f77049be55aca3",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "960136981544901066000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_81bc89ce9cd859a8ff4c8466",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call yieldToken()",
+      "target_address": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.354541Z",
+      "payload_sha256": "3afcaa99eedd9b05b5b171a743cc7a6f71146431340f64f79d07c530c099263b",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "0xdbdc1ef57537e34680b898e1febd3d68c7389bcb"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_87f3d8c45cb9f64ebe0503cc",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26165481,
+      "block_hash": "0x9d8779ccd70cb8d384d4641c44da5c8a10a53bba62b87d2d4409ef2e4d898873",
+      "fetched_at": "2026-10-11T00:02:05.767921Z",
+      "payload_sha256": "cdc3e5811fa339bb38512260e24bde4f9a79e75e2c03d283c3600133d529e3c2",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "963835611681887367000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_8f2761d737414fcb8478caac",
+      "source_kind": "MORPHO_API",
+      "source_id": "morpho_api",
+      "method": "GET rest:/v1/blue/markets",
+      "target_address": null,
+      "request_params": {
+        "chain_id": "1",
+        "limit": "100",
+        "collateral_token": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:50.733912Z",
+      "payload_sha256": "227431b252cf7f859d18b9f1d93bb158352330750fc0a67bab972985276c711b",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_94cf643451aa9aff13b4f0d8",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "GET rest:/v2/markets/all",
+      "target_address": null,
+      "request_params": {
+        "skip": "0",
+        "limit": "100",
+        "chainId": "1",
+        "isActive": "true"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-10T19:21:51.323589Z",
+      "payload_sha256": "7354283201bf7beee434757160982fe260e02dd09d82f3b774868c95a1015f09",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_9d8782b579be68e23bbc19fb",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26165494,
+      "block_hash": "0xfa6a90864b77a199afac917b5ba489c31e7bee5b3ae6199f15d6ad69b0caac86",
+      "fetched_at": "2026-10-11T00:02:44.081563Z",
+      "payload_sha256": "1a217a7c41c4fc6fede8dc8614ed45097b70f352357caa4a4a20527b889015bf",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "963836353691019787000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_ba41505e51d8b62431788e61",
+      "source_kind": "MORPHO_API",
+      "source_id": "morpho_api",
+      "method": "POST graphql:marketById",
+      "target_address": null,
+      "request_params": {},
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-11T00:02:44.540214Z",
+      "payload_sha256": "35be693816153d204ee18096dd91343ac1633257ea22f2a5a3396f9565d9d825",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_d198d3f9bf15eb2735fc9591",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call readTokens()",
+      "target_address": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26164093,
+      "block_hash": "0x4ba0cf85a2d22afde4a31fd24ed4c7031deb22f93139d62f94e3e05e42e7eaf6",
+      "fetched_at": "2026-10-10T19:21:53.227347Z",
+      "payload_sha256": "63446b4e7f0cb192b61c2b5f3fb91f9ae24adf65a54c7fe42ca7f97e68f42600",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "_SY": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "_PT": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "_YT": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_d35423c41624512ec983d3f8",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26093737,
+      "block_hash": "0xcd26204e996dceb606ccf0bc6f5bf8ea6747a471df8be73b5855f01624d5d743",
+      "fetched_at": "2026-10-11T00:02:10.010324Z",
+      "payload_sha256": "5371669b4a789222389df62d73dfaf7f8fabddaae5537972e547c5b0e109e1c4",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "959726022640791477000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_d87d819714b11be9c523b285",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call readTokens()",
+      "target_address": "0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26165494,
+      "block_hash": "0xfa6a90864b77a199afac917b5ba489c31e7bee5b3ae6199f15d6ad69b0caac86",
+      "fetched_at": "2026-10-11T00:02:43.940848Z",
+      "payload_sha256": "63446b4e7f0cb192b61c2b5f3fb91f9ae24adf65a54c7fe42ca7f97e68f42600",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "_SY": "0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+        "_PT": "0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+        "_YT": "0xd42f23aa6d2b886524006c6aecb1ad80579e736c"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_f71badb5fbf96167cfdf4b28",
+      "source_kind": "PENDLE_API",
+      "source_id": "pendle_api",
+      "method": "GET rest:/v2/markets/all",
+      "target_address": null,
+      "request_params": {
+        "skip": "0",
+        "limit": "100",
+        "chainId": "1",
+        "isActive": "true"
+      },
+      "block_number": null,
+      "block_hash": null,
+      "fetched_at": "2026-10-11T00:02:46.191152Z",
+      "payload_sha256": "8d800a4fe3c6522ba854cc149e17aa48bfc7e59105240ce2ca16051f2583de29",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": null,
+      "decoded_excerpt": null,
+      "parser_version": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_f9fadffd286d5db97f6087d9",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26129614,
+      "block_hash": "0xdaca5107816c5727b8732d3354b7483d17257dedd32f5e1a82d61f576923bcd1",
+      "fetched_at": "2026-10-11T00:02:07.539099Z",
+      "payload_sha256": "2412a8f7b4e0b6ef7219245f7fc460a56d5993c28671260a539f7b9d70791f86",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "961780817161339422000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "evidence_id": "ev_fb755c11a4fda4ff81fe9111",
+      "source_kind": "RPC",
+      "source_id": "ethereum_rpc",
+      "method": "eth_call price()",
+      "target_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "request_params": {
+        "rpc_host": "eth-mainnet.g.alchemy.com",
+        "args": "[]"
+      },
+      "block_number": 26151122,
+      "block_hash": "0x05b6f46453b48309a1339455de6167d9d5d9213b61c81c4a9dcb9b4db70f59fc",
+      "fetched_at": "2026-10-11T00:02:06.341421Z",
+      "payload_sha256": "24b20b629bbdc8c1256ca4a0a8dbb7c3e5c06f80eb8bdb82bcb9a161fcadd0b4",
+      "status": "OK",
+      "error_message": null,
+      "source_uri": "eth-mainnet.g.alchemy.com",
+      "decoded_excerpt": {
+        "out0": "963013693873668189000000"
+      },
+      "parser_version": "ethereum_rpc.v1"
+    }
+  ],
+  "relations": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_0aa7421553d2499ed66fefee",
+      "source_node_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "target_node_id": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+      "relation_type": "SY_YIELD_TOKEN",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_81bc89ce9cd859a8ff4c8466"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_377f3eb31833ba5f1f8fefad",
+      "source_node_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "target_node_id": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+      "relation_type": "SY_ACCOUNTING_ASSET",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_6b2784dfb1b2fbeed0f348d1"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_37d7ae18c7e3452d74aec41c",
+      "source_node_id": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "target_node_id": "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+      "relation_type": "PENDLE_MARKET_PT",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_d198d3f9bf15eb2735fc9591"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_800d0f8a386b5043624d70e3",
+      "source_node_id": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "target_node_id": "asset:1:0xd42f23aa6d2b886524006c6aecb1ad80579e736c",
+      "relation_type": "PENDLE_MARKET_YT",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_d198d3f9bf15eb2735fc9591"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_83c3d77132f936130b875a9b",
+      "source_node_id": "asset:1:0xdbdc1ef57537e34680b898e1febd3d68c7389bcb",
+      "target_node_id": "asset:1:0x48f9e38f3070ad8945dfeae3fa70987722e3d89c",
+      "relation_type": "ECONOMIC_BACKING",
+      "verification_status": "UNRESOLVED",
+      "evidence_ids": [
+        "ev_81bc89ce9cd859a8ff4c8466",
+        "ev_6b2784dfb1b2fbeed0f348d1"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": null,
+      "note": "assetInfo/yieldToken do not prove backing"
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_936d169188cfa86be28e233b",
+      "source_node_id": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "target_node_id": "contract:1:0x870ac11d48b15db9a138cf899d20f13f79ba00bc",
+      "relation_type": "MARKET_IRM",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_19351c48162a9b2a0716fe40"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_b04f25c4f91128686217b60c",
+      "source_node_id": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "target_node_id": "contract:1:0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+      "relation_type": "MARKET_ORACLE",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_19351c48162a9b2a0716fe40"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_f14a1f1d2496309293679e5c",
+      "source_node_id": "pendle:1:0xd44f2630260ff3805d7cb317d4f6740b0044c408",
+      "target_node_id": "asset:1:0x9f30507c264cc6eb5be35b18ff9ad7b4539aa920",
+      "relation_type": "PENDLE_MARKET_SY",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_d198d3f9bf15eb2735fc9591"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_f4a5bc1d68b9f34cfda86463",
+      "source_node_id": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "target_node_id": "asset:1:0x76543ac61ba84c6feeee76c6a918127bf0ca5fd1",
+      "relation_type": "MARKET_COLLATERAL_ASSET",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_19351c48162a9b2a0716fe40"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    },
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "relation_id": "rel_fdeb0cf074b3ad15299add24",
+      "source_node_id": "morpho:1:0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "target_node_id": "asset:1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "relation_type": "MARKET_LOAN_ASSET",
+      "verification_status": "ONCHAIN_VERIFIED",
+      "evidence_ids": [
+        "ev_19351c48162a9b2a0716fe40"
+      ],
+      "observed_at": "2026-10-10T19:21:47Z",
+      "block_number": 26164093,
+      "note": null
+    }
+  ],
+  "series": [
+    {
+      "chain_id": 1,
+      "schema_version": "data-contract-v1.0",
+      "data_mode": "REAL",
+      "series_id": "ts_oracle_price_799ba318e18396326c4df95c",
+      "metric": "ORACLE_PRICE",
+      "subject_kind": "MARKET",
+      "subject_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+      "unit": "TOKEN",
+      "quote_asset": {
+        "chain_id": 1,
+        "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "symbol": null,
+        "name": null,
+        "decimals": 6
+      },
+      "pricing_method": "MORPHO_ORACLE",
+      "interval_seconds": null,
+      "source_id": "ethereum_rpc",
+      "status": "OK",
+      "points": [
+        {
+          "timestamp": "2026-09-30T23:59:59Z",
+          "value": "0.959726022640791477000000",
+          "status": "OK",
+          "block_number": 26093737,
+          "evidence_ids": [
+            "ev_d35423c41624512ec983d3f8"
+          ]
+        },
+        {
+          "timestamp": "2026-10-01T23:59:59Z",
+          "value": "0.960136981544901066000000",
+          "status": "OK",
+          "block_number": 26100913,
+          "evidence_ids": [
+            "ev_6ccebb1732d99bdffa832998"
+          ]
+        },
+        {
+          "timestamp": "2026-10-02T23:59:59Z",
+          "value": "0.960547940449010655000000",
+          "status": "OK",
+          "block_number": 26108081,
+          "evidence_ids": [
+            "ev_112abb70500b570ca5ce246d"
+          ]
+        },
+        {
+          "timestamp": "2026-10-03T23:59:59Z",
+          "value": "0.960958899353120244000000",
+          "status": "OK",
+          "block_number": 26115260,
+          "evidence_ids": [
+            "ev_033106a061e87050fe4839fa"
+          ]
+        },
+        {
+          "timestamp": "2026-10-04T23:59:59Z",
+          "value": "0.961369858257229833000000",
+          "status": "OK",
+          "block_number": 26122439,
+          "evidence_ids": [
+            "ev_2e3a2905308e462957071a2a"
+          ]
+        },
+        {
+          "timestamp": "2026-10-05T23:59:59Z",
+          "value": "0.961780817161339422000000",
+          "status": "OK",
+          "block_number": 26129614,
+          "evidence_ids": [
+            "ev_f9fadffd286d5db97f6087d9"
+          ]
+        },
+        {
+          "timestamp": "2026-10-06T23:59:59Z",
+          "value": "0.962191776065449011000000",
+          "status": "OK",
+          "block_number": 26136782,
+          "evidence_ids": [
+            "ev_1e383d5b0136558ced681e38"
+          ]
+        },
+        {
+          "timestamp": "2026-10-07T23:59:59Z",
+          "value": "0.962602734969558600000000",
+          "status": "OK",
+          "block_number": 26143955,
+          "evidence_ids": [
+            "ev_504f6c59ca7dd530121b9bd1"
+          ]
+        },
+        {
+          "timestamp": "2026-10-08T23:59:59Z",
+          "value": "0.963013693873668189000000",
+          "status": "OK",
+          "block_number": 26151122,
+          "evidence_ids": [
+            "ev_fb755c11a4fda4ff81fe9111"
+          ]
+        },
+        {
+          "timestamp": "2026-10-09T23:59:59Z",
+          "value": "0.963424652777777778000000",
+          "status": "OK",
+          "block_number": 26158300,
+          "evidence_ids": [
+            "ev_1449ce76c2f8f1ef2fc00e07"
+          ]
+        },
+        {
+          "timestamp": "2026-10-10T23:59:59Z",
+          "value": "0.963835611681887367000000",
+          "status": "OK",
+          "block_number": 26165481,
+          "evidence_ids": [
+            "ev_87f3d8c45cb9f64ebe0503cc"
+          ]
+        }
+      ]
+    }
+  ],
+  "quotes": [],
+  "forecasts": [],
+  "risk_observations": [],
+  "additional_nodes": [],
+  "additional_edges": []
+}

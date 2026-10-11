@@ -1,0 +1,537 @@
+{
+  "schema_version": "monte-carlo-real-validation-v1",
+  "executed_at": "2026-10-11T00:04:45.630269+00:00",
+  "snapshot_as_of": "2026-10-11T00:02:47.435526+00:00",
+  "snapshot_sha256": "43147940b54f45d047e14b8c565cd3ca40db7e24091540a6dc34277df3bbecd3",
+  "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+  "position_id": "pos_mc_validation",
+  "position_kind": "SIMULATED",
+  "market_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+  "oracle_address": "0xf9c1d6954eb6c59731cd277bc27bbc5239c67570",
+  "observed_calibration_status": "UNAVAILABLE",
+  "required_daily_samples": 31,
+  "missing_fields": [
+    "oracle_series.sample:2026-09-11T00:00:00Z",
+    "oracle_series.sample:2026-09-12T00:00:00Z",
+    "oracle_series.sample:2026-09-13T00:00:00Z",
+    "oracle_series.sample:2026-09-14T00:00:00Z",
+    "oracle_series.sample:2026-09-15T00:00:00Z",
+    "oracle_series.sample:2026-09-16T00:00:00Z",
+    "oracle_series.sample:2026-09-17T00:00:00Z",
+    "oracle_series.sample:2026-09-18T00:00:00Z",
+    "oracle_series.sample:2026-09-19T00:00:00Z",
+    "oracle_series.sample:2026-09-20T00:00:00Z",
+    "oracle_series.sample:2026-09-21T00:00:00Z",
+    "oracle_series.sample:2026-09-22T00:00:00Z",
+    "oracle_series.sample:2026-09-23T00:00:00Z",
+    "oracle_series.sample:2026-09-24T00:00:00Z",
+    "oracle_series.sample:2026-09-25T00:00:00Z",
+    "oracle_series.sample:2026-09-26T00:00:00Z",
+    "oracle_series.sample:2026-09-27T00:00:00Z",
+    "oracle_series.sample:2026-09-28T00:00:00Z",
+    "oracle_series.sample:2026-09-29T00:00:00Z",
+    "oracle_series.sample:2026-09-30T00:00:00Z"
+  ],
+  "calibration": null,
+  "history": {
+    "chain_id": 1,
+    "schema_version": "data-contract-v1.0",
+    "data_mode": "REAL",
+    "series_id": "ts_oracle_price_799ba318e18396326c4df95c",
+    "metric": "ORACLE_PRICE",
+    "subject_kind": "MARKET",
+    "subject_id": "0x0c93c623fd2a78a2ffa36b019f74c400c3f3d81fcb22851c88e0c96e510f9689",
+    "unit": "TOKEN",
+    "quote_asset": {
+      "chain_id": 1,
+      "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "symbol": null,
+      "name": null,
+      "decimals": 6
+    },
+    "pricing_method": "MORPHO_ORACLE",
+    "interval_seconds": null,
+    "source_id": "ethereum_rpc",
+    "status": "OK",
+    "points": [
+      {
+        "timestamp": "2026-09-30T23:59:59Z",
+        "value": "0.959726022640791477000000",
+        "status": "OK",
+        "block_number": 26093737,
+        "evidence_ids": [
+          "ev_d35423c41624512ec983d3f8"
+        ]
+      },
+      {
+        "timestamp": "2026-10-01T23:59:59Z",
+        "value": "0.960136981544901066000000",
+        "status": "OK",
+        "block_number": 26100913,
+        "evidence_ids": [
+          "ev_6ccebb1732d99bdffa832998"
+        ]
+      },
+      {
+        "timestamp": "2026-10-02T23:59:59Z",
+        "value": "0.960547940449010655000000",
+        "status": "OK",
+        "block_number": 26108081,
+        "evidence_ids": [
+          "ev_112abb70500b570ca5ce246d"
+        ]
+      },
+      {
+        "timestamp": "2026-10-03T23:59:59Z",
+        "value": "0.960958899353120244000000",
+        "status": "OK",
+        "block_number": 26115260,
+        "evidence_ids": [
+          "ev_033106a061e87050fe4839fa"
+        ]
+      },
+      {
+        "timestamp": "2026-10-04T23:59:59Z",
+        "value": "0.961369858257229833000000",
+        "status": "OK",
+        "block_number": 26122439,
+        "evidence_ids": [
+          "ev_2e3a2905308e462957071a2a"
+        ]
+      },
+      {
+        "timestamp": "2026-10-05T23:59:59Z",
+        "value": "0.961780817161339422000000",
+        "status": "OK",
+        "block_number": 26129614,
+        "evidence_ids": [
+          "ev_f9fadffd286d5db97f6087d9"
+        ]
+      },
+      {
+        "timestamp": "2026-10-06T23:59:59Z",
+        "value": "0.962191776065449011000000",
+        "status": "OK",
+        "block_number": 26136782,
+        "evidence_ids": [
+          "ev_1e383d5b0136558ced681e38"
+        ]
+      },
+      {
+        "timestamp": "2026-10-07T23:59:59Z",
+        "value": "0.962602734969558600000000",
+        "status": "OK",
+        "block_number": 26143955,
+        "evidence_ids": [
+          "ev_504f6c59ca7dd530121b9bd1"
+        ]
+      },
+      {
+        "timestamp": "2026-10-08T23:59:59Z",
+        "value": "0.963013693873668189000000",
+        "status": "OK",
+        "block_number": 26151122,
+        "evidence_ids": [
+          "ev_fb755c11a4fda4ff81fe9111"
+        ]
+      },
+      {
+        "timestamp": "2026-10-09T23:59:59Z",
+        "value": "0.963424652777777778000000",
+        "status": "OK",
+        "block_number": 26158300,
+        "evidence_ids": [
+          "ev_1449ce76c2f8f1ef2fc00e07"
+        ]
+      },
+      {
+        "timestamp": "2026-10-10T23:59:59Z",
+        "value": "0.963835611681887367000000",
+        "status": "OK",
+        "block_number": 26165481,
+        "evidence_ids": [
+          "ev_87f3d8c45cb9f64ebe0503cc"
+        ]
+      }
+    ]
+  },
+  "runs": [
+    {
+      "source": "OBSERVED_ORACLE_SERIES",
+      "horizon_days": 1,
+      "result": {
+        "schema_version": "monte-carlo-internal-v1",
+        "status": "UNAVAILABLE",
+        "as_of": "2026-10-11T00:02:47.435526Z",
+        "data": null,
+        "provenance": {
+          "calibration": "OBSERVED_ORACLE_SERIES",
+          "evidence_ids": [],
+          "oracle_calibration": null
+        },
+        "missing_fields": [
+          "oracle_series.sample:2026-09-11T00:00:00Z",
+          "oracle_series.sample:2026-09-12T00:00:00Z",
+          "oracle_series.sample:2026-09-13T00:00:00Z",
+          "oracle_series.sample:2026-09-14T00:00:00Z",
+          "oracle_series.sample:2026-09-15T00:00:00Z",
+          "oracle_series.sample:2026-09-16T00:00:00Z",
+          "oracle_series.sample:2026-09-17T00:00:00Z",
+          "oracle_series.sample:2026-09-18T00:00:00Z",
+          "oracle_series.sample:2026-09-19T00:00:00Z",
+          "oracle_series.sample:2026-09-20T00:00:00Z",
+          "oracle_series.sample:2026-09-21T00:00:00Z",
+          "oracle_series.sample:2026-09-22T00:00:00Z",
+          "oracle_series.sample:2026-09-23T00:00:00Z",
+          "oracle_series.sample:2026-09-24T00:00:00Z",
+          "oracle_series.sample:2026-09-25T00:00:00Z",
+          "oracle_series.sample:2026-09-26T00:00:00Z",
+          "oracle_series.sample:2026-09-27T00:00:00Z",
+          "oracle_series.sample:2026-09-28T00:00:00Z",
+          "oracle_series.sample:2026-09-29T00:00:00Z",
+          "oracle_series.sample:2026-09-30T00:00:00Z"
+        ],
+        "warnings": [
+          "NO_SIMULATION_RUN",
+          "NO_FIXTURE_SUBSTITUTED"
+        ]
+      }
+    },
+    {
+      "source": "OBSERVED_ORACLE_SERIES",
+      "horizon_days": 3,
+      "result": {
+        "schema_version": "monte-carlo-internal-v1",
+        "status": "UNAVAILABLE",
+        "as_of": "2026-10-11T00:02:47.435526Z",
+        "data": null,
+        "provenance": {
+          "calibration": "OBSERVED_ORACLE_SERIES",
+          "evidence_ids": [],
+          "oracle_calibration": null
+        },
+        "missing_fields": [
+          "oracle_series.sample:2026-09-11T00:00:00Z",
+          "oracle_series.sample:2026-09-12T00:00:00Z",
+          "oracle_series.sample:2026-09-13T00:00:00Z",
+          "oracle_series.sample:2026-09-14T00:00:00Z",
+          "oracle_series.sample:2026-09-15T00:00:00Z",
+          "oracle_series.sample:2026-09-16T00:00:00Z",
+          "oracle_series.sample:2026-09-17T00:00:00Z",
+          "oracle_series.sample:2026-09-18T00:00:00Z",
+          "oracle_series.sample:2026-09-19T00:00:00Z",
+          "oracle_series.sample:2026-09-20T00:00:00Z",
+          "oracle_series.sample:2026-09-21T00:00:00Z",
+          "oracle_series.sample:2026-09-22T00:00:00Z",
+          "oracle_series.sample:2026-09-23T00:00:00Z",
+          "oracle_series.sample:2026-09-24T00:00:00Z",
+          "oracle_series.sample:2026-09-25T00:00:00Z",
+          "oracle_series.sample:2026-09-26T00:00:00Z",
+          "oracle_series.sample:2026-09-27T00:00:00Z",
+          "oracle_series.sample:2026-09-28T00:00:00Z",
+          "oracle_series.sample:2026-09-29T00:00:00Z",
+          "oracle_series.sample:2026-09-30T00:00:00Z"
+        ],
+        "warnings": [
+          "NO_SIMULATION_RUN",
+          "NO_FIXTURE_SUBSTITUTED"
+        ]
+      }
+    },
+    {
+      "source": "OBSERVED_ORACLE_SERIES",
+      "horizon_days": 7,
+      "result": {
+        "schema_version": "monte-carlo-internal-v1",
+        "status": "UNAVAILABLE",
+        "as_of": "2026-10-11T00:02:47.435526Z",
+        "data": null,
+        "provenance": {
+          "calibration": "OBSERVED_ORACLE_SERIES",
+          "evidence_ids": [],
+          "oracle_calibration": null
+        },
+        "missing_fields": [
+          "oracle_series.sample:2026-09-11T00:00:00Z",
+          "oracle_series.sample:2026-09-12T00:00:00Z",
+          "oracle_series.sample:2026-09-13T00:00:00Z",
+          "oracle_series.sample:2026-09-14T00:00:00Z",
+          "oracle_series.sample:2026-09-15T00:00:00Z",
+          "oracle_series.sample:2026-09-16T00:00:00Z",
+          "oracle_series.sample:2026-09-17T00:00:00Z",
+          "oracle_series.sample:2026-09-18T00:00:00Z",
+          "oracle_series.sample:2026-09-19T00:00:00Z",
+          "oracle_series.sample:2026-09-20T00:00:00Z",
+          "oracle_series.sample:2026-09-21T00:00:00Z",
+          "oracle_series.sample:2026-09-22T00:00:00Z",
+          "oracle_series.sample:2026-09-23T00:00:00Z",
+          "oracle_series.sample:2026-09-24T00:00:00Z",
+          "oracle_series.sample:2026-09-25T00:00:00Z",
+          "oracle_series.sample:2026-09-26T00:00:00Z",
+          "oracle_series.sample:2026-09-27T00:00:00Z",
+          "oracle_series.sample:2026-09-28T00:00:00Z",
+          "oracle_series.sample:2026-09-29T00:00:00Z",
+          "oracle_series.sample:2026-09-30T00:00:00Z"
+        ],
+        "warnings": [
+          "NO_SIMULATION_RUN",
+          "NO_FIXTURE_SUBSTITUTED"
+        ]
+      }
+    },
+    {
+      "source": "USER_ASSUMPTION",
+      "horizon_days": 1,
+      "annual_volatility_assumption": "0.25",
+      "result": {
+        "schema_version": "monte-carlo-internal-v1",
+        "status": "OK",
+        "as_of": "2026-10-11T00:02:47.435526Z",
+        "data": {
+          "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+          "position_id": "pos_mc_validation",
+          "model_version": "GBM_ORACLE_PRICE_V1",
+          "horizon_days": 1,
+          "initial_ltv": "0.6017619046831808146181368312",
+          "initial_health_factor": "1.429136662369443132448275862",
+          "critical_oracle_drop_ratio": "0.3002768550195571923044920568",
+          "breached_paths": 0,
+          "total_paths": 10000,
+          "simulated_threshold_breach_frequency": "0",
+          "terminal_ltv_p50": "0.6019171317904378",
+          "terminal_ltv_p95": "0.6151425261797481",
+          "min_health_factor_p05": "1.3980499858197026",
+          "mc_sampling_ci_95": {
+            "low": "0.0",
+            "high": "0.00038401247776654115"
+          },
+          "oracle_mark_to_model_var95_loan_units": "20965.433021917874",
+          "oracle_mark_to_model_es95_loan_units": "26099.468198116614",
+          "realized_liquidation_loss_usd": null,
+          "assumptions": [
+            "Oracle price follows GBM in debt-token-per-PT units",
+            "Annual volatility and drift are assumptions in PR1",
+            "PT collateral quantity held constant",
+            "Debt model: FROZEN_DEBT",
+            "CONSTANT_APR, when selected, uses D0 * exp(apr * t / 365)",
+            "No oracle hack simulated",
+            "No protocol exploit simulated",
+            "No liquidation execution simulated",
+            "PT spot price is not used",
+            "Chronos is not used",
+            "FinBERT is not used",
+            "Threshold breach frequency is a model-implied simulation frequency",
+            "Losses are oracle mark-to-model values in loan-token units, not USD",
+            "Wilson interval describes sampling uncertainty only"
+          ]
+        },
+        "provenance": {
+          "calibration": "USER_ASSUMPTION",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40",
+            "ev_1b0fbcaa3d7758fe1d010dd9",
+            "ev_1d38d9b48dfea10dd8684c0e",
+            "ev_6783e16446deed875dbac3a0",
+            "ev_6a4df0e0f1c0f77409f194da",
+            "ev_6b2784dfb1b2fbeed0f348d1",
+            "ev_81bc89ce9cd859a8ff4c8466",
+            "ev_8f2761d737414fcb8478caac",
+            "ev_94cf643451aa9aff13b4f0d8",
+            "ev_9d8782b579be68e23bbc19fb",
+            "ev_ba41505e51d8b62431788e61",
+            "ev_d198d3f9bf15eb2735fc9591"
+          ],
+          "oracle_calibration": null
+        },
+        "missing_fields": [],
+        "warnings": [
+          "MODEL_RISK_GBM",
+          "NOT_A_REAL_WORLD_LIQUIDATION_PROBABILITY",
+          "DAILY_STEPS_MAY_MISS_INTRADAY_BREACH",
+          "HYPOTHETICAL_INPUT_SCOPE",
+          "FROZEN_DEBT",
+          "INPUT_DATA_MODE_REAL",
+          "VOLATILITY_AND_DRIFT_ARE_USER_ASSUMPTIONS_NOT_CALIBRATED",
+          "HYPOTHETICAL_POSITION_AMOUNTS",
+          "FROZEN_REPLAY_NOT_LIVE"
+        ]
+      }
+    },
+    {
+      "source": "USER_ASSUMPTION",
+      "horizon_days": 3,
+      "annual_volatility_assumption": "0.25",
+      "result": {
+        "schema_version": "monte-carlo-internal-v1",
+        "status": "OK",
+        "as_of": "2026-10-11T00:02:47.435526Z",
+        "data": {
+          "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+          "position_id": "pos_mc_validation",
+          "model_version": "GBM_ORACLE_PRICE_V1",
+          "horizon_days": 3,
+          "initial_ltv": "0.6017619046831808146181368312",
+          "initial_health_factor": "1.429136662369443132448275862",
+          "critical_oracle_drop_ratio": "0.3002768550195571923044920568",
+          "breached_paths": 0,
+          "total_paths": 10000,
+          "simulated_threshold_breach_frequency": "0",
+          "terminal_ltv_p50": "0.6017899249880835",
+          "terminal_ltv_p95": "0.6248625971165127",
+          "min_health_factor_p05": "1.3746581516243686",
+          "mc_sampling_ci_95": {
+            "low": "0.0",
+            "high": "0.00038401247776654115"
+          },
+          "oracle_mark_to_model_var95_loan_units": "35632.29294600417",
+          "oracle_mark_to_model_es95_loan_units": "44132.68247688182",
+          "realized_liquidation_loss_usd": null,
+          "assumptions": [
+            "Oracle price follows GBM in debt-token-per-PT units",
+            "Annual volatility and drift are assumptions in PR1",
+            "PT collateral quantity held constant",
+            "Debt model: FROZEN_DEBT",
+            "CONSTANT_APR, when selected, uses D0 * exp(apr * t / 365)",
+            "No oracle hack simulated",
+            "No protocol exploit simulated",
+            "No liquidation execution simulated",
+            "PT spot price is not used",
+            "Chronos is not used",
+            "FinBERT is not used",
+            "Threshold breach frequency is a model-implied simulation frequency",
+            "Losses are oracle mark-to-model values in loan-token units, not USD",
+            "Wilson interval describes sampling uncertainty only"
+          ]
+        },
+        "provenance": {
+          "calibration": "USER_ASSUMPTION",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40",
+            "ev_1b0fbcaa3d7758fe1d010dd9",
+            "ev_1d38d9b48dfea10dd8684c0e",
+            "ev_6783e16446deed875dbac3a0",
+            "ev_6a4df0e0f1c0f77409f194da",
+            "ev_6b2784dfb1b2fbeed0f348d1",
+            "ev_81bc89ce9cd859a8ff4c8466",
+            "ev_8f2761d737414fcb8478caac",
+            "ev_94cf643451aa9aff13b4f0d8",
+            "ev_9d8782b579be68e23bbc19fb",
+            "ev_ba41505e51d8b62431788e61",
+            "ev_d198d3f9bf15eb2735fc9591"
+          ],
+          "oracle_calibration": null
+        },
+        "missing_fields": [],
+        "warnings": [
+          "MODEL_RISK_GBM",
+          "NOT_A_REAL_WORLD_LIQUIDATION_PROBABILITY",
+          "DAILY_STEPS_MAY_MISS_INTRADAY_BREACH",
+          "HYPOTHETICAL_INPUT_SCOPE",
+          "FROZEN_DEBT",
+          "INPUT_DATA_MODE_REAL",
+          "VOLATILITY_AND_DRIFT_ARE_USER_ASSUMPTIONS_NOT_CALIBRATED",
+          "HYPOTHETICAL_POSITION_AMOUNTS",
+          "FROZEN_REPLAY_NOT_LIVE"
+        ]
+      }
+    },
+    {
+      "source": "USER_ASSUMPTION",
+      "horizon_days": 7,
+      "annual_volatility_assumption": "0.25",
+      "result": {
+        "schema_version": "monte-carlo-internal-v1",
+        "status": "OK",
+        "as_of": "2026-10-11T00:02:47.435526Z",
+        "data": {
+          "strategy_id": "strat_e76bee1f14994d77f99f42a7",
+          "position_id": "pos_mc_validation",
+          "model_version": "GBM_ORACLE_PRICE_V1",
+          "horizon_days": 7,
+          "initial_ltv": "0.6017619046831808146181368312",
+          "initial_health_factor": "1.429136662369443132448275862",
+          "critical_oracle_drop_ratio": "0.3002768550195571923044920568",
+          "breached_paths": 0,
+          "total_paths": 10000,
+          "simulated_threshold_breach_frequency": "0",
+          "terminal_ltv_p50": "0.602475325219862",
+          "terminal_ltv_p95": "0.6374197800107914",
+          "min_health_factor_p05": "1.342952303300687",
+          "mc_sampling_ci_95": {
+            "low": "0.0",
+            "high": "0.00038401247776654115"
+          },
+          "oracle_mark_to_model_var95_loan_units": "53917.931431124256",
+          "oracle_mark_to_model_es95_loan_units": "67121.44984114914",
+          "realized_liquidation_loss_usd": null,
+          "assumptions": [
+            "Oracle price follows GBM in debt-token-per-PT units",
+            "Annual volatility and drift are assumptions in PR1",
+            "PT collateral quantity held constant",
+            "Debt model: FROZEN_DEBT",
+            "CONSTANT_APR, when selected, uses D0 * exp(apr * t / 365)",
+            "No oracle hack simulated",
+            "No protocol exploit simulated",
+            "No liquidation execution simulated",
+            "PT spot price is not used",
+            "Chronos is not used",
+            "FinBERT is not used",
+            "Threshold breach frequency is a model-implied simulation frequency",
+            "Losses are oracle mark-to-model values in loan-token units, not USD",
+            "Wilson interval describes sampling uncertainty only"
+          ]
+        },
+        "provenance": {
+          "calibration": "USER_ASSUMPTION",
+          "evidence_ids": [
+            "ev_19351c48162a9b2a0716fe40",
+            "ev_1b0fbcaa3d7758fe1d010dd9",
+            "ev_1d38d9b48dfea10dd8684c0e",
+            "ev_6783e16446deed875dbac3a0",
+            "ev_6a4df0e0f1c0f77409f194da",
+            "ev_6b2784dfb1b2fbeed0f348d1",
+            "ev_81bc89ce9cd859a8ff4c8466",
+            "ev_8f2761d737414fcb8478caac",
+            "ev_94cf643451aa9aff13b4f0d8",
+            "ev_9d8782b579be68e23bbc19fb",
+            "ev_ba41505e51d8b62431788e61",
+            "ev_d198d3f9bf15eb2735fc9591"
+          ],
+          "oracle_calibration": null
+        },
+        "missing_fields": [],
+        "warnings": [
+          "MODEL_RISK_GBM",
+          "NOT_A_REAL_WORLD_LIQUIDATION_PROBABILITY",
+          "DAILY_STEPS_MAY_MISS_INTRADAY_BREACH",
+          "HYPOTHETICAL_INPUT_SCOPE",
+          "FROZEN_DEBT",
+          "INPUT_DATA_MODE_REAL",
+          "VOLATILITY_AND_DRIFT_ARE_USER_ASSUMPTIONS_NOT_CALIBRATED",
+          "HYPOTHETICAL_POSITION_AMOUNTS",
+          "FROZEN_REPLAY_NOT_LIVE"
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "seed_reproducible_j1": true,
+    "assumption_scope_hypothetical_j1": true,
+    "seed_reproducible_j3": true,
+    "assumption_scope_hypothetical_j3": true,
+    "seed_reproducible_j7": true,
+    "assumption_scope_hypothetical_j7": true,
+    "missing_history_not_substituted": true,
+    "stale_inputs_refused": true,
+    "oracle_proof_mismatch_refused": true
+  },
+  "limitations": [
+    "Archived replay, not live execution.",
+    "Simulated funds remain hypothetical; REAL_DATA requires a verified on-chain position.",
+    "Breach frequency is model-implied, not an objective liquidation probability.",
+    "Losses are oracle mark-to-model amounts in loan-token units, not realized losses or USD."
+  ],
+  "missing_daily_samples": 20,
+  "available_daily_samples": 11,
+  "status": "PARTIAL_VALIDATION"
+}
