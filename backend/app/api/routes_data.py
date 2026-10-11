@@ -139,9 +139,13 @@ def _key(dto: Any) -> str:
 # ---------------------------------------------------------------------------
 
 def get_store(request: Request) -> Iterator[SqliteStore]:
-    """One connection per request (sqlite3 connections are thread-bound)."""
+    """One connection per request, never shared between requests.
+
+    FastAPI may run this generator's setup, the endpoint and the teardown on different
+    threadpool workers, so the thread check is disabled; use stays sequential.
+    """
     try:
-        store = SqliteStore(request.app.state.db_path)
+        store = SqliteStore(request.app.state.db_path, check_same_thread=False)
     except Exception as exc:  # sqlite3.Error, OSError: storage itself unusable
         raise HTTPException(503, f"storage unavailable: {type(exc).__name__}") from None
     try:

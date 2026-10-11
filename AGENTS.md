@@ -19,8 +19,9 @@ Ce fichier définit les conventions de travail pour les assistants qui intervien
 - Dépôt GitHub : <https://github.com/Momoxglhn5/bsa-hackathon>.
 - Branche initiale : `main`.
 - Le dépôt contient le pipeline Data en cours et un backend Core Analytics FastAPI sous `backend/app`.
-- Projet : DeFi Risk Radar ; fixture analytics synthétique, manifeste Data `VERIFIED_ACTIVE` livré sur main. Les stores réels sont ignorés par Git.
+- Projet : DeFiNe (anciennement DeFi Risk Radar) ; fixture analytics synthétique, manifeste Data `VERIFIED_ACTIVE` livré sur main. Les stores réels sont ignorés par Git.
 - Stack analytics : Python 3.13, Pydantic v2, NetworkX, Decimal, snapshots JSON ; dépendances dans `backend/requirements-analytics.txt`.
+- Frontend : React 19, Vite 7, TypeScript 5.9, three.js (intro) sous `frontend/`, npm avec `package-lock.json` ; appels API centralisés dans `frontend/src/api`.
 - Contrats Data existants dans `backend/app/models` à conserver ; interfaces et limites dans `CORE_ENGINES_INTEGRATION.md`.
 
 ### À déterminer
@@ -234,6 +235,7 @@ Ne pas inventer de commandes de test. Les rechercher dans les manifestes, script
 - Analytics : `backend/.venv/bin/python -m pytest -c backend/pytest.ini backend/app/tests -q` ; fixtures synthétiques, aucun appel réseau.
 - Serveur local : `backend/.venv/bin/python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000`.
 - Démo HTTP : `backend/.venv/bin/python backend/scripts/demo_analytics.py` (serveur lancé au préalable).
+- Frontend : `npm --prefix frontend test` puis `npm --prefix frontend run build` (types + build) ; démo complète `scripts/radar-dev.sh`.
 - Markdown : `npx --yes markdownlint-cli2@0.23.3`.
 - Workflows : `go run github.com/rhysd/actionlint/cmd/actionlint@v1.7.12 -color`.
 - Secrets des commits : `go run github.com/zricethezav/gitleaks/v8@v8.30.1 git --redact --no-banner --log-opts='--all'`.

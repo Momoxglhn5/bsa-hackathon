@@ -1,4 +1,6 @@
-# DeFi Risk Radar — BSA Hackathon
+# DeFiNe — BSA Hackathon
+
+Anciennement « DeFi Risk Radar » : les documents de référence dans `docs/` gardent ce nom.
 
 Analyse en lecture seule de positions d'emprunt Morpho utilisant des PT Pendle : découvrir les dépendances, simuler une défaillance et comparer STAY/EXIT sous hypothèses explicites.
 
@@ -7,10 +9,24 @@ Analyse en lecture seule de positions d'emprunt Morpho utilisant des PT Pendle :
 - [Tracks et informations sur DoraHacks](https://dorahacks.io/hackathon/bsa-the-hackathon/tracks)
 - Track visé dans les briefs projet : Belem Capital DeFi Risk Challenge ; règles de soumission à revérifier sur la source officielle.
 - Backend : Python 3.13, FastAPI, Pydantic v2, NetworkX, Decimal, snapshots JSON.
-- Interface jury : parcours hors ligne en quatre étapes, alimenté par un replay de données réelles et les moteurs Core.
+- Interface jury : application React sur un jeu de démo complet ; version statique hors ligne en secours, alimentée par un replay de données réelles.
+
+## Application web
+
+Le frontend React (`frontend/`) reprend le design du handoff v11 et branche les routes du backend : intro 3D, Explorer, Simuler (choc et Monte Carlo), Décider (carry, clôture, STAY/EXIT), graphe des dépendances, preuves et état des données.
+
+```bash
+scripts/radar-dev.sh
+```
+
+Ouvrir <http://localhost:5173>. Le script régénère le jeu « Demo » (5 marchés PT Pendle sur Morpho Blue, 7 positions de 4 fonds simulés, 90 jours d'historique, devis de sortie, prévisions validées, incidents DefiLlama réels) et le sert sur le port 8001. Il lance aussi le replay du marché réel (port 8000) et le serveur Vite. Le jeu Demo est synthétique ; la pastille DEMO de la barre du haut le signale et permet de basculer sur le jeu « Live market ». L'interface est en anglais.
+
+- Déroulé de présentation et chiffres attendus : [parcours jury](docs/demo/PARCOURS_JURY.md).
+- Matrice écran → API et limites : [frontend/README.md](frontend/README.md).
 
 ## Disponible localement
 
+- Application web React connectée aux routes Data, Delivery et Core, sans valeur inventée ni transaction.
 - Graphe de dépendances et propagation inverse, sans double compte des positions.
 - Stress oracle, minting et cross-chain avec exposition, santé de position et pertes uniquement chiffrables.
 - Décision conditionnelle STAY/EXIT, coût de sortie validé, seuil de bascule et repli Predictive → Normal.
@@ -19,17 +35,17 @@ Analyse en lecture seule de positions d'emprunt Morpho utilisant des PT Pendle :
 - Monte Carlo du prix oracle Morpho raccordé à Data, avec calibration de volatilité sur la série oracle prouvée par RPC ; contrôlé sur un snapshot de marché réel avec 11 observations RPC ; les runs sous hypothèse passent, la calibration sur 31 points reste indisponible ([détails](docs/implementation/monte_carlo_pr2.md)).
 - APIs Data et Analytics sous `/api/v1`, documentation OpenAPI et tests automatisés.
 
-**Le script de démo analytics utilise des fixtures synthétiques.** La [démo jury](docs/demo/radar/README.md) utilise un marché et des prix réels enregistrés, des fonds simulés et des hypothèses explicites. Les moteurs sont branchés aux stores SQLite/Parquet Data et aux relations vérifiées. Le manifeste livré est `VERIFIED_ACTIVE` ; les stores réels, ignorés par Git, doivent être collectés ou transférés séparément. Les prix USD et quotes absents restent `null` ; aucun verdict réel n'est forcé.
+**Le script de démo analytics et le jeu « Demo » de l'application utilisent des données synthétiques.** Le jeu « Live market » et la [version statique](docs/demo/radar/README.md) utilisent un marché et des prix réels enregistrés, des fonds simulés et des hypothèses explicites. Les moteurs sont branchés aux stores SQLite/Parquet Data et aux relations vérifiées. Le manifeste livré est `VERIFIED_ACTIVE` ; les stores réels, ignorés par Git, doivent être collectés ou transférés séparément. Les prix USD et quotes absents restent `null` ; aucun verdict réel n'est forcé.
 
-## Démo jury en deux minutes
+## Version statique hors ligne
 
-Ouvrir [la page autonome](docs/demo/radar/index.html), ou lancer :
+En secours, sans backend : ouvrir [la page autonome](docs/demo/radar/index.html), ou lancer :
 
 ```bash
 python3 -m http.server 8766 --bind 127.0.0.1 --directory docs/demo
 ```
 
-Ouvrir <http://127.0.0.1:8766/radar/> : dépendances et preuves → sorties 1/2/5 M$ → impact du choc → STAY/EXIT conditionnel. Le [texte à présenter](docs/demo/radar/README.md) précise le parcours et les limites. Marilou et Monte Carlo restent accessibles dans les compléments.
+Ouvrir <http://127.0.0.1:8766/radar/> : dépendances et preuves → sorties 1/2/5 M$ → impact du choc → STAY/EXIT conditionnel, sur le replay du marché réel. Le [texte associé](docs/demo/radar/README.md) précise le parcours et les limites.
 
 ## Développement
 
@@ -81,6 +97,7 @@ Le workflow `.github/workflows/ci.yml` s’exécute à chaque push, sur les pull
 | GitHub Actions validation | Syntaxe, expressions et configuration des workflows avec actionlint. |
 | Secret scan | Recherche de secrets dans tout l’historique Git avec Gitleaks ; valeurs masquées dans les logs. |
 | Core analytics tests | Tests pytest des moteurs, de leurs APIs et de l'intégration au contrat Data, sans accès réseau. |
+| Frontend | `npm ci`, tests Vitest, vérification de types et build Vite de `frontend/`. |
 
 Les actions GitHub sont figées par leur SHA et les outils de vérification par leur version. Le workflow dispose uniquement d’un accès en lecture au dépôt et ne nécessite aucun secret configuré. Dependabot propose chaque semaine les mises à jour des actions GitHub ; les versions des outils CLI sont à maintenir séparément.
 

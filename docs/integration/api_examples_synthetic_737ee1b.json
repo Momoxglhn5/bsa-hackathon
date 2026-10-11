@@ -1,0 +1,1732 @@
+{
+  "notice": "SYNTHETIC fixture; frozen replay; examples generated from commit 737ee1b. Not live market prices.",
+  "calls": [
+    {
+      "method": "GET",
+      "path": "/api/v1/graph/strat_d589cd964a2da9b34f7a5ab5",
+      "request": null,
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "PARTIAL",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+          "graph_status": "PARTIAL",
+          "snapshot_as_of": "2026-10-10T12:00:00Z",
+          "nodes": [
+            {
+              "id": "asset:1:0x1111111111111111111111111111111111111111",
+              "type": "ASSET",
+              "label": "asset:1:0x1111111111111111111111111111111111111111",
+              "chain_id": 1,
+              "position_kind": null
+            },
+            {
+              "id": "asset:1:0x2222222222222222222222222222222222222222",
+              "type": "ASSET",
+              "label": "asset:1:0x2222222222222222222222222222222222222222",
+              "chain_id": 1,
+              "position_kind": null
+            },
+            {
+              "id": "asset:1:0x3333333333333333333333333333333333333333",
+              "type": "SY",
+              "label": "asset:1:0x3333333333333333333333333333333333333333",
+              "chain_id": 1,
+              "position_kind": null
+            },
+            {
+              "id": "irm:1:0x6666666666666666666666666666666666666666",
+              "type": "IRM",
+              "label": "irm:1:0x6666666666666666666666666666666666666666",
+              "chain_id": 1,
+              "position_kind": null
+            },
+            {
+              "id": "morpho:1:0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "type": "MARKET",
+              "label": "morpho:1:0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "chain_id": 1,
+              "position_kind": null
+            },
+            {
+              "id": "oracle:1:0x5555555555555555555555555555555555555555",
+              "type": "ORACLE",
+              "label": "oracle:1:0x5555555555555555555555555555555555555555",
+              "chain_id": 1,
+              "position_kind": null
+            },
+            {
+              "id": "pendle:1:0x7777777777777777777777777777777777777777",
+              "type": "MARKET",
+              "label": "pendle:1:0x7777777777777777777777777777777777777777",
+              "chain_id": 1,
+              "position_kind": null
+            },
+            {
+              "id": "pos_demo_fund",
+              "type": "POSITION",
+              "label": "Synthetic fund — NOT an on-chain holding",
+              "chain_id": 1,
+              "position_kind": "SIMULATED"
+            }
+          ],
+          "edges": [
+            {
+              "id": "edge:0c5b37a50aacbb4cc61f2fcc",
+              "source": "pendle:1:0x7777777777777777777777777777777777777777",
+              "target": "asset:1:0x3333333333333333333333333333333333333333",
+              "relation_type": "USES_SY",
+              "verification_status": "HYPOTHESIS",
+              "evidence_ids": [
+                "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+              ],
+              "criticality": "CRITICAL",
+              "failure_modes": [
+                "ECONOMIC",
+                "LIVENESS",
+                "EXECUTION"
+              ],
+              "required": true,
+              "fallbacks": [],
+              "as_of": "2026-10-10T12:00:00Z",
+              "block_number": null,
+              "transmission_note": null
+            },
+            {
+              "id": "edge:29e20dee03277ce7ee46f903",
+              "source": "morpho:1:0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "target": "asset:1:0x1111111111111111111111111111111111111111",
+              "relation_type": "COLLATERALIZED_BY",
+              "verification_status": "HYPOTHESIS",
+              "evidence_ids": [
+                "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+              ],
+              "criticality": "CRITICAL",
+              "failure_modes": [
+                "ECONOMIC",
+                "LIVENESS",
+                "EXECUTION"
+              ],
+              "required": true,
+              "fallbacks": [],
+              "as_of": "2026-10-10T12:00:00Z",
+              "block_number": null,
+              "transmission_note": null
+            },
+            {
+              "id": "edge:43ea8b6b3947fb3c4986b60d",
+              "source": "pos_demo_fund",
+              "target": "morpho:1:0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "relation_type": "BORROWS_FROM",
+              "verification_status": "HYPOTHESIS",
+              "evidence_ids": [
+                "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+              ],
+              "criticality": "CRITICAL",
+              "failure_modes": [
+                "ECONOMIC",
+                "LIVENESS",
+                "VALUATION",
+                "EXECUTION"
+              ],
+              "required": true,
+              "fallbacks": [],
+              "as_of": "2026-10-10T12:00:00Z",
+              "block_number": null,
+              "transmission_note": null
+            },
+            {
+              "id": "edge:47f8ee606dceb748e6096b73",
+              "source": "pos_demo_fund",
+              "target": "asset:1:0x1111111111111111111111111111111111111111",
+              "relation_type": "COLLATERALIZED_BY",
+              "verification_status": "HYPOTHESIS",
+              "evidence_ids": [
+                "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+              ],
+              "criticality": "CRITICAL",
+              "failure_modes": [
+                "ECONOMIC",
+                "LIVENESS",
+                "EXECUTION"
+              ],
+              "required": true,
+              "fallbacks": [],
+              "as_of": "2026-10-10T12:00:00Z",
+              "block_number": null,
+              "transmission_note": null
+            },
+            {
+              "id": "edge:d4fa7f72b06bb9b83b271255",
+              "source": "asset:1:0x1111111111111111111111111111111111111111",
+              "target": "pendle:1:0x7777777777777777777777777777777777777777",
+              "relation_type": "REDEEMS_THROUGH",
+              "verification_status": "HYPOTHESIS",
+              "evidence_ids": [
+                "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+              ],
+              "criticality": "CRITICAL",
+              "failure_modes": [
+                "ECONOMIC",
+                "LIVENESS",
+                "EXECUTION"
+              ],
+              "required": true,
+              "fallbacks": [],
+              "as_of": "2026-10-10T12:00:00Z",
+              "block_number": null,
+              "transmission_note": null
+            },
+            {
+              "id": "edge:e84e86edad3df967a7dc8d84",
+              "source": "morpho:1:0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "target": "asset:1:0x2222222222222222222222222222222222222222",
+              "relation_type": "USES_LOAN_ASSET",
+              "verification_status": "HYPOTHESIS",
+              "evidence_ids": [
+                "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+              ],
+              "criticality": "CRITICAL",
+              "failure_modes": [
+                "ECONOMIC",
+                "LIVENESS"
+              ],
+              "required": true,
+              "fallbacks": [],
+              "as_of": "2026-10-10T12:00:00Z",
+              "block_number": null,
+              "transmission_note": null
+            },
+            {
+              "id": "edge:f917b877729700fa2e37fd36",
+              "source": "morpho:1:0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "target": "irm:1:0x6666666666666666666666666666666666666666",
+              "relation_type": "USES_IRM",
+              "verification_status": "HYPOTHESIS",
+              "evidence_ids": [
+                "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+              ],
+              "criticality": "CRITICAL",
+              "failure_modes": [
+                "ECONOMIC",
+                "LIVENESS"
+              ],
+              "required": true,
+              "fallbacks": [],
+              "as_of": "2026-10-10T12:00:00Z",
+              "block_number": null,
+              "transmission_note": null
+            },
+            {
+              "id": "edge:fc070f8f4f32d276cfc8c0d8",
+              "source": "morpho:1:0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "target": "oracle:1:0x5555555555555555555555555555555555555555",
+              "relation_type": "USES_ORACLE",
+              "verification_status": "HYPOTHESIS",
+              "evidence_ids": [
+                "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+              ],
+              "criticality": "CRITICAL",
+              "failure_modes": [
+                "VALUATION",
+                "LIVENESS"
+              ],
+              "required": true,
+              "fallbacks": [],
+              "as_of": "2026-10-10T12:00:00Z",
+              "block_number": null,
+              "transmission_note": null
+            }
+          ],
+          "unknown_dependency_classes": [
+            "ORACLE_IMPLEMENTATION",
+            "YIELD_SOURCE",
+            "GOVERNANCE"
+          ],
+          "warnings": []
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [],
+        "warnings": [
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/graph/strat_d589cd964a2da9b34f7a5ab5/exposure?node_id=asset:1:0x1111111111111111111111111111111111111111",
+      "request": null,
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "STRUCTURAL_EXPOSURE",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "dependency_id": "asset:1:0x1111111111111111111111111111111111111111",
+          "positions": [
+            {
+              "position_id": "pos_demo_fund",
+              "kind": "SIMULATED",
+              "path": [
+                "pos_demo_fund",
+                "asset:1:0x1111111111111111111111111111111111111111"
+              ],
+              "collateral_value_usd": "2000000",
+              "equity_usd": "800000",
+              "link_statuses": [
+                "HYPOTHESIS"
+              ],
+              "evidence_ids": [
+                "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+              ]
+            }
+          ],
+          "unique_position_count": 1,
+          "collateral_exposure_usd": "2000000",
+          "basis": "STRUCTURAL_REACHABILITY_NOT_LOSS",
+          "warnings": [
+            "Alternative routes and unresolved links may occur in paths.",
+            "Simulated positions are hypothetical; this is not a realized loss."
+          ]
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [],
+        "warnings": [
+          "Alternative routes and unresolved links may occur in paths.",
+          "Simulated positions are hypothetical; this is not a realized loss.",
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/risk/strat_d589cd964a2da9b34f7a5ab5",
+      "request": null,
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "INSUFFICIENT_DATA",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "risk_index": null,
+          "risk_status": "INSUFFICIENT_DATA",
+          "completeness_pct": "30",
+          "evidence_confidence_pct": "0",
+          "dimension_scores": {
+            "Liquidity": {
+              "score": "60.0",
+              "coverage_pct": "50"
+            },
+            "Security": {
+              "score": null,
+              "coverage_pct": "0"
+            },
+            "Governance": {
+              "score": null,
+              "coverage_pct": "0"
+            },
+            "Operational history": {
+              "score": null,
+              "coverage_pct": "0"
+            },
+            "Dependencies": {
+              "score": "100",
+              "coverage_pct": "100"
+            }
+          },
+          "factor_explanations": [
+            {
+              "factor_id": "L_UTILIZATION",
+              "dimension": "Liquidity",
+              "weight": "0.1",
+              "risk": "0.6",
+              "source_quality": "0",
+              "freshness": "1",
+              "evidence_ids": [
+                "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+              ],
+              "explanation": "Linear liquidity-pressure heuristic: risk = Morpho utilization (0..1)."
+            },
+            {
+              "factor_id": "L_TVL_DRAWDOWN",
+              "dimension": "Liquidity",
+              "weight": "0.1",
+              "risk": null,
+              "source_quality": null,
+              "freshness": null,
+              "evidence_ids": [],
+              "explanation": "Unknown: missing usable evidence or applicable methodology; never counted as zero risk."
+            },
+            {
+              "factor_id": "S_SOURCE_VERIFIED",
+              "dimension": "Security",
+              "weight": "0.1",
+              "risk": null,
+              "source_quality": null,
+              "freshness": null,
+              "evidence_ids": [],
+              "explanation": "Unknown: missing usable evidence or applicable methodology; never counted as zero risk."
+            },
+            {
+              "factor_id": "S_AUDIT",
+              "dimension": "Security",
+              "weight": "0.1",
+              "risk": null,
+              "source_quality": null,
+              "freshness": null,
+              "evidence_ids": [],
+              "explanation": "Unknown: missing usable evidence or applicable methodology; never counted as zero risk."
+            },
+            {
+              "factor_id": "G_CONTROL",
+              "dimension": "Governance",
+              "weight": "0.1",
+              "risk": null,
+              "source_quality": null,
+              "freshness": null,
+              "evidence_ids": [],
+              "explanation": "Unknown: missing usable evidence or applicable methodology; never counted as zero risk."
+            },
+            {
+              "factor_id": "G_TIMELOCK",
+              "dimension": "Governance",
+              "weight": "0.1",
+              "risk": null,
+              "source_quality": null,
+              "freshness": null,
+              "evidence_ids": [],
+              "explanation": "Unknown: missing usable evidence or applicable methodology; never counted as zero risk."
+            },
+            {
+              "factor_id": "O_DEPLOYMENT_AGE",
+              "dimension": "Operational history",
+              "weight": "0.1",
+              "risk": null,
+              "source_quality": null,
+              "freshness": null,
+              "evidence_ids": [],
+              "explanation": "Unknown: missing usable evidence or applicable methodology; never counted as zero risk."
+            },
+            {
+              "factor_id": "O_VERSION_AGE",
+              "dimension": "Operational history",
+              "weight": "0.1",
+              "risk": null,
+              "source_quality": null,
+              "freshness": null,
+              "evidence_ids": [],
+              "explanation": "Unknown: missing usable evidence or applicable methodology; never counted as zero risk."
+            },
+            {
+              "factor_id": "D_CONCENTRATION",
+              "dimension": "Dependencies",
+              "weight": "0.1",
+              "risk": "1",
+              "source_quality": "0",
+              "freshness": "1",
+              "evidence_ids": [
+                "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+              ],
+              "explanation": "Largest unique equity exposure to a represented critical dependency / total strategy equity; incomplete graph coverage remains explicit."
+            },
+            {
+              "factor_id": "D_NO_FALLBACK",
+              "dimension": "Dependencies",
+              "weight": "0.1",
+              "risk": "1",
+              "source_quality": "0",
+              "freshness": "1",
+              "evidence_ids": [
+                "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+              ],
+              "explanation": "Share of equity with at least one represented critical dependency lacking a verified healthy fallback; not proof that no fallback exists."
+            }
+          ],
+          "unknown_factors": [
+            "L_TVL_DRAWDOWN",
+            "S_SOURCE_VERIFIED",
+            "S_AUDIT",
+            "G_CONTROL",
+            "G_TIMELOCK",
+            "O_DEPLOYMENT_AGE",
+            "O_VERSION_AGE"
+          ],
+          "position_risk": {
+            "pos_demo_fund": {
+              "collateral_value_usd": "2000000",
+              "debt_value_usd": "1200000",
+              "equity_usd": "800000",
+              "gross_exposure_usd": "3200000",
+              "oracle_collateral_value_loan_units": "2000000",
+              "lltv_ratio": "0.915",
+              "ltv_ratio": "0.6",
+              "health_factor": "1.525",
+              "liquidatable": false
+            }
+          },
+          "warnings": [
+            "HEURISTIC_NOT_FAILURE_PROBABILITY",
+            "CONFIDENCE_IS_EVIDENCE_QUALITY_NOT_SAFETY"
+          ]
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [
+          "risk_index"
+        ],
+        "warnings": [
+          "HEURISTIC_NOT_FAILURE_PROBABILITY",
+          "CONFIDENCE_IS_EVIDENCE_QUALITY_NOT_SAFETY",
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/scenarios",
+      "request": null,
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "OK",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "scenario_types": [
+            "ORACLE_MANIPULATION",
+            "ORACLE_OUTAGE",
+            "UNAUTHORIZED_MINTING",
+            "CROSS_CHAIN_FAILURE"
+          ],
+          "probability_basis": "USER_ASSUMPTION"
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [],
+        "warnings": [
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/incident-frequencies",
+      "request": null,
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "INSUFFICIENT_DATA",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "estimates": [],
+          "methodology": "No calibrated history or denominator supplied; enter explicit horizon-specific user assumptions."
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [],
+        "warnings": [
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/simulations",
+      "request": {
+        "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+        "position_id": "pos_demo_fund",
+        "scenario_type": "UNAUTHORIZED_MINTING",
+        "scenario_scope": "HYPOTHETICAL",
+        "target_node_id": "asset:1:0x1111111111111111111111111111111111111111",
+        "horizon_days": 7,
+        "parameters": {
+          "assumed_token_haircut_ratio": "0.2"
+        }
+      },
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "CALCULATED",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "simulation_id": "stress:05e841a0bc5251995bca34c1",
+          "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+          "position_id": "pos_demo_fund",
+          "horizon_days": 7,
+          "scenario_type": "UNAUTHORIZED_MINTING",
+          "scenario_scope": "HYPOTHETICAL",
+          "scenario_status": "CALCULATED",
+          "affected_node_ids": [
+            "asset:1:0x1111111111111111111111111111111111111111",
+            "morpho:1:0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "pos_demo_fund"
+          ],
+          "affected_position_ids": [
+            "pos_demo_fund"
+          ],
+          "confirmed_exposed_capital_usd": "0",
+          "potentially_exposed_capital_usd": "800000",
+          "gross_exposure_usd": "3200000",
+          "operationally_blocked_usd": null,
+          "scenario_estimated_loss_usd": "400000.0",
+          "position_effects": {
+            "pos_demo_fund": {
+              "before": {
+                "collateral_value_usd": "2000000",
+                "debt_value_usd": "1200000",
+                "equity_usd": "800000",
+                "gross_exposure_usd": "3200000",
+                "oracle_collateral_value_loan_units": "2000000",
+                "lltv_ratio": "0.915",
+                "ltv_ratio": "0.6",
+                "health_factor": "1.525",
+                "liquidatable": false
+              },
+              "after": {
+                "collateral_value_usd": "1600000.0",
+                "debt_value_usd": "1200000",
+                "equity_usd": "400000.0",
+                "gross_exposure_usd": "2800000.0",
+                "oracle_collateral_value_loan_units": "2000000",
+                "lltv_ratio": "0.915",
+                "ltv_ratio": "0.6",
+                "health_factor": "1.525",
+                "liquidatable": false
+              },
+              "scenario_estimated_loss_usd": "400000.0"
+            }
+          },
+          "representative_paths": {
+            "pos_demo_fund": [
+              "pos_demo_fund",
+              "asset:1:0x1111111111111111111111111111111111111111"
+            ]
+          },
+          "assumptions": [
+            "Simulated failure; not evidence of an actual incident",
+            "assumed_token_haircut_ratio=0.2"
+          ],
+          "evidence_ids": [
+            "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+          ],
+          "warnings": []
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [
+          "operationally_blocked_usd"
+        ],
+        "warnings": [
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/decisions",
+      "request": {
+        "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+        "position_id": "pos_demo_fund",
+        "mode": "predictive",
+        "horizon_days": 7,
+        "scenario_assumptions": [
+          {
+            "loss_scenario_ref": "stress:05e841a0bc5251995bca34c1",
+            "probability_over_horizon": "0.10",
+            "basis": "USER_ASSUMPTION"
+          }
+        ],
+        "exit_quote_id": null,
+        "estimated_net_carry_usd": "1000",
+        "carry_explanation": "Synthetic seven-day net carry for frontend integration"
+      },
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "CONDITIONAL",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "horizon_days": 7,
+          "requested_mode": "normal",
+          "effective_mode": "normal",
+          "forecast_bundle_id": null,
+          "fallback_reason": null,
+          "decision_status": "CONDITIONAL",
+          "verdict": "STAY",
+          "comparison": "STAY_BETTER",
+          "equity_now_usd": "800000",
+          "stay_value_usd": "793000.000",
+          "exit_value_usd": "779900",
+          "expected_loss_usd": "8000.000",
+          "exit_cost_usd": "20100",
+          "net_carry_usd": "1000",
+          "break_even_probability": "0.05275",
+          "break_even_status": "WITHIN_FEASIBLE_RANGE",
+          "sensitivity_scenario_ref": "stress:05e841a0bc5251995bca34c1",
+          "sensitivity_probability_max": "1",
+          "quote_status": "OK",
+          "requires_external_repayment_liquidity": true,
+          "included_scenario_ids": [
+            "stress:05e841a0bc5251995bca34c1"
+          ],
+          "excluded_scenario_ids": [],
+          "excluded_unquantified_scenario_ids": [],
+          "assumption_basis": "ASSUMPTION_DRIVEN",
+          "structural_risk_index": null,
+          "risk_completeness_pct": "30",
+          "carry_calculation": null,
+          "closing_plan": {
+            "status": "CONDITIONAL",
+            "position_id": "pos_demo_fund",
+            "quote_id": "quote:synthetic-full-position",
+            "basis": "USER_ASSUMPTION",
+            "required_repayment_loan_units": "1200000",
+            "available_repayment_loan_units": null,
+            "repayment_shortfall_loan_units": null,
+            "gas_cost_usd": "100",
+            "extra_fees_usd": "0",
+            "financing_fee_usd": null,
+            "sale_proceeds_usd": "1980000",
+            "net_proceeds_usd": "1979900",
+            "total_operation_cost_usd": "100",
+            "exit_cost_usd": "20100",
+            "net_equity_after_exit_usd": "779900",
+            "steps": [
+              "Provide external loan-token funds to repay the current debt",
+              "Repay Morpho debt before withdrawing collateral",
+              "Withdraw the full PT collateral",
+              "Sell the exact PT quantity using the quoted route",
+              "Recover the funding principal and deduct financing, gas and additional fees"
+            ],
+            "missing_fields": [],
+            "warnings": [
+              "Net quote output includes price impact; gas/extra fees added once",
+              "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+              "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+            ]
+          },
+          "explanation": [
+            "Conditional comparison in USD using the same current equity.",
+            "Probabilities and net carry are explicit user assumptions for this horizon.",
+            "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+            "Net quote output includes price impact; gas/extra fees added once",
+            "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+            "Structural Risk Index is explanatory only and never used as a probability."
+          ],
+          "warnings": [
+            "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+          ]
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [
+          "forecast_bundle_id",
+          "fallback_reason",
+          "structural_risk_index",
+          "carry_calculation"
+        ],
+        "warnings": [
+          "STRUCTURAL_RISK_INSUFFICIENT_DATA",
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/decisions",
+      "request": {
+        "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+        "position_id": "pos_demo_fund",
+        "mode": "predictive",
+        "horizon_days": 7,
+        "scenario_assumptions": [
+          {
+            "loss_scenario_ref": "stress:05e841a0bc5251995bca34c1",
+            "probability_over_horizon": "0.10",
+            "basis": "USER_ASSUMPTION"
+          }
+        ],
+        "exit_quote_id": null,
+        "estimated_net_carry_usd": "1000",
+        "carry_explanation": "Synthetic seven-day net carry for frontend integration"
+      },
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "CONDITIONAL",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "horizon_days": 7,
+          "requested_mode": "normal",
+          "effective_mode": "normal",
+          "forecast_bundle_id": null,
+          "fallback_reason": null,
+          "decision_status": "CONDITIONAL",
+          "verdict": "EXIT",
+          "comparison": "EXIT_BETTER",
+          "equity_now_usd": "800000",
+          "stay_value_usd": "761000.000",
+          "exit_value_usd": "779900",
+          "expected_loss_usd": "40000.000",
+          "exit_cost_usd": "20100",
+          "net_carry_usd": "1000",
+          "break_even_probability": "0.05275",
+          "break_even_status": "WITHIN_FEASIBLE_RANGE",
+          "sensitivity_scenario_ref": "stress:05e841a0bc5251995bca34c1",
+          "sensitivity_probability_max": "1",
+          "quote_status": "OK",
+          "requires_external_repayment_liquidity": true,
+          "included_scenario_ids": [
+            "stress:05e841a0bc5251995bca34c1"
+          ],
+          "excluded_scenario_ids": [],
+          "excluded_unquantified_scenario_ids": [],
+          "assumption_basis": "ASSUMPTION_DRIVEN",
+          "structural_risk_index": null,
+          "risk_completeness_pct": "30",
+          "carry_calculation": null,
+          "closing_plan": {
+            "status": "CONDITIONAL",
+            "position_id": "pos_demo_fund",
+            "quote_id": "quote:synthetic-full-position",
+            "basis": "USER_ASSUMPTION",
+            "required_repayment_loan_units": "1200000",
+            "available_repayment_loan_units": null,
+            "repayment_shortfall_loan_units": null,
+            "gas_cost_usd": "100",
+            "extra_fees_usd": "0",
+            "financing_fee_usd": null,
+            "sale_proceeds_usd": "1980000",
+            "net_proceeds_usd": "1979900",
+            "total_operation_cost_usd": "100",
+            "exit_cost_usd": "20100",
+            "net_equity_after_exit_usd": "779900",
+            "steps": [
+              "Provide external loan-token funds to repay the current debt",
+              "Repay Morpho debt before withdrawing collateral",
+              "Withdraw the full PT collateral",
+              "Sell the exact PT quantity using the quoted route",
+              "Recover the funding principal and deduct financing, gas and additional fees"
+            ],
+            "missing_fields": [],
+            "warnings": [
+              "Net quote output includes price impact; gas/extra fees added once",
+              "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+              "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+            ]
+          },
+          "explanation": [
+            "Conditional comparison in USD using the same current equity.",
+            "Probabilities and net carry are explicit user assumptions for this horizon.",
+            "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+            "Net quote output includes price impact; gas/extra fees added once",
+            "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+            "Structural Risk Index is explanatory only and never used as a probability."
+          ],
+          "warnings": [
+            "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+          ]
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [
+          "forecast_bundle_id",
+          "fallback_reason",
+          "structural_risk_index",
+          "carry_calculation"
+        ],
+        "warnings": [
+          "STRUCTURAL_RISK_INSUFFICIENT_DATA",
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/decisions",
+      "request": {
+        "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+        "position_id": "pos_demo_fund",
+        "mode": "predictive",
+        "horizon_days": 7,
+        "scenario_assumptions": [
+          {
+            "loss_scenario_ref": "stress:05e841a0bc5251995bca34c1",
+            "probability_over_horizon": "0.10",
+            "basis": "USER_ASSUMPTION"
+          }
+        ],
+        "exit_quote_id": null,
+        "estimated_net_carry_usd": "1000",
+        "carry_explanation": "Synthetic seven-day net carry for frontend integration"
+      },
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "CONDITIONAL",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "horizon_days": 7,
+          "requested_mode": "predictive",
+          "effective_mode": "normal",
+          "forecast_bundle_id": null,
+          "fallback_reason": "FORECAST_UNAVAILABLE",
+          "decision_status": "CONDITIONAL",
+          "verdict": "EXIT",
+          "comparison": "EXIT_BETTER",
+          "equity_now_usd": "800000",
+          "stay_value_usd": "761000.000",
+          "exit_value_usd": "779900",
+          "expected_loss_usd": "40000.000",
+          "exit_cost_usd": "20100",
+          "net_carry_usd": "1000",
+          "break_even_probability": "0.05275",
+          "break_even_status": "WITHIN_FEASIBLE_RANGE",
+          "sensitivity_scenario_ref": "stress:05e841a0bc5251995bca34c1",
+          "sensitivity_probability_max": "1",
+          "quote_status": "OK",
+          "requires_external_repayment_liquidity": true,
+          "included_scenario_ids": [
+            "stress:05e841a0bc5251995bca34c1"
+          ],
+          "excluded_scenario_ids": [],
+          "excluded_unquantified_scenario_ids": [],
+          "assumption_basis": "ASSUMPTION_DRIVEN",
+          "structural_risk_index": null,
+          "risk_completeness_pct": "30",
+          "carry_calculation": null,
+          "closing_plan": {
+            "status": "CONDITIONAL",
+            "position_id": "pos_demo_fund",
+            "quote_id": "quote:synthetic-full-position",
+            "basis": "USER_ASSUMPTION",
+            "required_repayment_loan_units": "1200000",
+            "available_repayment_loan_units": null,
+            "repayment_shortfall_loan_units": null,
+            "gas_cost_usd": "100",
+            "extra_fees_usd": "0",
+            "financing_fee_usd": null,
+            "sale_proceeds_usd": "1980000",
+            "net_proceeds_usd": "1979900",
+            "total_operation_cost_usd": "100",
+            "exit_cost_usd": "20100",
+            "net_equity_after_exit_usd": "779900",
+            "steps": [
+              "Provide external loan-token funds to repay the current debt",
+              "Repay Morpho debt before withdrawing collateral",
+              "Withdraw the full PT collateral",
+              "Sell the exact PT quantity using the quoted route",
+              "Recover the funding principal and deduct financing, gas and additional fees"
+            ],
+            "missing_fields": [],
+            "warnings": [
+              "Net quote output includes price impact; gas/extra fees added once",
+              "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+              "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+            ]
+          },
+          "explanation": [
+            "Conditional comparison in USD using the same current equity.",
+            "Probabilities and net carry are explicit user assumptions for this horizon.",
+            "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+            "Net quote output includes price impact; gas/extra fees added once",
+            "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+            "Structural Risk Index is explanatory only and never used as a probability."
+          ],
+          "warnings": [
+            "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+          ]
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [
+          "forecast_bundle_id",
+          "structural_risk_index",
+          "carry_calculation"
+        ],
+        "warnings": [
+          "STRUCTURAL_RISK_INSUFFICIENT_DATA",
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/decisions",
+      "request": {
+        "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+        "position_id": "pos_demo_fund",
+        "mode": "predictive",
+        "horizon_days": 7,
+        "scenario_assumptions": [
+          {
+            "loss_scenario_ref": "stress:05e841a0bc5251995bca34c1",
+            "probability_over_horizon": "0.10",
+            "basis": "USER_ASSUMPTION"
+          }
+        ],
+        "exit_quote_id": null,
+        "estimated_net_carry_usd": "1000",
+        "carry_explanation": "Synthetic seven-day net carry for frontend integration"
+      },
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "QUOTE_UNAVAILABLE",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "horizon_days": 7,
+          "requested_mode": "predictive",
+          "effective_mode": "normal",
+          "forecast_bundle_id": null,
+          "fallback_reason": "FORECAST_UNAVAILABLE",
+          "decision_status": "QUOTE_UNAVAILABLE",
+          "verdict": null,
+          "comparison": null,
+          "equity_now_usd": "800000",
+          "stay_value_usd": "761000.000",
+          "exit_value_usd": null,
+          "expected_loss_usd": "40000.000",
+          "exit_cost_usd": null,
+          "net_carry_usd": "1000",
+          "break_even_probability": null,
+          "break_even_status": null,
+          "sensitivity_scenario_ref": "stress:05e841a0bc5251995bca34c1",
+          "sensitivity_probability_max": null,
+          "quote_status": "QUOTE_UNAVAILABLE",
+          "requires_external_repayment_liquidity": null,
+          "included_scenario_ids": [
+            "stress:05e841a0bc5251995bca34c1"
+          ],
+          "excluded_scenario_ids": [],
+          "excluded_unquantified_scenario_ids": [],
+          "assumption_basis": "ASSUMPTION_DRIVEN",
+          "structural_risk_index": null,
+          "risk_completeness_pct": "30",
+          "carry_calculation": null,
+          "closing_plan": {
+            "status": "QUOTE_UNAVAILABLE",
+            "position_id": "pos_demo_fund",
+            "quote_id": null,
+            "basis": "UNAVAILABLE",
+            "required_repayment_loan_units": "1200000",
+            "available_repayment_loan_units": null,
+            "repayment_shortfall_loan_units": null,
+            "gas_cost_usd": null,
+            "extra_fees_usd": null,
+            "financing_fee_usd": null,
+            "sale_proceeds_usd": null,
+            "net_proceeds_usd": null,
+            "total_operation_cost_usd": null,
+            "exit_cost_usd": null,
+            "net_equity_after_exit_usd": null,
+            "steps": [
+              "Provide external loan-token funds to repay the current debt",
+              "Repay Morpho debt before withdrawing collateral",
+              "Withdraw the full PT collateral",
+              "Sell the exact PT quantity using the quoted route",
+              "Recover the funding principal and deduct financing, gas and additional fees"
+            ],
+            "missing_fields": [
+              "execution_quote"
+            ],
+            "warnings": [
+              "No execution quote for this position",
+              "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+              "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION"
+            ]
+          },
+          "explanation": [
+            "Conditional comparison in USD using the same current equity.",
+            "Probabilities and net carry are explicit user assumptions for this horizon.",
+            "Selected incidents are alternative exclusive scenarios; the remaining probability has no selected incident.",
+            "No execution quote for this position",
+            "At the break-even probability STAY and EXIT are equal; above it EXIT is preferred (other inputs fixed).",
+            "Structural Risk Index is explanatory only and never used as a probability."
+          ],
+          "warnings": [
+            "STRUCTURAL_RISK_INSUFFICIENT_DATA"
+          ]
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [
+          "forecast_bundle_id",
+          "verdict",
+          "comparison",
+          "exit_value_usd",
+          "exit_cost_usd",
+          "break_even_probability",
+          "break_even_status",
+          "sensitivity_probability_max",
+          "requires_external_repayment_liquidity",
+          "structural_risk_index",
+          "carry_calculation"
+        ],
+        "warnings": [
+          "STRUCTURAL_RISK_INSUFFICIENT_DATA",
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/carry-estimates",
+      "request": {
+        "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+        "position_id": "pos_demo_fund",
+        "horizon_days": 7,
+        "assumptions": {
+          "pt_annual_return": "0.08",
+          "borrow_apy": "0.05",
+          "holding_fees_usd": "0",
+          "explanation": "Synthetic rate assumptions for frontend integration"
+        }
+      },
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "CONDITIONAL",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "status": "CONDITIONAL",
+          "horizon_days": 7,
+          "net_carry_usd": "1830.74226942877182701537542986275506897349866605036730625600",
+          "collateral_return_usd": "2954.10989031685804403172031497523501372217878077700107692000",
+          "borrowing_cost_usd": "1123.36762088808621701634488511247994474868011472663377066400",
+          "pt_annual_return": "0.08",
+          "borrow_apy": "0.05",
+          "holding_fees_usd": "0",
+          "basis": "USER_ASSUMPTION",
+          "methodology": "V * ((1 + annual effective rate) ** (H / 365) - 1); collateral return minus debt growth and holding fees",
+          "evidence_ids": [
+            "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+          ],
+          "missing_fields": [],
+          "warnings": [
+            "CONDITIONAL_CARRY_NOT_A_FORECAST",
+            "FIXED_QUANTITIES_AND_REFERENCE_USD_VALUE",
+            "NO_ADDITIONAL_PT_YIELD_ADDED",
+            "USER_ASSUMED_RATES_AND_HOLDING_FEES"
+          ]
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [],
+        "warnings": [
+          "CONDITIONAL_CARRY_NOT_A_FORECAST",
+          "FIXED_QUANTITIES_AND_REFERENCE_USD_VALUE",
+          "NO_ADDITIONAL_PT_YIELD_ADDED",
+          "USER_ASSUMED_RATES_AND_HOLDING_FEES",
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/closing-plans",
+      "request": {
+        "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+        "position_id": "pos_demo_fund",
+        "exit_quote_id": "quote:synthetic-full-position",
+        "assumptions": {
+          "available_repayment_loan_units": "1200000",
+          "gas_cost_usd": "100",
+          "extra_fees_usd": "20",
+          "financing_fee_usd": "30",
+          "explanation": "Synthetic external repayment funds and complete operation costs"
+        }
+      },
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "CONDITIONAL",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "status": "CONDITIONAL",
+          "position_id": "pos_demo_fund",
+          "quote_id": "quote:synthetic-full-position",
+          "basis": "USER_ASSUMPTION",
+          "required_repayment_loan_units": "1200000",
+          "available_repayment_loan_units": "1200000",
+          "repayment_shortfall_loan_units": "0",
+          "gas_cost_usd": "100",
+          "extra_fees_usd": "20",
+          "financing_fee_usd": "30",
+          "sale_proceeds_usd": "1980000",
+          "net_proceeds_usd": "1979850",
+          "total_operation_cost_usd": "150",
+          "exit_cost_usd": "20150",
+          "net_equity_after_exit_usd": "779850",
+          "steps": [
+            "Provide external loan-token funds to repay the current debt",
+            "Repay Morpho debt before withdrawing collateral",
+            "Withdraw the full PT collateral",
+            "Sell the exact PT quantity using the quoted route",
+            "Recover the funding principal and deduct financing, gas and additional fees"
+          ],
+          "missing_fields": [],
+          "warnings": [
+            "Net quote output includes price impact; gas/extra fees added once",
+            "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+            "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION",
+            "EXTERNAL_FUNDING_AND_COMPLETE_CLOSING_COSTS_ARE_USER_ASSUMPTIONS"
+          ]
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [],
+        "warnings": [
+          "Net quote output includes price impact; gas/extra fees added once",
+          "READ_ONLY_PLAN_NO_TRANSACTION_EXECUTED",
+          "CURRENT_DEBT_AND_QUOTE_CAN_CHANGE_BEFORE_EXECUTION",
+          "EXTERNAL_FUNDING_AND_COMPLETE_CLOSING_COSTS_ARE_USER_ASSUMPTIONS",
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/monte-carlo",
+      "request": {
+        "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+        "position_id": "pos_demo_fund",
+        "horizon_days": 7,
+        "num_paths": 1000,
+        "seed": 42,
+        "volatility_source": "USER_ASSUMPTION",
+        "annual_volatility": "0.20",
+        "annual_drift": "0",
+        "debt_model": "FROZEN_DEBT"
+      },
+      "http_status": 200,
+      "response": {
+        "schema_version": "analytics-v1.1",
+        "status": "OK",
+        "as_of": "2026-10-10T12:00:00Z",
+        "data": {
+          "schema_version": "monte-carlo-internal-v1",
+          "status": "OK",
+          "as_of": "2026-10-10T12:00:00Z",
+          "data": {
+            "strategy_id": "strat_d589cd964a2da9b34f7a5ab5",
+            "position_id": "pos_demo_fund",
+            "model_version": "GBM_ORACLE_PRICE_V1",
+            "horizon_days": 7,
+            "initial_ltv": "0.6",
+            "initial_health_factor": "1.525",
+            "critical_oracle_drop_ratio": "0.3442622950819672131147540984",
+            "breached_paths": 0,
+            "total_paths": 1000,
+            "simulated_threshold_breach_frequency": "0",
+            "terminal_ltv_p50": "0.5998813334050496",
+            "terminal_ltv_p95": "0.6282298014134382",
+            "min_health_factor_p05": "1.4495969698076534",
+            "mc_sampling_ci_95": {
+              "low": "0.0",
+              "high": "0.003826898586390522"
+            },
+            "oracle_mark_to_model_var95_loan_units": "89870.91806126559",
+            "oracle_mark_to_model_es95_loan_units": "116494.62991284949",
+            "realized_liquidation_loss_usd": null,
+            "assumptions": [
+              "Oracle price follows GBM in debt-token-per-PT units",
+              "Annual volatility and drift are assumptions in PR1",
+              "PT collateral quantity held constant",
+              "Debt model: FROZEN_DEBT",
+              "CONSTANT_APR, when selected, uses D0 * exp(apr * t / 365)",
+              "No oracle hack simulated",
+              "No protocol exploit simulated",
+              "No liquidation execution simulated",
+              "PT spot price is not used",
+              "Chronos is not used",
+              "FinBERT is not used",
+              "Threshold breach frequency is a model-implied simulation frequency",
+              "Losses are oracle mark-to-model values in loan-token units, not USD",
+              "Wilson interval describes sampling uncertainty only"
+            ]
+          },
+          "provenance": {
+            "calibration": "USER_ASSUMPTION",
+            "evidence_ids": [
+              "ev_aaaaaaaaaaaaaaaaaaaaaaaa"
+            ],
+            "oracle_calibration": null
+          },
+          "missing_fields": [],
+          "warnings": [
+            "MODEL_RISK_GBM",
+            "NOT_A_REAL_WORLD_LIQUIDATION_PROBABILITY",
+            "DAILY_STEPS_MAY_MISS_INTRADAY_BREACH",
+            "HYPOTHETICAL_INPUT_SCOPE",
+            "FROZEN_DEBT",
+            "INPUT_DATA_MODE_DEMO",
+            "VOLATILITY_AND_DRIFT_ARE_USER_ASSUMPTIONS_NOT_CALIBRATED",
+            "HYPOTHETICAL_POSITION_AMOUNTS",
+            "FROZEN_REPLAY_NOT_LIVE"
+          ]
+        },
+        "provenance": {
+          "snapshot_id": "synthetic-analytics-demo-v1",
+          "data_modes": [
+            "DEMO"
+          ],
+          "position_kinds": [
+            "SIMULATED"
+          ],
+          "replay": true,
+          "evaluated_at": "2026-10-10T12:00:00Z",
+          "evidence": [
+            {
+              "chain_id": 1,
+              "schema_version": "data-contract-v1.0",
+              "data_mode": "DEMO",
+              "evidence_id": "ev_aaaaaaaaaaaaaaaaaaaaaaaa",
+              "source_kind": "FIXTURE",
+              "source_id": "fixture:analytics",
+              "method": "synthetic test assumptions; no RPC call",
+              "target_address": null,
+              "request_params": {},
+              "block_number": null,
+              "block_hash": null,
+              "fetched_at": "2026-10-10T12:00:00Z",
+              "payload_sha256": null,
+              "status": "UNVERIFIED",
+              "error_message": null,
+              "source_uri": null,
+              "decoded_excerpt": null,
+              "parser_version": null
+            }
+          ]
+        },
+        "missing_fields": [],
+        "warnings": [
+          "MODEL_RISK_GBM",
+          "NOT_A_REAL_WORLD_LIQUIDATION_PROBABILITY",
+          "DAILY_STEPS_MAY_MISS_INTRADAY_BREACH",
+          "HYPOTHETICAL_INPUT_SCOPE",
+          "FROZEN_DEBT",
+          "INPUT_DATA_MODE_DEMO",
+          "VOLATILITY_AND_DRIFT_ARE_USER_ASSUMPTIONS_NOT_CALIBRATED",
+          "HYPOTHETICAL_POSITION_AMOUNTS",
+          "FROZEN_REPLAY_NOT_LIVE",
+          "SYNTHETIC_DATA: not on-chain observations",
+          "FROZEN_REPLAY: freshness evaluated at snapshot time, not a live quote",
+          "NO_VERIFIED_LIVE_STRATEGY",
+          "HYPOTHETICAL_SIZE: simulated holdings; borrowing capacity and market depth are not guaranteed"
+        ]
+      }
+    }
+  ]
+}

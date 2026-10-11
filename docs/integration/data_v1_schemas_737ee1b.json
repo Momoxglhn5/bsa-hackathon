@@ -1,0 +1,2061 @@
+{
+  "notice": "Schemas from actual Data V1 models; complement OpenAPI data fields typed Any.",
+  "models": {
+    "MarketDTO": {
+      "$defs": {
+        "DataMode": {
+          "enum": [
+            "REAL",
+            "DEMO"
+          ],
+          "title": "DataMode",
+          "type": "string"
+        },
+        "DataStatus": {
+          "enum": [
+            "OK",
+            "PARTIAL",
+            "MISSING",
+            "STALE",
+            "UNVERIFIED",
+            "MISMATCH",
+            "ERROR"
+          ],
+          "title": "DataStatus",
+          "type": "string"
+        },
+        "MarketPriceDTO": {
+          "additionalProperties": false,
+          "properties": {
+            "chain_id": {
+              "title": "Chain Id",
+              "type": "integer"
+            },
+            "value": {
+              "title": "Value",
+              "type": "string"
+            },
+            "base_asset": {
+              "$ref": "#/$defs/TokenRef"
+            },
+            "quote_unit": {
+              "$ref": "#/$defs/QuoteUnit"
+            },
+            "quote_asset": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/TokenRef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "pricing_method": {
+              "$ref": "#/$defs/PricingMethod"
+            },
+            "observed_at": {
+              "format": "date-time",
+              "title": "Observed At",
+              "type": "string"
+            },
+            "block_number": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Block Number"
+            },
+            "source_id": {
+              "maxLength": 128,
+              "pattern": "^[a-z0-9][a-z0-9_.:\\-]*$",
+              "title": "Source Id",
+              "type": "string"
+            },
+            "evidence_ids": {
+              "items": {
+                "pattern": "^ev_[0-9a-f]{16,64}$",
+                "type": "string"
+              },
+              "minItems": 1,
+              "title": "Evidence Ids",
+              "type": "array"
+            },
+            "status": {
+              "$ref": "#/$defs/DataStatus"
+            },
+            "kind": {
+              "const": "MARKET",
+              "default": "MARKET",
+              "title": "Kind",
+              "type": "string"
+            }
+          },
+          "required": [
+            "chain_id",
+            "value",
+            "base_asset",
+            "quote_unit",
+            "pricing_method",
+            "observed_at",
+            "source_id",
+            "evidence_ids",
+            "status"
+          ],
+          "title": "MarketPriceDTO",
+          "type": "object"
+        },
+        "MorphoMarketFields": {
+          "additionalProperties": false,
+          "description": "Morpho Blue market. Params are required: a market without params is not created.\n\nToken amounts are in whole token units (raw / 10**decimals); raw values kept alongside.",
+          "properties": {
+            "morpho_address": {
+              "title": "Morpho Address",
+              "type": "string"
+            },
+            "loan_token": {
+              "$ref": "#/$defs/TokenRef"
+            },
+            "collateral_token": {
+              "$ref": "#/$defs/TokenRef"
+            },
+            "oracle_address": {
+              "title": "Oracle Address",
+              "type": "string"
+            },
+            "irm_address": {
+              "title": "Irm Address",
+              "type": "string"
+            },
+            "lltv": {
+              "title": "Lltv",
+              "type": "string"
+            },
+            "lltv_raw": {
+              "title": "Lltv Raw",
+              "type": "string"
+            },
+            "total_supply_assets": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Total Supply Assets"
+            },
+            "total_supply_assets_raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Total Supply Assets Raw"
+            },
+            "total_borrow_assets": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Total Borrow Assets"
+            },
+            "total_borrow_assets_raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Total Borrow Assets Raw"
+            },
+            "total_supply_shares_raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Total Supply Shares Raw"
+            },
+            "total_borrow_shares_raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Total Borrow Shares Raw"
+            },
+            "utilization": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Utilization"
+            },
+            "supply_apy": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Supply Apy"
+            },
+            "borrow_apy": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Borrow Apy"
+            },
+            "fee": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Fee"
+            },
+            "last_update": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Last Update"
+            },
+            "oracle_price": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/OraclePriceDTO"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "collateral_price": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MarketPriceDTO"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "loan_price": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MarketPriceDTO"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          },
+          "required": [
+            "morpho_address",
+            "loan_token",
+            "collateral_token",
+            "oracle_address",
+            "irm_address",
+            "lltv",
+            "lltv_raw"
+          ],
+          "title": "MorphoMarketFields",
+          "type": "object"
+        },
+        "OraclePriceDTO": {
+          "additionalProperties": false,
+          "description": "Morpho oracle price: collateral (base) quoted in loan token (quote).\n\nvalue == raw_value / 10**scale_exponent,\nscale_exponent == 36 + loan_decimals - collateral_decimals.",
+          "properties": {
+            "chain_id": {
+              "title": "Chain Id",
+              "type": "integer"
+            },
+            "value": {
+              "title": "Value",
+              "type": "string"
+            },
+            "base_asset": {
+              "$ref": "#/$defs/TokenRef"
+            },
+            "quote_unit": {
+              "$ref": "#/$defs/QuoteUnit"
+            },
+            "quote_asset": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/TokenRef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "pricing_method": {
+              "$ref": "#/$defs/PricingMethod"
+            },
+            "observed_at": {
+              "format": "date-time",
+              "title": "Observed At",
+              "type": "string"
+            },
+            "block_number": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Block Number"
+            },
+            "source_id": {
+              "maxLength": 128,
+              "pattern": "^[a-z0-9][a-z0-9_.:\\-]*$",
+              "title": "Source Id",
+              "type": "string"
+            },
+            "evidence_ids": {
+              "items": {
+                "pattern": "^ev_[0-9a-f]{16,64}$",
+                "type": "string"
+              },
+              "minItems": 1,
+              "title": "Evidence Ids",
+              "type": "array"
+            },
+            "status": {
+              "$ref": "#/$defs/DataStatus"
+            },
+            "kind": {
+              "const": "ORACLE",
+              "default": "ORACLE",
+              "title": "Kind",
+              "type": "string"
+            },
+            "oracle_address": {
+              "title": "Oracle Address",
+              "type": "string"
+            },
+            "raw_value": {
+              "title": "Raw Value",
+              "type": "string"
+            },
+            "scale_exponent": {
+              "title": "Scale Exponent",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "chain_id",
+            "value",
+            "base_asset",
+            "quote_unit",
+            "pricing_method",
+            "observed_at",
+            "source_id",
+            "evidence_ids",
+            "status",
+            "oracle_address",
+            "raw_value",
+            "scale_exponent"
+          ],
+          "title": "OraclePriceDTO",
+          "type": "object"
+        },
+        "PendleMarketFields": {
+          "additionalProperties": false,
+          "description": "Pendle V2 market: PT/YT/SY triple, expiry and API metrics.",
+          "properties": {
+            "market_address": {
+              "title": "Market Address",
+              "type": "string"
+            },
+            "pt": {
+              "$ref": "#/$defs/TokenRef"
+            },
+            "yt": {
+              "$ref": "#/$defs/TokenRef"
+            },
+            "sy": {
+              "$ref": "#/$defs/TokenRef"
+            },
+            "expiry": {
+              "format": "date-time",
+              "title": "Expiry",
+              "type": "string"
+            },
+            "underlying_asset": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/TokenRef"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "is_expired": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Is Expired"
+            },
+            "implied_apy": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Implied Apy"
+            },
+            "underlying_apy": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Underlying Apy"
+            },
+            "pt_price": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/MarketPriceDTO"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "liquidity_usd": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Liquidity Usd"
+            },
+            "total_pt": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Total Pt"
+            },
+            "total_sy": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Total Sy"
+            }
+          },
+          "required": [
+            "market_address",
+            "pt",
+            "yt",
+            "sy",
+            "expiry"
+          ],
+          "title": "PendleMarketFields",
+          "type": "object"
+        },
+        "PricingMethod": {
+          "enum": [
+            "API_SPOT",
+            "PENDLE_IMPLIED",
+            "MORPHO_ORACLE",
+            "EXECUTION_QUOTE"
+          ],
+          "title": "PricingMethod",
+          "type": "string"
+        },
+        "Protocol": {
+          "enum": [
+            "MORPHO_BLUE",
+            "PENDLE_V2"
+          ],
+          "title": "Protocol",
+          "type": "string"
+        },
+        "QuoteUnit": {
+          "enum": [
+            "USD",
+            "TOKEN"
+          ],
+          "title": "QuoteUnit",
+          "type": "string"
+        },
+        "TokenRef": {
+          "additionalProperties": false,
+          "description": "Token identified by (chain_id, address). `symbol` is a label only.",
+          "properties": {
+            "chain_id": {
+              "title": "Chain Id",
+              "type": "integer"
+            },
+            "address": {
+              "title": "Address",
+              "type": "string"
+            },
+            "symbol": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Symbol"
+            },
+            "name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Name"
+            },
+            "decimals": {
+              "anyOf": [
+                {
+                  "maximum": 255,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Decimals"
+            }
+          },
+          "required": [
+            "chain_id",
+            "address"
+          ],
+          "title": "TokenRef",
+          "type": "object"
+        },
+        "VerificationCheckDTO": {
+          "additionalProperties": false,
+          "description": "API-claimed value vs value read on-chain for one essential relationship.\n\nValues are canonical strings (normalised address, bytes32, integer string).\nA mismatch keeps both values; nothing is silently resolved.",
+          "properties": {
+            "check": {
+              "maxLength": 128,
+              "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)*$",
+              "title": "Check",
+              "type": "string"
+            },
+            "claimed_value": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Claimed Value"
+            },
+            "claimed_source_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "pattern": "^[a-z0-9][a-z0-9_.:\\-]*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Claimed Source Id"
+            },
+            "onchain_value": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Onchain Value"
+            },
+            "status": {
+              "$ref": "#/$defs/VerificationStatus"
+            },
+            "evidence_ids": {
+              "default": [],
+              "items": {
+                "pattern": "^ev_[0-9a-f]{16,64}$",
+                "type": "string"
+              },
+              "title": "Evidence Ids",
+              "type": "array"
+            }
+          },
+          "required": [
+            "check",
+            "status"
+          ],
+          "title": "VerificationCheckDTO",
+          "type": "object"
+        },
+        "VerificationStatus": {
+          "enum": [
+            "VERIFIED",
+            "UNVERIFIED",
+            "MISMATCH",
+            "ERROR"
+          ],
+          "title": "VerificationStatus",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Normalised market. Exactly one protocol block is set, matching `protocol`.\n\nmarket_id: bytes32 id for Morpho Blue, market contract address for Pendle.",
+      "properties": {
+        "chain_id": {
+          "title": "Chain Id",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "data-contract-v1.0",
+          "default": "data-contract-v1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "data_mode": {
+          "$ref": "#/$defs/DataMode"
+        },
+        "protocol": {
+          "$ref": "#/$defs/Protocol"
+        },
+        "market_id": {
+          "title": "Market Id",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/DataStatus"
+        },
+        "as_of": {
+          "format": "date-time",
+          "title": "As Of",
+          "type": "string"
+        },
+        "block_number": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Block Number"
+        },
+        "morpho": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MorphoMarketFields"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "pendle": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PendleMarketFields"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "verification": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/VerificationCheckDTO"
+          },
+          "title": "Verification",
+          "type": "array"
+        },
+        "source_ids": {
+          "items": {
+            "maxLength": 128,
+            "pattern": "^[a-z0-9][a-z0-9_.:\\-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "evidence_ids": {
+          "items": {
+            "pattern": "^ev_[0-9a-f]{16,64}$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "chain_id",
+        "data_mode",
+        "protocol",
+        "market_id",
+        "status",
+        "as_of",
+        "source_ids",
+        "evidence_ids"
+      ],
+      "title": "MarketDTO",
+      "type": "object"
+    },
+    "PositionDTO": {
+      "$defs": {
+        "DataMode": {
+          "enum": [
+            "REAL",
+            "DEMO"
+          ],
+          "title": "DataMode",
+          "type": "string"
+        },
+        "DataStatus": {
+          "enum": [
+            "OK",
+            "PARTIAL",
+            "MISSING",
+            "STALE",
+            "UNVERIFIED",
+            "MISMATCH",
+            "ERROR"
+          ],
+          "title": "DataStatus",
+          "type": "string"
+        },
+        "PositionKind": {
+          "enum": [
+            "ONCHAIN",
+            "SIMULATED"
+          ],
+          "title": "PositionKind",
+          "type": "string"
+        },
+        "TokenRef": {
+          "additionalProperties": false,
+          "description": "Token identified by (chain_id, address). `symbol` is a label only.",
+          "properties": {
+            "chain_id": {
+              "title": "Chain Id",
+              "type": "integer"
+            },
+            "address": {
+              "title": "Address",
+              "type": "string"
+            },
+            "symbol": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Symbol"
+            },
+            "name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Name"
+            },
+            "decimals": {
+              "anyOf": [
+                {
+                  "maximum": 255,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Decimals"
+            }
+          },
+          "required": [
+            "chain_id",
+            "address"
+          ],
+          "title": "TokenRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Borrow position: collateral deposited, loan token borrowed.\n\nAmounts are in whole token units; raw on-chain values kept alongside.",
+      "properties": {
+        "chain_id": {
+          "title": "Chain Id",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "data-contract-v1.0",
+          "default": "data-contract-v1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "data_mode": {
+          "$ref": "#/$defs/DataMode"
+        },
+        "position_id": {
+          "pattern": "^pos_[0-9a-z_\\-]{4,64}$",
+          "title": "Position Id",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/PositionKind"
+        },
+        "protocol": {
+          "const": "MORPHO_BLUE",
+          "default": "MORPHO_BLUE",
+          "title": "Protocol",
+          "type": "string"
+        },
+        "market_id": {
+          "title": "Market Id",
+          "type": "string"
+        },
+        "owner": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Owner"
+        },
+        "collateral_asset": {
+          "$ref": "#/$defs/TokenRef"
+        },
+        "loan_asset": {
+          "$ref": "#/$defs/TokenRef"
+        },
+        "collateral_amount": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Collateral Amount"
+        },
+        "collateral_amount_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Collateral Amount Raw"
+        },
+        "borrow_amount": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Borrow Amount"
+        },
+        "borrow_amount_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Borrow Amount Raw"
+        },
+        "borrow_shares_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Borrow Shares Raw"
+        },
+        "supply_shares_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Supply Shares Raw"
+        },
+        "strategy_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Strategy Id"
+        },
+        "label": {
+          "anyOf": [
+            {
+              "maxLength": 128,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Label"
+        },
+        "as_of": {
+          "format": "date-time",
+          "title": "As Of",
+          "type": "string"
+        },
+        "block_number": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Block Number"
+        },
+        "status": {
+          "$ref": "#/$defs/DataStatus"
+        },
+        "source_ids": {
+          "items": {
+            "maxLength": 128,
+            "pattern": "^[a-z0-9][a-z0-9_.:\\-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "evidence_ids": {
+          "default": [],
+          "items": {
+            "pattern": "^ev_[0-9a-f]{16,64}$",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "chain_id",
+        "data_mode",
+        "position_id",
+        "kind",
+        "market_id",
+        "collateral_asset",
+        "loan_asset",
+        "as_of",
+        "status",
+        "source_ids"
+      ],
+      "title": "PositionDTO",
+      "type": "object"
+    },
+    "StrategyDTO": {
+      "$defs": {
+        "DataMode": {
+          "enum": [
+            "REAL",
+            "DEMO"
+          ],
+          "title": "DataMode",
+          "type": "string"
+        },
+        "DataStatus": {
+          "enum": [
+            "OK",
+            "PARTIAL",
+            "MISSING",
+            "STALE",
+            "UNVERIFIED",
+            "MISMATCH",
+            "ERROR"
+          ],
+          "title": "DataStatus",
+          "type": "string"
+        },
+        "StrategyStatus": {
+          "enum": [
+            "CANDIDATE",
+            "VERIFIED_ACTIVE",
+            "EXPIRED",
+            "UNSUPPORTED"
+          ],
+          "title": "StrategyStatus",
+          "type": "string"
+        },
+        "StrategyType": {
+          "enum": [
+            "PENDLE_PT_COLLATERAL_ON_MORPHO"
+          ],
+          "title": "StrategyType",
+          "type": "string"
+        },
+        "TokenRef": {
+          "additionalProperties": false,
+          "description": "Token identified by (chain_id, address). `symbol` is a label only.",
+          "properties": {
+            "chain_id": {
+              "title": "Chain Id",
+              "type": "integer"
+            },
+            "address": {
+              "title": "Address",
+              "type": "string"
+            },
+            "symbol": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Symbol"
+            },
+            "name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Name"
+            },
+            "decimals": {
+              "anyOf": [
+                {
+                  "maximum": 255,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Decimals"
+            }
+          },
+          "required": [
+            "chain_id",
+            "address"
+          ],
+          "title": "TokenRef",
+          "type": "object"
+        },
+        "VerificationCheckDTO": {
+          "additionalProperties": false,
+          "description": "API-claimed value vs value read on-chain for one essential relationship.\n\nValues are canonical strings (normalised address, bytes32, integer string).\nA mismatch keeps both values; nothing is silently resolved.",
+          "properties": {
+            "check": {
+              "maxLength": 128,
+              "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)*$",
+              "title": "Check",
+              "type": "string"
+            },
+            "claimed_value": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Claimed Value"
+            },
+            "claimed_source_id": {
+              "anyOf": [
+                {
+                  "maxLength": 128,
+                  "pattern": "^[a-z0-9][a-z0-9_.:\\-]*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Claimed Source Id"
+            },
+            "onchain_value": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Onchain Value"
+            },
+            "status": {
+              "$ref": "#/$defs/VerificationStatus"
+            },
+            "evidence_ids": {
+              "default": [],
+              "items": {
+                "pattern": "^ev_[0-9a-f]{16,64}$",
+                "type": "string"
+              },
+              "title": "Evidence Ids",
+              "type": "array"
+            }
+          },
+          "required": [
+            "check",
+            "status"
+          ],
+          "title": "VerificationCheckDTO",
+          "type": "object"
+        },
+        "VerificationStatus": {
+          "enum": [
+            "VERIFIED",
+            "UNVERIFIED",
+            "MISMATCH",
+            "ERROR"
+          ],
+          "title": "VerificationStatus",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "chain_id": {
+          "title": "Chain Id",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "data-contract-v1.0",
+          "default": "data-contract-v1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "data_mode": {
+          "$ref": "#/$defs/DataMode"
+        },
+        "strategy_id": {
+          "pattern": "^strat_[0-9a-f]{16,64}$",
+          "title": "Strategy Id",
+          "type": "string"
+        },
+        "strategy_type": {
+          "$ref": "#/$defs/StrategyType",
+          "default": "PENDLE_PT_COLLATERAL_ON_MORPHO"
+        },
+        "status": {
+          "$ref": "#/$defs/StrategyStatus"
+        },
+        "status_reason": {
+          "anyOf": [
+            {
+              "maxLength": 512,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Status Reason"
+        },
+        "data_status": {
+          "$ref": "#/$defs/DataStatus"
+        },
+        "morpho_market_id": {
+          "title": "Morpho Market Id",
+          "type": "string"
+        },
+        "pendle_market_address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pendle Market Address"
+        },
+        "pt": {
+          "$ref": "#/$defs/TokenRef"
+        },
+        "loan_asset": {
+          "$ref": "#/$defs/TokenRef"
+        },
+        "underlying_asset": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TokenRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "expiry": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expiry"
+        },
+        "as_of": {
+          "format": "date-time",
+          "title": "As Of",
+          "type": "string"
+        },
+        "block_number": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Block Number"
+        },
+        "verification": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/VerificationCheckDTO"
+          },
+          "title": "Verification",
+          "type": "array"
+        },
+        "source_ids": {
+          "items": {
+            "maxLength": 128,
+            "pattern": "^[a-z0-9][a-z0-9_.:\\-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Source Ids",
+          "type": "array"
+        },
+        "evidence_ids": {
+          "default": [],
+          "items": {
+            "pattern": "^ev_[0-9a-f]{16,64}$",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "chain_id",
+        "data_mode",
+        "strategy_id",
+        "status",
+        "data_status",
+        "morpho_market_id",
+        "pt",
+        "loan_asset",
+        "as_of",
+        "source_ids"
+      ],
+      "title": "StrategyDTO",
+      "type": "object"
+    },
+    "EvidenceDTO": {
+      "$defs": {
+        "DataMode": {
+          "enum": [
+            "REAL",
+            "DEMO"
+          ],
+          "title": "DataMode",
+          "type": "string"
+        },
+        "DataStatus": {
+          "enum": [
+            "OK",
+            "PARTIAL",
+            "MISSING",
+            "STALE",
+            "UNVERIFIED",
+            "MISMATCH",
+            "ERROR"
+          ],
+          "title": "DataStatus",
+          "type": "string"
+        },
+        "SourceKind": {
+          "enum": [
+            "MORPHO_API",
+            "PENDLE_API",
+            "RPC",
+            "FIXTURE",
+            "USER_INPUT",
+            "DERIVED"
+          ],
+          "title": "SourceKind",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "description": "One retrieval from one source. Other DTOs reference it by `evidence_id`.\n\nBrief names -> fields: source_type=source_kind, retrieved_at=fetched_at,\ncontract_address=target_address, params=request_params, raw_value_hash=payload_sha256.",
+      "properties": {
+        "chain_id": {
+          "title": "Chain Id",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "data-contract-v1.0",
+          "default": "data-contract-v1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "data_mode": {
+          "$ref": "#/$defs/DataMode"
+        },
+        "evidence_id": {
+          "pattern": "^ev_[0-9a-f]{16,64}$",
+          "title": "Evidence Id",
+          "type": "string"
+        },
+        "source_kind": {
+          "$ref": "#/$defs/SourceKind"
+        },
+        "source_id": {
+          "maxLength": 128,
+          "pattern": "^[a-z0-9][a-z0-9_.:\\-]*$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "method": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Method",
+          "type": "string"
+        },
+        "target_address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target Address"
+        },
+        "request_params": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Request Params",
+          "type": "object"
+        },
+        "block_number": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Block Number"
+        },
+        "block_hash": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Block Hash"
+        },
+        "fetched_at": {
+          "format": "date-time",
+          "title": "Fetched At",
+          "type": "string"
+        },
+        "payload_sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Payload Sha256"
+        },
+        "status": {
+          "$ref": "#/$defs/DataStatus"
+        },
+        "error_message": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error Message"
+        },
+        "source_uri": {
+          "anyOf": [
+            {
+              "maxLength": 512,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Uri"
+        },
+        "decoded_excerpt": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Decoded Excerpt"
+        },
+        "parser_version": {
+          "anyOf": [
+            {
+              "maxLength": 64,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parser Version"
+        }
+      },
+      "required": [
+        "chain_id",
+        "data_mode",
+        "evidence_id",
+        "source_kind",
+        "source_id",
+        "method",
+        "fetched_at",
+        "status"
+      ],
+      "title": "EvidenceDTO",
+      "type": "object"
+    },
+    "RelationDTO": {
+      "$defs": {
+        "DataMode": {
+          "enum": [
+            "REAL",
+            "DEMO"
+          ],
+          "title": "DataMode",
+          "type": "string"
+        },
+        "RelationStatus": {
+          "enum": [
+            "ONCHAIN_VERIFIED",
+            "API_OBSERVED",
+            "CURATED",
+            "UNRESOLVED"
+          ],
+          "title": "RelationStatus",
+          "type": "string"
+        },
+        "RelationType": {
+          "enum": [
+            "MARKET_LOAN_ASSET",
+            "MARKET_COLLATERAL_ASSET",
+            "MARKET_ORACLE",
+            "MARKET_IRM",
+            "PENDLE_MARKET_PT",
+            "PENDLE_MARKET_SY",
+            "PENDLE_MARKET_YT",
+            "SY_YIELD_TOKEN",
+            "SY_ACCOUNTING_ASSET",
+            "SY_ACCEPTS_INPUT",
+            "SY_REDEEMS_TO",
+            "TOKEN_DECLARED_ASSET",
+            "ECONOMIC_BACKING"
+          ],
+          "title": "RelationType",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "description": "One directed edge source -> target with its verification status and evidence.",
+      "properties": {
+        "chain_id": {
+          "title": "Chain Id",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "data-contract-v1.0",
+          "default": "data-contract-v1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "data_mode": {
+          "$ref": "#/$defs/DataMode"
+        },
+        "relation_id": {
+          "pattern": "^rel_[0-9a-f]{24}$",
+          "title": "Relation Id",
+          "type": "string"
+        },
+        "source_node_id": {
+          "pattern": "^((asset|contract|pendle):\\d+:0x[0-9a-f]{40}|morpho:\\d+:0x[0-9a-f]{64})$",
+          "title": "Source Node Id",
+          "type": "string"
+        },
+        "target_node_id": {
+          "pattern": "^((asset|contract|pendle):\\d+:0x[0-9a-f]{40}|morpho:\\d+:0x[0-9a-f]{64})$",
+          "title": "Target Node Id",
+          "type": "string"
+        },
+        "relation_type": {
+          "$ref": "#/$defs/RelationType"
+        },
+        "verification_status": {
+          "$ref": "#/$defs/RelationStatus"
+        },
+        "evidence_ids": {
+          "default": [],
+          "items": {
+            "pattern": "^ev_[0-9a-f]{16,64}$",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "observed_at": {
+          "format": "date-time",
+          "title": "Observed At",
+          "type": "string"
+        },
+        "block_number": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Block Number"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "maxLength": 512,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "chain_id",
+        "data_mode",
+        "relation_id",
+        "source_node_id",
+        "target_node_id",
+        "relation_type",
+        "verification_status",
+        "observed_at"
+      ],
+      "title": "RelationDTO",
+      "type": "object"
+    },
+    "TimeseriesDTO": {
+      "$defs": {
+        "DataMode": {
+          "enum": [
+            "REAL",
+            "DEMO"
+          ],
+          "title": "DataMode",
+          "type": "string"
+        },
+        "DataStatus": {
+          "enum": [
+            "OK",
+            "PARTIAL",
+            "MISSING",
+            "STALE",
+            "UNVERIFIED",
+            "MISMATCH",
+            "ERROR"
+          ],
+          "title": "DataStatus",
+          "type": "string"
+        },
+        "PricingMethod": {
+          "enum": [
+            "API_SPOT",
+            "PENDLE_IMPLIED",
+            "MORPHO_ORACLE",
+            "EXECUTION_QUOTE"
+          ],
+          "title": "PricingMethod",
+          "type": "string"
+        },
+        "SeriesUnit": {
+          "enum": [
+            "RATIO",
+            "USD",
+            "TOKEN"
+          ],
+          "title": "SeriesUnit",
+          "type": "string"
+        },
+        "SubjectKind": {
+          "enum": [
+            "ASSET",
+            "MARKET"
+          ],
+          "title": "SubjectKind",
+          "type": "string"
+        },
+        "TimeseriesMetric": {
+          "enum": [
+            "MARKET_PRICE",
+            "ORACLE_PRICE",
+            "PT_IMPLIED_APY",
+            "UNDERLYING_APY",
+            "SUPPLY_APY",
+            "BORROW_APY",
+            "UTILIZATION",
+            "TOTAL_SUPPLY_ASSETS",
+            "TOTAL_BORROW_ASSETS",
+            "LIQUIDITY_USD",
+            "PT_EXIT_EXECUTION_PRICE"
+          ],
+          "title": "TimeseriesMetric",
+          "type": "string"
+        },
+        "TimeseriesPointDTO": {
+          "additionalProperties": false,
+          "properties": {
+            "timestamp": {
+              "format": "date-time",
+              "title": "Timestamp",
+              "type": "string"
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Value"
+            },
+            "status": {
+              "$ref": "#/$defs/DataStatus"
+            },
+            "block_number": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Block Number"
+            },
+            "evidence_ids": {
+              "default": [],
+              "items": {
+                "pattern": "^ev_[0-9a-f]{16,64}$",
+                "type": "string"
+              },
+              "title": "Evidence Ids",
+              "type": "array"
+            }
+          },
+          "required": [
+            "timestamp",
+            "status"
+          ],
+          "title": "TimeseriesPointDTO",
+          "type": "object"
+        },
+        "TokenRef": {
+          "additionalProperties": false,
+          "description": "Token identified by (chain_id, address). `symbol` is a label only.",
+          "properties": {
+            "chain_id": {
+              "title": "Chain Id",
+              "type": "integer"
+            },
+            "address": {
+              "title": "Address",
+              "type": "string"
+            },
+            "symbol": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Symbol"
+            },
+            "name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Name"
+            },
+            "decimals": {
+              "anyOf": [
+                {
+                  "maximum": 255,
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Decimals"
+            }
+          },
+          "required": [
+            "chain_id",
+            "address"
+          ],
+          "title": "TokenRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "chain_id": {
+          "title": "Chain Id",
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "data-contract-v1.0",
+          "default": "data-contract-v1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "data_mode": {
+          "$ref": "#/$defs/DataMode"
+        },
+        "series_id": {
+          "pattern": "^ts_[0-9a-z_\\-]{4,96}$",
+          "title": "Series Id",
+          "type": "string"
+        },
+        "metric": {
+          "$ref": "#/$defs/TimeseriesMetric"
+        },
+        "subject_kind": {
+          "$ref": "#/$defs/SubjectKind"
+        },
+        "subject_id": {
+          "title": "Subject Id",
+          "type": "string"
+        },
+        "unit": {
+          "$ref": "#/$defs/SeriesUnit"
+        },
+        "quote_asset": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TokenRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "pricing_method": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PricingMethod"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "interval_seconds": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Interval Seconds"
+        },
+        "source_id": {
+          "maxLength": 128,
+          "pattern": "^[a-z0-9][a-z0-9_.:\\-]*$",
+          "title": "Source Id",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/DataStatus"
+        },
+        "points": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/TimeseriesPointDTO"
+          },
+          "title": "Points",
+          "type": "array"
+        }
+      },
+      "required": [
+        "chain_id",
+        "data_mode",
+        "series_id",
+        "metric",
+        "subject_kind",
+        "subject_id",
+        "unit",
+        "source_id",
+        "status"
+      ],
+      "title": "TimeseriesDTO",
+      "type": "object"
+    }
+  }
+}
